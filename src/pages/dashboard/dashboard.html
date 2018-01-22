@@ -3,57 +3,176 @@
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
--->
-<ion-header>
-
+--><!--<ion-header>
   <ion-navbar>
-    <ion-title>dashboardPage</ion-title>
+    <ion-title>Dashboard</ion-title>
   </ion-navbar>
-
-</ion-header>
+</ion-header>-->
 
 
 <ion-content padding>
-  
+
   <ion-grid>
-    
-    <dropdown-menu>
-      Account
-      Logout
-    </dropdown-menu>
-    
-    <ion-card>
-      User Info Card
-      Edit link/button
-    </ion-card>
-    
-    <ion-segments>
-      
-      <ion-segment>
-        Monthly Chart
-        View Table button
-        ? helper - chart description
-        
-        <ion-modal>
-          Data Table
-        </ion-modal>
-      
-      </ion-segment>
-        
-      <ion-segment>
-        Cumulative Chart
-        View Table button
-        ? helper - chart description
-        
-        <ion-modal>
-          Data Table
-        </ion-modal>
-        
-      </ion-segment>
-      
-      
-    </ion-segments>
-    
+    <ion-row align-items-center>
+      <ion-col align-self-end>
+        <h1>SSWhen</h1>
+      </ion-col>
+      <ion-col>
+        <button ion-button round float-end color="light" icon-left>
+          <ion-icon name="person"></ion-icon>
+          <ion-icon md="md-arrow-dropdown"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row align-items-center>
+      <ion-col>
+
+        <ion-card>
+          <ion-card-header>
+            <ion-row align-items-center>
+              <ion-col>
+                <h2>User Information</h2>
+              </ion-col>
+              <ion-col>
+                <button ion-button icon-only float-end clear round color="dark">
+                  <ion-icon md="md-create"></ion-icon>
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-row align-items-center>
+              <ion-col>
+                <ion-item>
+                  <ion-label floating>Full Name</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row align-items-center>
+              <ion-col>
+                <ion-item>
+                  <ion-label floating>Life Expectancy</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <ion-label floating>FRA Age</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row align-items-center>
+              <ion-col>
+                <ion-item>
+                  <ion-label floating>FRA Benefit Amount</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row align-items-center>
+              <ion-col>
+                <ion-item>
+                  <ion-label floating>Total Tax Contribution</ion-label>
+                  <ion-input type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row align-items-center>
+      <ion-col>
+        <div padding>
+          <ion-segment [(ngModel)]="data">
+            <ion-segment-button value="monthly">
+              Monthly
+            </ion-segment-button>
+            <ion-segment-button value="cumulative">
+              Cumulative
+            </ion-segment-button>
+            <ion-segment-button value="other">
+              Other
+            </ion-segment-button>
+          </ion-segment>
+        </div>
+
+        <div [ngSwitch]="data">
+          <ion-list *ngSwitchCase="'monthly'">
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src="img/thumbnail-puppy-1.jpg">
+              </ion-thumbnail>
+              <h2>Mothly Contribution</h2>
+            </ion-item>
+          </ion-list>
+
+          <ion-list *ngSwitchCase="'cumulative'">
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src="img/thumbnail-kitten-1.jpg">
+              </ion-thumbnail>
+              <h2>Cumulative Contributions</h2>
+            </ion-item>
+          </ion-list>
+
+          <ion-list *ngSwitchCase="'other'">
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src="img/thumbnail-kitten-1.jpg">
+              </ion-thumbnail>
+              <h2>Other Contributions</h2>
+            </ion-item>
+          </ion-list>
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-grid>
+
+  <!--<ion-grid>-->
+
+  <!--  <dropdown-menu>-->
+  <!--    Account-->
+  <!--    Logout-->
+  <!--  </dropdown-menu>-->
+
+  <!--  <ion-card>-->
+  <!--    User Info Card-->
+  <!--    Edit link/button-->
+  <!--  </ion-card>-->
+
+  <!--  <ion-segments>-->
+
+  <!--    <ion-segment>-->
+  <!--      Monthly Chart-->
+  <!--      View Table button-->
+  <!--      ? helper - chart description-->
+
+  <!--      <ion-modal>-->
+  <!--        Data Table-->
+  <!--      </ion-modal>-->
+
+  <!--    </ion-segment>-->
+
+  <!--    <ion-segment>-->
+  <!--      Cumulative Chart-->
+  <!--      View Table button-->
+  <!--      ? helper - chart description-->
+
+  <!--      <ion-modal>-->
+  <!--        Data Table-->
+  <!--      </ion-modal>-->
+
+  <!--    </ion-segment>-->
+
+
+  <!--  </ion-segments>-->
+
+  <!--</ion-grid>-->
+>>>>>>> Stashed changes
 
 </ion-content>
