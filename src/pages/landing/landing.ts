@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { InfoInputPage } from '../info-input/info-input';
+import { RegisterPage } from '../register/register'
 
 /**
  * Generated class for the LandingPage page.
@@ -20,6 +22,16 @@ export class LandingPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LandingPage');
+  }
+  
+  toInfoInput(params){
+    if (!params) params = {};
+    this.navCtrl.push(InfoInputPage);
+  }
+  
+  toRegister(params){
+    if (!params) params = {};
+    this.navCtrl.push(RegisterPage);
   }
 
 }

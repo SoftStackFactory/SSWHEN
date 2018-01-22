@@ -14,28 +14,36 @@
 
 
 <ion-content padding>
-   
   <ion-grid>
     <ion-row>
-      <ion-col width=128>
-   
-      <button ion-button>Login</button>
-      
-      <ion-card>
-          
-          <img id='landing-img' src="https://images.unsplash.com/photo-1465508421127-4cbee06c9e73?auto=format&fit=crop&w=1500&q=80" alt='retired people'
-          style="width:128px;height:128px;">
-    
-          <h1>SSFWHEN</h1>
-          
-          <p> 
-            
-          </p>
+      <ion-col>
+       
+        <ion-row justify-content-end>  
+           <button ion-button (click)='toRegister()'>Login</button>
+        </ion-row>
+        
+       <ion-card>
+        
+           <ion-card-header text-center>
+             <h1>SSFWHEN</h1>
+           </ion-card-header>
            
-      </ion-card>
-      
-      <button ion-button>Begin</button>
-    
+           <ion-row> 
+               <img id='landing-img' src="https://images.unsplash.com/photo-1465508421127-4cbee06c9e73?auto=format&fit=crop&w=1500&q=80" 
+               alt='retired people' style="width:100%; height: 200px;">
+           </ion-row>
+           
+           
+           <p text-center> 
+              Let the Social Security Calculator help you figure out how much retirement income you’ll receive at different claiming ages so you can determine when you should claim Social Security. 
+           </p>
+            
+       </ion-card>
+       
+      <ion-row justify-content-center> 
+          <button ion-button  (click)='toInfoInput()'>Begin</button>
+      </ion-row>
+  
      </ion-col>
     </ion-row>
   </ion-grid>
