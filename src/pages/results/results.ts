@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { RegisterPage } from '../register/register';
 
 
 @IonicPage()
@@ -25,6 +26,10 @@ export class ResultsPage {
   //   { age: 69, monthlyPayout: 1000 },
   //   { age: 70, monthlyPayout: 1000 }
   //   ];
+  }
+  goToRegister(params){
+    if (!params) params = {};
+    this.navCtrl.push(RegisterPage);
   }
   
 
