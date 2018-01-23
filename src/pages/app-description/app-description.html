@@ -26,23 +26,26 @@
       </ion-card-header>
       
       <ion-card-content>
-        In order to estimate the full range of your Social Security options, you will need to obtain a 
-        copy of your Social Security statement OR your Full Retirement Benefit. 
-        <button ion-button icon-only small clear on-click="benefitInfoAlert()">
+        This site will give you an estimate of your Social Security benefit options, based on the age that you elect to begin
+        receiving benefits.  
+        <br>
+        <br>
+        To proceed, you will need a copy of your Social Security statement OR an estimate of your Full Retirement Benefit . 
+        <button ion-button icon-only small clear on-click="benefitInfoAlert()"  class="customBtn">
           <ion-icon name="information-circle"></ion-icon>
         </button>
         <br>
         <br>
-        If you do not already have a copy of your Social Security Statement, you can obtain one by logging into the 
-        Social Security Administration home page <a href="https://www.ssa.gov/myaccount/">here</a>.
+        Get a copy of your Social Security statement by logging into the Social Security Administration home page 
+        <a target="_blank" href="https://www.ssa.gov/myaccount/">here</a>.
         <br>
         <br>
-        If you need an estimate of your Full Retirement Benefit, you can get it 
-        <a href="https://www.ssa.gov/benefits/retirement/estimator.html">here</a>.
+        Get it an estimate of your Full Retirement Benefit  
+        <a target="_blank" href="https://www.ssa.gov/benefits/retirement/estimator.html">here</a>.
       </ion-card-content>
     </ion-card>
     
-    <button ion-button block round on-click="goToInfoInput()">Begin</button>
+    <button ion-button on-click="goToInfoInput()">Begin</button>
     
 <!--    <ion-modal>-->
 <!--      Prerequisite info-->
