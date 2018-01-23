@@ -5,9 +5,7 @@ import { Injectable } from '@angular/core';
 export class UserDataProvider {
   date: string;
   sex: string;
-  start: number;
   FRA: number;
-  end: number;
 
   constructor() {
   }

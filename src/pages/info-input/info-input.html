@@ -25,28 +25,27 @@
       <ion-list>
         
         <ion-item text-center>
-          <ion-label>Month and Year of Birth</ion-label>
+          <ion-label floating>Month and Year of Birth</ion-label>
           <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="myDate" name="Date"></ion-datetime>
         </ion-item>
         
         <ion-item text-center>
-          <ion-label>Gender</ion-label>
+          <ion-label floating>Gender</ion-label>
           <ion-select [(ngModel)]="gender" name = "gender">
             <ion-option value="f">Female</ion-option>
             <ion-option value="m">Male</ion-option>
           </ion-select>
         </ion-item>
         
-        <div text-center>
-          <ion-item><ion-input type="number" placeholder="Monthly Benefit Estimate If Retiring at 62" [(ngModel)]="monthlyAt62" name="62"></ion-input></ion-item>
-          <ion-item><ion-input type="number" placeholder="Monthly Benefit Estimate If Retiring at FRA" [(ngModel)]="monthlyAtFRA" name="FRA"></ion-input></ion-item>
-          <ion-item><ion-input type="number" placeholder="Monthly Benefit Estimate If Retiring at 70" [(ngModel)]="monthlyAt70" name="70"></ion-input></ion-item>
-        </div>
+        <ion-item>
+          <ion-label floating>Monthly Benefit Estimate If Retiring at FRA</ion-label>
+          <ion-input type="number" [(ngModel)]="monthlyAtFRA" name="FRA" text-center></ion-input>
+        </ion-item>
         
       </ion-list>
       <button ion-button type="submit" block>Submit</button>
     </form>
-  <button ion-button type="submit" block [navPush]="results">Proceed</button>
+
 </ion-content>
 
 

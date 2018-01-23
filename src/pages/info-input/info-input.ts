@@ -1,37 +1,31 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ResultsPage} from '../results/results'
 import { UserDataProvider } from "../../providers/user-data/user-data";
 
 @IonicPage()
+
 @Component({
   selector: 'page-info-input',
   templateUrl: 'info-input.html',
 })
 
 export class InfoInputPage {
-  results: any;
   myDate: string;
   gender: string;
-  monthlyAt62: number;
   monthlyAtFRA: number;
-  monthlyAt70: number;
 
-  constructor(public user$: UserDataProvider) {
-    this.results = ResultsPage;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public user$: UserDataProvider) {
     this.user$.date = this.myDate;
     this.user$.sex = this.gender;
-    this.user$.start = this.monthlyAt62;
     this.user$.FRA = this.monthlyAtFRA;
-    this.user$.end = this.monthlyAt70;
   }
 
   logForm() {
       console.log(this.myDate);
       console.log(this.gender);
-      console.log(this.monthlyAt62);
       console.log(this.monthlyAtFRA);
-      console.log(this.monthlyAt70);
+      this.navCtrl.push(ResultsPage)
   }
 
 }
@@ -50,7 +44,7 @@ export class InfoInputPage {
 //   constructor( public user$: UserDataProvider ) {}
   
 //   ngOnInit(){
-//     this.user$.start
+//     this.user$.FRA
 //   }
 
 // }
