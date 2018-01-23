@@ -1,6 +1,8 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, PopoverController} from 'ionic-angular';
-import { PopoverPage } from './popover';
+import {Component, ViewChild, ElementRef} from '@angular/core';
+import {IonicPage, NavController, NavParams, PopoverController, ModalController} from 'ionic-angular';
+import { PopoverPage } from './popover-page';
+import { ModalPage } from './modal-page';
+
 /**
  * Generated class for the DashboardPage page.
  *
@@ -15,19 +17,19 @@ import { PopoverPage } from './popover';
 })
 export class DashboardPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {
+  data = 'monthly';
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, public modalCtrl: ModalController) {
   }
 
-  presentPopover(ev) {
+  presentPopover() {
+    let popover = this.popoverCtrl.create(PopoverPage);
+    popover.present();
+  }
 
-    let popover = this.popoverCtrl.create(PopoverPage, {
-      contentEle: this.content.nativeElement,
-      textEle: this.text.nativeElement
-    });
-
-    popover.present({
-      ev: ev
-    });
+  presentModal() {
+    let modal = this.modalCtrl.create(ModalPage);
+    modal.present();
   }
 
   ionViewDidLoad() {
