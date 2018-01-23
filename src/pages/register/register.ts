@@ -14,13 +14,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'register.html',
 })
 export class RegisterPage {
-  
-  totalTaxContribution: any;
-  maritalStatus: string;
-  email: string;
-  confirmedEmail: boolean;
-  password: string;
-  confirmedPassword: boolean;
+
+    totalTaxContribution: Number;
+    maritalStatus: String;
+    email: String;
+    confirmedEmail: Boolean;
+    password: String;
+    confirmedPassword: Boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     
@@ -30,26 +30,9 @@ export class RegisterPage {
     console.log('ionViewDidLoad RegisterPage');
   }
   
-  testFunction(button){
-    alert("this works");
+  //TEST FUNCTIONS
+  helloWorld(){
+    alert("Hello World");
   }
-  
-  // //EMAIL DATA VALIDATION FUNCTION
-  // emailconfirmation(email,confirmedEmail){
-  //     if (email===confirmedEmail){
-  //       this.confirmedEmail = true;
-  //     } else {
-  //       this.confirmedEmail = false;
-  //     }
-  //   };
-    
-  //   //PASSWORD DATA VALIDATION FUNCTION
-  //   passwordConfirmation(password,confirmedEmail){
-  //     if(password===confirmedEmail){
-  //       this.confirmedPassword = true;
-  //     } else {
-  //       this.confirmedPassword = false;
-  //     }
-  //   };
 
 }

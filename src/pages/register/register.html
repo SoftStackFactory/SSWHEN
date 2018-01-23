@@ -1,71 +1,70 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>registerPage</ion-title>
+    <ion-title>Register Page</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
-<h1>SSWHEN</h1>
-
-<ion-list>
-
-<!--IONIC CARD CONTAINER-->
-<ion-card>
-
-  <ion-card-header>
-    Benefit Information
-  </ion-card-header>
-
-  <ion-card-content>
+    <h1 id ="logo">SSWHEN</h1>
+    
+    <!--IONIC CARD CONTAINER-->
+    <ion-card>
+      <ion-card-content>
+          <ion-list>
+              
       <!--TOTAL TAX CONTRIBUTION-->
-  <ion-item>
-    <ion-label floating>total tax contribution</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
+              <ion-item>
+                <ion-label floating>Total Tax Contribution</ion-label>
+                <ion-input type="text" [(ngModel)]="totalTaxContribution"></ion-input>
+              </ion-item>
   
-<!--MARITAL STATUS-->
-    <ion-item>
-      <ion-label>marital status</ion-label>
-         <ion-select [(ngModel)]="maritalStatus">
-            <ion-option value="single">Single</ion-option>
-            <ion-option value="married">Married</ion-option>
-            <ion-option value="divorced">Divorced</ion-option>
-            <ion-option value="widowed">Widowed</ion-option>
-         </ion-select>
-     </ion-item>
+     <!--MARITAL STATUS-->
+            <ion-item>
+              <ion-label>Marital Status</ion-label>
+                 <ion-select [(ngModel)]="maritalStatus">
+                    <ion-option value="single">Single</ion-option>
+                    <ion-option value="married">Married</ion-option>
+                    <ion-option value="divorced">Divorced</ion-option>
+                    <ion-option value="widowed">Widowed</ion-option>
+                 </ion-select>
+             </ion-item>
    
+     <!--EMAIL-->
+            <ion-item>
+                <ion-label floating>Email</ion-label>
+                <ion-input type="text" [(ngModel)]="email"></ion-input>
+             </ion-item>
+             
+    <!--COFNIRM EMAIL-->
+              <ion-item>
+                <ion-label floating>Confirm Email</ion-label>
+                <ion-input type="text"></ion-input>
+              </ion-item>
+              
+    <!--PASSWORD-->
+              <ion-item>
+                <ion-label floating>Password</ion-label>
+                <ion-input type="password" [(ngModel)]="password"></ion-input>
+              </ion-item>
+              
+    <!--PASSWORD-->
+              <ion-item>
+                <ion-label floating>Confirm Password</ion-label>
+                <ion-input type="password"></ion-input>
+              </ion-item>
+    </ion-list>
   </ion-card-content>
-
 </ion-card>
- <!--EMAIL-->
-  <ion-item>
-    <ion-label floating>email</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
-<!--COFNIRM EMAIL-->
-  <ion-item>
-    <ion-label floating>confirm email</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
 
-<!--PASSWORD-->
-  <ion-item>
-    <ion-label floating>password</ion-label>
-    <ion-input type="password"></ion-input>
-  </ion-item>
-<!--PASSWORD-->
-  <ion-item>
-    <ion-label floating>confirm password</ion-label>
-    <ion-input type="password"></ion-input>
-  </ion-item>
+<!--ION BUTTON-->
+<button ion-button (click)='helloWorld()'>Register Now</button>
 
-
-
-</ion-list>
-
-<button ion-button outline>Register</button>
+<!--TEST NG MODEL DATA BINDING WILL DELETE-->
+<!--https://codeburst.io/angular-4-custom-validation-for-template-based-forms-b7dee9be48a6-->
+<p>{{totalTaxContribution}}</p>
+<p>{{maritalStatus}}</p>
+<p>{{email}}</p>
+<p>{{password}}</p>
 
 </ion-content>
