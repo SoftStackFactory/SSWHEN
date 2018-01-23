@@ -15,16 +15,33 @@
         <ion-row center>
               <ion-col>
                 <h1 no-padding no-margin>App Name</h1>
+                
+                <ion-icon name="contact"></ion-icon>
                     
                 <h3 no-padding no-margin>----</h3>
                 
+                <ion-card>
+                  <ion-card-header>
+                  </ion-card-header>
+                  <ion-card-content>
+                     Current Email Address: example@gmail.com
+                      <ion-icon name="create" float-right></ion-icon>
+                  </ion-card-content>
+                </ion-card>
+                
+                  <button ion-button 
+                 type="submit"
+                  > 
+                  <!--(click)=""-->
+                    Change Password   <ion-icon name="create"></ion-icon></button> 
+                 
                 <form 
                 #f="ngForm" (ngSubmit)="onEdit(f)">
                   <!--^added #f as a local reference to the form-->
                   <ion-item>
                     <ion-label 
                     color="primary" 
-                    floating>Email</ion-label>
+                    floating>Change Email</ion-label>
                     <ion-input 
                     type="email" 
                     name="email"
@@ -62,7 +79,7 @@
                 </ion-item>
                             
         <!--This button will link to next page:-->
-        <button ion-button round outline 
+        <button ion-button 
         (click)="popView()"
         type="submit"
         [disabled]="!f.valid"
