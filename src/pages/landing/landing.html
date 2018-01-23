@@ -6,8 +6,15 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>landingPage</ion-title>
+  <ion-navbar >
+    <ion-title >landingPage</ion-title>
+    
+    <ion-buttons end>
+      <button ion-button icon-only (click)='toRegister()'>
+        LOGIN
+      </button>
+    </ion-buttons>
+    
   </ion-navbar>
 
 </ion-header>
@@ -16,12 +23,8 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <ion-col>
-       
-        <ion-row justify-content-end>  
-           <button ion-button (click)='toRegister()'>Login</button>
-        </ion-row>
-        
+      <ion-col col-12>
+          
         <ion-row justify-content-center> 
         
            <ion-card class='landing-card'>
@@ -41,14 +44,14 @@
                   Let the Social Security Calculator help you figure out how much retirement income you’ll receive at different claiming ages so you can determine when you should claim Social Security. 
                    </p>
               </ion-card-content>
+              
+              <ion-row justify-content-center> 
+                  <button ion-button  (click)='toAppDescription()'>Begin</button>
+              </ion-row>
                 
            </ion-card>
            
         </ion-row>
-       
-      <ion-row justify-content-center> 
-          <button ion-button  (click)='toAppDescription()'>Begin</button>
-      </ion-row>
   
      </ion-col>
     </ion-row>
