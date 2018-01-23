@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NgForm } from "@angular/forms";
+import { DashboardPage } from '../dashboard/dashboard';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the ProfilePage page.
@@ -15,11 +17,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ProfilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  constructor(public navCtrl: NavController, 
+  public navParams: NavParams,
+  private alertCtrl: AlertController
+  ) {
+    
+   
   }
+  
+  onEdit(form: ngForm) {
+  console.log(form.value);
+}
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
   }
+
+popView(){
+    this.navCtrl.push(DashboardPage);
+    }
 
 }
