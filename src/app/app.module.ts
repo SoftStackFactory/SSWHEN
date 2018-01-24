@@ -14,6 +14,7 @@ import { RegisterPage } from '../pages/register/register';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ProfilePage } from '../pages/profile/profile';
 import { UserDataProvider } from '../providers/user-data/user-data';
+import { CalculationsProvider } from '../providers/calculations/calculations';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { UserDataProvider } from '../providers/user-data/user-data';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserDataProvider,
-    UserDataProvider
+    UserDataProvider,
+    CalculationsProvider
   ]
 })
 export class AppModule {}

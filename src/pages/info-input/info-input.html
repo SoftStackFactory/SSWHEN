@@ -7,7 +7,7 @@
   
   <ion-grid>
   <ion-row align-items-center>
-    <ion-col>
+    <ion-col style = "margin: 0 auto">
       <img src="https://preview.ibb.co/c39yyb/Senior_Security.jpg">
     </ion-col>
   </ion-row>
@@ -25,7 +25,7 @@
       <ion-list>
         
         <ion-item text-center>
-          <ion-label floating>Month and Year of Birth</ion-label>
+          <ion-label floating>Date of Birth</ion-label>
           <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="myDate" name="Date"></ion-datetime>
         </ion-item>
         
@@ -38,17 +38,19 @@
         </ion-item>
         
         <ion-item>
-          <ion-label floating>Monthly Benefit Estimate If Retiring at FRA</ion-label>
+          <ion-label floating>Full Retirement Benefit</ion-label>
           <ion-input type="number" [(ngModel)]="monthlyAtFRA" name="FRA" text-center></ion-input>
         </ion-item>
         
       </ion-list>
-      <button ion-button type="submit" block>Submit</button>
+      
+      <ion-grid>
+        <ion-row>
+          <ion-col width-4>
+            <button ion-button type="submit" block>Submit</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </form>
 
 </ion-content>
-
-
-
-
-        
