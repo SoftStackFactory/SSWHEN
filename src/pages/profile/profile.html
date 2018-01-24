@@ -16,24 +16,46 @@
               <ion-col>
                 <h1 no-padding no-margin>App Name</h1>
                 
-                <ion-icon name="contact"></ion-icon>
+                <img src='http://www.freeiconspng.com/uploads/am-a-19-year-old-multimedia-artist-student-from-manila--21.png' alt="Logo Image">
                     
-                <h3 no-padding no-margin>----</h3>
+                <h3 no-padding no-margin></h3>
                 
                 <ion-card>
                   <ion-card-header>
+                    Current Email Address: 
                   </ion-card-header>
                   <ion-card-content>
-                     Current Email Address: example@gmail.com
+                      <ion-icon name="create" float-right></ion-icon>
+                   <ion-input 
+                   type="email" 
+                    name="email"
+                    value=""
+                    ngModel
+                    placeholder="example@gmail.com"></ion-input>
+                  </ion-card-content>
+                </ion-card>
+                
+                <ion-card>
+                  <ion-card-header>
+                    Password: 
+                  </ion-card-header>
+                  <ion-card-content>
+                    <ion-input 
+                   type="password" 
+                    name="Password"
+                    value=""
+                    ngModel
+                    [minlength]="6"
+                    placeholder="••••••••••"></ion-input>
                       <ion-icon name="create" float-right></ion-icon>
                   </ion-card-content>
                 </ion-card>
                 
-                  <button ion-button 
-                 type="submit"
-                  > 
+                 <!-- <button ion-button -->
+                 <!--type="submit"-->
+                 <!-- > -->
                   <!--(click)=""-->
-                    Change Password   <ion-icon name="create"></ion-icon></button> 
+                 <!--   Password:   <ion-icon name="create"></ion-icon></button> -->
                  
                 <form 
                 #f="ngForm" (ngSubmit)="onEdit(f)">
