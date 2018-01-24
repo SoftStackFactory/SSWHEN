@@ -13,6 +13,9 @@ import { ResultsPage } from '../pages/results/results';
 import { RegisterPage } from '../pages/register/register';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ProfilePage } from '../pages/profile/profile';
+import { EmailModalPage } from '../pages/email-modal/email-modal';
+
+
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { ProfilePage } from '../pages/profile/profile';
     ResultsPage,
     RegisterPage,
     DashboardPage,
-    ProfilePage
+    ProfilePage,
+    EmailModalPage
+
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,9 @@ import { ProfilePage } from '../pages/profile/profile';
     ResultsPage,
     RegisterPage,
     DashboardPage,
-    ProfilePage
+    ProfilePage,
+    EmailModalPage
+
   ],
   providers: [
     StatusBar,

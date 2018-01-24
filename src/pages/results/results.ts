@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ModalController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
+import { EmailModalPage } from '../email-modal/email-modal';
+
 
 
 @IonicPage()
@@ -23,7 +25,7 @@ export class ResultsPage {
     ];
   results: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
     
     this.results = "graph";
     
@@ -33,7 +35,11 @@ export class ResultsPage {
     this.navCtrl.push(RegisterPage);
   }
   
-
+  openEmailModal() {
+    let resultsModal = this.modalCtrl.create(EmailModalPage);
+    resultsModal.present();
+  }
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad ResultsPage');
   }
