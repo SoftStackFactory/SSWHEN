@@ -58,55 +58,55 @@
                   <!--(click)=""-->
                  <!--   Password:   <ion-icon name="create"></ion-icon></button> -->
                  
-                <form 
-                #f="ngForm" (ngSubmit)="onEdit(f)">
+                <!--<form -->
+                <!--#f="ngForm" (ngSubmit)="onEdit(f)">-->
                   <!--^added #f as a local reference to the form-->
-                  <ion-item>
-                    <ion-label 
-                    color="primary" 
-                    floating>Change Email</ion-label>
-                    <ion-input 
-                    type="email" 
-                    name="email"
-                    ngModel
-                    placeholder=""></ion-input>
-                  </ion-item>
+                <!--  <ion-item>-->
+                <!--    <ion-label -->
+                <!--    color="primary" -->
+                <!--    floating>Change Email</ion-label>-->
+                <!--    <ion-input -->
+                <!--    type="email" -->
+                <!--    name="email"-->
+                <!--    ngModel-->
+                <!--    placeholder=""></ion-input>-->
+                <!--  </ion-item>-->
                 
-                <ion-item>
-                    <ion-label color="primary" floating>Confirm Email</ion-label>
-                    <ion-input 
-                    type="email" 
-                    name="email"
-                    ngModel
-                    placeholder=""></ion-input>
-                </ion-item>
+                <!--<ion-item>-->
+                <!--    <ion-label color="primary" floating>Confirm Email</ion-label>-->
+                <!--    <ion-input -->
+                <!--    type="email" -->
+                <!--    name="email"-->
+                <!--    ngModel-->
+                <!--    placeholder=""></ion-input>-->
+                <!--</ion-item>-->
                 
-                <ion-item>
-                    <ion-label color="primary" floating>Password (Must be at least 6 characters)</ion-label>
-                    <ion-input 
-                    type="password" 
-                    name="Password"
-                    value=""
-                    ngModel
-                    [minlength]="6"></ion-input>
-                </ion-item>
+                <!--<ion-item>-->
+                <!--    <ion-label color="primary" floating>Password (Must be at least 6 characters)</ion-label>-->
+                <!--    <ion-input -->
+                <!--    type="password" -->
+                <!--    name="Password"-->
+                <!--    value=""-->
+                <!--    ngModel-->
+                <!--    [minlength]="6"></ion-input>-->
+                <!--</ion-item>-->
                 
-                <ion-item>
-                    <ion-label color="primary" floating> Confirm Password</ion-label>
-                    <ion-input 
-                    type="password" 
-                    name="password"
-                    value=""
-                    ngModel
-                    [minlength]="6"></ion-input>
-                </ion-item>
+                <!--<ion-item>-->
+                <!--    <ion-label color="primary" floating> Confirm Password</ion-label>-->
+                <!--    <ion-input -->
+                <!--    type="password" -->
+                <!--    name="password"-->
+                <!--    value=""-->
+                <!--    ngModel-->
+                <!--    [minlength]="6"></ion-input>-->
+                <!--</ion-item>-->
                             
         <!--This button will link to next page:-->
         <button ion-button 
         (click)="popView()"
         type="submit"
-        [disabled]="!f.valid"
-        > 
+         > 
+        <!--[disabled]="!f.valid" to go in after submit-->
         <!--^propery binding gets a reference to the form from above. Action: disable this if the form is not valid-->
           Confirm Edit</button> 
           
@@ -117,7 +117,7 @@
 
                 <h1 no-padding no-margin></h1>
                 
-              </form>  
+              <!--</form>  -->
               </ion-col>
         </ion-row>
   </ion-grid>  

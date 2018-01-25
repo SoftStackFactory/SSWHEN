@@ -27,9 +27,9 @@ export class ProfilePage {
    
   }
   
-  onEdit(form: NgForm) {
-  console.log(form.value);
-}
+//   onEdit(form: NgForm) {
+//   console.log(form.value);
+// }
 
 
   ionViewDidLoad() {
