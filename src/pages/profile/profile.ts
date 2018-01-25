@@ -26,7 +26,7 @@ export class ProfilePage {
    
   }
   
-  onEdit(form: ngForm) {
+  onEdit(form: NgForm) {
   console.log(form.value);
 }
 
