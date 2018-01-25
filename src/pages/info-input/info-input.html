@@ -19,8 +19,7 @@
 <ion-content padding>
   <h3 text-center> <ion-icon name="arrow-round-down"></ion-icon> Please Enter Your Information  <ion-icon name="arrow-round-down"></ion-icon> </h3>
   
-  <h1>  {{ user$.start}} </h1>
-  
+    <ion-card>
     <form (ngSubmit)="logForm()">
       <ion-list>
         
@@ -37,9 +36,9 @@
           </ion-select>
         </ion-item>
         
-        <ion-item>
+        <ion-item text-center>
           <ion-label floating>Full Retirement Benefit</ion-label>
-          <ion-input type="number" [(ngModel)]="monthlyAtFRA" name="FRA" text-center></ion-input>
+          <ion-input type="number" [(ngModel)]="monthlyAtFRA" name="FRA"></ion-input>
         </ion-item>
         
       </ion-list>
@@ -52,5 +51,6 @@
         </ion-row>
       </ion-grid>
     </form>
-
+    </ion-card>
+    
 </ion-content>
