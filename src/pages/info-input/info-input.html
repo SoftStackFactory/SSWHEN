@@ -4,19 +4,20 @@
   <ion-navbar text-center>
     <ion-title>infoInputPage</ion-title>
   </ion-navbar>
-  
-  <ion-grid>
-  <ion-row align-items-center>
-    <ion-col style = "margin: 0 auto">
-      <img src="https://preview.ibb.co/c39yyb/Senior_Security.jpg">
-    </ion-col>
-  </ion-row>
-</ion-grid>
 
 </ion-header>
 
 
 <ion-content padding>
+  
+  <ion-grid>
+    <ion-row align-items-center>
+      <ion-col style = "margin: 0 auto">
+        <img src="https://preview.ibb.co/c39yyb/Senior_Security.jpg">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
   <h3 text-center> <ion-icon name="arrow-round-down"></ion-icon> Please Enter Your Information  <ion-icon name="arrow-round-down"></ion-icon> </h3>
   
     <ion-card>
@@ -37,8 +38,8 @@
         </ion-item>
         
         <ion-item text-center>
-          <ion-label floating>Full Retirement Benefit</ion-label>
-          <ion-input type="number" [(ngModel)]="monthlyAtFRA" name="FRA"></ion-input>
+          <ion-label floating text-center>Full Retirement Benefit</ion-label>
+          <ion-input type="number" [(ngModel)]="monthlyAtFRA" name="FRA" text-center></ion-input>
         </ion-item>
         
       </ion-list>
