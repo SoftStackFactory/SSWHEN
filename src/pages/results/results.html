@@ -13,18 +13,12 @@
     
     <!--  Before Segment -->
     <ion-row>
-      <!--<ion-col col-12>-->
-      <!--    Back button-->
-      <!--</ion-col>-->
-    </ion-row>
-    <ion-row>
       <ion-col col-6 offset-3>
         <h2 style="text-align:center;">SSWHEN</h2>
       </ion-col>
     </ion-row>
     
     <!-- Segments  -->
-    <!-- Need to set defult segment so its on it at load -->
     <div>
       <ion-segment [(ngModel)]="results">
         <ion-segment-button value="graph">
@@ -104,22 +98,15 @@
     </div>
     
     <!-- Bottom Buttons  -->
-    
-    
-    <!-- DO WE WANT TO DO THE BUTTON AND TEXT FIELD IN LINE OR EACH IN THEIR OWN LINE -->
-    <!-- OR DO WE WANT THE INPUT FIELD TO BE IN A ALERT POPUP WHEN YOU SELECT EMAIL-->
     <!--<ion-row>-->
     <!--  <ion-col col-6 offset-3>-->
-    <!--  <ion-list>-->
-    <!--    <ion-item>-->
-    <!--      <ion-input type="text" placeholder="Email Results"></ion-input>-->
-    <!--    </ion-item>-->
-    <!--  </ion-list>-->
+    <!--      <button ion-button full (click)="openEmailModal()">Email Results</button>-->
     <!--  </ion-col>-->
     <!--</ion-row>-->
+    
     <ion-row>
       <ion-col col-6 offset-3>
-          <button ion-button full (click)="openEmailModal()">Email Results</button>
+          <button ion-button full (click)="showPrompt()">Email Result</button>
       </ion-col>
     </ion-row>
     
