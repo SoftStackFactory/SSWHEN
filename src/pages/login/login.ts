@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProfilePage } from '../profile/profile';
+import { LandingPage } from '../landing/landing';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -16,11 +17,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+  public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
+  
+  login(){
+    this.navCtrl.push(LandingPage);
+    }
 
 }

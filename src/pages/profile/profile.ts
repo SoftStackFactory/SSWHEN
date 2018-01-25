@@ -39,10 +39,7 @@ export class ProfilePage {
 popView(){
     this.navCtrl.push(DashboardPage);
     }
-    popView1(){
-    this.navCtrl.push(LoginPage);
-    }
-    
+
 //   ValidateEmail(mail) 
 // {
 // if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value))

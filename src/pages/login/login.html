@@ -13,7 +13,6 @@
 </ion-header>
 
 
-<ion-content padding>
 
 
 <ion-content center text-center>
@@ -38,12 +37,9 @@
                    type="email" 
                     name="email"
                     value=""
-                    ngModel
                     placeholder="example@gmail.com"></ion-input>
                   </ion-card-content>
-                </ion-card>
-                
-                <ion-card>
+              
                   <ion-card-header>
                     Password: 
                   </ion-card-header>
@@ -53,9 +49,22 @@
                    type="password" 
                     name="Password"
                     value=""
-                    ngModel
                     placeholder="••••••••••"></ion-input>
                   </ion-card-content>
                 </ion-card>
-
+                </ion-col>
+          </ion-row>
+          
+          <ion-row>
+            <button ion-button 
+        (click)="login()"
+        type="submit"
+         > 
+          Login</button> 
+          </ion-row>
+          <ion-row>
+            Forgot Password?
+          </ion-row>
+  </ion-grid>        
+        
 </ion-content>
