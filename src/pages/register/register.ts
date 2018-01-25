@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { DashboardPage } from '../dashboard/dashboard';
 
+
 /**
  * Generated class for the RegisterPage page.
  *
@@ -24,25 +25,24 @@ export class RegisterPage {
     password: String;
     confirmedPassword: Boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
   }
   
-  //TEST FUNCTIONS
-  
+  //ROUTER TO DASHBOARD PAGE
   toDashboard(){
-    //if(!params) params = {};
     this.navCtrl.push(DashboardPage);
   };
   
-  // myForm = formBuilder.group({
-  //   email: ['email'],
-  //   password: ['value']
-  // });
+
+  
+  
+  
+  
+  
+
   
   
   /*POST FUNCTIONS
