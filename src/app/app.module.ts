@@ -13,6 +13,8 @@ import { ResultsPage } from '../pages/results/results';
 import { RegisterPage } from '../pages/register/register';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ProfilePage } from '../pages/profile/profile';
+import { PopoverPage } from '../pages/dashboard/popover-page';
+import { ModalPage } from '../pages/dashboard/modal-page';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ProfilePage } from '../pages/profile/profile';
     ResultsPage,
     RegisterPage,
     DashboardPage,
-    ProfilePage
+    ProfilePage,
+    PopoverPage,
+    ModalPage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,9 @@ import { ProfilePage } from '../pages/profile/profile';
     ResultsPage,
     RegisterPage,
     DashboardPage,
-    ProfilePage
+    ProfilePage,
+    PopoverPage,
+    ModalPage
   ],
   providers: [
     StatusBar,
