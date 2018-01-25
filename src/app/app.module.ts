@@ -13,6 +13,7 @@ import { ResultsPage } from '../pages/results/results';
 import { RegisterPage } from '../pages/register/register';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ProfilePage } from '../pages/profile/profile';
+import { LoginPage } from '../pages/login/login';
 import { EmailModalPage } from '../pages/email-modal/email-modal';
 import { PopoverPage } from '../pages/dashboard/popover-page';
 import { ModalPage } from '../pages/dashboard/modal-page';
@@ -28,6 +29,7 @@ import { ModalPage } from '../pages/dashboard/modal-page';
     RegisterPage,
     DashboardPage,
     ProfilePage,
+    LoginPage,
     EmailModalPage,
     PopoverPage,
     ModalPage
@@ -47,6 +49,7 @@ import { ModalPage } from '../pages/dashboard/modal-page';
     RegisterPage,
     DashboardPage,
     ProfilePage,
+    LoginPage,
     EmailModalPage,
     PopoverPage,
     ModalPage
