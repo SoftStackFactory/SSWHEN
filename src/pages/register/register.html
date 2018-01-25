@@ -18,8 +18,8 @@
             <ion-item>
               <ion-label>Marital Status</ion-label>
                  <ion-select [(ngModel)]="maritalStatus">
-                    <ion-option value="single">Single</ion-option>
-                    <ion-option value="married">Married</ion-option>
+                  <ion-option value="single">Single</ion-option>
+                  <ion-option value="married">Married</ion-option>
                  </ion-select>
              </ion-item>
              
@@ -47,7 +47,7 @@
                 <ion-input type="password" [(ngModel)]="password"></ion-input>
               </ion-item>
               
-    <!--PASSWORD-->
+    <!--CONFIRM PASSWORD-->
               <ion-item>
                 <ion-label floating>Confirm Password</ion-label>
                 <ion-input type="password"></ion-input>
@@ -58,7 +58,8 @@
 
 <ion-row justify-content-center>
     <!--ION BUTTON-->
-    <button ion-button (click)='helloWorld()'>Register</button>
+    <button ion-button (click)='toDashboard()'>Register</button>
+    <!--change that so it routes to the next page-->
 </ion-row>
 
 

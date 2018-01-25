@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { DashboardPage } from '../dashboard/dashboard';
+
 /**
  * Generated class for the RegisterPage page.
  *
@@ -31,8 +33,30 @@ export class RegisterPage {
   }
   
   //TEST FUNCTIONS
-  helloWorld(){
-    alert("Hello World");
-  }
+  
+  toDashboard(){
+    //if(!params) params = {};
+    this.navCtrl.push(DashboardPage);
+  };
+  
+  // myForm = formBuilder.group({
+  //   email: ['email'],
+  //   password: ['value']
+  // });
+  
+  
+  /*POST FUNCTIONS
+   -takes inputs 
+      marital status
+      total tax contribution
+      email
+      password
+    
+    DATA VALIDATION FUNCTIONS
+    -takes inputs and validates its the same information
+       confirm email
+       confirm password
+  */
+  
 
 }
