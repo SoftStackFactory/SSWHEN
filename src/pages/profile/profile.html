@@ -14,7 +14,8 @@
   <ion-grid>
         <ion-row center>
               <ion-col>
-                <h1 no-padding no-margin>App Name</h1>
+                <h1 no-padding no-margin>SSWHEN</h1>
+                <h1 no-padding no-margin>Profile Page</h1>
                 
                 <img src='http://www.freeiconspng.com/uploads/am-a-19-year-old-multimedia-artist-student-from-manila--21.png' alt="Logo Image">
                     
@@ -40,6 +41,7 @@
                     Password: 
                   </ion-card-header>
                   <ion-card-content>
+                     <ion-icon name="create" float-right></ion-icon>
                     <ion-input 
                    type="password" 
                     name="Password"
@@ -47,7 +49,6 @@
                     ngModel
                     [minlength]="6"
                     placeholder="••••••••••"></ion-input>
-                      <ion-icon name="create" float-right></ion-icon>
                   </ion-card-content>
                 </ion-card>
                 
@@ -108,6 +109,12 @@
         > 
         <!--^propery binding gets a reference to the form from above. Action: disable this if the form is not valid-->
           Confirm Edit</button> 
+          
+          <button ion-button 
+        (click)="popView1()"
+        type="submit"
+        > Go to Login Page</button>
+
                 <h1 no-padding no-margin></h1>
                 
               </form>  

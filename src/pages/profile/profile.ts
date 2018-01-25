@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { DashboardPage } from '../dashboard/dashboard';
+import { LoginPage } from '../login/login';
 import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 
 /**
@@ -37,6 +38,9 @@ export class ProfilePage {
 
 popView(){
     this.navCtrl.push(DashboardPage);
+    }
+    popView1(){
+    this.navCtrl.push(LoginPage);
     }
     
 //   ValidateEmail(mail) 
