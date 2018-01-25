@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component, ViewChild, ElementRef} from '@angular/core';
+import {IonicPage, NavController, NavParams, PopoverController, ModalController} from 'ionic-angular';
+import {PopoverPage} from './popover-page';
+import {ModalPage} from './modal-page';
 
 /**
  * Generated class for the DashboardPage page.
@@ -15,7 +17,38 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DashboardPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  data = 'monthly';
+  editable = false;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, public modalCtrl: ModalController) {
+  }
+
+  isEditable() {
+    if (this.editable = false) {
+      this.editable = true;
+    } else {
+      this.editable = false;
+    }
+    console.log("editable clicked");
+  }
+
+  presentPopover() {
+    let popover = this.popoverCtrl.create(PopoverPage);
+    popover.present();
+  }
+
+  presentModal() {
+    let modal = this.modalCtrl.create(ModalPage);
+    let ev = {
+      target: {
+        getBoundingClientRect: () => {
+          return {
+            top: '100'
+          };
+        }
+      }
+    };
+    modal.present({ev});
   }
 
   ionViewDidLoad() {

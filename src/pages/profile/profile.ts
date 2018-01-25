@@ -4,12 +4,6 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { LoginPage } from '../login/login';
 import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 
-/**
- * Generated class for the ProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -24,7 +18,6 @@ export class ProfilePage {
   public modalCtrl: ModalController
   ) {
     
-   
   }
   
 //   onEdit(form: NgForm) {
