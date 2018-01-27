@@ -13,7 +13,14 @@ import { ResultsPage } from '../pages/results/results';
 import { RegisterPage } from '../pages/register/register';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ProfilePage } from '../pages/profile/profile';
+<<<<<<< HEAD
 import { MonthlyBenefitProvider } from '../providers/monthly-benefit/monthly-benefit';
+=======
+import { LoginPage } from '../pages/login/login';
+import { EmailModalPage } from '../pages/email-modal/email-modal';
+import { PopoverPage } from '../pages/dashboard/popover-page';
+import { ModalPage } from '../pages/dashboard/modal-page';
+>>>>>>> 989c7f5babed3f7c27e3404166241929e462151a
 
 @NgModule({
   declarations: [
@@ -25,7 +32,11 @@ import { MonthlyBenefitProvider } from '../providers/monthly-benefit/monthly-ben
     ResultsPage,
     RegisterPage,
     DashboardPage,
-    ProfilePage
+    ProfilePage,
+    LoginPage,
+    EmailModalPage,
+    PopoverPage,
+    ModalPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +52,11 @@ import { MonthlyBenefitProvider } from '../providers/monthly-benefit/monthly-ben
     ResultsPage,
     RegisterPage,
     DashboardPage,
-    ProfilePage
+    ProfilePage,
+    LoginPage,
+    EmailModalPage,
+    PopoverPage,
+    ModalPage
   ],
   providers: [
     StatusBar,
