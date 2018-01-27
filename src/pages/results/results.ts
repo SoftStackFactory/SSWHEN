@@ -83,14 +83,14 @@ export class ResultsPage {
           text: 'Home',
           handler: () => {
             console.log('Disagree clicked');
-            this.goToLanding()
+            this.navCtrl.push(LandingPage);
           }
         },
         {
           text: 'Register',
           handler: () => {
             console.log('Agree clicked');
-            this.goToRegister()
+            this.navCtrl.push(RegisterPage);
           }
         }
       ]
