@@ -25,6 +25,8 @@ export class ResultsPage {
     { age: 70, monthlyPayout: 1000 }
     ];
   results: any;
+  
+  
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams, public modalCtrl: ModalController) {
     
