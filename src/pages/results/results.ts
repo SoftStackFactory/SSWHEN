@@ -31,14 +31,14 @@ export class ResultsPage {
     this.results = "graph";
     
   }
-  goToRegister(params){
-    if (!params) params = {};
-    this.navCtrl.push(RegisterPage);
-  }
-  goToLanding(params){
-    if (!params) params = {};
-    this.navCtrl.push(LandingPage);
-  }
+  // goToRegister(params){
+  //   if (!params) params = {};
+  //   this.navCtrl.push(RegisterPage);
+  // }
+  // goToLanding(params){
+  //   if (!params) params = {};
+  //   this.navCtrl.push(LandingPage);
+  // }
   
   openEmailModal() {
     let resultsModal = this.modalCtrl.create(EmailModalPage);
@@ -83,14 +83,14 @@ export class ResultsPage {
           text: 'Home',
           handler: () => {
             console.log('Disagree clicked');
-            this.goToLanding()
+            this.navCtrl.push(LandingPage);
           }
         },
         {
           text: 'Register',
           handler: () => {
             console.log('Agree clicked');
-            this.goToRegister()
+            this.navCtrl.push(RegisterPage);
           }
         }
       ]
