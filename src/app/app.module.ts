@@ -13,6 +13,7 @@ import { ResultsPage } from '../pages/results/results';
 import { RegisterPage } from '../pages/register/register';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ProfilePage } from '../pages/profile/profile';
+import { MonthlyBenefitProvider } from '../providers/monthly-benefit/monthly-benefit';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ProfilePage } from '../pages/profile/profile';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    MonthlyBenefitProvider
   ]
 })
 export class AppModule {}
