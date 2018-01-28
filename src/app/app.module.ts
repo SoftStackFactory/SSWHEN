@@ -13,6 +13,8 @@ import { ResultsPage } from '../pages/results/results';
 import { RegisterPage } from '../pages/register/register';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ProfilePage } from '../pages/profile/profile';
+import { UserDataProvider } from '../providers/user-data/user-data';
+import { CalculationsProvider } from '../providers/calculations/calculations';
 import { LoginPage } from '../pages/login/login';
 import { EmailModalPage } from '../pages/email-modal/email-modal';
 import { PopoverPage } from '../pages/dashboard/popover-page';
@@ -57,7 +59,10 @@ import { ModalPage } from '../pages/dashboard/modal-page';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UserDataProvider,
+    UserDataProvider,
+    CalculationsProvider
   ]
 })
 export class AppModule {}
