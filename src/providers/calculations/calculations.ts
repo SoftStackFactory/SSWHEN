@@ -1,19 +1,19 @@
-import { HttpClient } from '@angular/common/http';
+import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 
 export class CalculationsProvider {
   benefitsAtFRA: number;
-  retirementYears: any = [62 .. 70];
-  lifeExpectancy: any = [71 .. 100];
+  // retirementYears: any = [62 .. 70];
+  // lifeExpectancy: any = [71 .. 100];
   accumulatedBenefits: number;
   pvOfBenefits: number;
   i: number;
   n: number;
   
   
-  constructor(public http: HttpClient) {}
+  constructor(public http: Http) {}
   
   // From monthly benefitsAtFRA, get monthly benefits at 62 .. 70
 
