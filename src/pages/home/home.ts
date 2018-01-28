@@ -7,6 +7,7 @@ import { ResultsPage } from '../results/results';
 import { RegisterPage } from '../register/register';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ProfilePage } from '../profile/profile';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -51,6 +52,11 @@ export class HomePage {
   goToProfile(params){
     if (!params) params = {};
     this.navCtrl.push(ProfilePage);
+  }
+  
+  goToLogin(params){
+    if (!params) params = {};
+    this.navCtrl.push(LoginPage);
   }
 
 }

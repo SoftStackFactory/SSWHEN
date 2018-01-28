@@ -1,13 +1,7 @@
-<!--
-  Generated template for the ResultsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>resultsPage</ion-title>
+    <ion-title>Results</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,5 +9,115 @@
 
 <ion-content padding>
 
-<h1>{{user$.start}}</h1>
+  <ion-grid>
+    
+    <!--  Before Segment -->
+    <ion-row>
+      <ion-col col-6 offset-3>
+        <h2 style="text-align:center;">SSWHEN</h2>
+      </ion-col>
+    </ion-row>
+    
+    <!-- Segments  -->
+    <div>
+      <ion-segment [(ngModel)]="results">
+        <ion-segment-button value="graph">
+          Graph
+        </ion-segment-button>
+        <ion-segment-button value="chart">
+          Chart
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    
+    <div [ngSwitch]="results">
+      <div *ngSwitchCase="'graph'">
+        <ion-card>
+          <ion-card-content>
+            Graph
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div *ngSwitchCase="'chart'">
+        <ion-card>
+          <ion-card-content>
+            <!-- HEADER -->
+            <ion-row style="border-bottom: 2px solid black;">
+              <ion-col col-6>Retirement <br/> Age </ion-col>
+              <ion-col col-6>Monthly <br/> Payout</ion-col>
+            </ion-row>
+            
+            <!-- DATA  -->
+            <!--<ul>-->
+            <!--  <li *ngfor= "let result of data">-->
+            <!--    <ion-row > -->
+            <!--      <ion-col col-6>{{ result.age }}</ion-col>-->
+            <!--      <ion-col col-6>{{ results.monthlyPayout }}</ion-col>-->
+            <!--    </ion-row>-->
+            <!--  </li>-->
+            <!--</ul>-->
+            <ion-row> <!-- Repeat for number of ages to be shown, use ngfor or ng-repeat  -->
+              <ion-col col-6>62</ion-col>
+              <ion-col col-6>$1500</ion-col>
+            </ion-row>
+            <ion-row> 
+              <ion-col col-6>63</ion-col>
+              <ion-col col-6>$1500</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-6>64</ion-col>
+              <ion-col col-6>$1500</ion-col>
+            </ion-row>
+            <ion-row> 
+              <ion-col col-6>65</ion-col>
+              <ion-col col-6>$1500</ion-col>
+            </ion-row>
+            <ion-row> 
+              <ion-col col-6>66</ion-col>
+              <ion-col col-6>$1500</ion-col>
+            </ion-row>
+            <ion-row> 
+              <ion-col col-6>67</ion-col>
+              <ion-col col-6>$1500</ion-col>
+            </ion-row>
+            <ion-row> 
+              <ion-col col-6>68</ion-col>
+              <ion-col col-6>$1500</ion-col>
+            </ion-row>
+            <ion-row> 
+              <ion-col col-6>69</ion-col>
+              <ion-col col-6>$1500</ion-col>
+            </ion-row>
+            <ion-row> 
+              <ion-col col-6>70</ion-col>
+              <ion-col col-6>$1500</ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+    
+    <!-- Bottom Buttons  -->
+    <!--<ion-row>-->
+    <!--  <ion-col col-6 offset-3>-->
+    <!--      <button ion-button full (click)="openEmailModal()">Email Results</button>-->
+    <!--  </ion-col>-->
+    <!--</ion-row>-->
+    
+    <ion-row>
+      <ion-col col-6 offset-3>
+          <button ion-button full (click)="showPrompt()">Email Result</button>
+      </ion-col>
+    </ion-row>
+    
+    <!--Register-->
+    <ion-row>
+      <ion-col col-6 offset-3>
+          <button ion-button full on-click="goToRegister()">Register</button>
+      </ion-col>
+    </ion-row>
+    
+    
+  </ion-grid>
+
 </ion-content>

@@ -15,6 +15,10 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ProfilePage } from '../pages/profile/profile';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { CalculationsProvider } from '../providers/calculations/calculations';
+import { LoginPage } from '../pages/login/login';
+import { EmailModalPage } from '../pages/email-modal/email-modal';
+import { PopoverPage } from '../pages/dashboard/popover-page';
+import { ModalPage } from '../pages/dashboard/modal-page';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { CalculationsProvider } from '../providers/calculations/calculations';
     ResultsPage,
     RegisterPage,
     DashboardPage,
-    ProfilePage
+    ProfilePage,
+    LoginPage,
+    EmailModalPage,
+    PopoverPage,
+    ModalPage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +50,11 @@ import { CalculationsProvider } from '../providers/calculations/calculations';
     ResultsPage,
     RegisterPage,
     DashboardPage,
-    ProfilePage
+    ProfilePage,
+    LoginPage,
+    EmailModalPage,
+    PopoverPage,
+    ModalPage
   ],
   providers: [
     StatusBar,
