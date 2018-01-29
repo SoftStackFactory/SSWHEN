@@ -34,7 +34,16 @@
       <div *ngSwitchCase="'graph'">
         <ion-card>
           <ion-card-content>
-            Graph
+            <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+            </canvas>
+            <!--<component-bar-chart></component-bar-chart>-->
           </ion-card-content>
         </ion-card>
       </div>

@@ -19,6 +19,9 @@ import { PopoverPage } from '../pages/dashboard/popover-page';
 import { ModalPage } from '../pages/dashboard/modal-page';
 import { ChartsModule } from 'ng2-charts';
 
+
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -34,6 +37,7 @@ import { ChartsModule } from 'ng2-charts';
     EmailModalPage,
     PopoverPage,
     ModalPage
+
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,8 @@ import { ChartsModule } from 'ng2-charts';
     LoginPage,
     EmailModalPage,
     PopoverPage,
-    ModalPage
+    ModalPage,
+
   ],
   providers: [
     StatusBar,
