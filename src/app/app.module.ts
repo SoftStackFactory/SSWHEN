@@ -20,6 +20,13 @@ import { LoginPage } from '../pages/login/login';
 import { EmailModalPage } from '../pages/email-modal/email-modal';
 import { PopoverPage } from '../pages/dashboard/popover-page';
 import { ModalPage } from '../pages/dashboard/modal-page';
+import { ChartsModule } from 'ng2-charts';
+
+// import { ComponentsModule } from "../components/components.module";
+import { BarChartComponent } from '../components/bar-chart/bar-chart';
+
+
+
 
 
 @NgModule({
@@ -36,10 +43,13 @@ import { ModalPage } from '../pages/dashboard/modal-page';
     LoginPage,
     EmailModalPage,
     PopoverPage,
-    ModalPage
+    ModalPage,
+    BarChartComponent
+
   ],
   imports: [
     BrowserModule,
+    ChartsModule
     HttpModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -57,7 +67,9 @@ import { ModalPage } from '../pages/dashboard/modal-page';
     LoginPage,
     EmailModalPage,
     PopoverPage,
-    ModalPage
+    ModalPage,
+    BarChartComponent
+
   ],
   providers: [
     StatusBar,
