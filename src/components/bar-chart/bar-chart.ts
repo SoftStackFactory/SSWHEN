@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
 })
 export class BarChartComponent {
 
-  text: string;
   
   // mock data for charts
   mockLabels: string[] = ['62', '63', '64', '65', '66', '67', '68', '69', '70'];
@@ -33,15 +32,14 @@ export class BarChartComponent {
   // events
   public chartClicked(e:any):void {
     console.log(e);
-  }
+  };
  // Make it so when clicked that data is displayed below the chart instead of hover
   // public chartHovered(e:any):void {
   //   console.log(e);
   // }
 
   constructor() {
-    console.log('Hello BarChartComponent Component');
-    this.text = 'Hello World';
+
   }
 
 }

@@ -19,6 +19,9 @@ import { PopoverPage } from '../pages/dashboard/popover-page';
 import { ModalPage } from '../pages/dashboard/modal-page';
 import { ChartsModule } from 'ng2-charts';
 
+// import { ComponentsModule } from "../components/components.module";
+import { BarChartComponent } from '../components/bar-chart/bar-chart';
+
 
 
 
@@ -36,7 +39,9 @@ import { ChartsModule } from 'ng2-charts';
     LoginPage,
     EmailModalPage,
     PopoverPage,
-    ModalPage
+    ModalPage,
+    BarChartComponent
+    // ComponentsModule
 
   ],
   imports: [
@@ -59,6 +64,8 @@ import { ChartsModule } from 'ng2-charts';
     EmailModalPage,
     PopoverPage,
     ModalPage,
+    BarChartComponent
+    // ComponentsModule
 
   ],
   providers: [

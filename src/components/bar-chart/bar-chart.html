@@ -1,4 +1,7 @@
-<canvas baseChart
+
+<ion-card>
+    <ion-card-content>
+        <canvas baseChart
             [datasets]="barChartData"
             [labels]="barChartLabels"
             [options]="barChartOptions"
@@ -6,4 +9,6 @@
             [chartType]="barChartType"
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)">
-            </canvas>
+        </canvas>
+    </ion-card-content>
+</ion-card>
