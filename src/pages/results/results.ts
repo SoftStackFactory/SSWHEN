@@ -3,6 +3,10 @@ import { AlertController, ModalController, IonicPage, NavController, NavParams }
 import { RegisterPage } from '../register/register';
 import { EmailModalPage } from '../email-modal/email-modal';
 import { LandingPage } from '../landing/landing';
+// import { ComponentsModule } from "../components/components.module";
+import { BarChartComponent } from '../../components/bar-chart/bar-chart';
+
+
 
 
 
@@ -12,9 +16,8 @@ import { LandingPage } from '../landing/landing';
   templateUrl: 'results.html',
 })
 export class ResultsPage {
-  
   results: any;
-
+  
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams, public modalCtrl: ModalController) {
     
     this.results = "graph";

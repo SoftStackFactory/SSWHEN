@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -13,11 +14,18 @@ import { ResultsPage } from '../pages/results/results';
 import { RegisterPage } from '../pages/register/register';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ProfilePage } from '../pages/profile/profile';
+import { UserDataProvider } from '../providers/user-data/user-data';
+import { CalculationsProvider } from '../providers/calculations/calculations';
 import { LoginPage } from '../pages/login/login';
 import { EmailModalPage } from '../pages/email-modal/email-modal';
 import { PopoverPage } from '../pages/dashboard/popover-page';
 import { ModalPage } from '../pages/dashboard/modal-page';
 import { DataTablePage } from '../pages/data-table/data-table';
+import { ChartsModule } from 'ng2-charts';
+import { BarChartComponent } from '../components/bar-chart/bar-chart';
+
+
+
 
 @NgModule({
   declarations: [
@@ -34,10 +42,13 @@ import { DataTablePage } from '../pages/data-table/data-table';
     EmailModalPage,
     PopoverPage,
     ModalPage,
-    DataTablePage
+    DataTablePage,
+    BarChartComponent,
   ],
   imports: [
     BrowserModule,
+    ChartsModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -54,13 +65,17 @@ import { DataTablePage } from '../pages/data-table/data-table';
     LoginPage,
     EmailModalPage,
     PopoverPage,
-    ModalPage
+    ModalPage,
+    BarChartComponent
+
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    //MonthlyBenefitProvider
+    UserDataProvider,
+    UserDataProvider,
+    CalculationsProvider
   ]
 })
 export class AppModule {}
