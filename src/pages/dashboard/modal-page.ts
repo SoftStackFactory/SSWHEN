@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavParams} from 'ionic-angular';
+import {NavParams, ViewController} from 'ionic-angular';
 
 @Component({
   template: `
@@ -39,7 +39,7 @@ import {NavParams} from 'ionic-angular';
           <div class="table-col col">3</div>
           <div class="table-col col">4</div>
         </div>
-        
+
       </div>
     </ion-content>
   `
@@ -47,11 +47,15 @@ import {NavParams} from 'ionic-angular';
 export class ModalPage {
   background: string;
 
-  constructor(private navParams: NavParams) {
+  constructor(private navParams: NavParams, public viewCtrl: ViewController) {
 
   }
 
   ngOnInit() {
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
 
 }

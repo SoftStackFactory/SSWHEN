@@ -1,7 +1,7 @@
 
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar hideBackButton="true">
     <ion-title>Dashboard</ion-title>
   </ion-navbar>
 
@@ -9,25 +9,25 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
-  <ion-grid>
-    <ion-row align-items-center>
-      <ion-col align-self-end>
+  <ion-grid no-padding>
+    <ion-row align-items-center padding-horizontal>
+      <ion-col align-self-start>
         <h1>SSWhen</h1>
       </ion-col>
-      <ion-col>
-        <button ion-button float-end color="light" icon-left (click)="presentPopover()">
+      <ion-col align-self-end>
+        <button ion-button float-end color="light" icon-left (click)="presentPopover($event)">
           <ion-icon name="person"></ion-icon>
           <ion-icon md="md-arrow-dropdown"></ion-icon>
         </button>
       </ion-col>
     </ion-row>
 
-    <ion-row align-items-center>
+    <ion-row align-items-center no-padding>
       <ion-col>
         <ion-card>
-          <ion-card-content>
+          <ion-card-content padding-horizontal>
             <ion-row align-items-center>
               <ion-col>
                 <h2>User Information</h2>
@@ -81,11 +81,11 @@
       </ion-col>
     </ion-row>
 
-    <ion-row align-items-center>
+    <ion-row align-items-center no-padding>
       <ion-col>
         <ion-card>
-          <ion-card-content>
-            <div padding>
+          <ion-card-content padding-horizontal>
+            <div>
               <ion-segment [(ngModel)]="data">
                 <ion-segment-button value="monthly">
                   Monthly
@@ -101,12 +101,12 @@
 
             <div [ngSwitch]="data">
               <ion-list *ngSwitchCase="'monthly'">
-                <ion-row>
+                <ion-row padding-top>
                   <ion-col col-8>
                     <p>Monthly Contributions</p>
                   </ion-col>
                   <ion-col col-4>
-                    <span (click)="presentModal()" float-end color="primary">View Table</span>
+                    <a (click)="presentModal()" float-end color="primary">View Table</a>
                   </ion-col>
                 </ion-row>
                 <ion-row>
@@ -117,12 +117,12 @@
               </ion-list>
 
               <ion-list *ngSwitchCase="'cumulative'">
-                <ion-row>
+                <ion-row padding-top>
                   <ion-col col-8>
                     <p>Cumulative Contributions</p>
                   </ion-col>
                   <ion-col col-4>
-                    <span (click)="presentModal()" float-end color="primary">View Table</span>
+                    <a (click)="presentModal()" float-end color="primary">View Table</a>
                   </ion-col>
                 </ion-row>
                 <ion-row>
@@ -133,12 +133,12 @@
               </ion-list>
 
               <ion-list *ngSwitchCase="'other'">
-                <ion-row>
+                <ion-row padding-top>
                   <ion-col col-8>
                     <p>Other Contributions</p>
                   </ion-col>
                   <ion-col col-4>
-                    <span (click)="presentModal()" float-end color="primary">View Table</span>
+                    <a (click)="presentModal()" float-end color="primary">View Table</a>
                   </ion-col>
                 </ion-row>
                 <ion-row>

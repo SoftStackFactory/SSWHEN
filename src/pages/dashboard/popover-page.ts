@@ -5,14 +5,29 @@ import {LandingPage} from '../landing/landing';
 
 @Component({
   template: `
-    <ion-list class="popover-page">
-      <button ion-item on-click="goToProfile()">
-        Account
-      </button>
-      <button ion-item on-click="goToLanding()">
-        Logout
-      </button>
-    </ion-list>
+    <ion-grid class="popover-page" no-padding>
+      <ion-row>
+        <ion-col class="menu-full-width" col-auto align-self-end>
+          <button ion-item on-click="goToProfile()" padding-horizontal>
+            Edit Account
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="menu-full-width" col-auto align-self-end>
+          <button ion-item on-click="goToLanding()" padding-horizontal>
+            History
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="menu-full-width menu-last" col-auto align-self-end>
+          <button ion-item on-click="goToLanding()" padding-horizontal>
+            Logout
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   `
 })
 export class PopoverPage {
@@ -31,7 +46,7 @@ export class PopoverPage {
     this.navCtrl.push(ProfilePage);
   }
 
-  goToLanding(params){
+  goToLanding(params) {
     if (!params) params = {};
     this.navCtrl.push(LandingPage);
   }
