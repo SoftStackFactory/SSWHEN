@@ -13,14 +13,11 @@ import { ResultsPage } from '../pages/results/results';
 import { RegisterPage } from '../pages/register/register';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ProfilePage } from '../pages/profile/profile';
-<<<<<<< HEAD
-import { MonthlyBenefitProvider } from '../providers/monthly-benefit/monthly-benefit';
-=======
 import { LoginPage } from '../pages/login/login';
 import { EmailModalPage } from '../pages/email-modal/email-modal';
 import { PopoverPage } from '../pages/dashboard/popover-page';
 import { ModalPage } from '../pages/dashboard/modal-page';
->>>>>>> 989c7f5babed3f7c27e3404166241929e462151a
+import { DataTablePage } from '../pages/data-table/data-table';
 
 @NgModule({
   declarations: [
@@ -36,7 +33,8 @@ import { ModalPage } from '../pages/dashboard/modal-page';
     LoginPage,
     EmailModalPage,
     PopoverPage,
-    ModalPage
+    ModalPage,
+    DataTablePage
   ],
   imports: [
     BrowserModule,
@@ -62,7 +60,7 @@ import { ModalPage } from '../pages/dashboard/modal-page';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MonthlyBenefitProvider
+    //MonthlyBenefitProvider
   ]
 })
 export class AppModule {}

@@ -3,6 +3,7 @@ import { AlertController, ModalController, IonicPage, NavController, NavParams }
 import { RegisterPage } from '../register/register';
 import { EmailModalPage } from '../email-modal/email-modal';
 import { LandingPage } from '../landing/landing';
+import { DataTablePage } from '../data-table/data-table';
 
 
 
