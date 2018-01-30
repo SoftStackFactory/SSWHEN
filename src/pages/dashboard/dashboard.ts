@@ -1,5 +1,5 @@
 import {Component, ViewChild, ElementRef} from '@angular/core';
-import {IonicPage, NavController, NavParams, PopoverController, ModalController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, PopoverController, ModalController, AlertController} from 'ionic-angular';
 import {PopoverPage} from './popover-page';
 import {ModalPage} from './modal-page';
 
@@ -20,7 +20,7 @@ export class DashboardPage {
   data = 'monthly';
   editable = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, public modalCtrl: ModalController, public alertCtrl: AlertController) {
   }
 
   isEditable() {
@@ -49,6 +49,34 @@ export class DashboardPage {
       }
     };
     modal.present({ev});
+  }
+
+  showPrompt() {
+    let prompt = this.alertCtrl.create({
+      title: 'Email Results',
+      message: "Enter your email to send your results",
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Email'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Email',
+          handler: data => {
+            console.log('Saved clicked');
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
   ionViewDidLoad() {
