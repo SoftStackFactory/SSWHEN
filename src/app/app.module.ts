@@ -20,11 +20,9 @@ import { LoginPage } from '../pages/login/login';
 import { EmailModalPage } from '../pages/email-modal/email-modal';
 import { PopoverPage } from '../pages/dashboard/popover-page';
 import { ModalPage } from '../pages/dashboard/modal-page';
+import { DataTablePage } from '../pages/data-table/data-table';
 import { ChartsModule } from 'ng2-charts';
-
-// import { ComponentsModule } from "../components/components.module";
 import { BarChartComponent } from '../components/bar-chart/bar-chart';
-
 
 
 
@@ -44,12 +42,12 @@ import { BarChartComponent } from '../components/bar-chart/bar-chart';
     EmailModalPage,
     PopoverPage,
     ModalPage,
-    BarChartComponent
-
+    DataTablePage,
+    BarChartComponent,
   ],
   imports: [
     BrowserModule,
-    ChartsModule
+    ChartsModule,
     HttpModule,
     IonicModule.forRoot(MyApp)
   ],
