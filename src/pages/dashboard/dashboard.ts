@@ -32,9 +32,11 @@ export class DashboardPage {
     console.log("editable clicked");
   }
 
-  presentPopover() {
+  presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);
-    popover.present();
+    popover.present({
+      ev: myEvent
+    });
   }
 
   presentModal() {

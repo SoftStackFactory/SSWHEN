@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -13,6 +14,8 @@ import { ResultsPage } from '../pages/results/results';
 import { RegisterPage } from '../pages/register/register';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ProfilePage } from '../pages/profile/profile';
+import { UserDataProvider } from '../providers/user-data/user-data';
+import { CalculationsProvider } from '../providers/calculations/calculations';
 import { LoginPage } from '../pages/login/login';
 import { EmailModalPage } from '../pages/email-modal/email-modal';
 import { PopoverPage } from '../pages/dashboard/popover-page';
@@ -21,6 +24,7 @@ import { ChartsModule } from 'ng2-charts';
 
 // import { ComponentsModule } from "../components/components.module";
 import { BarChartComponent } from '../components/bar-chart/bar-chart';
+
 
 
 
@@ -41,13 +45,13 @@ import { BarChartComponent } from '../components/bar-chart/bar-chart';
     PopoverPage,
     ModalPage,
     BarChartComponent
-    // ComponentsModule
 
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
     ChartsModule
+    HttpModule,
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -65,13 +69,15 @@ import { BarChartComponent } from '../components/bar-chart/bar-chart';
     PopoverPage,
     ModalPage,
     BarChartComponent
-    // ComponentsModule
 
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UserDataProvider,
+    UserDataProvider,
+    CalculationsProvider
   ]
 })
 export class AppModule {}
