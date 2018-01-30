@@ -3,7 +3,6 @@ import { AlertController, ModalController, IonicPage, NavController, NavParams }
 import { RegisterPage } from '../register/register';
 import { EmailModalPage } from '../email-modal/email-modal';
 import { LandingPage } from '../landing/landing';
-import { DataTablePage } from '../data-table/data-table';
 
 
 
@@ -14,17 +13,6 @@ import { DataTablePage } from '../data-table/data-table';
 })
 export class ResultsPage {
   
-  data: any = [
-    { age: 62, monthlyPayout: 1000 },
-    { age: 63, monthlyPayout: 1000 },
-    { age: 64, monthlyPayout: 1000 },
-    { age: 65, monthlyPayout: 1000 },
-    { age: 66, monthlyPayout: 1000 },
-    { age: 67, monthlyPayout: 1000 },
-    { age: 68, monthlyPayout: 1000 },
-    { age: 69, monthlyPayout: 1000 },
-    { age: 70, monthlyPayout: 1000 }
-    ];
   results: any;
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams, public modalCtrl: ModalController) {
@@ -84,14 +72,14 @@ export class ResultsPage {
           text: 'Home',
           handler: () => {
             console.log('Disagree clicked');
-            this.goToLanding()
+            this.navCtrl.push(LandingPage);
           }
         },
         {
           text: 'Register',
           handler: () => {
             console.log('Agree clicked');
-            this.goToRegister()
+            this.navCtrl.push(RegisterPage);
           }
         }
       ]
