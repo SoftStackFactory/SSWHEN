@@ -24,14 +24,15 @@
     <form (ngSubmit)="logForm()">
       <ion-list>
         
-        <ion-item text-center>
+      <form [formGroup]='myForm'>
+         <ion-item text-center>
           <ion-label floating>Date of Birth</ion-label>
-          <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="myDate" name="Date"></ion-datetime>
+          <ion-datetime displayFormat="MM/YYYY" name="Date"></ion-datetime>
         </ion-item>
         
         <ion-item text-center>
           <ion-label floating>Gender</ion-label>
-          <ion-select [(ngModel)]="gender" name = "gender">
+          <ion-select name = "gender">
             <ion-option value="f">Female</ion-option>
             <ion-option value="m">Male</ion-option>
           </ion-select>
@@ -39,8 +40,9 @@
         
         <ion-item>
           <ion-label floating>Full Retirement Benefit</ion-label>
-          <ion-input type="number" [(ngModel)]="monthlyAtFRA" name="FRA" text-center></ion-input>
+          <ion-input type="number" name="FRA" text-center></ion-input>
         </ion-item>
+      </form>
         
       </ion-list>
       

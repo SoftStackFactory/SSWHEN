@@ -25205,6 +25205,10 @@ page-app-description button.customBtn {
   vertical-align: baseline;
 }
 
+.popover-md .popover-content {
+  max-width: 140px;
+}
+
 .btn-smaller {
   -webkit-transform: scale(0.7);
   transform: scale(0.7);
@@ -25230,6 +25234,14 @@ page-app-description button.customBtn {
 
 .table-row:last-child .table-col {
   border-bottom: solid 1px grey;
+}
+
+.menu-full-width {
+  width: 100%;
+}
+
+.menu-last .item .item-inner {
+  border-bottom: 0px solid #fff;
 }
 
 .header .table-col {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ResultsPage} from '../results/results'
 import { UserDataProvider } from "../../providers/user-data/user-data";
+import { FormBuilder, FormGroup, Validator } from '@angular/forms';
 
 @IonicPage()
 
@@ -11,14 +12,22 @@ import { UserDataProvider } from "../../providers/user-data/user-data";
 })
 
 export class InfoInputPage {
-  myDate: string;
-  gender: string;
-  monthlyAtFRA: number;
+  myForm: FormBuilder;
+  submitAttemtp: boolean=false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public user$: UserDataProvider) {
-    this.user$.date = this.myDate;
-    this.user$.sex = this.gender;
-    this.user$.FRA = this.monthlyAtFRA;
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public user$: UserDataProvider, 
+              public formBuilder: FormBuilder
+              )
+    {
+      /*this.user$.date = this.myDate;
+      this.user$.sex = this.gender;
+      this.user$.FRA = this.monthlyAtFRA;*/
+      
+      this.myForm = formBuilder.group({
+        
+      });
   }
 
   logForm() {

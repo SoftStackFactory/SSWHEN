@@ -23,6 +23,7 @@ import { ModalPage } from '../pages/dashboard/modal-page';
 import { DataTablePage } from '../pages/data-table/data-table';
 import { ChartsModule } from 'ng2-charts';
 import { BarChartComponent } from '../components/bar-chart/bar-chart';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 
 
@@ -49,6 +50,8 @@ import { BarChartComponent } from '../components/bar-chart/bar-chart';
     BrowserModule,
     ChartsModule,
     HttpModule,
+    FormsModule,
+    ReactiveFormsModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
