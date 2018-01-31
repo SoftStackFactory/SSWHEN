@@ -13,7 +13,9 @@ import { ResultsPage } from '../pages/results/results';
 import { RegisterPage } from '../pages/register/register';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ProfilePage } from '../pages/profile/profile';
-import { UserDataProvider } from '../providers/user-data/user-data';
+import { CalculationsProvider } from '../providers/calculations/calculations';
+
+import { ChartsModule } from 'ng2-charts'; // For using charts
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { UserDataProvider } from '../providers/user-data/user-data';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,8 +50,7 @@ import { UserDataProvider } from '../providers/user-data/user-data';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserDataProvider,
-    UserDataProvider,
+    CalculationsProvider,
   ]
 })
 export class AppModule {}

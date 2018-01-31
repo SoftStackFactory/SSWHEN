@@ -1,20 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { UserDataProvider } from "../../providers/user-data/user-data";
 
-
-
+/**
+ * Generated class for the ResultsPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+ 
 @IonicPage()
+
 @Component({
   selector: 'page-results',
   templateUrl: 'results.html',
 })
-export class ResultsPage implements OnInit{
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public user$: UserDataProvider) {
+export class ResultsPage {
+  
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ngOnInit(){}
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad LandingPage');
+  }
 
 }
-
