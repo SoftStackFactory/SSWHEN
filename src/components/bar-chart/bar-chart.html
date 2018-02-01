@@ -6,7 +6,18 @@
             [options]="barChartOptions"
             [legend]="barChartLegend"
             [chartType]="barChartType"
+            (chartClick)="chartClicked($event)"
             >
         </canvas>
+    </ion-col>
+</ion-row>
+<ion-row>
+    <ion-col>
+        {{retirementAge}}
+    </ion-col>
+</ion-row>
+<ion-row>
+    <ion-col>
+        {{payout}}
     </ion-col>
 </ion-row>

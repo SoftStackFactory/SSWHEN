@@ -5,11 +5,13 @@ import { Component } from '@angular/core';
   templateUrl: 'bar-chart.html'
 })
 export class BarChartComponent {
-
+  retirementAge: any;
+  payout: any;
   
   // mock data for charts
   mockLabels: string[] = ['62', '63', '64', '65', '66', '67', '68', '69', '70'];
   mockChartData: any[] = [1050, 1100, 1200, 1300, 1400, 1540, 1650, 1782, 1860, 1945];
+  chartData: any;
   
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
@@ -30,13 +32,20 @@ export class BarChartComponent {
   ];
   // events
   public chartClicked(e:any):void {
+    // Update retirementAge and payout on current page with
+    // the reitrement age and monthly payout from clicked bar
+    // this.retirementAge = e.active[0]._chart.data.labels[e._index]
+    this.retirementAge = e.active[0]._chart.data.labels[e.active[0]._index];
+    
+    
+    this.payout = e.active[0]._chart.data.datasets[0].data[e.active[0]._index]
+    
+    
+    console.log(e.active[0]._chart.data.datasets[0].data[e.active[0]._index]);
+    console.log(e.active[0]._chart.data.labels[e.active[0]._index]);
     console.log(e);
   };
- // Make it so when clicked that data is displayed below the chart instead of hover
-  public chartHovered(e:any):void {
-    console.log(e);
-  };
-  
+
 
   constructor() {
 

@@ -30,8 +30,7 @@ export class ResultsPage {
     
     this.retirementAge = "62";
     this.payout = 1456;
-    
-    
+  
   }
   goToRegister(params){
     if (!params) params = {};

@@ -19,9 +19,25 @@ export class DashboardPage {
 
   data = 'monthly';
   editable = false;
+  
+  // GET THIS DATA FROM SERVICE
+  chartDataMonthly: any;
+  chartDataCumulative: any;
+  
+  
+  retirementAge: any;
+  payout: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, public modalCtrl: ModalController, public alertCtrl: AlertController) {
+    
+    // JUST FILLER DATE
+    // GET THIS FROM ONCLICK EVENTS
+    this.retirementAge = "62";
+    this.payout = 1456;
+    
   }
+  
+  
 
   isEditable() {
     if (this.editable = false) {
