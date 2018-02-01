@@ -19,7 +19,7 @@
 <ion-content padding>
   <h3 text-center> <ion-icon name="arrow-round-down"></ion-icon> Please Enter Your Information  <ion-icon name="arrow-round-down"></ion-icon> </h3>
   
-  <h1>  {{ user$.start}} </h1>
+  <h1>  {{ bene$.start}} </h1>
   
     <form (ngSubmit)="logForm()">
       <ion-list>
@@ -47,7 +47,7 @@
       <ion-grid>
         <ion-row>
           <ion-col width-4>
-            <button ion-button type="submit" block>Submit</button>
+            <button ion-button (click)="bene$.monthlyBenefit()" block>Submit</button>
           </ion-col>
         </ion-row>
       </ion-grid>

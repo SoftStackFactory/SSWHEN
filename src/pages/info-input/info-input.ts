@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ResultsPage} from '../results/results'
 import { UserDataProvider } from "../../providers/user-data/user-data";
+import { BenefitProvider } from "../../providers/benefit/benefit";
 
 @IonicPage()
 
@@ -15,16 +16,16 @@ export class InfoInputPage {
   gender: string;
   monthlyAtFRA: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public user$: UserDataProvider) {
-    this.user$.date = this.myDate;
-    this.user$.sex = this.gender;
-    this.user$.FRA = this.monthlyAtFRA;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public bene$: BenefitProvider) {
+    // this.bene$.dob = this.myDate;
+    // this.bene$.gender = this.gender;
+    // this.bene$.pia = this.monthlyAtFRA;
   }
 
   logForm() {
-      console.log(this.myDate);
-      console.log(this.gender);
-      console.log(this.monthlyAtFRA);
+      // console.log(this.myDate);
+      // console.log(this.gender);
+      // console.log(this.monthlyAtFRA);
       this.navCtrl.push(ResultsPage)
   }
 
