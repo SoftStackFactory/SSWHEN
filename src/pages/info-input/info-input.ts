@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ResultsPage} from '../results/results'
 import { UserDataProvider } from "../../providers/user-data/user-data";
-import { FormBuilder, FormGroup, Validator } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @IonicPage()
 
@@ -12,8 +12,8 @@ import { FormBuilder, FormGroup, Validator } from '@angular/forms';
 })
 
 export class InfoInputPage {
-  myForm: FormBuilder;
-  submitAttemtp: boolean=false;
+  myForm: FormGroup;
+  submitAttempt: boolean = false;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -26,16 +26,29 @@ export class InfoInputPage {
       this.user$.FRA = this.monthlyAtFRA;*/
       
       this.myForm = formBuilder.group({
-        
+        birthDate: ['', Validators.required]
+        /*gender: ['', Validators.required],
+        fra: ['', Validators.required]*/
       });
   }
+  
+  onSubmit(){
+    this.submitAttempt = true;
+    
+    if(!this.myForm.valid){
+      console.log('Unsuccessful input');
+    }else{
+      console.log('Successful input');
+      //this.navCtrl.push(ResultsPage);
+    }
+  }
 
-  logForm() {
+  /*logForm() {
       console.log(this.myDate);
       console.log(this.gender);
       console.log(this.monthlyAtFRA);
-      this.navCtrl.push(ResultsPage)
-  }
+      
+  }*/
 
 }
 

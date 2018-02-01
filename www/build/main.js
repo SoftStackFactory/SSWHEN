@@ -1353,9 +1353,8 @@ AppDescriptionPage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InfoInputPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__results_results__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_user_data_user_data__ = __webpack_require__(167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_user_data_user_data__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(20);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1369,7 +1368,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var InfoInputPage = (function () {
     function InfoInputPage(navCtrl, navParams, user$, formBuilder) {
         /*this.user$.date = this.myDate;
@@ -1379,23 +1377,31 @@ var InfoInputPage = (function () {
         this.navParams = navParams;
         this.user$ = user$;
         this.formBuilder = formBuilder;
-        this.submitAttemtp = false;
-        this.myForm = formBuilder.group({});
+        this.submitAttempt = false;
+        this.myForm = formBuilder.group({
+            birthDate: ['', __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].required]
+            /*gender: ['', Validators.required],
+            fra: ['', Validators.required]*/
+        });
     }
-    InfoInputPage.prototype.logForm = function () {
-        console.log(this.myDate);
-        console.log(this.gender);
-        console.log(this.monthlyAtFRA);
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__results_results__["a" /* ResultsPage */]);
+    InfoInputPage.prototype.onSubmit = function () {
+        this.submitAttempt = true;
+        if (!this.myForm.valid) {
+            console.log('Unsuccessful input');
+        }
+        else {
+            console.log('Successful input');
+            //this.navCtrl.push(ResultsPage);
+        }
     };
     return InfoInputPage;
 }());
 InfoInputPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-info-input',template:/*ion-inline-start:"/home/ubuntu/workspace/ionic-project/SSWHEN/src/pages/info-input/info-input.html"*/'\n<ion-header>\n\n  <ion-navbar text-center>\n    <ion-title>infoInputPage</ion-title>\n  </ion-navbar>\n  \n  <ion-grid>\n  <ion-row align-items-center>\n    <ion-col style = "margin: 0 auto">\n      <img src="https://preview.ibb.co/c39yyb/Senior_Security.jpg">\n    </ion-col>\n  </ion-row>\n</ion-grid>\n\n</ion-header>\n\n\n<ion-content padding>\n  <h3 text-center> <ion-icon name="arrow-round-down"></ion-icon> Please Enter Your Information  <ion-icon name="arrow-round-down"></ion-icon> </h3>\n  \n  <h1>  {{ user$.start}} </h1>\n  \n    <form (ngSubmit)="logForm()">\n      <ion-list>\n        \n      <form [formGroup]=\'myForm\'>\n         <ion-item text-center>\n          <ion-label floating>Date of Birth</ion-label>\n          <ion-datetime displayFormat="MM/YYYY" name="Date"></ion-datetime>\n        </ion-item>\n        \n        <ion-item text-center>\n          <ion-label floating>Gender</ion-label>\n          <ion-select name = "gender">\n            <ion-option value="f">Female</ion-option>\n            <ion-option value="m">Male</ion-option>\n          </ion-select>\n        </ion-item>\n        \n        <ion-item>\n          <ion-label floating>Full Retirement Benefit</ion-label>\n          <ion-input type="number" name="FRA" text-center></ion-input>\n        </ion-item>\n      </form>\n        \n      </ion-list>\n      \n      <ion-grid>\n        <ion-row>\n          <ion-col width-4>\n            <button ion-button type="submit" block>Submit</button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </form>\n\n</ion-content>'/*ion-inline-end:"/home/ubuntu/workspace/ionic-project/SSWHEN/src/pages/info-input/info-input.html"*/,
+        selector: 'page-info-input',template:/*ion-inline-start:"/home/ubuntu/workspace/ionic-project/SSWHEN/src/pages/info-input/info-input.html"*/'\n<ion-header>\n\n  <ion-navbar text-center>\n    <ion-title>infoInputPage</ion-title>\n  </ion-navbar>\n  \n  <ion-grid>\n  <ion-row align-items-center>\n    <ion-col style = "margin: 0 auto">\n      <img src="https://preview.ibb.co/c39yyb/Senior_Security.jpg">\n    </ion-col>\n  </ion-row>\n</ion-grid>\n\n</ion-header>\n\n\n<ion-content padding>\n  <h3 text-center> <ion-icon name="arrow-round-down"></ion-icon> Please Enter Your Information  <ion-icon name="arrow-round-down"></ion-icon> </h3>\n  \n  <h1>  {{ user$.start}} </h1>\n  \n    <form>\n      <ion-list>\n        \n      <form [formGroup]=\'myForm\'>\n         <ion-item text-center>\n          <ion-label floating>Date of Birth</ion-label>\n          <ion-datetime displayFormat="MM/YYYY" formControlName="birthDate"></ion-datetime>\n        </ion-item>\n        \n        <div *ngIf=\'!myForm.controls.birthDate.valid && submitAttempt\'>\n            <h3 text-center>Please Enter Date of Birth</h3>\n        </div>\n        \n        <!--<ion-item text-center>-->\n        <!--  <ion-label floating>Gender</ion-label>-->\n        <!--  <ion-select formControlName="gender">-->\n        <!--    <ion-option value="f">Female</ion-option>-->\n        <!--    <ion-option value="m">Male</ion-option>-->\n        <!--  </ion-select>-->\n        <!--</ion-item>-->\n        <!--<div *ngIf=\'!myForm.controls.gender.valid && submitAttempt\'>-->\n        <!--    <h3 text-center>Please Enter Date of Birth</h3>-->\n        <!--</div>-->\n        \n        <!--<ion-item>-->\n        <!--  <ion-label floating>Full Retirement Benefit</ion-label>-->\n        <!--  <ion-input type="number" formControlName="fra" text-center></ion-input>-->\n        <!--</ion-item>-->\n        <!--<div *ngIf=\'!myForm.controls.birthDate.valid && submitAttempt\'>-->\n        <!--    <h3 text-center>Please Enter Date of Birth</h3>-->\n        <!--</div>-->\n      </form>\n        \n      </ion-list>\n      \n      <ion-grid>\n        <ion-row>\n          <ion-col width-4>\n            <button ion-button  (click)=\'onSubmit()\' block>Submit</button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </form>\n\n</ion-content>'/*ion-inline-end:"/home/ubuntu/workspace/ionic-project/SSWHEN/src/pages/info-input/info-input.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_user_data_user_data__["a" /* UserDataProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_user_data_user_data__["a" /* UserDataProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_user_data_user_data__["a" /* UserDataProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_user_data_user_data__["a" /* UserDataProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]) === "function" && _d || Object])
 ], InfoInputPage);
 
 var _a, _b, _c, _d;
