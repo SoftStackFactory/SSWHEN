@@ -9,7 +9,7 @@ import { CalculationsProvider } from '../../providers/calculations/calculations'
 
 export class ChartsComponent implements OnInit {
 
-  // Chart component must obtain lifeExpectancy and discountRate from user input
+  // Chart component must obtain lifeExpectancy and discountRate from user input or from service (which will get it from user input)
   lifeExpectancy: number = 80;
   discountRate: number = 3.5;
 
