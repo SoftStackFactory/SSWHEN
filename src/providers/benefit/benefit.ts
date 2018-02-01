@@ -20,7 +20,7 @@ export class BenefitProvider {
 
   targetAge: number = 744;
 
-  pia: number = 1000;
+  pia: number;
   
   gender: any;
 
@@ -36,7 +36,7 @@ export class BenefitProvider {
   
   benefitArray: any[];
 
-  monthlyBenefit(fullRetAge, targetAge, pia, lifeExpect) {
+  monthlyBenefit(pia) {
 
     //for(let i=744; i<=840; i += 12) {
     
@@ -46,13 +46,13 @@ export class BenefitProvider {
 
       if (this.monthDelta <= 36) {
 
-        this.benefit = (1 - (this.monthDelta * (5 / 9) * 0.01)) * this.pia;
+        this.benefit = (1 - (this.monthDelta * (5 / 9) * 0.01)) * pia;
 
       } else {
         
         //0.2 = reduction for first 36 months
 
-        this.benefit = (1 - (((this.monthDelta - 36) * (5 / 12) * 0.01) + 0.2)) * this.pia;
+        this.benefit = (1 - (((this.monthDelta - 36) * (5 / 12) * 0.01) + 0.2)) * pia;
 
       }
 
@@ -66,7 +66,7 @@ export class BenefitProvider {
 
       let creditFactor = 1 + (this.monthDelta * monthlyCredit);
 
-      this.benefit = this.pia * creditFactor;
+      this.benefit = pia * creditFactor;
 
     }
     this.cumBenefit = this.benefit * (this.lifeExpect - this.targetAge);

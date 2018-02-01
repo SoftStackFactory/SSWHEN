@@ -17,16 +17,20 @@ export class InfoInputPage {
   monthlyAtFRA: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public bene$: BenefitProvider) {
-    // this.bene$.dob = this.myDate;
-    // this.bene$.gender = this.gender;
-    // this.bene$.pia = this.monthlyAtFRA;
+    this.bene$.dob = this.myDate;
+    this.bene$.gender = this.gender;
+    this.bene$.pia = this.monthlyAtFRA;
   }
 
   logForm() {
-      // console.log(this.myDate);
-      // console.log(this.gender);
-      // console.log(this.monthlyAtFRA);
-      this.navCtrl.push(ResultsPage)
+      console.log(this.myDate);
+      console.log(this.gender);
+      console.log(this.monthlyAtFRA);
+      console.log(this.bene$.monthlyBenefit(this.monthlyAtFRA));
+      // this.navCtrl.push(ResultsPage, {
+      //   data: this.monthlyAtFRA
+      
+      // })
   }
 
 }

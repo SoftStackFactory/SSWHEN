@@ -21,7 +21,7 @@ export class ResultsPage {
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams, public modalCtrl: ModalController) {
     
     this.results = "graph";
-    
+    this.results = this.navParams.get("data");
   }
   goToRegister(params){
     if (!params) params = {};
