@@ -25268,6 +25268,11 @@ h4 {
 }
 
 img {
+  display: block;
+  margin: 0 auto;
+}
+
+img {
   border-radius: 10%;
   border: 5px solid silver;
 }
