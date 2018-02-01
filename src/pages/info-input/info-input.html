@@ -24,34 +24,34 @@
     <form>
       <ion-list>
         
-      <form [formGroup]='myForm'>
+      <form [formGroup]='myForm' novalidate>
          <ion-item text-center>
           <ion-label floating>Date of Birth</ion-label>
           <ion-datetime displayFormat="MM/YYYY" formControlName="birthDate"></ion-datetime>
         </ion-item>
         
         <div *ngIf='!myForm.controls.birthDate.valid && submitAttempt'>
-            <h3 text-center>Please Enter Date of Birth</h3>
+            <h4 text-center>Please Enter Date of Birth</h4>
         </div>
         
-        <!--<ion-item text-center>-->
-        <!--  <ion-label floating>Gender</ion-label>-->
-        <!--  <ion-select formControlName="gender">-->
-        <!--    <ion-option value="f">Female</ion-option>-->
-        <!--    <ion-option value="m">Male</ion-option>-->
-        <!--  </ion-select>-->
-        <!--</ion-item>-->
-        <!--<div *ngIf='!myForm.controls.gender.valid && submitAttempt'>-->
-        <!--    <h3 text-center>Please Enter Date of Birth</h3>-->
-        <!--</div>-->
+        <ion-item text-center>
+          <ion-label floating>Gender</ion-label>
+          <ion-select formControlName="gender">
+            <ion-option value="f">Female</ion-option>
+            <ion-option value="m">Male</ion-option>
+          </ion-select>
+        </ion-item>
+        <div *ngIf='!myForm.controls.gender.valid && submitAttempt'>
+            <h4 text-center>Please Enter Gender</h4>
+        </div>
         
-        <!--<ion-item>-->
-        <!--  <ion-label floating>Full Retirement Benefit</ion-label>-->
-        <!--  <ion-input type="number" formControlName="fra" text-center></ion-input>-->
-        <!--</ion-item>-->
-        <!--<div *ngIf='!myForm.controls.birthDate.valid && submitAttempt'>-->
-        <!--    <h3 text-center>Please Enter Date of Birth</h3>-->
-        <!--</div>-->
+        <ion-item text-center>
+          <ion-label floating>Full Retirement Benefit</ion-label>
+          <ion-input type="number" formControlName="fra" text-center></ion-input>
+        </ion-item>
+        <div *ngIf='!myForm.controls.fra.valid && (myForm.controls.fra.dirty || submitAttempt)'>
+            <h4 text-center>Invalid Full Retirement Amount</h4>
+        </div>
       </form>
         
       </ion-list>
@@ -59,7 +59,7 @@
       <ion-grid>
         <ion-row>
           <ion-col width-4>
-            <button ion-button  (click)='onSubmit()' block>Submit</button>
+            <button ion-button (click)='onSubmit()' block>Submit</button>
           </ion-col>
         </ion-row>
       </ion-grid>

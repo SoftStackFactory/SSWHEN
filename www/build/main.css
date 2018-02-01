@@ -25262,6 +25262,11 @@ page-app-description button.customBtn {
   border-bottom: solid 1px grey;
 }
 
+h4 {
+  color: red;
+  padding: .5em;
+}
+
 img {
   border-radius: 10%;
   border: 5px solid silver;
