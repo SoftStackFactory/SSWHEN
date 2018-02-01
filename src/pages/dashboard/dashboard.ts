@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild,  ViewChildren, QueryList} from '@angular/core';
+import {Component, ElementRef, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {AlertController, IonicPage, ModalController, NavController, NavParams, PopoverController} from 'ionic-angular';
 import {PopoverPage} from './popover-page';
 import {ModalPage} from './modal-page';
@@ -19,7 +19,7 @@ import {LangaugePopoverComponent} from '../../components/langauge-popover/langau
 export class DashboardPage {
   @ViewChild('popoverContent', {read: ElementRef}) content: ElementRef;
   @ViewChild('popoverText', {read: ElementRef}) text: ElementRef;
-  @ViewChildren('changeText') components:QueryList<any>;
+  @ViewChildren('changeText') components: QueryList<any>;
   data = 'monthly';
   editable = false;
   langElements = {};
@@ -27,6 +27,7 @@ export class DashboardPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, public modalCtrl: ModalController, public alertCtrl: AlertController) {
     console.log('Querylist:', this.components);
   }
+
   ionViewDidEnter() {
   }
 

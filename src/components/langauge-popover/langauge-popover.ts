@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
 
 /**
  * Generated class for the LangaugePopoverComponent component.
@@ -20,7 +20,6 @@ export class LangaugePopoverComponent {
     console.log('Hello LangaugePopoverComponent Component');
   }
 
-
   ngOnInit() {
     if (this.params.data) {
       this.contentEle = this.params.data.contentEle;
@@ -31,8 +30,7 @@ export class LangaugePopoverComponent {
   changeFontSize(direction: string) {
     console.log('Direction:', direction);
     console.log('Content:', this.textEle);
-    this.textEle.className = direction;
-
+    this.textEle.style.fontSize = direction;
   }
 
 }

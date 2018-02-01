@@ -1,4 +1,3 @@
-
 <ion-header>
 
   <ion-navbar hideBackButton="true">
@@ -10,7 +9,7 @@
     </ion-buttons>
   </ion-navbar>
 
-<!--Some more details can be added here-->
+  <!--Some more details can be added here-->
 </ion-header>
 
 
@@ -34,8 +33,8 @@
         <ion-card>
           <ion-card-content padding-horizontal>
             <ion-row align-items-center>
-              <ion-col #popoverText>
-                <h2>User Information</h2>
+              <ion-col>
+                <h2 #popoverText>User Information</h2>
               </ion-col>
               <ion-col>
                 <button style="vertical-align: top;" class="btn-smaller" ion-button icon-only float-end color="dark" on-click="isEditable()">
@@ -45,16 +44,16 @@
             </ion-row>
             <ion-row align-items-start>
               <ion-col>
-                <div #changeText><strong>Life Expectancy:</strong></div>
-                <div #changeText>62</div>
+                <div><strong>Life Expectancy:</strong></div>
+                <div>62</div>
                 <ion-item *ngIf="editable">
                   <ion-label floating>Life Expectancy</ion-label>
                   <ion-input type="text"></ion-input>
                 </ion-item>
               </ion-col>
               <ion-col align-items-end>
-                <div #changeText><strong>FRA Age:</strong></div>
-                <div #changeText>65</div>
+                <div><strong>FRA Age:</strong></div>
+                <div>65</div>
                 <ion-item *ngIf="editable">
                   <ion-label floating>FRA Age</ion-label>
                   <ion-input type="text"></ion-input>
