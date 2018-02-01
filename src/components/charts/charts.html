@@ -1,0 +1,107 @@
+<!-- This page plots all the graphs -->
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>ChartsPage</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <p text-center>
+    Entering retirement at different ages between 62 .. 70 yeilds different monthly SS payments.
+  </p>
+
+    <ion-grid>
+    <ion-row>
+      <ion-col>
+          <div style="display: block">
+            <canvas baseChart 
+              [datasets]="MonthlyPayout"
+              [labels]="RetirementYears"
+              [options]="ChartOptions"
+              [legend]="ChartLegend"
+              [chartType]="barChartType"></canvas>
+          </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <p text-center>
+    The Cumulative Benefits represents the sum total of all the monthly payments paid over the course of retirement.
+  </p>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col>  
+        <div style="display: block">
+          <canvas baseChart 
+              [datasets]="CumulativeBenefits"
+              [labels]="RetirementYears"
+              [options]="ChartOptions"
+              [colors]="ChartColors"
+              [legend]="ChartLegend"
+              [chartType]="lineChartType"></canvas>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+          <div style="display: block">
+            <canvas baseChart 
+              [datasets]="CumulativeBenefits"
+              [labels]="RetirementYears"
+              [options]="ChartOptions"
+              [legend]="ChartLegend"
+              [chartType]="barChartType"></canvas>
+          </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <p text-center>
+    The present value, or present worth, of the retirement package represents the amount of money which if invested (just prior to
+    retirement entry at some interest rate i) will match the monthly dividends from SSA for retiring that year. The higher
+    the present value, the better (for a given interest rate and retirement term, PV is proportional to monthly payments). 
+    The resulting present value will be less than the cumulative total of all the future payments because of discounting 
+    (time value of money or invested money earning money). The interest rate, or growth rate of the investment, can be
+    estimated according to risk level to give a rate reasonably above inflation. 
+  </p>
+
+    <ion-grid>
+    <ion-row>
+      <ion-col>   
+        <div style="display: block">
+            <canvas baseChart 
+              [datasets]="pvOfTotalBenefits"
+              [labels]="RetirementYears"
+              [options]="ChartOptions"
+              [colors]="ChartColors"
+              [legend]="ChartLegend"
+              [chartType]="lineChartType"></canvas>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+          <div style="display: block">
+            <canvas baseChart 
+              [datasets]="pvOfTotalBenefits"
+              [labels]="RetirementYears"
+              [options]="ChartOptions"
+              [legend]="ChartLegend"
+              [chartType]="barChartType"></canvas>
+          </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
