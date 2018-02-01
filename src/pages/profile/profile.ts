@@ -5,12 +5,18 @@ import { LoginPage } from '../login/login';
 import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 
 
+
 @IonicPage()
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
+  
+  inputDisabledEmail: boolean = false;
+  inputDisabledPass: boolean = false;
+  // the input is set to false by default 
+  addRow: boolean = false;
 
   constructor(public navCtrl: NavController, 
   public navParams: NavParams,
@@ -18,20 +24,36 @@ export class ProfilePage {
   public modalCtrl: ModalController
   ) {
     
+     this.inputDisabledEmail = true;
+     this.inputDisabledPass = true;
+   
   }
   
 //   onEdit(form: NgForm) {
 //   console.log(form.value);
 // }
 
+   editEmail() {
+    this.inputDisabledEmail = false;
+    console.log('you can edit the email now');
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
   }
 
-popView(){
-    this.navCtrl.push(DashboardPage);
+    popView(){
+     alert('Your account information has been updated');
+     this.navCtrl.push(DashboardPage);
     }
+    
+    
+    editPassAddRow() {
+      this.inputDisabledPass = false;
+      this.addRow = true;
+      console.log('you can edit the password now');
+  }
+  // on click of edit button, input is re-enabled
 
 //   ValidateEmail(mail) 
 // {

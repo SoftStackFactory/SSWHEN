@@ -1,45 +1,48 @@
-<!--
-  Generated template for the LoginPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>login</ion-title>
+    <ion-title>Back</ion-title> 
+    <!--takes the user back to the register page? -->
   </ion-navbar>
 
 </ion-header>
 
 
-
-
 <ion-content center text-center>
+  <div class="container">
   <ion-grid>
         <ion-row center>
               <ion-col>
                 <h1 no-padding no-margin>SSWHEN</h1>
-                
-                 <h3 float-center>Log In</h3>
-                
-                <ion-icon name="log-in"></ion-icon>
+                <h1></h1>
+                <h1 no-padding no-margin>Login</h1>
                     
                 <h3 no-padding no-margin></h3>
                 
+                <form [formGroup]="myForm">
+                <!--<form (ngSubmit)="logForm()"> -->
                 <ion-card>
                   <ion-card-header>
                     Email Address: 
                   </ion-card-header>
                   <ion-card-content>
-                      <ion-icon name="mail" float-right></ion-icon>
-                   <ion-input 
-                   type="email" 
-                    name="email"
-                    value=""
-                    placeholder="example@gmail.com"></ion-input>
-                  </ion-card-content>
-              
+                
+                  <ion-icon name="mail" float-right></ion-icon>
+                       
+                  <ion-input 
+                  formControlName="email" 
+                  type="email" 
+                  placeholder="email"
+                  ></ion-input>
+                  <div *ngIf="!myForm.controls.email.valid && (myForm.controls.email.dirty || submitAttempt)">
+                  <p>Email Invalid</p>
+                  </div>  
+                </ion-card-content>
+                </ion-card>
+               </form>
+                
+                <form>
+                <ion-card>
                   <ion-card-header>
                     Password: 
                   </ion-card-header>
@@ -48,23 +51,38 @@
                     <ion-input 
                    type="password" 
                     name="Password"
-                    value=""
                     placeholder="••••••••••"></ion-input>
                   </ion-card-content>
                 </ion-card>
-                </ion-col>
-          </ion-row>
-          
-          <ion-row>
-            <button ion-button 
-        (click)="login()"
+                </form>
+                            
+        <!--This button will link to next page:-->
+        <button ion-button 
+        (click)="popView()"
         type="submit"
          > 
-          Login</button> 
-          </ion-row>
-          <ion-row>
-            Forgot Password?
-          </ion-row>
-  </ion-grid>        
-        
-</ion-content>
+        Login</button> 
+
+
+                <ion-row justify-content-around>
+                   <button ion-button 
+                  (click)="sendLink()"
+                  type="submit"
+                   > 
+                  Forgot Password?</button> 
+                </ion-row>
+           
+           <ion-row> 
+
+
+
+      <label>Email</label>
+
+
+  <button type="button" (click)="submit()">Submit</button>
+           </ion-row>
+           
+              </ion-col>
+        </ion-row>
+  </ion-grid>  
+<!--</ion-content>-->
