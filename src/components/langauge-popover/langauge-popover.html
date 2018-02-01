@@ -1,4 +1,28 @@
 <!-- Generated template for the LangaugePopoverComponent component -->
-<div>
-  {{text}}
-</div>
+<ion-list >
+  <ion-row padding-horizontal>
+    <ion-col>
+      <strong>Change Font Size</strong>
+    </ion-col>
+  </ion-row>
+  <ion-row padding-horizontal>
+    <ion-col>
+      <button (click)="changeFontSize('text-smaller')" ion-item detail-none class="popover-text-button popover-text-smaller">A</button>
+    </ion-col>
+    <ion-col>
+      <button (click)="changeFontSize('text-larger')" ion-item detail-none class="popover-text-button popover-text-larger">A</button>
+    </ion-col>
+  </ion-row>
+  <!-- <ion-item class="popover-text-english">
+    <ion-label>English</ion-label>
+    <ion-radio value="English"></ion-radio>
+  </ion-item>
+  <ion-item class="popover-text-spanish">
+    <ion-label>Spanish</ion-label>
+    <ion-radio value="Spanish"></ion-radio>
+  </ion-item>
+  <ion-item class="popover-text-french">
+    <ion-label>French</ion-label>
+    <ion-radio value="French"></ion-radio>
+  </ion-item>-->
+</ion-list>

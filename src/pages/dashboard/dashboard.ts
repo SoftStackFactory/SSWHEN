@@ -1,7 +1,8 @@
-import {Component, ViewChild, ElementRef} from '@angular/core';
-import {IonicPage, NavController, NavParams, PopoverController, ModalController, AlertController} from 'ionic-angular';
+import {Component, ElementRef, ViewChild,  ViewChildren, QueryList} from '@angular/core';
+import {AlertController, IonicPage, ModalController, NavController, NavParams, PopoverController} from 'ionic-angular';
 import {PopoverPage} from './popover-page';
 import {ModalPage} from './modal-page';
+import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
 
 /**
  * Generated class for the DashboardPage page.
@@ -16,11 +17,17 @@ import {ModalPage} from './modal-page';
   templateUrl: 'dashboard.html',
 })
 export class DashboardPage {
-
+  @ViewChild('popoverContent', {read: ElementRef}) content: ElementRef;
+  @ViewChild('popoverText', {read: ElementRef}) text: ElementRef;
+  @ViewChildren('changeText') components:QueryList<any>;
   data = 'monthly';
   editable = false;
+  langElements = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, public modalCtrl: ModalController, public alertCtrl: AlertController) {
+    console.log('Querylist:', this.components);
+  }
+  ionViewDidEnter() {
   }
 
   isEditable() {
@@ -32,7 +39,19 @@ export class DashboardPage {
     console.log("editable clicked");
   }
 
-  presentPopover(myEvent) {
+  presentLanguagePopover(myEvent) {
+    let popover = this.popoverCtrl.create(LangaugePopoverComponent, {
+      contentEle: this.content.nativeElement,
+      textEle: this.text.nativeElement,
+      queryEle: this.components
+    });
+    console.log('Content:', this.content.nativeElement);
+    popover.present({
+      ev: myEvent
+    });
+  }
+
+  presentAccountPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({
       ev: myEvent
