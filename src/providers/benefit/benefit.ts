@@ -14,92 +14,137 @@ export class BenefitProvider {
     console.log('Hello BenefitProvider Provider');
   }
 
-  dob: any;
+  fullRetAge: number;
   
-  //fullRetAge needs to be a function of dob
-
-  fullRetAge: number = 804;
-  
-  //targetAge will be replaced by index in for loop
-
-  targetAge: number = 744;
-
-  pia: number;
-  
-  gender: any;
-  
-  //will need to write logic to set lifeExpect
-
-  lifeExpect: number = 1020;
+  lifeExpect: number;
 
   benefit: any;
 
-  monthDelta: any;
-
   cumBenefit: any;
-  
-  ageBenefit: any;
-  
-  benefitArray: any[] = [];
-  
+
   monthlyArray: any[] = [];
   
   cumulativeArray: any[] = [];
+  
+  benefitData: any;
 
-  monthlyBenefit(pia) {
-
-  //for(let targetAge=744; targetAge<=840; targetAge += 12) {
+  monthlyBenefit(pia, gender, dob) {
+    
+    //set average life expectancy based on gender
+    
+    if (gender === "m") {
       
-    if (this.targetAge <= this.fullRetAge) {
-
-      this.monthDelta = this.fullRetAge - this.targetAge;
-
-      if (this.monthDelta <= 36) {
-
-        this.benefit = (1 - (this.monthDelta * (5 / 9) * 0.01)) * pia;
-
-      } else {
-        
-        //0.2 = reduction for first 36 months
-
-        this.benefit = (1 - (((this.monthDelta - 36) * (5 / 12) * 0.01) + 0.2)) * pia;
-
-      }
-
+      //male life expectancy = 83 years = 996 months
+      this.lifeExpect = 996;
+      
     } else {
-
-      //840 is 70 years in months
-      this.monthDelta = 840 - this.targetAge;
-
-      //may need to review this again in SS docs??
-      let monthlyCredit = 0.08 / 12;
-
-      let creditFactor = 1 + (this.monthDelta * monthlyCredit);
-
-      this.benefit = pia * creditFactor;
-
+      
+      //female life expectancy = 85.6 years = 1027 months
+      this.lifeExpect = 1027;
+      
     }
-    this.cumBenefit = this.benefit * (this.lifeExpect - this.targetAge);
+
+    //Manipulate user input to extract year of birth
     
-    this.ageBenefit = {
-      age: this.targetAge,
-      monthly: this.benefit,
-      cumulative: this.cumBenefit
+    let dateString: string = dob;
+    
+    let yearString: any = dateString.substr(0,4);
+    
+    let dobYear = Number(yearString);
+    
+    //Logic to determine full retirement age.  All fulRetAge values in months.
+
+    if (dobYear <= 1937) {
+      
+      this.fullRetAge = 780;
+      
+    } else if (dobYear > 1937 && dobYear < 1943) {
+      
+      this.fullRetAge = 780 + ((dobYear - 1937) * 2);
+      
+    } else if (dobYear >= 1943 && dobYear < 1955) {
+      
+      this.fullRetAge = 792;
+      
+    } else if (dobYear >= 1955 && dobYear < 1960) {
+      
+      this.fullRetAge = 792 + ((dobYear - 1954) * 2);
+      
+    } else {
+      
+      this.fullRetAge = 804;
+      
     }
     
-    this.benefitArray.push(this.ageBenefit);
-    this.monthlyArray.push(this.benefit);
-    this.cumulativeArray.push(this.cumBenefit);
-  //}
+    //logic to calculate array of benefit amounts 
     
+    for(let targetAge: number = 744; targetAge<=840; targetAge += 12) {
+        
+      if (targetAge <= this.fullRetAge) {
+  
+        let monthDelta = this.fullRetAge - targetAge;
+  
+        if (monthDelta <= 36) {
+  
+          this.benefit = Math.round((1 - (monthDelta * (5 / 9) * 0.01)) * pia);
+  
+        } else {
+          
+          //0.2 = reduction for first 36 months
+  
+          this.benefit = Math.round((1 - (((monthDelta - 36) * (5 / 12) * 0.01) + 0.2)) * pia);
+  
+        }
+  
+      } else {
+  
+        let monthDelta = targetAge - this.fullRetAge;
+  
+        let monthlyCredit = 0.08 / 12;
+  
+        let creditFactor = 1 + (monthDelta * monthlyCredit);
+  
+        this.benefit = Math.round(pia * creditFactor);
+  
+      }
+      
+      //calculate cumulative total benefit based on life expectancy
+      
+      this.cumBenefit = this.benefit * (this.lifeExpect - targetAge);
+      
+      //push benefit numbers into separate arrays for use in charts
+      
+      this.monthlyArray.push(this.benefit);
+      this.cumulativeArray.push(this.cumBenefit);
+      
+      //KEEP THIS IN CASE WE NEED ARRAY OF OBJECTS FOR EACH AGE, BENEFIT, CUMULATIVE BENEFIT
+      
+      // this.ageBenefit = {
+      //   age: targetAge / 12,
+      //   monthly: this.benefit,
+      //   cumulative: this.cumBenefit
+      // }
+    }
     
-    console.log(this.benefitArray);
-    console.log(this.monthlyArray);
-    console.log(this.cumulativeArray);
-    // console.log(this.ageBenefit);
-    // console.log(this.cumBenefit);
-    // console.log(this.benefit);
+    this.benefitData = {
+      monthly: this.monthlyArray,
+      cumulative: this.cumulativeArray
+    }
+    
+    //USE THESE FOR TESTING ONLY
+    
+    // console.log(this.monthlyArray);
+    // console.log(this.cumulativeArray);
+    // console.log(this.benefitData);
+    // console.log(this.fullRetAge);
+    // this.monthlyArray = [];
+    // this.cumulativeArray =[];
+    // this.benefitData = {};
+    
+    return(this.benefitData);
+    
   }
+  
 }
 
 

@@ -31,20 +31,16 @@ export class InfoInputPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public bene$: BenefitProvider) {
-      
-      this.bene$.dob = this.dateInMonths;
-      this.bene$.gender = this.gender;
-      this.bene$.pia = this.monthlyAtFRA;
+
   }
 
   logForm() {
-    this.convertToMonths();
-    this.bene$.monthlyBenefit(this.monthlyAtFRA);
-    console.log(this.monthlyAtFRA);
-      // console.log(this.myDate);
-      // console.log(this.gender);
-      // console.log(this.monthlyAtFRA);
-      // console.log(this.dateInMonths);
+    let today = new Date();
+    let year = today.getFullYear();
+    this.bene$.monthlyBenefit(this.monthlyAtFRA, this.gender, this.myDate);
+    // console.log(this.monthlyAtFRA);
+    // console.log(this.gender);
+    // console.log(year);
       // this.navCtrl.push(ResultsPage, {
       //   data: this.monthlyAtFRA
       
