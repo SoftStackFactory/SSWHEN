@@ -17,6 +17,8 @@ export class InfoInputPage {
   monthlyAtFRA: number;
   dateInMonths: number;
   
+  //must use this to determine FRA in months, compare DOB to today's date somehow
+  
   convertToMonths() {
     let dateString: string = this.myDate;
     let yearString: any = dateString.substr(0,4);
@@ -37,6 +39,8 @@ export class InfoInputPage {
 
   logForm() {
     this.convertToMonths();
+    this.bene$.monthlyBenefit(this.monthlyAtFRA);
+    console.log(this.monthlyAtFRA);
       // console.log(this.myDate);
       // console.log(this.gender);
       // console.log(this.monthlyAtFRA);

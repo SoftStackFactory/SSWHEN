@@ -15,14 +15,20 @@ export class BenefitProvider {
   }
 
   dob: any;
+  
+  //fullRetAge needs to be a function of dob
 
   fullRetAge: number = 804;
+  
+  //targetAge will be replaced by index in for loop
 
   targetAge: number = 744;
 
   pia: number;
   
   gender: any;
+  
+  //will need to write logic to set lifeExpect
 
   lifeExpect: number = 1020;
 
@@ -34,12 +40,16 @@ export class BenefitProvider {
   
   ageBenefit: any;
   
-  benefitArray: any[];
+  benefitArray: any[] = [];
+  
+  monthlyArray: any[] = [];
+  
+  cumulativeArray: any[] = [];
 
   monthlyBenefit(pia) {
 
-    //for(let i=744; i<=840; i += 12) {
-    
+  //for(let targetAge=744; targetAge<=840; targetAge += 12) {
+      
     if (this.targetAge <= this.fullRetAge) {
 
       this.monthDelta = this.fullRetAge - this.targetAge;
@@ -77,9 +87,18 @@ export class BenefitProvider {
       cumulative: this.cumBenefit
     }
     
-    console.log(this.ageBenefit);
-    console.log(this.cumBenefit);
-    console.log(this.benefit);
+    this.benefitArray.push(this.ageBenefit);
+    this.monthlyArray.push(this.benefit);
+    this.cumulativeArray.push(this.cumBenefit);
+  //}
+    
+    
+    console.log(this.benefitArray);
+    console.log(this.monthlyArray);
+    console.log(this.cumulativeArray);
+    // console.log(this.ageBenefit);
+    // console.log(this.cumBenefit);
+    // console.log(this.benefit);
   }
 }
 
