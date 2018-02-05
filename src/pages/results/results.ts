@@ -10,6 +10,7 @@ import { BarChartComponent } from '../../components/bar-chart/bar-chart';
 
 
 
+
 @IonicPage()
 @Component({
   selector: 'page-results',
@@ -24,12 +25,17 @@ export class ResultsPage {
   
   results: any;
   
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(
+    public navCtrl: NavController, 
+    public alertCtrl: AlertController, 
+    public navParams: NavParams, 
+    public modalCtrl: ModalController
+    ) {
     
     this.results = "graph";
     
-    this.retirementAge = "62";
-    this.payout = 1456;
+    // this.retirementAge = this.BarChartComponent.retirementAge;
+    // this.payout = 1456;
   
   }
   goToRegister(params){

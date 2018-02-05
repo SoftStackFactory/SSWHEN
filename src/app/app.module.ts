@@ -27,6 +27,7 @@ import { BarChartComponent } from '../components/bar-chart/bar-chart';
 
 
 
+
 @NgModule({
   declarations: [
     MyApp,
