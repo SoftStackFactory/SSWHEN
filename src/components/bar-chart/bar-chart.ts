@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { CalculationsProvider } from '../../providers/calculations/calculations';
 
 @Component({
   selector: 'bar-chart',
@@ -10,8 +9,6 @@ export class BarChartComponent {
   @Input() xAxis: any[];
   @Input() yAxis: any[];
   
-  public barChartLabels:any[];
-  public barChartData:any[];
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
     responsive: true,
@@ -23,10 +20,7 @@ export class BarChartComponent {
   public barChartType:string = 'bar';
   
   
-  constructor(public calculations$: CalculationsProvider) {
-    // this.barChartLabels = this.calculations$.retirementYears;
-    // this.barChartData = [ {data: this.calculations$.monthlyBenefits, label: 'Monthly Payout per Retirement Year'} ];
-  }
+  constructor() {}
   
   // events
   public chartClicked(e:any):void {

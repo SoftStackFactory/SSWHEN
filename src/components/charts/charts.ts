@@ -1,23 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { CalculationsProvider } from '../../providers/calculations/calculations';
 
 @Component({
   selector: 'charts',
   templateUrl: 'charts.html'
 })
 
-export class ChartsComponent implements OnInit {
+export class ChartsComponent {
 
-  // Chart component must obtain lifeExpectancy and discountRate from user input or from service (which will get it from user input)
-  lifeExpectancy: number = 80;
-  discountRate: number = 3.5;
-
-  // Code for charts
-  public MonthlyPayout: Array<any> = [];
-  public CumulativeBenefits: Array<any> = [];
-  public pvOfTotalBenefits: Array<any> = [];
-  public RetirementYears: Array<any> = [];
+  // These properties are used to render the chart. They are assigned values in dashboard.html
+  @Input() chartType: string;
+  @Input() RetirementYears: any[];
+  @Input() MonthlyPayout: any[];
+  @Input() CumulativeBenefits: any[];
+  @Input() pvOfTotalBenefits: any[];
+  
   public ChartOptions: any = { 
     responsive: true, 
     maintainAspectRatio: true,
@@ -52,23 +49,6 @@ export class ChartsComponent implements OnInit {
   public barChartType: string = 'bar';
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public calculations$: CalculationsProvider) {
-  }
-
-  ngOnInit() {
-    // Execute the code in the service by passing in LE, interest, etc.
-    this.calculations$.additiveBenefitsByRetirementYear(this.lifeExpectancy);
-    let r_monthly = (this.discountRate / 12) / 100;
-    this.calculations$.pvOfBenefitsByRetirementYear(this.lifeExpectancy, r_monthly);
-    console.log("retirementYears", this.calculations$.retirementYears);
-    console.log("accumulatedBenefits:", this.calculations$.accumulatedBenefits);
-    console.log("pvOfBenefits", this.calculations$.pvOfBenefits);
-
-    // Assign data to the chart axes
-    this.MonthlyPayout.push({ data: this.calculations$.monthlyBenefits, label: 'Monthly Stipend per Retirement Year' });           
-    this.CumulativeBenefits.push({ data: this.calculations$.accumulatedBenefits, label: 'Cumulative Benefits per Retirement Year' });
-    this.pvOfTotalBenefits.push({ data: this.calculations$.pvOfBenefits, label: 'Present Value of Total Benefits per Retirement Year' });
-    this.RetirementYears = this.calculations$.retirementYears;
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
 }

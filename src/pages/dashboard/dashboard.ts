@@ -9,6 +9,7 @@ import { CalculationsProvider } from '../../providers/calculations/calculations'
   selector: 'page-dashboard',
   templateUrl: 'dashboard.html',
 })
+
 export class DashboardPage implements OnInit{
 
   data = 'monthly';
@@ -81,7 +82,12 @@ export class DashboardPage implements OnInit{
   }
   
   ngOnInit() {
-
+    this.calculations$.additiveBenefitsByRetirementYear();
+    this.calculations$.pvOfBenefitsByRetirementYear();
+    let retirementYears = this.calculations$.retirementYears;
+    let monthlyBenefits = this.calculations$.monthlyBenefits;
+    let accumulatedBenefits = this.calculations$.accumulatedBenefits;
+    let pvOfBenefits = this.calculations$.pvOfBenefits;
   }
   
 }
