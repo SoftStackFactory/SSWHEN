@@ -1,27 +1,26 @@
-import {Component, ViewChild, ElementRef} from '@angular/core';
+import {Component, ViewChild, ElementRef, OnInit} from '@angular/core';
 import {IonicPage, NavController, NavParams, PopoverController, ModalController, AlertController} from 'ionic-angular';
 import {PopoverPage} from './popover-page';
 import {ModalPage} from './modal-page';
-
-/**
- * Generated class for the DashboardPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { CalculationsProvider } from '../../providers/calculations/calculations';
 
 @IonicPage()
 @Component({
   selector: 'page-dashboard',
   templateUrl: 'dashboard.html',
 })
-export class DashboardPage {
+export class DashboardPage implements OnInit{
 
   data = 'monthly';
   editable = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, public modalCtrl: ModalController, public alertCtrl: AlertController) {
-  }
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public popoverCtrl: PopoverController, 
+    public modalCtrl: ModalController, 
+    public alertCtrl: AlertController,
+    public calculations$: CalculationsProvider) {}
 
   isEditable() {
     if (this.editable = false) {
@@ -80,9 +79,9 @@ export class DashboardPage {
     });
     prompt.present();
   }
+  
+  ngOnInit() {
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DashboardPage');
   }
-
+  
 }

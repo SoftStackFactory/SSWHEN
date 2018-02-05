@@ -32,14 +32,13 @@
     
     <div [ngSwitch]="results">
       <div *ngSwitchCase="'graph'">
-            <bar-chart></bar-chart>
+          <bar-chart 
+            [xAxis]="horizontalAxis" 
+            [yAxis]="verticalAxis"
+          ></bar-chart>
       </div>
       <div *ngSwitchCase="'chart'">
-        
-        
-        <page-data-table></page-data-table>
-       
-
+          <page-data-table></page-data-table>
       </div>
     </div>
     

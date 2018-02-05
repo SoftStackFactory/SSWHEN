@@ -1,9 +1,13 @@
+<!--
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+-->
 
 <ion-card>
     <ion-card-content>
         <canvas baseChart
-            [datasets]="barChartData"
-            [labels]="barChartLabels"
+            [datasets]="yAxis"
+            [labels]="xAxis"
             [options]="barChartOptions"
             [legend]="barChartLegend"
             [chartType]="barChartType"
