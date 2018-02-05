@@ -2,6 +2,7 @@ import {Component, ViewChild, ElementRef} from '@angular/core';
 import {IonicPage, NavController, NavParams, PopoverController, ModalController, AlertController} from 'ionic-angular';
 import {PopoverPage} from './popover-page';
 import {ModalPage} from './modal-page';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 /**
  * Generated class for the DashboardPage page.
@@ -17,15 +18,16 @@ import {ModalPage} from './modal-page';
 })
 export class DashboardPage {
 
-  data = 'monthly';
-  editable = false;
+  data: 'monthly';
+  editable: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, public modalCtrl: ModalController, public alertCtrl: AlertController) {
   }
 
   isEditable() {
-    if (this.editable = false) {
+    if (this.editable == false) {
       this.editable = true;
+      console.log('editable is ' + this.editable);
     } else {
       this.editable = false;
     }
