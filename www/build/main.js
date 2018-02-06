@@ -133,43 +133,43 @@ webpackEmptyAsyncContext.id = 122;
 var map = {
 	"../pages/app-description/app-description.module": [
 		460,
-		9
+		0
 	],
 	"../pages/dashboard/dashboard.module": [
 		455,
-		8
+		2
 	],
 	"../pages/data-table/data-table.module": [
 		462,
-		7
+		9
 	],
 	"../pages/email-modal/email-modal.module": [
 		457,
-		6
+		4
 	],
 	"../pages/info-input/info-input.module": [
 		459,
-		5
+		6
 	],
 	"../pages/landing/landing.module": [
 		461,
-		4
+		5
 	],
 	"../pages/login/login.module": [
 		453,
-		3
+		7
 	],
 	"../pages/profile/profile.module": [
 		454,
-		2
+		3
 	],
 	"../pages/register/register.module": [
 		456,
-		1
+		8
 	],
 	"../pages/results/results.module": [
 		458,
-		0
+		1
 	]
 };
 function webpackAsyncContext(req) {
@@ -574,16 +574,16 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_24__angular_forms__["e" /* ReactiveFormsModule */],
             __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* MyApp */], {}, {
                 links: [
-                    { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/profile/profile.module#ProfilePageModule', name: 'ProfilePage', segment: 'profile', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/email-modal/email-modal.module#EmailModalPageModule', name: 'EmailModalPage', segment: 'email-modal', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/results/results.module#ResultsPageModule', name: 'ResultsPage', segment: 'results', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/info-input/info-input.module#InfoInputPageModule', name: 'InfoInputPage', segment: 'info-input', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/app-description/app-description.module#AppDescriptionPageModule', name: 'AppDescriptionPage', segment: 'app-description', priority: 'low', defaultHistory: [] },
                     { loadChildren: '../pages/landing/landing.module#LandingPageModule', name: 'LandingPage', segment: 'landing', priority: 'low', defaultHistory: [] },
-                    { loadChildren: '../pages/data-table/data-table.module#DataTablePageModule', name: 'DataTablePage', segment: 'data-table', priority: 'low', defaultHistory: [] }
+                    { loadChildren: '../pages/data-table/data-table.module#DataTablePageModule', name: 'DataTablePage', segment: 'data-table', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/email-modal/email-modal.module#EmailModalPageModule', name: 'EmailModalPage', segment: 'email-modal', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] }
                 ]
             })
         ],
@@ -1412,12 +1412,10 @@ InfoInputPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'page-info-input',template:/*ion-inline-start:"/home/ubuntu/workspace/ionic-project/SSWHEN/src/pages/info-input/info-input.html"*/'\n<ion-header>\n\n  <ion-navbar text-center>\n    <ion-title>infoInputPage</ion-title>\n  </ion-navbar>\n  \n  <ion-grid>\n  <ion-row align-items-center>\n    <ion-col>\n      <img src="https://preview.ibb.co/c39yyb/Senior_Security.jpg" alt=\'person with money\'>\n    </ion-col>\n  </ion-row>\n</ion-grid>\n\n</ion-header>\n\n\n<ion-content padding>\n  <h3 text-center> <ion-icon name="arrow-round-down"></ion-icon> Please Enter Your Information  <ion-icon name="arrow-round-down"></ion-icon> </h3>\n  \n  <h1>  {{ user$.start}} </h1>\n  \n    <form>\n      <ion-list>\n        \n      <form [formGroup]=\'myForm\' novalidate>\n         <ion-item text-center>\n          <ion-label floating>Date of Birth</ion-label>\n          <ion-datetime displayFormat="MM/YYYY" formControlName="birthDate"></ion-datetime>\n        </ion-item>\n        \n        <div *ngIf=\'!myForm.controls.birthDate.valid && submitAttempt\'>\n            <h4 text-center>Please Enter Date of Birth</h4>\n        </div>\n        \n        <ion-item text-center>\n          <ion-label floating>Gender</ion-label>\n          <ion-select formControlName="gender">\n            <ion-option value="f">Female</ion-option>\n            <ion-option value="m">Male</ion-option>\n          </ion-select>\n        </ion-item>\n        <div *ngIf=\'!myForm.controls.gender.valid && submitAttempt\'>\n            <h4 text-center>Please Enter Gender</h4>\n        </div>\n        \n        <ion-item text-center>\n          <ion-label floating>Full Retirement Benefit</ion-label>\n          <ion-input type="number" formControlName="fra" text-center></ion-input>\n        </ion-item>\n        <div *ngIf=\'!myForm.controls.fra.valid && (myForm.controls.fra.dirty || submitAttempt)\'>\n            <h4 text-center>Invalid Full Retirement Amount</h4>\n        </div>\n      </form>\n        \n      </ion-list>\n      \n      <ion-grid>\n        <ion-row>\n          <ion-col width-4>\n            <button ion-button (click)=\'onSubmit()\' block>Submit</button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </form>\n\n</ion-content>'/*ion-inline-end:"/home/ubuntu/workspace/ionic-project/SSWHEN/src/pages/info-input/info-input.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_user_data_user_data__["a" /* UserDataProvider */],
-        __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_user_data_user_data__["a" /* UserDataProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_user_data_user_data__["a" /* UserDataProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */]) === "function" && _d || Object])
 ], InfoInputPage);
 
+var _a, _b, _c, _d;
 // Recommendation for resultsPage
 // Import the Pages you want to communicate with;
 // import {InfoInputPage} from '../info-input/info-input';
