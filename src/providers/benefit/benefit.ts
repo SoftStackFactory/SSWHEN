@@ -133,13 +133,13 @@ export class BenefitProvider {
     
     //USE THESE FOR TESTING ONLY
     
-    // console.log(this.monthlyArray);
-    // console.log(this.cumulativeArray);
-    // console.log(this.benefitData);
-    // console.log(this.fullRetAge);
-    // this.monthlyArray = [];
-    // this.cumulativeArray =[];
-    // this.benefitData = {};
+    console.log(this.monthlyArray);
+    console.log(this.cumulativeArray);
+    console.log(this.benefitData);
+    console.log(this.fullRetAge);
+    this.monthlyArray = [];
+    this.cumulativeArray =[];
+    this.benefitData = {};
     
     return(this.benefitData);
     

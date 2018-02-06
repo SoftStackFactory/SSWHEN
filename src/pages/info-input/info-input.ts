@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {ResultsPage} from '../results/results'
+import { ResultsPage } from '../results/results'
 import { UserDataProvider } from "../../providers/user-data/user-data";
 import { BenefitProvider } from "../../providers/benefit/benefit";
 
@@ -15,18 +15,16 @@ export class InfoInputPage {
   myDate: string;
   gender: string;
   monthlyAtFRA: number;
-  dateInMonths: number;
   
-  //must use this to determine FRA in months, compare DOB to today's date somehow
+  //may need later, converts date in YYYY-MM format to # of months
   
-  convertToMonths() {
-    let dateString: string = this.myDate;
-    let yearString: any = dateString.substr(0,4);
-    let monthString: any = dateString.substr(5,6);
-    this.dateInMonths = (Number(yearString)*12) + Number(monthString);
-    console.log(this.dateInMonths, "hit");
-  }
-  
+  // convertToMonths() {
+  //   let dateString: string = this.myDate;
+  //   let yearString: any = dateString.substr(0,4);
+  //   let monthString: any = dateString.substr(5,6);
+  //   this.dateInMonths = (Number(yearString)*12) + Number(monthString);
+  //   console.log(this.dateInMonths, "hit");
+  // }
   
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -35,16 +33,11 @@ export class InfoInputPage {
   }
 
   logForm() {
-    let today = new Date();
-    let year = today.getFullYear();
+    
     this.bene$.monthlyBenefit(this.monthlyAtFRA, this.gender, this.myDate);
-    // console.log(this.monthlyAtFRA);
-    // console.log(this.gender);
-    // console.log(year);
-      // this.navCtrl.push(ResultsPage, {
-      //   data: this.monthlyAtFRA
+    
+    this.navCtrl.push(ResultsPage);
       
-      // })
   }
   
 
