@@ -1,14 +1,29 @@
-
-<ion-card>
-    <ion-card-content>
+<ion-row no-padding>
+    <ion-col>
         <canvas baseChart
             [datasets]="barChartData"
             [labels]="barChartLabels"
             [options]="barChartOptions"
             [legend]="barChartLegend"
             [chartType]="barChartType"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)">
+            (chartClick)="chartClicked($event)"
+            >
         </canvas>
-    </ion-card-content>
-</ion-card>
+    </ion-col>
+</ion-row>
+<ion-row>
+    <ion-col style="text-align: center;">
+        Retirement Age
+    </ion-col>
+    <ion-col style="text-align: center;">
+        Payout
+    </ion-col>
+</ion-row>
+<ion-row>
+    <ion-col style="text-align: center;">
+        {{ retirementAge }}
+    </ion-col>
+    <ion-col style="text-align: center;">
+        {{ payout }}
+    </ion-col>
+</ion-row>

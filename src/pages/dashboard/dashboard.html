@@ -103,33 +103,25 @@
               <ion-list *ngSwitchCase="'monthly'">
                 <ion-row padding-top>
                   <ion-col col-8>
-                    <p>Monthly Contributions</p>
+                    <p>Monthly Payout</p>
                   </ion-col>
                   <ion-col col-4>
                     <a (click)="presentModal()" float-end color="primary">View Table</a>
                   </ion-col>
                 </ion-row>
-                <ion-row>
-                  <ion-col>
-                    <img src="../../assets/imgs/logo.png">
-                  </ion-col>
-                </ion-row>
+                <bar-chart></bar-chart>
               </ion-list>
 
               <ion-list *ngSwitchCase="'cumulative'">
                 <ion-row padding-top>
                   <ion-col col-8>
-                    <p>Cumulative Contributions</p>
+                    <p>Cumulative Payout</p>
                   </ion-col>
                   <ion-col col-4>
                     <a (click)="presentModal()" float-end color="primary">View Table</a>
                   </ion-col>
                 </ion-row>
-                <ion-row>
-                  <ion-col>
-                    <img src="../../assets/imgs/logo.png">
-                  </ion-col>
-                </ion-row>
+                <bar-chart></bar-chart>
               </ion-list>
 
               <ion-list *ngSwitchCase="'other'">
