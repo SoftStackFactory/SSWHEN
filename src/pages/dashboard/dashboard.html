@@ -1,11 +1,15 @@
-
 <ion-header>
 
   <ion-navbar hideBackButton="true">
     <ion-title>Dashboard</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentLanguagePopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
-<!--Some more details can be added here-->
+  <!--Some more details can be added here-->
 </ion-header>
 
 
@@ -17,7 +21,7 @@
         <h1>SSWhen</h1>
       </ion-col>
       <ion-col align-self-end>
-        <button ion-button float-end color="light" icon-left (click)="presentPopover($event)">
+        <button ion-button float-end color="light" icon-left (click)="presentAccountPopover($event)">
           <ion-icon name="person"></ion-icon>
           <ion-icon md="md-arrow-dropdown"></ion-icon>
         </button>
@@ -30,7 +34,7 @@
           <ion-card-content padding-horizontal>
             <ion-row align-items-center>
               <ion-col>
-                <h2>User Information</h2>
+                <h2  #changeText>User Information</h2>
               </ion-col>
               <ion-col>
                 <button style="vertical-align: top;" class="btn-smaller" ion-button icon-only float-end color="dark" on-click="isEditable()">
@@ -40,16 +44,16 @@
             </ion-row>
             <ion-row align-items-start>
               <ion-col>
-                <div><strong>Life Expectancy:</strong></div>
-                <div>62</div>
+                <div #changeText><strong>Life Expectancy:</strong></div>
+                <div #changeText>62</div>
                 <ion-item *ngIf="editable">
                   <ion-label floating>Life Expectancy</ion-label>
                   <ion-input type="text"></ion-input>
                 </ion-item>
               </ion-col>
               <ion-col align-items-end>
-                <div><strong>FRA Age:</strong></div>
-                <div>65</div>
+                <div #changeText><strong>FRA Age:</strong></div>
+                <div #changeText>65</div>
                 <ion-item *ngIf="editable">
                   <ion-label floating>FRA Age</ion-label>
                   <ion-input type="text"></ion-input>
@@ -58,18 +62,16 @@
             </ion-row>
             <ion-row align-items-start>
               <ion-col>
-                <div><strong>FRA Benefit Amount:</strong></div>
-                <div>$1,080</div>
+                <div #changeText><strong>FRA Benefit Amount:</strong></div>
+                <div #changeText>$1,080</div>
                 <ion-item *ngIf="editable">
                   <ion-label floating>FRA Benefit Amount</ion-label>
                   <ion-input type="text"></ion-input>
                 </ion-item>
               </ion-col>
-            </ion-row>
-            <ion-row align-items-center>
               <ion-col>
-                <div><strong>Total Tax Contribution:</strong></div>
-                <div>$40,110</div>
+                <div #changeText><strong>Total Tax Contribution:</strong></div>
+                <div #changeText>$40,110</div>
                 <ion-item *ngIf="editable">
                   <ion-label floating>Total Tax Contribution</ion-label>
                   <ion-input type="text"></ion-input>
@@ -103,10 +105,10 @@
               <ion-list *ngSwitchCase="'monthly'">
                 <ion-row padding-top>
                   <ion-col col-8>
-                    <p>Monthly Payout</p>
+                    <p #changeText>Monthly Contributions</p>
                   </ion-col>
                   <ion-col col-4>
-                    <a (click)="presentModal()" float-end color="primary">View Table</a>
+                    <a (click)="presentModal()" float-end color="primary" #changeText>View Table</a>
                   </ion-col>
                 </ion-row>
                 <bar-chart></bar-chart>
@@ -115,10 +117,10 @@
               <ion-list *ngSwitchCase="'cumulative'">
                 <ion-row padding-top>
                   <ion-col col-8>
-                    <p>Cumulative Payout</p>
+                    <p #changeText>Cumulative Contributions</p>
                   </ion-col>
                   <ion-col col-4>
-                    <a (click)="presentModal()" float-end color="primary">View Table</a>
+                    <a (click)="presentModal()" float-end color="primary" #changeText>View Table</a>
                   </ion-col>
                 </ion-row>
                 <bar-chart></bar-chart>
@@ -127,10 +129,10 @@
               <ion-list *ngSwitchCase="'other'">
                 <ion-row padding-top>
                   <ion-col col-8>
-                    <p>Other Contributions</p>
+                    <p #changeText>Other Contributions</p>
                   </ion-col>
                   <ion-col col-4>
-                    <a (click)="presentModal()" float-end color="primary">View Table</a>
+                    <a (click)="presentModal()" float-end color="primary" #changeText>View Table</a>
                   </ion-col>
                 </ion-row>
                 <ion-row>
@@ -144,9 +146,9 @@
         </ion-card>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row padding-horizontal="">
       <ion-col>
-        <button ion-button full (click)="showPrompt()">Email Result</button>
+        <button ion-button full (click)="showPrompt()" #changeText>Email Result</button>
       </ion-col>
     </ion-row>
   </ion-grid>
