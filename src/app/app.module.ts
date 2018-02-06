@@ -23,7 +23,7 @@ import { ModalPage } from '../pages/dashboard/modal-page';
 import { DataTablePage } from '../pages/data-table/data-table';
 import { ChartsModule } from 'ng2-charts';
 import { BarChartComponent } from '../components/bar-chart/bar-chart';
-
+import { LangaugePopoverComponent } from '../components/langauge-popover/langauge-popover';
 
 
 
@@ -45,6 +45,7 @@ import { BarChartComponent } from '../components/bar-chart/bar-chart';
     ModalPage,
     DataTablePage,
     BarChartComponent,
+    LangaugePopoverComponent
   ],
   imports: [
     BrowserModule,
@@ -67,8 +68,8 @@ import { BarChartComponent } from '../components/bar-chart/bar-chart';
     EmailModalPage,
     PopoverPage,
     ModalPage,
-    BarChartComponent
-
+    BarChartComponent,
+    LangaugePopoverComponent
   ],
   providers: [
     StatusBar,

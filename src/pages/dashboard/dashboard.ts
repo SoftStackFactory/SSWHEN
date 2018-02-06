@@ -1,7 +1,8 @@
-import {Component, ViewChild, ElementRef} from '@angular/core';
-import {IonicPage, NavController, NavParams, PopoverController, ModalController, AlertController} from 'ionic-angular';
+import {Component, ElementRef, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {AlertController, IonicPage, ModalController, NavController, NavParams, PopoverController} from 'ionic-angular';
 import {PopoverPage} from './popover-page';
 import {ModalPage} from './modal-page';
+import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
 
 /**
  * Generated class for the DashboardPage page.
@@ -16,7 +17,7 @@ import {ModalPage} from './modal-page';
   templateUrl: 'dashboard.html',
 })
 export class DashboardPage {
-
+  @ViewChildren('changeText',  {read: ElementRef}) components: QueryList<ElementRef>;
   data = 'monthly';
   editable = false;
   
@@ -39,16 +40,28 @@ export class DashboardPage {
   
   
 
+  ionViewDidEnter() {
+  }
+
   isEditable() {
     if (this.editable = false) {
       this.editable = true;
     } else {
       this.editable = false;
     }
-    console.log("editable clicked");
+    // console.log("editable clicked");
   }
 
-  presentPopover(myEvent) {
+  presentLanguagePopover(myEvent) {
+    let popover = this.popoverCtrl.create(LangaugePopoverComponent, {
+      queryEle: this.components.toArray()
+    });
+    popover.present({
+      ev: myEvent
+    });
+  }
+
+  presentAccountPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({
       ev: myEvent
@@ -98,7 +111,7 @@ export class DashboardPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DashboardPage');
+    // console.log('ionViewDidLoad DashboardPage');
   }
 
 }
