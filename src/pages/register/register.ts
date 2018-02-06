@@ -1,15 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
 import { DashboardPage } from '../dashboard/dashboard';
-
-
-/**
- * Generated class for the RegisterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -17,46 +9,65 @@ import { DashboardPage } from '../dashboard/dashboard';
   templateUrl: 'register.html',
 })
 export class RegisterPage {
+  
+  registerForm: FormGroup;
+  submitAttempt: boolean = false;
 
-    totalTaxContribution: Number;
-    maritalStatus: String;
-    email: String;
-    confirmedEmail: Boolean;
-    password: String;
-    confirmedPassword: Boolean;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
-
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
+       this.registerForm = formBuilder.group({
+        totalTaxContribution: ['', 
+          Validators.compose([
+              Validators.required,
+              Validators.pattern('/^\d+(?:\.\d{0,2})$/'),
+              Validators.maxLength(6)
+            ])
+        ],
+      email: ['', 
+          Validators.compose([
+              Validators.required,
+              Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
+              Validators.maxLength(30)
+            ])
+        ],
+        password: ['', 
+          Validators.compose([
+              Validators.required
+              //Validators.pattern('[0-9]{4}')
+              //Validators.minLength(3)
+            ])
+        ]
+        // password: ['', 
+        //   Validators.compose([
+        //       Validators.required,
+        //       Validators.pattern('.*\d\d\d'),
+        //       Validators.minLength(3)
+        //     ])
+        // ]
+      });
+  }
+  
+  //SUBMIT AND NAVIGATION FUNCTION
+  submit() {
+    this.submitAttempt = true;
+    if(!this.registerForm.valid){
+     console.log("Unsuccessful registration");
+    } else {
+      alert("Thank you for registering!");
+      console.log("Successful registration", this.registerForm.value);
+      this.navCtrl.push(DashboardPage);
+    }
+    
+  }
+  
+  //IONIC VIEW LOAD CONFIRMATION FUNCTION
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
   }
   
-  //ROUTER TO DASHBOARD PAGE
-  toDashboard(){
-    this.navCtrl.push(DashboardPage);
-  };
-  
 
   
-  
-  
-  
-  
-
-  
-  
-  /*POST FUNCTIONS
-   -takes inputs 
-      marital status
-      total tax contribution
-      email
-      password
-    
-    DATA VALIDATION FUNCTIONS
-    -takes inputs and validates its the same information
-       confirm email
-       confirm password
-  */
-  
-
 }
+
+//https://regex101.com/tests
+  
+  
