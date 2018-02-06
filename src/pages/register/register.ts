@@ -18,8 +18,8 @@ export class RegisterPage {
         totalTaxContribution: ['', 
           Validators.compose([
               Validators.required,
-              Validators.pattern('/^\d+(?:\.\d{0,2})$/'),
-              Validators.maxLength(6)
+                Validators.pattern('[0-9]{4}'),
+                Validators.minLength(3)
             ])
         ],
       email: ['', 
@@ -31,18 +31,11 @@ export class RegisterPage {
         ],
         password: ['', 
           Validators.compose([
-              Validators.required
-              //Validators.pattern('[0-9]{4}')
-              //Validators.minLength(3)
+              Validators.required,
+              Validators.pattern('[0-9]{4}'),
+              Validators.minLength(3)
             ])
         ]
-        // password: ['', 
-        //   Validators.compose([
-        //       Validators.required,
-        //       Validators.pattern('.*\d\d\d'),
-        //       Validators.minLength(3)
-        //     ])
-        // ]
       });
   }
   
@@ -68,6 +61,7 @@ export class RegisterPage {
   
 }
 
+//REGEX TESTING
 //https://regex101.com/tests
   
   

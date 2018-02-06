@@ -22,17 +22,15 @@
                  </ion-select>
              </ion-item>
 <!--TOTAL TAX CONTRIBUTION-->
-            <!--<form [formGroup] = "registerForm">-->
-            <!--  <ion-item>-->
-            <!--    <ion-label>Total Tax Contribution: </ion-label>-->
-            <!--    <ion-input formControlName="totalTaxContribution" type="text"></ion-input>-->
-            <!--    <div *ngIf="!registerForm.controls.totalTaxContribution.valid && (registerForm.controls.totalTaxContribution.dirty || submitAttempt)">-->
-            <!--    <p>Please fill in your email</p>-->
-            <!--    </div>-->
-            <!--  </ion-item>-->
-            <!-- </form>-->
-<!--EMAIL-->
             <form [formGroup] = "registerForm">
+              <ion-item>
+                <ion-label>Total Tax Contribution: </ion-label>
+                <ion-input formControlName="totalTaxContribution" type="text"></ion-input>
+                <div *ngIf="!registerForm.controls.totalTaxContribution.valid && (registerForm.controls.totalTaxContribution.dirty || submitAttempt)">
+                <p>Please fill in your email</p>
+                </div>
+              </ion-item>
+<!--EMAIL-->
               <ion-item>
                 <ion-label>Email: </ion-label>
                 <ion-input formControlName="email" type="email"></ion-input>
@@ -42,7 +40,6 @@
               </ion-item>
              <!--</form>-->
 <!--PASSWORD-->
-            <!--<form [formGroup] = "registerForm">-->
               <ion-item>
                 <ion-label>Password: </ion-label>
                 <ion-input formControlName="password" type="password"></ion-input>
