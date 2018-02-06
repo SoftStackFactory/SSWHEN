@@ -17,13 +17,15 @@ export class ProfilePage {
   inputDisabledPass: boolean = false;
   // the input is set to false by default 
   addRow: boolean = false;
+  onTheEdit = 'Current Password:';
+  onTheEdit1 = 'Password:';
 
   constructor(public navCtrl: NavController, 
   public navParams: NavParams,
   private alertCtrl: AlertController,
-  public modalCtrl: ModalController
+  public modalCtrl: ModalController,
   ) {
-    
+  
      this.inputDisabledEmail = true;
      this.inputDisabledPass = true;
    
@@ -34,6 +36,7 @@ export class ProfilePage {
 // }
 
    editEmail() {
+    this.onTheEdit = 'Change email to:'; 
     this.inputDisabledEmail = false;
     console.log('you can edit the email now');
   }
@@ -42,13 +45,24 @@ export class ProfilePage {
     console.log('ionViewDidLoad ProfilePage');
   }
 
+    doAlertAndPopView(){
+      let alert = this.alertCtrl.create({
+      title: '',
+      subTitle: 'Your account information has been updated',
+      buttons: ['OK']
+    });
+    alert.present();
+    this.navCtrl.push(DashboardPage);
+    }
+
     popView(){
      alert('Your account information has been updated');
-     this.navCtrl.push(DashboardPage);
+     
     }
     
     
     editPassAddRow() {
+      this.onTheEdit1 = 'Type your new password:';
       this.inputDisabledPass = false;
       this.addRow = true;
       console.log('you can edit the password now');

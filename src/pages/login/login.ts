@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DashboardPage } from '../dashboard/dashboard';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
 /**
  * Generated class for the LoginPage page.
@@ -21,7 +21,8 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, 
   public navParams: NavParams,
-  public formBuilder: FormBuilder) {
+  public formBuilder: FormBuilder,
+  public alertCtrl: AlertController) {
     
      this.myForm = formBuilder.group({
     email: ['',
@@ -46,14 +47,45 @@ export class LoginPage {
         this.navCtrl.push(DashboardPage);
       }
     }
-
+  
+    sendLink() {
+    let prompt = this.alertCtrl.create({
+      title: 'Forgot Password?',
+      message: "Type in your email address and a link will be sent to your inbox to reset your password:",
+      inputs: [
+        {
+          name: 'Email',
+          placeholder: 'Email'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Send reset link',
+          handler: data => {
+            console.log('Saved clicked');
+            this.anotherAlert();
+          }
+        }
+      ]
+    });
+    prompt.present();
+    }
     
-    
-    
-  sendLink(){
-    alert('Future Popout: Please enter your email: _________');
-    alert('Thank you. An email has been sent to your address with a reset link. Please follow the link to set a new password');
-  }
+    anotherAlert() {
+    let alert = this.alertCtrl.create({
+      title: '',
+      subTitle: 'An email has been sent to your address with a reset link. Please follow the link to set a new password',
+      buttons: ['OK']
+    });
+    alert.present();
+    }
+  
 
   submit() {
       this.submitAttempt = true;

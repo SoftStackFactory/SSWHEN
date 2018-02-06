@@ -22,7 +22,7 @@
                 
                 <ion-card>
                   <ion-card-header>
-                    Current Email Address: 
+                    {{onTheEdit}} 
                   </ion-card-header>
                   <ion-card-content>
                    <ion-input 
@@ -45,7 +45,7 @@
                 
                 <ion-card>
                   <ion-card-header>
-                    Password: 
+                    {{onTheEdit1}}
                   </ion-card-header>
                   <ion-card-content>
                      
@@ -76,9 +76,6 @@
                     </ion-card-content>
                 </ion-card>
                 
-                
-               
-                 
                 <!--<form -->
                 <!--#f="ngForm" (ngSubmit)="onEdit(f)">-->
                   <!--^added #f as a local reference to the form-->
@@ -124,7 +121,7 @@
                             
         <!--This button will link to next page:-->
         <button ion-button 
-        (click)="popView()"
+        (click)="doAlertAndPopView()"
         type="submit"
          > 
         <!--[disabled]="!f.valid" to go in after submit-->
