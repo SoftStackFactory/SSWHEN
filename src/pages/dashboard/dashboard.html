@@ -85,6 +85,7 @@
       <ion-col>
         <ion-card>
           <ion-card-content padding-horizontal>
+            
             <div>
               <ion-segment [(ngModel)]="data">
                 <ion-segment-button value="monthly">
@@ -93,25 +94,30 @@
                 <ion-segment-button value="cumulative">
                   Cumulative
                 </ion-segment-button>
-                <ion-segment-button value="other">
-                  Other
+                <ion-segment-button value="presentValue">
+                  Present Value
                 </ion-segment-button>
               </ion-segment>
             </div>
 
             <div [ngSwitch]="data">
+              
               <ion-list *ngSwitchCase="'monthly'">
                 <ion-row padding-top>
                   <ion-col col-8>
-                    <p>Monthly Contributions</p>
+                    <p text-center>Monthly Stipend</p>
                   </ion-col>
                   <ion-col col-4>
                     <a (click)="presentModal()" float-end color="primary">View Table</a>
                   </ion-col>
                 </ion-row>
                 <ion-row>
-                  <ion-col>
-                    <img src="../../assets/imgs/logo.png">
+                  <ion-col>   
+                    <charts 
+                      [RetirementYears]="retirementYears" 
+                      [MonthlyPayout]="monthlyBenefits"
+                      [chartType]=" 'monthly' "
+                    ></charts>                    
                   </ion-col>
                 </ion-row>
               </ion-list>
@@ -119,7 +125,7 @@
               <ion-list *ngSwitchCase="'cumulative'">
                 <ion-row padding-top>
                   <ion-col col-8>
-                    <p>Cumulative Contributions</p>
+                    <p text-center>Cumulative Benefits</p>
                   </ion-col>
                   <ion-col col-4>
                     <a (click)="presentModal()" float-end color="primary">View Table</a>
@@ -127,15 +133,19 @@
                 </ion-row>
                 <ion-row>
                   <ion-col>
-                    <img src="../../assets/imgs/logo.png">
+                    <charts 
+                      [RetirementYears]="retirementYears" 
+                      [CumulativeBenefits]="accumulatedBenefits"
+                      [chartType]=" 'cumulative' "
+                    ></charts>
                   </ion-col>
                 </ion-row>
               </ion-list>
 
-              <ion-list *ngSwitchCase="'other'">
+              <ion-list *ngSwitchCase="'presentValue'">
                 <ion-row padding-top>
                   <ion-col col-8>
-                    <p>Other Contributions</p>
+                    <p text-center>Present Value of Benefits</p>
                   </ion-col>
                   <ion-col col-4>
                     <a (click)="presentModal()" float-end color="primary">View Table</a>
@@ -143,10 +153,15 @@
                 </ion-row>
                 <ion-row>
                   <ion-col>
-                    <img src="../../assets/imgs/logo.png">
+                    <charts 
+                      [RetirementYears]="retirementYears" 
+                      [pvOfTotalBenefits]="pvOfBenefits"
+                      [chartType]=" 'presentValue' "
+                    ></charts>
                   </ion-col>
                 </ion-row>
               </ion-list>
+              
             </div>
           </ion-card-content>
         </ion-card>

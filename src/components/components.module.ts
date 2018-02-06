@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BarChartComponent } from './bar-chart/bar-chart';
+import { ChartsComponent } from './charts/charts';
 @NgModule({
-	declarations: [BarChartComponent],
+	declarations: [BarChartComponent, ChartsComponent],
 	imports: [],
-	exports: [BarChartComponent]
+	exports: [BarChartComponent, ChartsComponent]
 })
 export class ComponentsModule {}

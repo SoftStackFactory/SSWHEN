@@ -1,12 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { EmailModalPage } from '../email-modal/email-modal';
 import { LandingPage } from '../landing/landing';
 // import { ComponentsModule } from "../components/components.module";
 import { BarChartComponent } from '../../components/bar-chart/bar-chart';
-
-
+import { CalculationsProvider } from '../../providers/calculations/calculations';
 
 
 
@@ -15,13 +14,20 @@ import { BarChartComponent } from '../../components/bar-chart/bar-chart';
   selector: 'page-results',
   templateUrl: 'results.html',
 })
-export class ResultsPage {
+
+export class ResultsPage implements OnInit {
   results: any;
+  horizontalAxis: any[] = [];
+  verticalAxis: any[] = [];
   
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams, public modalCtrl: ModalController) {
-    
+  constructor(
+    public navCtrl: NavController, 
+    public alertCtrl: AlertController, 
+    public navParams: NavParams,
+    public modalCtrl: ModalController,
+    public calculations$: CalculationsProvider
+  ){
     this.results = "graph";
-    
   }
   goToRegister(params){
     if (!params) params = {};
@@ -90,8 +96,10 @@ export class ResultsPage {
     confirm.present();
   }
   
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ResultsPage');
+  ngOnInit() {
+    this.horizontalAxis = this.calculations$.retirementYears;
+    this.verticalAxis = [ {data: this.calculations$.monthlyBenefits, label: 'Monthly Payout per Retirement Year'} ];
   }
+
 
 }
