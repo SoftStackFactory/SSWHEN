@@ -17,15 +17,11 @@ import {LangaugePopoverComponent} from '../../components/langauge-popover/langau
   templateUrl: 'dashboard.html',
 })
 export class DashboardPage {
-  @ViewChild('popoverContent', {read: ElementRef}) content: ElementRef;
-  @ViewChild('popoverText', {read: ElementRef}) text: ElementRef;
-  @ViewChildren('changeText') components: QueryList<any>;
+  @ViewChildren('changeText',  {read: ElementRef}) components: QueryList<ElementRef>;
   data = 'monthly';
   editable = false;
-  langElements = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, public modalCtrl: ModalController, public alertCtrl: AlertController) {
-    console.log('Querylist:', this.components);
   }
 
   ionViewDidEnter() {
@@ -37,16 +33,13 @@ export class DashboardPage {
     } else {
       this.editable = false;
     }
-    console.log("editable clicked");
+    // console.log("editable clicked");
   }
 
   presentLanguagePopover(myEvent) {
     let popover = this.popoverCtrl.create(LangaugePopoverComponent, {
-      contentEle: this.content.nativeElement,
-      textEle: this.text.nativeElement,
-      queryEle: this.components
+      queryEle: this.components.toArray()
     });
-    console.log('Content:', this.content.nativeElement);
     popover.present({
       ev: myEvent
     });
@@ -102,7 +95,7 @@ export class DashboardPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DashboardPage');
+    // console.log('ionViewDidLoad DashboardPage');
   }
 
 }

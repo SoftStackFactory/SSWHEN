@@ -13,24 +13,22 @@ import {NavController, NavParams} from 'ionic-angular';
 })
 export class LangaugePopoverComponent {
 
-  contentEle: any;
-  textEle: any;
+  queryEle: any;
 
   constructor(public navCtrl: NavController, public params: NavParams) {
-    console.log('Hello LangaugePopoverComponent Component');
   }
 
   ngOnInit() {
     if (this.params.data) {
-      this.contentEle = this.params.data.contentEle;
-      this.textEle = this.params.data.textEle;
+      this.queryEle = this.params.data.queryEle;
     }
   }
 
   changeFontSize(direction: string) {
-    console.log('Direction:', direction);
-    console.log('Content:', this.textEle);
-    this.textEle.style.fontSize = direction;
+    for (let i = 0;i<this.queryEle.length;i++) {
+      // console.log('Position:', this.queryEle[i]);
+      this.queryEle[i].nativeElement.style.fontSize = direction;
+    }
   }
 
 }
