@@ -17,7 +17,7 @@ export class ProfilePage {
   inputDisabledPass: boolean = false;
   // the input is set to false by default 
   addRow: boolean = false;
-  onTheEdit = 'Current Password:';
+  onTheEdit = 'Current Email:';
   onTheEdit1 = 'Password:';
 
   constructor(public navCtrl: NavController, 

@@ -92,7 +92,6 @@ export class LoginPage {
       if(!this.myForm.valid) {
         console.log("Unsuccessful registration :("); 
       } else {
-        alert('Thank you for registering!');
         console.log("Successful registration", this.myForm.value);
       }
     }
