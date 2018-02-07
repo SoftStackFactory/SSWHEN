@@ -9,6 +9,7 @@ import {PresentValueComponent} from '../../components/present-value/present-valu
 
 
 @IonicPage()
+
 @Component({
   selector: 'page-dashboard',
   templateUrl: 'dashboard.html',
