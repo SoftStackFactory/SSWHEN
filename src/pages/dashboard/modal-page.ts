@@ -47,9 +47,7 @@ import {NavParams, ViewController} from 'ionic-angular';
 export class ModalPage {
   background: string;
 
-  constructor(private navParams: NavParams, public viewCtrl: ViewController) {
-
-  }
+  constructor(private navParams: NavParams, public viewCtrl: ViewController) {}
 
   ngOnInit() {
   }

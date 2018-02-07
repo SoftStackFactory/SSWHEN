@@ -2,7 +2,11 @@ import {Component, ViewChild, ElementRef, OnInit} from '@angular/core';
 import {IonicPage, NavController, NavParams, PopoverController, ModalController, AlertController} from 'ionic-angular';
 import {PopoverPage} from './popover-page';
 import {ModalPage} from './modal-page';
+import {MonthlyChart} from './monthly'; 
+import {CumulativeChart} from './cumulative';
+import {pvChart} from './presentValue';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
+
 
 @IonicPage()
 @Component({
@@ -14,6 +18,10 @@ export class DashboardPage implements OnInit{
 
   data = 'monthly';
   editable = false;
+  retYears: any[] = [];
+  monthlyPay: any[] = [];
+  totalAccumulated: any[] = [];
+  totalPV: any[] = [];
 
   constructor(
     public navCtrl: NavController, 
@@ -48,9 +56,24 @@ export class DashboardPage implements OnInit{
             top: '100'
           };
         }
+    }
       }
-    };
     modal.present({ev});
+  }
+  
+  openMonthly() {
+    const myModal = this.modalCtrl.create(MonthlyChart);
+    myModal.present();
+  }
+  
+  openCumulative() {
+    const myModal = this.modalCtrl.create(CumulativeChart);
+    myModal.present();
+  }
+  
+  openPresentValue() {
+    const myModal = this.modalCtrl.create(pvChart);
+    myModal.present();
   }
 
   showPrompt() {
@@ -84,10 +107,10 @@ export class DashboardPage implements OnInit{
   ngOnInit() {
     this.calculations$.additiveBenefitsByRetirementYear();
     this.calculations$.pvOfBenefitsByRetirementYear();
-    let retirementYears = this.calculations$.retirementYears;
-    let monthlyBenefits = this.calculations$.monthlyBenefits;
-    let accumulatedBenefits = this.calculations$.accumulatedBenefits;
-    let pvOfBenefits = this.calculations$.pvOfBenefits;
+    this.retYears = this.calculations$.retirementYears;
+    this.monthlyPay = this.calculations$.monthlyBenefits;
+    this.totalAccumulated = this.calculations$.accumulatedBenefits;
+    this.totalPV = this.calculations$.pvOfBenefits;
   }
   
 }

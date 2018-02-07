@@ -3,7 +3,7 @@
 
 <ion-content padding>
   
-  <div *ngIf=" chartType == 'monthly' ">
+  <div *ngIf=" chartsType == 'monthly' ">
     <ion-card>
       <ion-card-header text-center>
         Entering retirement at different ages between 62 .. 70 yeilds different monthly SS payments.
@@ -28,7 +28,7 @@
   </div>
 
 
-  <div *ngIf=" chartType == 'cumulative' ">
+  <div *ngIf=" chartsType == 'cumulative' ">
     <ion-card>
       <ion-card-header text-center>
         The Cumulative Benefits represents the sum total of all the monthly payments paid over the course of retirement.
@@ -79,7 +79,7 @@
   </div>
 
   
-  <div *ngIf=" chartType =='presentValue' ">
+  <div *ngIf=" chartsType =='presentValue' ">
     <ion-card>
       <ion-card-header text-center>
         The present value, or present worth, of the retirement package represents the amount of money which if invested (just prior to

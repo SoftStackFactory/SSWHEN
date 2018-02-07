@@ -4,7 +4,6 @@ import { RegisterPage } from '../register/register';
 import { EmailModalPage } from '../email-modal/email-modal';
 import { LandingPage } from '../landing/landing';
 // import { ComponentsModule } from "../components/components.module";
-import { BarChartComponent } from '../../components/bar-chart/bar-chart';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
 
 

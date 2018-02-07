@@ -9,7 +9,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ChartsComponent {
 
   // These properties are used to render the chart. They are assigned values in dashboard.html
-  @Input() chartType: string;
+  @Input() chartsType: string;
   @Input() RetirementYears: any[];
   @Input() MonthlyPayout: any[];
   @Input() CumulativeBenefits: any[];
