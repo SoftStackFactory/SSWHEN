@@ -1,0 +1,32 @@
+
+    <ion-card>
+        <button ion-button clear (click)="dismiss()">Back</button>
+
+        <ion-card-title text-center>
+          Present Value of Total Benefits per Retirement Year
+         </ion-card-title>
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <div style="display: block">
+                            <canvas baseChart 
+                            [datasets]="totalPV" 
+                            [labels]="retYears" 
+                            [options]="ChartOptions" 
+                            [legend]="ChartLegend" 
+                            [chartType]="lineChartType"></canvas>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+        <ion-card-content>
+            The present value, or present worth, of the retirement package represents the amount of money which if invested (just prior to
+            retirement entry at some interest rate i) will match the monthly dividends from SSA for retiring that year. The higher
+            the present value, the better (for a given interest rate and retirement term, PV is proportional to monthly payments). 
+            The resulting present value will be less than the cumulative total of all the future payments because of discounting 
+            (time value of money or invested money earning money). The interest rate, or growth rate of the investment, can be
+            estimated according to risk level to give a rate reasonably above inflation.
+        </ion-card-content>
+    </ion-card>

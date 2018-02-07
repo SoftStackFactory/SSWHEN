@@ -88,7 +88,8 @@
             
             <div>
               <ion-segment [(ngModel)]="data">
-                <ion-segment-button value="monthly" (click)="openMonthly()">
+                <!--<ion-segment-button value="monthly" (click)="openMonthly()">-->
+                <ion-segment-button value="monthly" [navPush] = monthlyComponent>
                   Monthly
                 </ion-segment-button>
                 <ion-segment-button value="cumulative" (click)="openCumulative()">
@@ -113,11 +114,11 @@
                 </ion-row>
                 <ion-row>
                   <ion-col>   
-                    <!--<charts -->
-                    <!--  [RetirementYears]="retYears" -->
-                    <!--  [MonthlyPayout]="monthlyPay"-->
-                    <!--  [chartsType]=" 'monthly' "-->
-                    <!--></charts>                    -->
+                    <charts 
+                      [RetirementYears]="retYears" 
+                      [MonthlyPayout]="monthlyPay"
+                      [chartsType]=" 'monthly' "
+                    ></charts>                    
                   </ion-col>
                 </ion-row>
               </ion-list>
@@ -133,11 +134,11 @@
                 </ion-row>
                 <ion-row>
                   <ion-col>
-                    <!--<charts -->
-                    <!--  [RetirementYears]="retYears" -->
-                    <!--  [CumulativeBenefits]="totalAccumulated"-->
-                    <!--  [chartsType]=" 'cumulative' "-->
-                    <!--></charts>-->
+                    <charts 
+                      [RetirementYears]="retYears" 
+                      [CumulativeBenefits]="totalAccumulated"
+                      [chartsType]=" 'cumulative' "
+                    ></charts>
                   </ion-col>
                 </ion-row>
               </ion-list>
@@ -153,11 +154,11 @@
                 </ion-row>
                 <ion-row>
                   <ion-col>
-                    <!--<charts -->
-                    <!--  [RetirementYears]="retYears" -->
-                    <!--  [pvOfTotalBenefits]="totalPV"-->
-                    <!--  [chartsType]=" 'presentValue' "-->
-                    <!--></charts>-->
+                    <charts 
+                      [RetirementYears]="retYears" 
+                      [pvOfTotalBenefits]="totalPV"
+                      [chartsType]=" 'presentValue' "
+                    ></charts>
                   </ion-col>
                 </ion-row>
               </ion-list>

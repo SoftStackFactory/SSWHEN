@@ -146,11 +146,11 @@ var map = {
 		6
 	],
 	"../pages/info-input/info-input.module": [
-		476,
+		477,
 		5
 	],
 	"../pages/landing/landing.module": [
-		477,
+		476,
 		4
 	],
 	"../pages/login/login.module": [
@@ -283,7 +283,7 @@ var ModalPage = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MonthlyChart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MonthlyComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_calculations_calculations__ = __webpack_require__(37);
@@ -299,28 +299,63 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var MonthlyChart = (function () {
-    function MonthlyChart(navParams, viewCtrl, calculations$) {
-        this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
+var MonthlyComponent = (function () {
+    function MonthlyComponent(calculations$, viewCtrl, navCtrl) {
         this.calculations$ = calculations$;
+        this.viewCtrl = viewCtrl;
+        this.navCtrl = navCtrl;
+        this.retYears = [];
+        this.monthlyPay = [];
+        this.ChartOptions = {
+            responsive: true,
+            maintainAspectRatio: true,
+            tooltips: { enabled: false },
+            events: ['click'],
+            legend: {
+                display: true,
+                labels: {
+                    boxWidth: 0,
+                    fontSize: 12,
+                    fontStyle: 'bold',
+                }
+            },
+            onClick: function (c, i) {
+                var e = i[0];
+                var x_value = this.data.labels[e._index];
+                var y_value = Math.round(this.data.datasets[0].data[e._index]).toLocaleString();
+                console.log('(age ' + x_value + ', $' + y_value + ' )');
+                alert('(age: ' + x_value + ', benefit: $' + y_value + ' )');
+            }
+        };
+        this.ChartColors = [{
+                backgroundColor: 'rgba(148,159,177,0.2)',
+                borderColor: 'rgba(148,159,177,1)',
+                pointBackgroundColor: 'rgba(148,159,177,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            }];
+        this.ChartLegend = false;
+        this.lineChartType = 'line';
+        this.barChartType = 'bar';
     }
-    MonthlyChart.prototype.ngOnInit = function () {
-        var retirementYears = this.calculations$.retirementYears;
-        var monthlyBenefits = this.calculations$.monthlyBenefits;
+    MonthlyComponent.prototype.ngOnInit = function () {
+        this.retYears = this.calculations$.retirementYears;
+        this.monthlyPay = [{ data: this.calculations$.monthlyBenefits, label: 'Monthly Payout per Retirement Year' }];
     };
-    MonthlyChart.prototype.dismiss = function () {
-        this.viewCtrl.dismiss();
+    MonthlyComponent.prototype.dismiss = function () {
+        // this.viewCtrl.dismiss();
+        this.navCtrl.pop();
     };
-    MonthlyChart = __decorate([
+    MonthlyComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            template: "\n    <button ion-button (click)=\"dismiss()\">Back</button>\n    <charts\n        [chartsType]=\" 'monthly' \"\n        [RetirementYears]=\"retirementYears\" \n        [MonthlyPayout]=\"monthlyBenefits\"\n    ></charts>\n  "
+            selector: 'monthly',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/components/monthly/monthly.html"*/'\n    <ion-card>\n        <button ion-button clear (click)="dismiss()">Back</button>\n\n        <ion-card-title text-center>\n          Monthly Payout per Retirement Year\n         </ion-card-title>\n        <ion-card-content>\n            <ion-grid>\n                <ion-row>\n                    <ion-col>\n                        <div style="display: block">\n                            <canvas baseChart \n                            [datasets]="monthlyPay" \n                            [labels]="retYears" \n                            [options]="ChartOptions" \n                            [legend]="ChartLegend" \n                            [chartType]="lineChartType"></canvas>\n                        </div>\n                    </ion-col>\n                </ion-row>\n            </ion-grid>\n        </ion-card-content>\n        <ion-card-content>\n            Entering retirement at different ages between 62 .. 70 yeilds different monthly SS payments.\n        </ion-card-content>\n    </ion-card>\n    \n    \n\n'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/components/monthly/monthly.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_calculations_calculations__["a" /* CalculationsProvider */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_calculations_calculations__["a" /* CalculationsProvider */]])
-    ], MonthlyChart);
-    return MonthlyChart;
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
+    ], MonthlyComponent);
+    return MonthlyComponent;
 }());
 
 //# sourceMappingURL=monthly.js.map
@@ -331,7 +366,7 @@ var MonthlyChart = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CumulativeChart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CumulativeComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_calculations_calculations__ = __webpack_require__(37);
@@ -347,29 +382,64 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var CumulativeChart = (function () {
-    function CumulativeChart(navParams, viewCtrl, calculations$) {
-        this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
+var CumulativeComponent = (function () {
+    function CumulativeComponent(calculations$, viewCtrl, navCtrl) {
         this.calculations$ = calculations$;
+        this.viewCtrl = viewCtrl;
+        this.navCtrl = navCtrl;
+        this.retYears = [];
+        this.totalAccumulated = [];
+        this.ChartOptions = {
+            responsive: true,
+            maintainAspectRatio: true,
+            tooltips: { enabled: false },
+            events: ['click'],
+            legend: {
+                display: true,
+                labels: {
+                    boxWidth: 0,
+                    fontSize: 12,
+                    fontStyle: 'bold',
+                }
+            },
+            onClick: function (c, i) {
+                var e = i[0];
+                var x_value = this.data.labels[e._index];
+                var y_value = Math.round(this.data.datasets[0].data[e._index]).toLocaleString();
+                console.log('(age ' + x_value + ', $' + y_value + ' )');
+                alert('(age: ' + x_value + ', benefit: $' + y_value + ' )');
+            }
+        };
+        this.ChartColors = [{
+                backgroundColor: 'rgba(148,159,177,0.2)',
+                borderColor: 'rgba(148,159,177,1)',
+                pointBackgroundColor: 'rgba(148,159,177,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            }];
+        this.ChartLegend = false;
+        this.lineChartType = 'line';
+        this.barChartType = 'bar';
     }
-    CumulativeChart.prototype.ngOnInit = function () {
+    CumulativeComponent.prototype.ngOnInit = function () {
         this.calculations$.additiveBenefitsByRetirementYear();
-        var retirementYears = this.calculations$.retirementYears;
-        var accumulatedBenefits = this.calculations$.accumulatedBenefits;
+        this.retYears = this.calculations$.retirementYears;
+        this.totalAccumulated = [{ data: this.calculations$.accumulatedBenefits, label: 'Cumulative Benefits per Retirement Year' }];
     };
-    CumulativeChart.prototype.dismiss = function () {
-        this.viewCtrl.dismiss();
+    CumulativeComponent.prototype.dismiss = function () {
+        // this.viewCtrl.dismiss();
+        this.navCtrl.pop();
     };
-    CumulativeChart = __decorate([
+    CumulativeComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            template: "\n    <button ion-button (click)=\"dismiss()\">Back</button>\n    <charts \n        [chartsType]=\" 'cumulative' \"\n        [RetirementYears]=\"retirementYears\" \n        [CumulativeBenefits]=\"accumulatedBenefits\"\n    ></charts>\n  "
+            selector: 'cumulative',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/components/cumulative/cumulative.html"*/'\n    <ion-card>\n        <button ion-button clear (click)="dismiss()">Back</button>\n\n        <ion-card-title text-center>\n          Cumulative Benefits per Retirement Year\n         </ion-card-title>\n        <ion-card-content>\n            <ion-grid>\n                <ion-row>\n                    <ion-col>\n                        <div style="display: block">\n                            <canvas baseChart \n                            [datasets]="totalAccumulated" \n                            [labels]="retYears" \n                            [options]="ChartOptions" \n                            [legend]="ChartLegend" \n                            [chartType]="lineChartType"></canvas>\n                        </div>\n                    </ion-col>\n                </ion-row>\n            </ion-grid>\n        </ion-card-content>\n        <ion-card-content>\n            The Cumulative Benefits represents the sum total of all the monthly payments paid over the course of retirement.\n        </ion-card-content>\n    </ion-card>'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/components/cumulative/cumulative.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_calculations_calculations__["a" /* CalculationsProvider */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_calculations_calculations__["a" /* CalculationsProvider */]])
-    ], CumulativeChart);
-    return CumulativeChart;
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
+    ], CumulativeComponent);
+    return CumulativeComponent;
 }());
 
 //# sourceMappingURL=cumulative.js.map
@@ -380,7 +450,7 @@ var CumulativeChart = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return pvChart; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PresentValueComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_calculations_calculations__ = __webpack_require__(37);
@@ -396,32 +466,67 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var pvChart = (function () {
-    function pvChart(navParams, viewCtrl, calculations$) {
-        this.navParams = navParams;
-        this.viewCtrl = viewCtrl;
+var PresentValueComponent = (function () {
+    function PresentValueComponent(calculations$, viewCtrl, navCtrl) {
         this.calculations$ = calculations$;
+        this.viewCtrl = viewCtrl;
+        this.navCtrl = navCtrl;
+        this.retYears = [];
+        this.totalPV = [];
+        this.ChartOptions = {
+            responsive: true,
+            maintainAspectRatio: true,
+            tooltips: { enabled: false },
+            events: ['click'],
+            legend: {
+                display: true,
+                labels: {
+                    boxWidth: 0,
+                    fontSize: 12,
+                    fontStyle: 'bold',
+                }
+            },
+            onClick: function (c, i) {
+                var e = i[0];
+                var x_value = this.data.labels[e._index];
+                var y_value = Math.round(this.data.datasets[0].data[e._index]).toLocaleString();
+                console.log('(age ' + x_value + ', $' + y_value + ' )');
+                alert('(age: ' + x_value + ', benefit: $' + y_value + ' )');
+            }
+        };
+        this.ChartColors = [{
+                backgroundColor: 'rgba(148,159,177,0.2)',
+                borderColor: 'rgba(148,159,177,1)',
+                pointBackgroundColor: 'rgba(148,159,177,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            }];
+        this.ChartLegend = false;
+        this.lineChartType = 'line';
+        this.barChartType = 'bar';
     }
-    pvChart.prototype.ngOnInit = function () {
+    PresentValueComponent.prototype.ngOnInit = function () {
         this.calculations$.pvOfBenefitsByRetirementYear();
-        var retirementYears = this.calculations$.retirementYears;
-        var pvOfBenefits = this.calculations$.pvOfBenefits;
+        this.retYears = this.calculations$.retirementYears;
+        this.totalPV = [{ data: this.calculations$.pvOfBenefits, label: 'Present Value of Total Benefits per Retirement Year' }];
     };
-    pvChart.prototype.dismiss = function () {
+    PresentValueComponent.prototype.dismiss = function () {
         this.viewCtrl.dismiss();
+        // this.navCtrl.pop();
     };
-    pvChart = __decorate([
+    PresentValueComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            template: "\n    <button ion-button (click)=\"dismiss()\">Back</button>\n    <charts \n        [chartsType]=\" 'presentValue' \"\n        [RetirementYears]=\"retirementYears\" \n        [pvOfTotalBenefits]=\"pvOfBenefits\"\n    ></charts>\n  "
+            selector: 'present-value',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/components/present-value/present-value.html"*/'\n    <ion-card>\n        <button ion-button clear (click)="dismiss()">Back</button>\n\n        <ion-card-title text-center>\n          Present Value of Total Benefits per Retirement Year\n         </ion-card-title>\n        <ion-card-content>\n            <ion-grid>\n                <ion-row>\n                    <ion-col>\n                        <div style="display: block">\n                            <canvas baseChart \n                            [datasets]="totalPV" \n                            [labels]="retYears" \n                            [options]="ChartOptions" \n                            [legend]="ChartLegend" \n                            [chartType]="lineChartType"></canvas>\n                        </div>\n                    </ion-col>\n                </ion-row>\n            </ion-grid>\n        </ion-card-content>\n        <ion-card-content>\n            The present value, or present worth, of the retirement package represents the amount of money which if invested (just prior to\n            retirement entry at some interest rate i) will match the monthly dividends from SSA for retiring that year. The higher\n            the present value, the better (for a given interest rate and retirement term, PV is proportional to monthly payments). \n            The resulting present value will be less than the cumulative total of all the future payments because of discounting \n            (time value of money or invested money earning money). The interest rate, or growth rate of the investment, can be\n            estimated according to risk level to give a rate reasonably above inflation.\n        </ion-card-content>\n    </ion-card>'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/components/present-value/present-value.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_calculations_calculations__["a" /* CalculationsProvider */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_calculations_calculations__["a" /* CalculationsProvider */]])
-    ], pvChart);
-    return pvChart;
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
+    ], PresentValueComponent);
+    return PresentValueComponent;
 }());
 
-//# sourceMappingURL=presentValue.js.map
+//# sourceMappingURL=present-value.js.map
 
 /***/ }),
 
@@ -654,9 +759,9 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22_ng2_charts__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_bar_chart_bar_chart__ = __webpack_require__(466);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_charts_charts__ = __webpack_require__(467);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_dashboard_monthly__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_dashboard_cumulative__ = __webpack_require__(171);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_dashboard_presentValue__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_monthly_monthly__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_cumulative_cumulative__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_present_value_present_value__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_storage__ = __webpack_require__(468);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -715,9 +820,9 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_21__pages_data_table_data_table__["a" /* DataTablePage */],
                 __WEBPACK_IMPORTED_MODULE_23__components_bar_chart_bar_chart__["a" /* BarChartComponent */],
                 __WEBPACK_IMPORTED_MODULE_24__components_charts_charts__["a" /* ChartsComponent */],
-                __WEBPACK_IMPORTED_MODULE_25__pages_dashboard_monthly__["a" /* MonthlyChart */],
-                __WEBPACK_IMPORTED_MODULE_26__pages_dashboard_cumulative__["a" /* CumulativeChart */],
-                __WEBPACK_IMPORTED_MODULE_27__pages_dashboard_presentValue__["a" /* pvChart */]
+                __WEBPACK_IMPORTED_MODULE_25__components_monthly_monthly__["a" /* MonthlyComponent */],
+                __WEBPACK_IMPORTED_MODULE_26__components_cumulative_cumulative__["a" /* CumulativeComponent */],
+                __WEBPACK_IMPORTED_MODULE_27__components_present_value_present_value__["a" /* PresentValueComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -729,8 +834,8 @@ var AppModule = (function () {
                         { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/data-table/data-table.module#DataTablePageModule', name: 'DataTablePage', segment: 'data-table', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/email-modal/email-modal.module#EmailModalPageModule', name: 'EmailModalPage', segment: 'email-modal', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/info-input/info-input.module#InfoInputPageModule', name: 'InfoInputPage', segment: 'info-input', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/landing/landing.module#LandingPageModule', name: 'LandingPage', segment: 'landing', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/info-input/info-input.module#InfoInputPageModule', name: 'InfoInputPage', segment: 'info-input', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/profile/profile.module#ProfilePageModule', name: 'ProfilePage', segment: 'profile', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
@@ -756,9 +861,9 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_20__pages_dashboard_modal_page__["a" /* ModalPage */],
                 __WEBPACK_IMPORTED_MODULE_23__components_bar_chart_bar_chart__["a" /* BarChartComponent */],
                 __WEBPACK_IMPORTED_MODULE_24__components_charts_charts__["a" /* ChartsComponent */],
-                __WEBPACK_IMPORTED_MODULE_25__pages_dashboard_monthly__["a" /* MonthlyChart */],
-                __WEBPACK_IMPORTED_MODULE_26__pages_dashboard_cumulative__["a" /* CumulativeChart */],
-                __WEBPACK_IMPORTED_MODULE_27__pages_dashboard_presentValue__["a" /* pvChart */]
+                __WEBPACK_IMPORTED_MODULE_25__components_monthly_monthly__["a" /* MonthlyComponent */],
+                __WEBPACK_IMPORTED_MODULE_26__components_cumulative_cumulative__["a" /* CumulativeComponent */],
+                __WEBPACK_IMPORTED_MODULE_27__components_present_value_present_value__["a" /* PresentValueComponent */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__["a" /* StatusBar */],
@@ -1390,10 +1495,10 @@ var ChartsComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__popover_page__ = __webpack_require__(168);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modal_page__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__monthly__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cumulative__ = __webpack_require__(171);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__presentValue__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_calculations_calculations__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_calculations_calculations__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_monthly_monthly__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_cumulative_cumulative__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_present_value_present_value__ = __webpack_require__(172);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1425,6 +1530,7 @@ var DashboardPage = (function () {
         this.monthlyPay = [];
         this.totalAccumulated = [];
         this.totalPV = [];
+        this.monthlyComponent = __WEBPACK_IMPORTED_MODULE_5__components_monthly_monthly__["a" /* MonthlyComponent */];
     }
     DashboardPage.prototype.isEditable = function () {
         if (this.editable = false) {
@@ -1454,16 +1560,18 @@ var DashboardPage = (function () {
         };
         modal.present({ ev: ev });
     };
-    DashboardPage.prototype.openMonthly = function () {
-        var myModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_4__monthly__["a" /* MonthlyChart */]);
-        myModal.present();
-    };
+    // navigates to MonthlyComponent through navPush in the html
+    // openMonthly() {
+    //   const myModal = this.modalCtrl.create(MonthlyComponent);
+    //   myModal.present();
+    // }
     DashboardPage.prototype.openCumulative = function () {
-        var myModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_5__cumulative__["a" /* CumulativeChart */]);
-        myModal.present();
+        // const myModal = this.modalCtrl.create(CumulativeComponent);
+        // myModal.present();
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__components_cumulative_cumulative__["a" /* CumulativeComponent */]);
     };
     DashboardPage.prototype.openPresentValue = function () {
-        var myModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_6__presentValue__["a" /* pvChart */]);
+        var myModal = this.modalCtrl.create(__WEBPACK_IMPORTED_MODULE_7__components_present_value_present_value__["a" /* PresentValueComponent */]);
         myModal.present();
     };
     DashboardPage.prototype.showPrompt = function () {
@@ -1497,22 +1605,18 @@ var DashboardPage = (function () {
         this.calculations$.additiveBenefitsByRetirementYear();
         this.calculations$.pvOfBenefitsByRetirementYear();
         this.retYears = this.calculations$.retirementYears;
-        this.monthlyPay = this.calculations$.monthlyBenefits;
-        this.totalAccumulated = this.calculations$.accumulatedBenefits;
-        this.totalPV = this.calculations$.pvOfBenefits;
+        this.monthlyPay = [{ data: this.calculations$.monthlyBenefits, label: 'Monthly Payout per Retirement Year' }];
+        this.totalAccumulated = [{ data: this.calculations$.accumulatedBenefits, label: 'Cumulative Benefits per Retirement Year' }];
+        this.totalPV = [{ data: this.calculations$.pvOfBenefits, label: 'Present Value of Total Benefits per Retirement Year' }];
     };
     DashboardPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-dashboard',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/pages/dashboard/dashboard.html"*/'\n<ion-header>\n\n  <ion-navbar hideBackButton="true">\n    <ion-title text-center>Dashboard</ion-title>\n  </ion-navbar>\n\n<!--Some more details can be added here-->\n</ion-header>\n\n\n<ion-content>\n\n  <ion-grid no-padding>\n    <ion-row align-items-center padding-horizontal>\n      <ion-col align-self-start>\n        <h1>SSWhen</h1>\n      </ion-col>\n      <ion-col align-self-end>\n        <button ion-button float-end color="light" icon-left (click)="presentPopover($event)">\n          <ion-icon name="person"></ion-icon>\n          <ion-icon md="md-arrow-dropdown"></ion-icon>\n        </button>\n      </ion-col>\n    </ion-row>\n\n    <ion-row align-items-center no-padding>\n      <ion-col>\n        <ion-card>\n          <ion-card-content padding-horizontal>\n            <ion-row align-items-center>\n              <ion-col>\n                <h2>User Information</h2>\n              </ion-col>\n              <ion-col>\n                <button style="vertical-align: top;" class="btn-smaller" ion-button icon-only float-end color="dark" on-click="isEditable()">\n                  <ion-icon md="md-create"></ion-icon>\n                </button>\n              </ion-col>\n            </ion-row>\n            <ion-row align-items-start>\n              <ion-col>\n                <div><strong>Life Expectancy:</strong></div>\n                <div>62</div>\n                <ion-item *ngIf="editable">\n                  <ion-label floating>Life Expectancy</ion-label>\n                  <ion-input type="text"></ion-input>\n                </ion-item>\n              </ion-col>\n              <ion-col align-items-end>\n                <div><strong>FRA Age:</strong></div>\n                <div>65</div>\n                <ion-item *ngIf="editable">\n                  <ion-label floating>FRA Age</ion-label>\n                  <ion-input type="text"></ion-input>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n            <ion-row align-items-start>\n              <ion-col>\n                <div><strong>FRA Benefit Amount:</strong></div>\n                <div>$1,080</div>\n                <ion-item *ngIf="editable">\n                  <ion-label floating>FRA Benefit Amount</ion-label>\n                  <ion-input type="text"></ion-input>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n            <ion-row align-items-center>\n              <ion-col>\n                <div><strong>Total Tax Contribution:</strong></div>\n                <div>$40,110</div>\n                <ion-item *ngIf="editable">\n                  <ion-label floating>Total Tax Contribution</ion-label>\n                  <ion-input type="text"></ion-input>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n\n    <ion-row align-items-center no-padding>\n      <ion-col>\n        <ion-card>\n          <ion-card-content padding-horizontal>\n            \n            <div>\n              <ion-segment [(ngModel)]="data">\n                <ion-segment-button value="monthly" (click)="openMonthly()">\n                  Monthly\n                </ion-segment-button>\n                <ion-segment-button value="cumulative" (click)="openCumulative()">\n                  Cumulative\n                </ion-segment-button>\n                <ion-segment-button value="presentValue" (click)="openPresentValue()">\n                  Present Value\n                </ion-segment-button>\n              </ion-segment>\n            </div>\n\n            <div [ngSwitch]="data">\n              \n              <ion-list *ngSwitchCase="\'monthly\'">\n                <ion-row padding-top>\n                  <ion-col col-8>\n                    <p text-center>Monthly Stipend</p>\n                  </ion-col>\n                  <ion-col col-4>\n                    <a (click)="presentModal()" float-end color="primary">View Table</a>\n                  </ion-col>\n                </ion-row>\n                <ion-row>\n                  <ion-col>   \n                    <!--<charts -->\n                    <!--  [RetirementYears]="retYears" -->\n                    <!--  [MonthlyPayout]="monthlyPay"-->\n                    <!--  [chartsType]=" \'monthly\' "-->\n                    <!--></charts>                    -->\n                  </ion-col>\n                </ion-row>\n              </ion-list>\n\n              <ion-list *ngSwitchCase="\'cumulative\'">\n                <ion-row padding-top>\n                  <ion-col col-8>\n                    <p text-center>Cumulative Benefits</p>\n                  </ion-col>\n                  <ion-col col-4>\n                    <a (click)="presentModal()" float-end color="primary">View Table</a>\n                  </ion-col>\n                </ion-row>\n                <ion-row>\n                  <ion-col>\n                    <!--<charts -->\n                    <!--  [RetirementYears]="retYears" -->\n                    <!--  [CumulativeBenefits]="totalAccumulated"-->\n                    <!--  [chartsType]=" \'cumulative\' "-->\n                    <!--></charts>-->\n                  </ion-col>\n                </ion-row>\n              </ion-list>\n\n              <ion-list *ngSwitchCase="\'presentValue\'">\n                <ion-row padding-top>\n                  <ion-col col-8>\n                    <p text-center>Present Value of Benefits</p>\n                  </ion-col>\n                  <ion-col col-4>\n                    <a (click)="presentModal()" float-end color="primary">View Table</a>\n                  </ion-col>\n                </ion-row>\n                <ion-row>\n                  <ion-col>\n                    <!--<charts -->\n                    <!--  [RetirementYears]="retYears" -->\n                    <!--  [pvOfTotalBenefits]="totalPV"-->\n                    <!--  [chartsType]=" \'presentValue\' "-->\n                    <!--></charts>-->\n                  </ion-col>\n                </ion-row>\n              </ion-list>\n              \n            </div>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col>\n        <button ion-button full (click)="showPrompt()">Email Result</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <!--<ion-grid>-->\n\n  <!--  <dropdown-menu>-->\n  <!--    Account-->\n  <!--    Logout-->\n  <!--  </dropdown-menu>-->\n\n  <!--  <ion-card>-->\n  <!--    User Info Card-->\n  <!--    Edit link/button-->\n  <!--  </ion-card>-->\n\n  <!--  <ion-segments>-->\n\n  <!--    <ion-segment>-->\n  <!--      Monthly Chart-->\n  <!--      View Table button-->\n  <!--      ? helper - chart description-->\n\n  <!--      <ion-modal>-->\n  <!--        Data Table-->\n  <!--      </ion-modal>-->\n\n  <!--    </ion-segment>-->\n\n  <!--    <ion-segment>-->\n  <!--      Cumulative Chart-->\n  <!--      View Table button-->\n  <!--      ? helper - chart description-->\n\n  <!--      <ion-modal>-->\n  <!--        Data Table-->\n  <!--      </ion-modal>-->\n\n  <!--    </ion-segment>-->\n\n\n  <!--  </ion-segments>-->\n\n  <!--</ion-grid>-->\n\n</ion-content>\n'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/pages/dashboard/dashboard.html"*/,
+            selector: 'page-dashboard',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/pages/dashboard/dashboard.html"*/'\n<ion-header>\n\n  <ion-navbar hideBackButton="true">\n    <ion-title text-center>Dashboard</ion-title>\n  </ion-navbar>\n\n<!--Some more details can be added here-->\n</ion-header>\n\n\n<ion-content>\n\n  <ion-grid no-padding>\n    <ion-row align-items-center padding-horizontal>\n      <ion-col align-self-start>\n        <h1>SSWhen</h1>\n      </ion-col>\n      <ion-col align-self-end>\n        <button ion-button float-end color="light" icon-left (click)="presentPopover($event)">\n          <ion-icon name="person"></ion-icon>\n          <ion-icon md="md-arrow-dropdown"></ion-icon>\n        </button>\n      </ion-col>\n    </ion-row>\n\n    <ion-row align-items-center no-padding>\n      <ion-col>\n        <ion-card>\n          <ion-card-content padding-horizontal>\n            <ion-row align-items-center>\n              <ion-col>\n                <h2>User Information</h2>\n              </ion-col>\n              <ion-col>\n                <button style="vertical-align: top;" class="btn-smaller" ion-button icon-only float-end color="dark" on-click="isEditable()">\n                  <ion-icon md="md-create"></ion-icon>\n                </button>\n              </ion-col>\n            </ion-row>\n            <ion-row align-items-start>\n              <ion-col>\n                <div><strong>Life Expectancy:</strong></div>\n                <div>62</div>\n                <ion-item *ngIf="editable">\n                  <ion-label floating>Life Expectancy</ion-label>\n                  <ion-input type="text"></ion-input>\n                </ion-item>\n              </ion-col>\n              <ion-col align-items-end>\n                <div><strong>FRA Age:</strong></div>\n                <div>65</div>\n                <ion-item *ngIf="editable">\n                  <ion-label floating>FRA Age</ion-label>\n                  <ion-input type="text"></ion-input>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n            <ion-row align-items-start>\n              <ion-col>\n                <div><strong>FRA Benefit Amount:</strong></div>\n                <div>$1,080</div>\n                <ion-item *ngIf="editable">\n                  <ion-label floating>FRA Benefit Amount</ion-label>\n                  <ion-input type="text"></ion-input>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n            <ion-row align-items-center>\n              <ion-col>\n                <div><strong>Total Tax Contribution:</strong></div>\n                <div>$40,110</div>\n                <ion-item *ngIf="editable">\n                  <ion-label floating>Total Tax Contribution</ion-label>\n                  <ion-input type="text"></ion-input>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n\n    <ion-row align-items-center no-padding>\n      <ion-col>\n        <ion-card>\n          <ion-card-content padding-horizontal>\n            \n            <div>\n              <ion-segment [(ngModel)]="data">\n                <!--<ion-segment-button value="monthly" (click)="openMonthly()">-->\n                <ion-segment-button value="monthly" [navPush] = monthlyComponent>\n                  Monthly\n                </ion-segment-button>\n                <ion-segment-button value="cumulative" (click)="openCumulative()">\n                  Cumulative\n                </ion-segment-button>\n                <ion-segment-button value="presentValue" (click)="openPresentValue()">\n                  Present Value\n                </ion-segment-button>\n              </ion-segment>\n            </div>\n\n            <div [ngSwitch]="data">\n              \n              <ion-list *ngSwitchCase="\'monthly\'">\n                <ion-row padding-top>\n                  <ion-col col-8>\n                    <p text-center>Monthly Stipend</p>\n                  </ion-col>\n                  <ion-col col-4>\n                    <a (click)="presentModal()" float-end color="primary">View Table</a>\n                  </ion-col>\n                </ion-row>\n                <ion-row>\n                  <ion-col>   \n                    <charts \n                      [RetirementYears]="retYears" \n                      [MonthlyPayout]="monthlyPay"\n                      [chartsType]=" \'monthly\' "\n                    ></charts>                    \n                  </ion-col>\n                </ion-row>\n              </ion-list>\n\n              <ion-list *ngSwitchCase="\'cumulative\'">\n                <ion-row padding-top>\n                  <ion-col col-8>\n                    <p text-center>Cumulative Benefits</p>\n                  </ion-col>\n                  <ion-col col-4>\n                    <a (click)="presentModal()" float-end color="primary">View Table</a>\n                  </ion-col>\n                </ion-row>\n                <ion-row>\n                  <ion-col>\n                    <charts \n                      [RetirementYears]="retYears" \n                      [CumulativeBenefits]="totalAccumulated"\n                      [chartsType]=" \'cumulative\' "\n                    ></charts>\n                  </ion-col>\n                </ion-row>\n              </ion-list>\n\n              <ion-list *ngSwitchCase="\'presentValue\'">\n                <ion-row padding-top>\n                  <ion-col col-8>\n                    <p text-center>Present Value of Benefits</p>\n                  </ion-col>\n                  <ion-col col-4>\n                    <a (click)="presentModal()" float-end color="primary">View Table</a>\n                  </ion-col>\n                </ion-row>\n                <ion-row>\n                  <ion-col>\n                    <charts \n                      [RetirementYears]="retYears" \n                      [pvOfTotalBenefits]="totalPV"\n                      [chartsType]=" \'presentValue\' "\n                    ></charts>\n                  </ion-col>\n                </ion-row>\n              </ion-list>\n              \n            </div>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col>\n        <button ion-button full (click)="showPrompt()">Email Result</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <!--<ion-grid>-->\n\n  <!--  <dropdown-menu>-->\n  <!--    Account-->\n  <!--    Logout-->\n  <!--  </dropdown-menu>-->\n\n  <!--  <ion-card>-->\n  <!--    User Info Card-->\n  <!--    Edit link/button-->\n  <!--  </ion-card>-->\n\n  <!--  <ion-segments>-->\n\n  <!--    <ion-segment>-->\n  <!--      Monthly Chart-->\n  <!--      View Table button-->\n  <!--      ? helper - chart description-->\n\n  <!--      <ion-modal>-->\n  <!--        Data Table-->\n  <!--      </ion-modal>-->\n\n  <!--    </ion-segment>-->\n\n  <!--    <ion-segment>-->\n  <!--      Cumulative Chart-->\n  <!--      View Table button-->\n  <!--      ? helper - chart description-->\n\n  <!--      <ion-modal>-->\n  <!--        Data Table-->\n  <!--      </ion-modal>-->\n\n  <!--    </ion-segment>-->\n\n\n  <!--  </ion-segments>-->\n\n  <!--</ion-grid>-->\n\n</ion-content>\n'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/pages/dashboard/dashboard.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* PopoverController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_7__providers_calculations_calculations__["a" /* CalculationsProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* PopoverController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* PopoverController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__providers_calculations_calculations__["a" /* CalculationsProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_calculations_calculations__["a" /* CalculationsProvider */]) === "function" && _f || Object])
     ], DashboardPage);
     return DashboardPage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=dashboard.js.map

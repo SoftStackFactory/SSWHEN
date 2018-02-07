@@ -25678,6 +25678,18 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+cumulative {
+  overflow: scroll;
+}
+
+monthly {
+  overflow: scroll;
+}
+
+present-value {
+  overflow: scroll;
+}
+
 page-app-description button.customBtn {
   height: 20px;
   width: 20px;

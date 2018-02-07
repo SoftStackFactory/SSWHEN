@@ -1,0 +1,27 @@
+
+    <ion-card>
+        <button ion-button clear (click)="dismiss()">Back</button>
+
+        <ion-card-title text-center>
+          Cumulative Benefits per Retirement Year
+         </ion-card-title>
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <div style="display: block">
+                            <canvas baseChart 
+                            [datasets]="totalAccumulated" 
+                            [labels]="retYears" 
+                            [options]="ChartOptions" 
+                            [legend]="ChartLegend" 
+                            [chartType]="lineChartType"></canvas>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+        <ion-card-content>
+            The Cumulative Benefits represents the sum total of all the monthly payments paid over the course of retirement.
+        </ion-card-content>
+    </ion-card>

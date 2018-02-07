@@ -24,9 +24,9 @@ import { DataTablePage } from '../pages/data-table/data-table';
 import { ChartsModule } from 'ng2-charts';
 import { BarChartComponent } from '../components/bar-chart/bar-chart'; 
 import { ChartsComponent } from '../components/charts/charts';
-import { MonthlyChart } from '../pages/dashboard/monthly';
-import { CumulativeChart } from '../pages/dashboard/cumulative';
-import { pvChart } from '../pages/dashboard/presentValue';
+import { MonthlyComponent } from '../components/monthly/monthly';  
+import { CumulativeComponent } from '../components/cumulative/cumulative';
+import { PresentValueComponent } from '../components/present-value/present-value';
 import { IonicStorageModule } from '@ionic/storage';
 
 
@@ -48,9 +48,9 @@ import { IonicStorageModule } from '@ionic/storage';
     DataTablePage,
     BarChartComponent,
     ChartsComponent,
-    MonthlyChart,
-    CumulativeChart,
-    pvChart 
+    MonthlyComponent,
+    CumulativeComponent,
+    PresentValueComponent
   ],
   imports: [
     BrowserModule,
@@ -76,10 +76,9 @@ import { IonicStorageModule } from '@ionic/storage';
     ModalPage,
     BarChartComponent,
     ChartsComponent,
-    MonthlyChart,
-    CumulativeChart,
-    pvChart
-
+    MonthlyComponent,
+    CumulativeComponent,
+    PresentValueComponent
   ],
   providers: [
     StatusBar,

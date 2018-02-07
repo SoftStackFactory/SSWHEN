@@ -1,0 +1,30 @@
+
+    <ion-card>
+        <button ion-button clear (click)="dismiss()">Back</button>
+
+        <ion-card-title text-center>
+          Monthly Payout per Retirement Year
+         </ion-card-title>
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <div style="display: block">
+                            <canvas baseChart 
+                            [datasets]="monthlyPay" 
+                            [labels]="retYears" 
+                            [options]="ChartOptions" 
+                            [legend]="ChartLegend" 
+                            [chartType]="lineChartType"></canvas>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+        <ion-card-content>
+            Entering retirement at different ages between 62 .. 70 yeilds different monthly SS payments.
+        </ion-card-content>
+    </ion-card>
+    
+    
+
