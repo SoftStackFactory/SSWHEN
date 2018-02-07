@@ -1,18 +1,25 @@
-<!--
-            [datasets]="barChartData"
-            [labels]="barChartLabels"
--->
 
-<ion-card>
-    <ion-card-content>
-        <canvas baseChart
-            [datasets]="yAxis"
-            [labels]="xAxis"
-            [options]="barChartOptions"
-            [legend]="barChartLegend"
-            [chartType]="barChartType"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)">
-        </canvas>
-    </ion-card-content>
-</ion-card>
+    <ion-card>
+        <ion-card-title text-center>
+          Monthly Payout per Retirement Year
+         </ion-card-title>
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <div style="display: block">
+                            <canvas baseChart 
+                            [datasets]="yAxis" 
+                            [labels]="xAxis" 
+                            [options]="ChartOptions" 
+                            [legend]="ChartLegend" 
+                            [chartType]="barChartType"></canvas>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+        <ion-card-content>
+            Entering retirement at different ages between 62 .. 70 yeilds different monthly SS payments.
+        </ion-card-content>
+    </ion-card>

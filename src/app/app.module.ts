@@ -16,6 +16,7 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ProfilePage } from '../pages/profile/profile';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { CalculationsProvider } from '../providers/calculations/calculations';
+import { ComputationsProvider } from '../providers/computations/computations';
 import { LoginPage } from '../pages/login/login';
 import { EmailModalPage } from '../pages/email-modal/email-modal';
 import { PopoverPage } from '../pages/dashboard/popover-page';
@@ -86,7 +87,8 @@ import { IonicStorageModule } from '@ionic/storage';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserDataProvider,
     UserDataProvider,
-    CalculationsProvider
+    CalculationsProvider,
+    ComputationsProvider
   ]
 })
 export class AppModule {}

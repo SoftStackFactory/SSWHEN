@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ResultsPage} from '../results/results'
-import { UserDataProvider } from "../../providers/user-data/user-data";
+import { ComputationsProvider } from "../../providers/computations/computations";
 
 @IonicPage()
 
@@ -15,38 +15,29 @@ export class InfoInputPage {
   gender: string;
   monthlyAtFRA: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public user$: UserDataProvider) {
-    this.user$.date = this.myDate;
-    this.user$.sex = this.gender;
-    this.user$.FRA = this.monthlyAtFRA;
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public comp$: ComputationsProvider) {
   }
 
   logForm() {
       console.log(this.myDate);
       console.log(this.gender);
       console.log(this.monthlyAtFRA);
+      this.comp$.monthlyBenefit(this.monthlyAtFRA, this.gender, this.myDate);
       this.navCtrl.push(ResultsPage)
   }
 
 }
 
 
-// Recommendation for resultsPage
-// Import the Pages you want to communicate with;
-// import {InfoInputPage} from '../info-input/info-input';
-// Import the service which has the data;
-// import { UserDataProvider } from "../../providers/user-data/user-data";
-// .
-// .
-// .
-// export class ResultsPage implements OnInit {
-
-//   constructor( public user$: UserDataProvider ) {}
+  //may need later, converts date in YYYY-MM format to # of months
   
-//   ngOnInit(){
-//     this.user$.FRA
-//   }
-
-// }
-
-//Then in the html, interpolation gives {{user$.start}}
+  // convertToMonths() {
+  //   let dateString: string = this.myDate;
+  //   let yearString: any = dateString.substr(0,4);
+  //   let monthString: any = dateString.substr(5,6);
+  //   this.dateInMonths = (Number(yearString)*12) + Number(monthString);
+  //   console.log(this.dateInMonths, "hit");
+  // }

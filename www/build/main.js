@@ -108,7 +108,7 @@ var LoginPage = (function () {
 
 /***/ }),
 
-/***/ 126:
+/***/ 128:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -121,52 +121,52 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 126;
+webpackEmptyAsyncContext.id = 128;
 
 /***/ }),
 
-/***/ 167:
+/***/ 170:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/app-description/app-description.module": [
-		472,
+		479,
 		9
 	],
 	"../pages/dashboard/dashboard.module": [
-		473,
+		480,
 		8
 	],
 	"../pages/data-table/data-table.module": [
-		474,
+		481,
 		7
 	],
 	"../pages/email-modal/email-modal.module": [
-		475,
+		482,
 		6
 	],
 	"../pages/info-input/info-input.module": [
-		476,
+		483,
 		5
 	],
 	"../pages/landing/landing.module": [
-		477,
+		484,
 		4
 	],
 	"../pages/login/login.module": [
-		478,
+		485,
 		3
 	],
 	"../pages/profile/profile.module": [
-		479,
+		486,
 		2
 	],
 	"../pages/register/register.module": [
-		480,
+		487,
 		1
 	],
 	"../pages/results/results.module": [
-		481,
+		488,
 		0
 	]
 };
@@ -181,12 +181,12 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 167;
+webpackAsyncContext.id = 170;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 168:
+/***/ 171:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -238,7 +238,7 @@ var PopoverPage = (function () {
 
 /***/ }),
 
-/***/ 169:
+/***/ 172:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -279,7 +279,7 @@ var ModalPage = (function () {
 
 /***/ }),
 
-/***/ 170:
+/***/ 173:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -362,7 +362,7 @@ var MonthlyComponent = (function () {
 
 /***/ }),
 
-/***/ 171:
+/***/ 174:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -446,7 +446,7 @@ var CumulativeComponent = (function () {
 
 /***/ }),
 
-/***/ 172:
+/***/ 175:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -530,11 +530,11 @@ var PresentValueComponent = (function () {
 
 /***/ }),
 
-/***/ 173:
+/***/ 176:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserDataProvider; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ComputationsProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -546,21 +546,108 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var UserDataProvider = (function () {
-    function UserDataProvider() {
+var ComputationsProvider = (function () {
+    function ComputationsProvider() {
+        this.monthlyArray = [];
+        this.cumulativeArray = [];
+        this.retirementYears = [62, 63, 64, 65, 66, 67, 68, 69, 70];
+        this.discountRate = 3.5;
+        this.pvOfBenefits = [];
     }
-    UserDataProvider = __decorate([
+    ComputationsProvider.prototype.monthlyBenefit = function (pia, gender, dob) {
+        //set average life expectancy based on gender
+        if (gender === "m") {
+            //male life expectancy = 83 years = 996 months
+            this.lifeExpect = 996;
+        }
+        else {
+            //female life expectancy = 85.6 years = 1027 months
+            this.lifeExpect = 1027;
+        }
+        //Manipulate user input to extract year of birth
+        var dateString = dob;
+        var yearString = dateString.substr(0, 4);
+        var dobYear = Number(yearString);
+        //Logic to determine full retirement age.  All fulRetAge values in months.
+        if (dobYear <= 1937) {
+            this.fullRetAge = 780;
+        }
+        else if (dobYear > 1937 && dobYear < 1943) {
+            this.fullRetAge = 780 + ((dobYear - 1937) * 2);
+        }
+        else if (dobYear >= 1943 && dobYear < 1955) {
+            this.fullRetAge = 792;
+        }
+        else if (dobYear >= 1955 && dobYear < 1960) {
+            this.fullRetAge = 792 + ((dobYear - 1954) * 2);
+        }
+        else {
+            this.fullRetAge = 804;
+        }
+        //logic to calculate array of benefit amounts 
+        for (var targetAge = 744; targetAge <= 840; targetAge += 12) {
+            if (targetAge <= this.fullRetAge) {
+                var monthDelta = this.fullRetAge - targetAge;
+                if (monthDelta <= 36) {
+                    this.benefit = Math.round((1 - (monthDelta * (5 / 9) * 0.01)) * pia);
+                }
+                else {
+                    //0.2 = reduction for first 36 months
+                    this.benefit = Math.round((1 - (((monthDelta - 36) * (5 / 12) * 0.01) + 0.2)) * pia);
+                }
+            }
+            else {
+                var monthDelta = targetAge - this.fullRetAge;
+                var monthlyCredit = 0.08 / 12;
+                var creditFactor = 1 + (monthDelta * monthlyCredit);
+                this.benefit = Math.round(pia * creditFactor);
+            }
+            //calculate cumulative total benefit based on life expectancy
+            this.cumBenefit = this.benefit * (this.lifeExpect - targetAge);
+            //push benefit numbers into separate arrays for use in charts
+            this.monthlyArray.push(this.benefit);
+            this.cumulativeArray.push(this.cumBenefit);
+            //KEEP THIS IN CASE WE NEED ARRAY OF OBJECTS FOR EACH AGE, BENEFIT, CUMULATIVE BENEFIT
+            // this.ageBenefit = {
+            //   age: targetAge / 12,
+            //   monthly: this.benefit,
+            //   cumulative: this.cumBenefit
+            // }
+        }
+        var r_monthly = (this.discountRate / 12) / 100;
+        for (var i = 0; i < this.retirementYears.length; i++) {
+            var n = (this.lifeExpect / 12 - this.retirementYears[i]) * 12;
+            this.pvOfBenefits.push(Math.round((this.monthlyArray[i]) * ((1 - Math.pow((1 + r_monthly), (-n))) / r_monthly)));
+        }
+        this.benefitData = {
+            monthly: this.monthlyArray,
+            cumulative: this.cumulativeArray,
+            pv: this.pvOfBenefits
+        };
+        //USE THESE FOR TESTING ONLY
+        console.log("Full Retirement Age: ", this.fullRetAge / 12);
+        console.log("Monthly Benefits per Retirement Year", this.monthlyArray);
+        console.log("Total Cumulative Benefits per Retirement Year", this.cumulativeArray);
+        console.log("Present Value of Total Cumulative Benefits per Retirement Year", this.pvOfBenefits);
+        console.log("benefitData:", this.benefitData);
+        this.monthlyArray = [];
+        this.cumulativeArray = [];
+        this.pvOfBenefits = [];
+        this.benefitData = {};
+        return (this.benefitData);
+    };
+    ComputationsProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __metadata("design:paramtypes", [])
-    ], UserDataProvider);
-    return UserDataProvider;
+    ], ComputationsProvider);
+    return ComputationsProvider;
 }());
 
-//# sourceMappingURL=user-data.js.map
+//# sourceMappingURL=computations.js.map
 
 /***/ }),
 
-/***/ 217:
+/***/ 220:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -572,7 +659,7 @@ var UserDataProvider = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__info_input_info_input__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__results_results__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__register_register__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dashboard_dashboard__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dashboard_dashboard__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__profile_profile__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__login_login__ = __webpack_require__(116);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -651,7 +738,7 @@ var HomePage = (function () {
 
 /***/ }),
 
-/***/ 338:
+/***/ 341:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -714,13 +801,13 @@ var DataTablePage = (function () {
 
 /***/ }),
 
-/***/ 339:
+/***/ 342:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(364);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -728,47 +815,49 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 363:
+/***/ 364:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(365);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(415);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(421);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(220);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_landing_landing__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_app_description_app_description__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_info_input_info_input__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_results_results__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_register_register__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_dashboard_dashboard__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_dashboard_dashboard__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_profile_profile__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_user_data_user_data__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__providers_user_data_user_data__ = __webpack_require__(422);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_calculations_calculations__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_login_login__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_email_modal_email_modal__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_dashboard_popover_page__ = __webpack_require__(168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_dashboard_modal_page__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_data_table_data_table__ = __webpack_require__(338);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_ng2_charts__ = __webpack_require__(416);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22_ng2_charts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_bar_chart_bar_chart__ = __webpack_require__(466);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_charts_charts__ = __webpack_require__(467);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_monthly_monthly__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_cumulative_cumulative__ = __webpack_require__(171);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_present_value_present_value__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_storage__ = __webpack_require__(468);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__providers_computations_computations__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_login_login__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_email_modal_email_modal__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_dashboard_popover_page__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_dashboard_modal_page__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_data_table_data_table__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_ng2_charts__ = __webpack_require__(423);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_23_ng2_charts__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_bar_chart_bar_chart__ = __webpack_require__(473);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_charts_charts__ = __webpack_require__(474);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_monthly_monthly__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_cumulative_cumulative__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__components_present_value_present_value__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__ionic_storage__ = __webpack_require__(475);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -813,20 +902,20 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_12__pages_register_register__["a" /* RegisterPage */],
                 __WEBPACK_IMPORTED_MODULE_13__pages_dashboard_dashboard__["a" /* DashboardPage */],
                 __WEBPACK_IMPORTED_MODULE_14__pages_profile_profile__["a" /* ProfilePage */],
-                __WEBPACK_IMPORTED_MODULE_17__pages_login_login__["a" /* LoginPage */],
-                __WEBPACK_IMPORTED_MODULE_18__pages_email_modal_email_modal__["a" /* EmailModalPage */],
-                __WEBPACK_IMPORTED_MODULE_19__pages_dashboard_popover_page__["a" /* PopoverPage */],
-                __WEBPACK_IMPORTED_MODULE_20__pages_dashboard_modal_page__["a" /* ModalPage */],
-                __WEBPACK_IMPORTED_MODULE_21__pages_data_table_data_table__["a" /* DataTablePage */],
-                __WEBPACK_IMPORTED_MODULE_23__components_bar_chart_bar_chart__["a" /* BarChartComponent */],
-                __WEBPACK_IMPORTED_MODULE_24__components_charts_charts__["a" /* ChartsComponent */],
-                __WEBPACK_IMPORTED_MODULE_25__components_monthly_monthly__["a" /* MonthlyComponent */],
-                __WEBPACK_IMPORTED_MODULE_26__components_cumulative_cumulative__["a" /* CumulativeComponent */],
-                __WEBPACK_IMPORTED_MODULE_27__components_present_value_present_value__["a" /* PresentValueComponent */]
+                __WEBPACK_IMPORTED_MODULE_18__pages_login_login__["a" /* LoginPage */],
+                __WEBPACK_IMPORTED_MODULE_19__pages_email_modal_email_modal__["a" /* EmailModalPage */],
+                __WEBPACK_IMPORTED_MODULE_20__pages_dashboard_popover_page__["a" /* PopoverPage */],
+                __WEBPACK_IMPORTED_MODULE_21__pages_dashboard_modal_page__["a" /* ModalPage */],
+                __WEBPACK_IMPORTED_MODULE_22__pages_data_table_data_table__["a" /* DataTablePage */],
+                __WEBPACK_IMPORTED_MODULE_24__components_bar_chart_bar_chart__["a" /* BarChartComponent */],
+                __WEBPACK_IMPORTED_MODULE_25__components_charts_charts__["a" /* ChartsComponent */],
+                __WEBPACK_IMPORTED_MODULE_26__components_monthly_monthly__["a" /* MonthlyComponent */],
+                __WEBPACK_IMPORTED_MODULE_27__components_cumulative_cumulative__["a" /* CumulativeComponent */],
+                __WEBPACK_IMPORTED_MODULE_28__components_present_value_present_value__["a" /* PresentValueComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_22_ng2_charts__["ChartsModule"],
+                __WEBPACK_IMPORTED_MODULE_23_ng2_charts__["ChartsModule"],
                 __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* MyApp */], {}, {
                     links: [
@@ -842,7 +931,7 @@ var AppModule = (function () {
                         { loadChildren: '../pages/results/results.module#ResultsPageModule', name: 'ResultsPage', segment: 'results', priority: 'low', defaultHistory: [] }
                     ]
                 }),
-                __WEBPACK_IMPORTED_MODULE_28__ionic_storage__["a" /* IonicStorageModule */].forRoot()
+                __WEBPACK_IMPORTED_MODULE_29__ionic_storage__["a" /* IonicStorageModule */].forRoot()
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["b" /* IonicApp */]],
             entryComponents: [
@@ -855,15 +944,15 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_12__pages_register_register__["a" /* RegisterPage */],
                 __WEBPACK_IMPORTED_MODULE_13__pages_dashboard_dashboard__["a" /* DashboardPage */],
                 __WEBPACK_IMPORTED_MODULE_14__pages_profile_profile__["a" /* ProfilePage */],
-                __WEBPACK_IMPORTED_MODULE_17__pages_login_login__["a" /* LoginPage */],
-                __WEBPACK_IMPORTED_MODULE_18__pages_email_modal_email_modal__["a" /* EmailModalPage */],
-                __WEBPACK_IMPORTED_MODULE_19__pages_dashboard_popover_page__["a" /* PopoverPage */],
-                __WEBPACK_IMPORTED_MODULE_20__pages_dashboard_modal_page__["a" /* ModalPage */],
-                __WEBPACK_IMPORTED_MODULE_23__components_bar_chart_bar_chart__["a" /* BarChartComponent */],
-                __WEBPACK_IMPORTED_MODULE_24__components_charts_charts__["a" /* ChartsComponent */],
-                __WEBPACK_IMPORTED_MODULE_25__components_monthly_monthly__["a" /* MonthlyComponent */],
-                __WEBPACK_IMPORTED_MODULE_26__components_cumulative_cumulative__["a" /* CumulativeComponent */],
-                __WEBPACK_IMPORTED_MODULE_27__components_present_value_present_value__["a" /* PresentValueComponent */]
+                __WEBPACK_IMPORTED_MODULE_18__pages_login_login__["a" /* LoginPage */],
+                __WEBPACK_IMPORTED_MODULE_19__pages_email_modal_email_modal__["a" /* EmailModalPage */],
+                __WEBPACK_IMPORTED_MODULE_20__pages_dashboard_popover_page__["a" /* PopoverPage */],
+                __WEBPACK_IMPORTED_MODULE_21__pages_dashboard_modal_page__["a" /* ModalPage */],
+                __WEBPACK_IMPORTED_MODULE_24__components_bar_chart_bar_chart__["a" /* BarChartComponent */],
+                __WEBPACK_IMPORTED_MODULE_25__components_charts_charts__["a" /* ChartsComponent */],
+                __WEBPACK_IMPORTED_MODULE_26__components_monthly_monthly__["a" /* MonthlyComponent */],
+                __WEBPACK_IMPORTED_MODULE_27__components_cumulative_cumulative__["a" /* CumulativeComponent */],
+                __WEBPACK_IMPORTED_MODULE_28__components_present_value_present_value__["a" /* PresentValueComponent */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__["a" /* StatusBar */],
@@ -871,7 +960,8 @@ var AppModule = (function () {
                 { provide: __WEBPACK_IMPORTED_MODULE_2__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* IonicErrorHandler */] },
                 __WEBPACK_IMPORTED_MODULE_15__providers_user_data_user_data__["a" /* UserDataProvider */],
                 __WEBPACK_IMPORTED_MODULE_15__providers_user_data_user_data__["a" /* UserDataProvider */],
-                __WEBPACK_IMPORTED_MODULE_16__providers_calculations_calculations__["a" /* CalculationsProvider */]
+                __WEBPACK_IMPORTED_MODULE_16__providers_calculations_calculations__["a" /* CalculationsProvider */],
+                __WEBPACK_IMPORTED_MODULE_17__providers_computations_computations__["a" /* ComputationsProvider */]
             ]
         })
     ], AppModule);
@@ -939,7 +1029,7 @@ var CalculationsProvider = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_dashboard__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_dashboard__ = __webpack_require__(50);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1044,16 +1134,16 @@ var LandingPage = (function () {
 
 /***/ }),
 
-/***/ 415:
+/***/ 421:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(220);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1091,240 +1181,270 @@ var MyApp = (function () {
 
 /***/ }),
 
-/***/ 448:
+/***/ 422:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserDataProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var UserDataProvider = (function () {
+    function UserDataProvider() {
+    }
+    UserDataProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [])
+    ], UserDataProvider);
+    return UserDataProvider;
+}());
+
+//# sourceMappingURL=user-data.js.map
+
+/***/ }),
+
+/***/ 455:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 223,
-	"./af.js": 223,
-	"./ar": 224,
-	"./ar-dz": 225,
-	"./ar-dz.js": 225,
-	"./ar-kw": 226,
-	"./ar-kw.js": 226,
-	"./ar-ly": 227,
-	"./ar-ly.js": 227,
-	"./ar-ma": 228,
-	"./ar-ma.js": 228,
-	"./ar-sa": 229,
-	"./ar-sa.js": 229,
-	"./ar-tn": 230,
-	"./ar-tn.js": 230,
-	"./ar.js": 224,
-	"./az": 231,
-	"./az.js": 231,
-	"./be": 232,
-	"./be.js": 232,
-	"./bg": 233,
-	"./bg.js": 233,
-	"./bn": 234,
-	"./bn.js": 234,
-	"./bo": 235,
-	"./bo.js": 235,
-	"./br": 236,
-	"./br.js": 236,
-	"./bs": 237,
-	"./bs.js": 237,
-	"./ca": 238,
-	"./ca.js": 238,
-	"./cs": 239,
-	"./cs.js": 239,
-	"./cv": 240,
-	"./cv.js": 240,
-	"./cy": 241,
-	"./cy.js": 241,
-	"./da": 242,
-	"./da.js": 242,
-	"./de": 243,
-	"./de-at": 244,
-	"./de-at.js": 244,
-	"./de-ch": 245,
-	"./de-ch.js": 245,
-	"./de.js": 243,
-	"./dv": 246,
-	"./dv.js": 246,
-	"./el": 247,
-	"./el.js": 247,
-	"./en-au": 248,
-	"./en-au.js": 248,
-	"./en-ca": 249,
-	"./en-ca.js": 249,
-	"./en-gb": 250,
-	"./en-gb.js": 250,
-	"./en-ie": 251,
-	"./en-ie.js": 251,
-	"./en-nz": 252,
-	"./en-nz.js": 252,
-	"./eo": 253,
-	"./eo.js": 253,
-	"./es": 254,
-	"./es-do": 255,
-	"./es-do.js": 255,
-	"./es.js": 254,
-	"./et": 256,
-	"./et.js": 256,
-	"./eu": 257,
-	"./eu.js": 257,
-	"./fa": 258,
-	"./fa.js": 258,
-	"./fi": 259,
-	"./fi.js": 259,
-	"./fo": 260,
-	"./fo.js": 260,
-	"./fr": 261,
-	"./fr-ca": 262,
-	"./fr-ca.js": 262,
-	"./fr-ch": 263,
-	"./fr-ch.js": 263,
-	"./fr.js": 261,
-	"./fy": 264,
-	"./fy.js": 264,
-	"./gd": 265,
-	"./gd.js": 265,
-	"./gl": 266,
-	"./gl.js": 266,
-	"./gom-latn": 267,
-	"./gom-latn.js": 267,
-	"./he": 268,
-	"./he.js": 268,
-	"./hi": 269,
-	"./hi.js": 269,
-	"./hr": 270,
-	"./hr.js": 270,
-	"./hu": 271,
-	"./hu.js": 271,
-	"./hy-am": 272,
-	"./hy-am.js": 272,
-	"./id": 273,
-	"./id.js": 273,
-	"./is": 274,
-	"./is.js": 274,
-	"./it": 275,
-	"./it.js": 275,
-	"./ja": 276,
-	"./ja.js": 276,
-	"./jv": 277,
-	"./jv.js": 277,
-	"./ka": 278,
-	"./ka.js": 278,
-	"./kk": 279,
-	"./kk.js": 279,
-	"./km": 280,
-	"./km.js": 280,
-	"./kn": 281,
-	"./kn.js": 281,
-	"./ko": 282,
-	"./ko.js": 282,
-	"./ky": 283,
-	"./ky.js": 283,
-	"./lb": 284,
-	"./lb.js": 284,
-	"./lo": 285,
-	"./lo.js": 285,
-	"./lt": 286,
-	"./lt.js": 286,
-	"./lv": 287,
-	"./lv.js": 287,
-	"./me": 288,
-	"./me.js": 288,
-	"./mi": 289,
-	"./mi.js": 289,
-	"./mk": 290,
-	"./mk.js": 290,
-	"./ml": 291,
-	"./ml.js": 291,
-	"./mr": 292,
-	"./mr.js": 292,
-	"./ms": 293,
-	"./ms-my": 294,
-	"./ms-my.js": 294,
-	"./ms.js": 293,
-	"./my": 295,
-	"./my.js": 295,
-	"./nb": 296,
-	"./nb.js": 296,
-	"./ne": 297,
-	"./ne.js": 297,
-	"./nl": 298,
-	"./nl-be": 299,
-	"./nl-be.js": 299,
-	"./nl.js": 298,
-	"./nn": 300,
-	"./nn.js": 300,
-	"./pa-in": 301,
-	"./pa-in.js": 301,
-	"./pl": 302,
-	"./pl.js": 302,
-	"./pt": 303,
-	"./pt-br": 304,
-	"./pt-br.js": 304,
-	"./pt.js": 303,
-	"./ro": 305,
-	"./ro.js": 305,
-	"./ru": 306,
-	"./ru.js": 306,
-	"./sd": 307,
-	"./sd.js": 307,
-	"./se": 308,
-	"./se.js": 308,
-	"./si": 309,
-	"./si.js": 309,
-	"./sk": 310,
-	"./sk.js": 310,
-	"./sl": 311,
-	"./sl.js": 311,
-	"./sq": 312,
-	"./sq.js": 312,
-	"./sr": 313,
-	"./sr-cyrl": 314,
-	"./sr-cyrl.js": 314,
-	"./sr.js": 313,
-	"./ss": 315,
-	"./ss.js": 315,
-	"./sv": 316,
-	"./sv.js": 316,
-	"./sw": 317,
-	"./sw.js": 317,
-	"./ta": 318,
-	"./ta.js": 318,
-	"./te": 319,
-	"./te.js": 319,
-	"./tet": 320,
-	"./tet.js": 320,
-	"./th": 321,
-	"./th.js": 321,
-	"./tl-ph": 322,
-	"./tl-ph.js": 322,
-	"./tlh": 323,
-	"./tlh.js": 323,
-	"./tr": 324,
-	"./tr.js": 324,
-	"./tzl": 325,
-	"./tzl.js": 325,
-	"./tzm": 326,
-	"./tzm-latn": 327,
-	"./tzm-latn.js": 327,
-	"./tzm.js": 326,
-	"./uk": 328,
-	"./uk.js": 328,
-	"./ur": 329,
-	"./ur.js": 329,
-	"./uz": 330,
-	"./uz-latn": 331,
-	"./uz-latn.js": 331,
-	"./uz.js": 330,
-	"./vi": 332,
-	"./vi.js": 332,
-	"./x-pseudo": 333,
-	"./x-pseudo.js": 333,
-	"./yo": 334,
-	"./yo.js": 334,
-	"./zh-cn": 335,
-	"./zh-cn.js": 335,
-	"./zh-hk": 336,
-	"./zh-hk.js": 336,
-	"./zh-tw": 337,
-	"./zh-tw.js": 337
+	"./af": 226,
+	"./af.js": 226,
+	"./ar": 227,
+	"./ar-dz": 228,
+	"./ar-dz.js": 228,
+	"./ar-kw": 229,
+	"./ar-kw.js": 229,
+	"./ar-ly": 230,
+	"./ar-ly.js": 230,
+	"./ar-ma": 231,
+	"./ar-ma.js": 231,
+	"./ar-sa": 232,
+	"./ar-sa.js": 232,
+	"./ar-tn": 233,
+	"./ar-tn.js": 233,
+	"./ar.js": 227,
+	"./az": 234,
+	"./az.js": 234,
+	"./be": 235,
+	"./be.js": 235,
+	"./bg": 236,
+	"./bg.js": 236,
+	"./bn": 237,
+	"./bn.js": 237,
+	"./bo": 238,
+	"./bo.js": 238,
+	"./br": 239,
+	"./br.js": 239,
+	"./bs": 240,
+	"./bs.js": 240,
+	"./ca": 241,
+	"./ca.js": 241,
+	"./cs": 242,
+	"./cs.js": 242,
+	"./cv": 243,
+	"./cv.js": 243,
+	"./cy": 244,
+	"./cy.js": 244,
+	"./da": 245,
+	"./da.js": 245,
+	"./de": 246,
+	"./de-at": 247,
+	"./de-at.js": 247,
+	"./de-ch": 248,
+	"./de-ch.js": 248,
+	"./de.js": 246,
+	"./dv": 249,
+	"./dv.js": 249,
+	"./el": 250,
+	"./el.js": 250,
+	"./en-au": 251,
+	"./en-au.js": 251,
+	"./en-ca": 252,
+	"./en-ca.js": 252,
+	"./en-gb": 253,
+	"./en-gb.js": 253,
+	"./en-ie": 254,
+	"./en-ie.js": 254,
+	"./en-nz": 255,
+	"./en-nz.js": 255,
+	"./eo": 256,
+	"./eo.js": 256,
+	"./es": 257,
+	"./es-do": 258,
+	"./es-do.js": 258,
+	"./es.js": 257,
+	"./et": 259,
+	"./et.js": 259,
+	"./eu": 260,
+	"./eu.js": 260,
+	"./fa": 261,
+	"./fa.js": 261,
+	"./fi": 262,
+	"./fi.js": 262,
+	"./fo": 263,
+	"./fo.js": 263,
+	"./fr": 264,
+	"./fr-ca": 265,
+	"./fr-ca.js": 265,
+	"./fr-ch": 266,
+	"./fr-ch.js": 266,
+	"./fr.js": 264,
+	"./fy": 267,
+	"./fy.js": 267,
+	"./gd": 268,
+	"./gd.js": 268,
+	"./gl": 269,
+	"./gl.js": 269,
+	"./gom-latn": 270,
+	"./gom-latn.js": 270,
+	"./he": 271,
+	"./he.js": 271,
+	"./hi": 272,
+	"./hi.js": 272,
+	"./hr": 273,
+	"./hr.js": 273,
+	"./hu": 274,
+	"./hu.js": 274,
+	"./hy-am": 275,
+	"./hy-am.js": 275,
+	"./id": 276,
+	"./id.js": 276,
+	"./is": 277,
+	"./is.js": 277,
+	"./it": 278,
+	"./it.js": 278,
+	"./ja": 279,
+	"./ja.js": 279,
+	"./jv": 280,
+	"./jv.js": 280,
+	"./ka": 281,
+	"./ka.js": 281,
+	"./kk": 282,
+	"./kk.js": 282,
+	"./km": 283,
+	"./km.js": 283,
+	"./kn": 284,
+	"./kn.js": 284,
+	"./ko": 285,
+	"./ko.js": 285,
+	"./ky": 286,
+	"./ky.js": 286,
+	"./lb": 287,
+	"./lb.js": 287,
+	"./lo": 288,
+	"./lo.js": 288,
+	"./lt": 289,
+	"./lt.js": 289,
+	"./lv": 290,
+	"./lv.js": 290,
+	"./me": 291,
+	"./me.js": 291,
+	"./mi": 292,
+	"./mi.js": 292,
+	"./mk": 293,
+	"./mk.js": 293,
+	"./ml": 294,
+	"./ml.js": 294,
+	"./mr": 295,
+	"./mr.js": 295,
+	"./ms": 296,
+	"./ms-my": 297,
+	"./ms-my.js": 297,
+	"./ms.js": 296,
+	"./my": 298,
+	"./my.js": 298,
+	"./nb": 299,
+	"./nb.js": 299,
+	"./ne": 300,
+	"./ne.js": 300,
+	"./nl": 301,
+	"./nl-be": 302,
+	"./nl-be.js": 302,
+	"./nl.js": 301,
+	"./nn": 303,
+	"./nn.js": 303,
+	"./pa-in": 304,
+	"./pa-in.js": 304,
+	"./pl": 305,
+	"./pl.js": 305,
+	"./pt": 306,
+	"./pt-br": 307,
+	"./pt-br.js": 307,
+	"./pt.js": 306,
+	"./ro": 308,
+	"./ro.js": 308,
+	"./ru": 309,
+	"./ru.js": 309,
+	"./sd": 310,
+	"./sd.js": 310,
+	"./se": 311,
+	"./se.js": 311,
+	"./si": 312,
+	"./si.js": 312,
+	"./sk": 313,
+	"./sk.js": 313,
+	"./sl": 314,
+	"./sl.js": 314,
+	"./sq": 315,
+	"./sq.js": 315,
+	"./sr": 316,
+	"./sr-cyrl": 317,
+	"./sr-cyrl.js": 317,
+	"./sr.js": 316,
+	"./ss": 318,
+	"./ss.js": 318,
+	"./sv": 319,
+	"./sv.js": 319,
+	"./sw": 320,
+	"./sw.js": 320,
+	"./ta": 321,
+	"./ta.js": 321,
+	"./te": 322,
+	"./te.js": 322,
+	"./tet": 323,
+	"./tet.js": 323,
+	"./th": 324,
+	"./th.js": 324,
+	"./tl-ph": 325,
+	"./tl-ph.js": 325,
+	"./tlh": 326,
+	"./tlh.js": 326,
+	"./tr": 327,
+	"./tr.js": 327,
+	"./tzl": 328,
+	"./tzl.js": 328,
+	"./tzm": 329,
+	"./tzm-latn": 330,
+	"./tzm-latn.js": 330,
+	"./tzm.js": 329,
+	"./uk": 331,
+	"./uk.js": 331,
+	"./ur": 332,
+	"./ur.js": 332,
+	"./uz": 333,
+	"./uz-latn": 334,
+	"./uz-latn.js": 334,
+	"./uz.js": 333,
+	"./vi": 335,
+	"./vi.js": 335,
+	"./x-pseudo": 336,
+	"./x-pseudo.js": 336,
+	"./yo": 337,
+	"./yo.js": 337,
+	"./zh-cn": 338,
+	"./zh-cn.js": 338,
+	"./zh-hk": 339,
+	"./zh-hk.js": 339,
+	"./zh-tw": 340,
+	"./zh-tw.js": 340
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -1340,11 +1460,11 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 448;
+webpackContext.id = 455;
 
 /***/ }),
 
-/***/ 466:
+/***/ 473:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1362,14 +1482,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var BarChartComponent = (function () {
     function BarChartComponent() {
-        this.barChartOptions = {
-            scaleShowVerticalLines: false,
+        this.ChartOptions = {
             responsive: true,
-            scales: {
-                yAxes: [{ id: 'y-axis-1', type: 'linear', position: 'left', ticks: { min: 500, max: 2500 } }]
+            maintainAspectRatio: true,
+            tooltips: { enabled: false },
+            events: ['click'],
+            legend: {
+                display: true,
+                labels: {
+                    boxWidth: 0,
+                    fontSize: 12,
+                    fontStyle: 'bold',
+                }
+            },
+            onClick: function (c, i) {
+                var e = i[0];
+                var x_value = this.data.labels[e._index];
+                var y_value = Math.round(this.data.datasets[0].data[e._index]).toLocaleString();
+                console.log('(age ' + x_value + ', $' + y_value + ' )');
+                alert('(age: ' + x_value + ', benefit: $' + y_value + ' )');
             }
         };
-        this.barChartLegend = true;
+        this.ChartColors = [{
+                backgroundColor: 'rgba(148,159,177,0.2)',
+                borderColor: 'rgba(148,159,177,1)',
+                pointBackgroundColor: 'rgba(148,159,177,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            }];
+        this.ChartLegend = false;
+        this.lineChartType = 'line';
         this.barChartType = 'bar';
     }
     // events
@@ -1387,7 +1530,7 @@ var BarChartComponent = (function () {
     ], BarChartComponent.prototype, "yAxis", void 0);
     BarChartComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'bar-chart',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/components/bar-chart/bar-chart.html"*/'<!--\n            [datasets]="barChartData"\n            [labels]="barChartLabels"\n-->\n\n<ion-card>\n    <ion-card-content>\n        <canvas baseChart\n            [datasets]="yAxis"\n            [labels]="xAxis"\n            [options]="barChartOptions"\n            [legend]="barChartLegend"\n            [chartType]="barChartType"\n            (chartHover)="chartHovered($event)"\n            (chartClick)="chartClicked($event)">\n        </canvas>\n    </ion-card-content>\n</ion-card>\n'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/components/bar-chart/bar-chart.html"*/
+            selector: 'bar-chart',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/components/bar-chart/bar-chart.html"*/'\n    <ion-card>\n        <ion-card-title text-center>\n          Monthly Payout per Retirement Year\n         </ion-card-title>\n        <ion-card-content>\n            <ion-grid>\n                <ion-row>\n                    <ion-col>\n                        <div style="display: block">\n                            <canvas baseChart \n                            [datasets]="yAxis" \n                            [labels]="xAxis" \n                            [options]="ChartOptions" \n                            [legend]="ChartLegend" \n                            [chartType]="barChartType"></canvas>\n                        </div>\n                    </ion-col>\n                </ion-row>\n            </ion-grid>\n        </ion-card-content>\n        <ion-card-content>\n            Entering retirement at different ages between 62 .. 70 yeilds different monthly SS payments.\n        </ion-card-content>\n    </ion-card>'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/components/bar-chart/bar-chart.html"*/
         }),
         __metadata("design:paramtypes", [])
     ], BarChartComponent);
@@ -1398,7 +1541,7 @@ var BarChartComponent = (function () {
 
 /***/ }),
 
-/***/ 467:
+/***/ 474:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1486,19 +1629,19 @@ var ChartsComponent = (function () {
 
 /***/ }),
 
-/***/ 49:
+/***/ 50:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__popover_page__ = __webpack_require__(168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modal_page__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__popover_page__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modal_page__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_calculations_calculations__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_monthly_monthly__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_cumulative_cumulative__ = __webpack_require__(171);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_present_value_present_value__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_monthly_monthly__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_cumulative_cumulative__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_present_value_present_value__ = __webpack_require__(175);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1694,7 +1837,7 @@ var AppDescriptionPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__results_results__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_user_data_user_data__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_computations_computations__ = __webpack_require__(176);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1709,44 +1852,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var InfoInputPage = (function () {
-    function InfoInputPage(navCtrl, navParams, user$) {
+    function InfoInputPage(navCtrl, navParams, comp$) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.user$ = user$;
-        this.user$.date = this.myDate;
-        this.user$.sex = this.gender;
-        this.user$.FRA = this.monthlyAtFRA;
+        this.comp$ = comp$;
     }
     InfoInputPage.prototype.logForm = function () {
         console.log(this.myDate);
         console.log(this.gender);
         console.log(this.monthlyAtFRA);
+        this.comp$.monthlyBenefit(this.monthlyAtFRA, this.gender, this.myDate);
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__results_results__["a" /* ResultsPage */]);
     };
     InfoInputPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-info-input',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/pages/info-input/info-input.html"*/'\n<ion-header>\n\n  <ion-navbar text-center>\n    <ion-title>infoInputPage</ion-title>\n  </ion-navbar>\n  \n  <ion-grid>\n  <ion-row align-items-center>\n    <ion-col style = "margin: 0 auto">\n      <img src="https://preview.ibb.co/c39yyb/Senior_Security.jpg">\n    </ion-col>\n  </ion-row>\n</ion-grid>\n\n</ion-header>\n\n\n<ion-content padding>\n  <h3 text-center> <ion-icon name="arrow-round-down"></ion-icon> Please Enter Your Information  <ion-icon name="arrow-round-down"></ion-icon> </h3>\n  \n  <h1>  {{ user$.start}} </h1>\n  \n    <form (ngSubmit)="logForm()">\n      <ion-list>\n        \n        <ion-item text-center>\n          <ion-label floating>Date of Birth</ion-label>\n          <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="myDate" name="Date"></ion-datetime>\n        </ion-item>\n        \n        <ion-item text-center>\n          <ion-label floating>Gender</ion-label>\n          <ion-select [(ngModel)]="gender" name = "gender">\n            <ion-option value="f">Female</ion-option>\n            <ion-option value="m">Male</ion-option>\n          </ion-select>\n        </ion-item>\n        \n        <ion-item text-center>\n          <ion-label floating>Full Retirement Benefit</ion-label>\n          <ion-input type="number" [(ngModel)]="monthlyAtFRA" name="FRA" text-center></ion-input>\n        </ion-item>\n        \n      </ion-list>\n      \n      <ion-grid>\n        <ion-row>\n          <ion-col width-4>\n            <button ion-button type="submit" block>Submit</button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </form>\n\n</ion-content>'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/pages/info-input/info-input.html"*/,
+            selector: 'page-info-input',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/pages/info-input/info-input.html"*/'\n<ion-header>\n\n  <ion-navbar text-center>\n    <ion-title>infoInputPage</ion-title>\n  </ion-navbar>\n  \n  <ion-grid>\n  <ion-row align-items-center>\n    <ion-col style = "margin: 0 auto">\n      <img src="https://preview.ibb.co/c39yyb/Senior_Security.jpg">\n    </ion-col>\n  </ion-row>\n</ion-grid>\n\n</ion-header>\n\n\n<ion-content padding>\n  <h3 text-center> <ion-icon name="arrow-round-down"></ion-icon> Please Enter Your Information  <ion-icon name="arrow-round-down"></ion-icon> </h3>\n  \n    <form (ngSubmit)="logForm()">\n      <ion-list>\n        \n        <ion-item text-center>\n          <ion-label floating>Date of Birth</ion-label>\n          <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="myDate" name="Date"></ion-datetime>\n        </ion-item>\n        \n        <ion-item text-center>\n          <ion-label floating>Gender</ion-label>\n          <ion-select [(ngModel)]="gender" name = "gender">\n            <ion-option value="f">Female</ion-option>\n            <ion-option value="m">Male</ion-option>\n          </ion-select>\n        </ion-item>\n        \n        <ion-item>\n          <ion-label floating text-center>Full Retirement Benefit</ion-label>\n          <ion-input type="number" [(ngModel)]="monthlyAtFRA" name="FRA" text-center></ion-input>\n        </ion-item>\n        \n      </ion-list>\n      \n      <ion-grid>\n        <ion-row>\n          <ion-col width-4>\n            <button ion-button (click)="submit" block>Submit</button>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </form>\n\n</ion-content>'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/pages/info-input/info-input.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_user_data_user_data__["a" /* UserDataProvider */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_computations_computations__["a" /* ComputationsProvider */]])
     ], InfoInputPage);
     return InfoInputPage;
 }());
 
-// Recommendation for resultsPage
-// Import the Pages you want to communicate with;
-// import {InfoInputPage} from '../info-input/info-input';
-// Import the service which has the data;
-// import { UserDataProvider } from "../../providers/user-data/user-data";
-// .
-// .
-// .
-// export class ResultsPage implements OnInit {
-//   constructor( public user$: UserDataProvider ) {}
-//   ngOnInit(){
-//     this.user$.FRA
-//   }
+//may need later, converts date in YYYY-MM format to # of months
+// convertToMonths() {
+//   let dateString: string = this.myDate;
+//   let yearString: any = dateString.substr(0,4);
+//   let monthString: any = dateString.substr(5,6);
+//   this.dateInMonths = (Number(yearString)*12) + Number(monthString);
+//   console.log(this.dateInMonths, "hit");
 // }
-//Then in the html, interpolation gives {{user$.start}}
 //# sourceMappingURL=info-input.js.map
 
 /***/ }),
@@ -1883,7 +2019,7 @@ var ResultsPage = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfilePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_dashboard__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_dashboard__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(10);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1929,5 +2065,5 @@ var ProfilePage = (function () {
 
 /***/ })
 
-},[339]);
+},[342]);
 //# sourceMappingURL=main.js.map
