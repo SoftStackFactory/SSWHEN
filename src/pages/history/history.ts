@@ -1,6 +1,7 @@
 import {Component, ElementRef, QueryList, ViewChildren} from '@angular/core';
 import { IonicPage, ModalController, NavController, NavParams, PopoverController } from 'ionic-angular';
 import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
+import {ModalHistoryComponent} from '../../components/modal-history/modal-history';
 
 /**
  * Generated class for the HistoryPage page.
@@ -28,6 +29,21 @@ export class HistoryPage {
       ev: myEvent
     });
   }
+
+  presentHistoryModal() {
+    let modal = this.modalCtrl.create(ModalHistoryComponent);
+    let ev = {
+      target: {
+        getBoundingClientRect: () => {
+          return {
+            top: '100'
+          };
+        }
+      }
+    };
+    modal.present({ev});
+  }
+
 
   ionViewDidLoad() {
     // console.log('ionViewDidLoad HistoryPage');
