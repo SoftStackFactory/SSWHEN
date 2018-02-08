@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {ProfilePage} from '../profile/profile';
 import {LandingPage} from '../landing/landing';
+import {HistoryPage} from '../history/history';
 
 @Component({
   template: `
@@ -15,7 +16,7 @@ import {LandingPage} from '../landing/landing';
       </ion-row>
       <ion-row>
         <ion-col class="menu-full-width" col-auto align-self-end>
-          <button ion-item on-click="goToLanding()" padding-horizontal>
+          <button ion-item on-click="goToHistory()" padding-horizontal>
             History
           </button>
         </ion-col>
@@ -44,6 +45,11 @@ export class PopoverPage {
   goToProfile(params) {
     if (!params) params = {};
     this.navCtrl.push(ProfilePage);
+  }
+
+  goToHistory(params) {
+    if (!params) params = {};
+    this.navCtrl.push(HistoryPage);
   }
 
   goToLanding(params) {

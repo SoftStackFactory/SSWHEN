@@ -13,6 +13,7 @@ import { InfoInputPage } from '../pages/info-input/info-input';
 import { ResultsPage } from '../pages/results/results';
 import { RegisterPage } from '../pages/register/register';
 import { DashboardPage } from '../pages/dashboard/dashboard';
+import { HistoryPage } from '../pages/history/history';
 import { ProfilePage } from '../pages/profile/profile';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { CalculationsProvider } from '../providers/calculations/calculations';
@@ -38,6 +39,7 @@ import { LangaugePopoverComponent } from '../components/langauge-popover/langaug
     ResultsPage,
     RegisterPage,
     DashboardPage,
+    HistoryPage,
     ProfilePage,
     LoginPage,
     EmailModalPage,
@@ -63,6 +65,7 @@ import { LangaugePopoverComponent } from '../components/langauge-popover/langaug
     ResultsPage,
     RegisterPage,
     DashboardPage,
+    HistoryPage,
     ProfilePage,
     LoginPage,
     EmailModalPage,
