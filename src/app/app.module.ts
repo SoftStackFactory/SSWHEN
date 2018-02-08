@@ -13,18 +13,19 @@ import { InfoInputPage } from '../pages/info-input/info-input';
 import { ResultsPage } from '../pages/results/results';
 import { RegisterPage } from '../pages/register/register';
 import { DashboardPage } from '../pages/dashboard/dashboard';
+import { HistoryPage } from '../pages/history/history';
 import { ProfilePage } from '../pages/profile/profile';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { CalculationsProvider } from '../providers/calculations/calculations';
 import { LoginPage } from '../pages/login/login';
 import { EmailModalPage } from '../pages/email-modal/email-modal';
 import { PopoverPage } from '../pages/dashboard/popover-page';
-import { ModalPage } from '../pages/dashboard/modal-page';
 import { DataTablePage } from '../pages/data-table/data-table';
 import { ChartsModule } from 'ng2-charts';
 import { BarChartComponent } from '../components/bar-chart/bar-chart';
 import { LangaugePopoverComponent } from '../components/langauge-popover/langauge-popover';
-
+import { ModalDashboardComponent } from '../components/modal-dashboard/modal-dashboard';
+import { ModalHistoryComponent } from '../components/modal-history/modal-history';
 
 
 
@@ -38,14 +39,17 @@ import { LangaugePopoverComponent } from '../components/langauge-popover/langaug
     ResultsPage,
     RegisterPage,
     DashboardPage,
+    HistoryPage,
     ProfilePage,
     LoginPage,
     EmailModalPage,
     PopoverPage,
-    ModalPage,
+    ModalDashboardComponent,
     DataTablePage,
     BarChartComponent,
-    LangaugePopoverComponent
+    LangaugePopoverComponent,
+    ModalDashboardComponent,
+    ModalHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -63,13 +67,16 @@ import { LangaugePopoverComponent } from '../components/langauge-popover/langaug
     ResultsPage,
     RegisterPage,
     DashboardPage,
+    HistoryPage,
     ProfilePage,
     LoginPage,
     EmailModalPage,
     PopoverPage,
-    ModalPage,
+    ModalDashboardComponent,
     BarChartComponent,
-    LangaugePopoverComponent
+    LangaugePopoverComponent,
+    ModalDashboardComponent,
+    ModalHistoryComponent
   ],
   providers: [
     StatusBar,

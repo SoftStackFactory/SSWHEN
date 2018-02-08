@@ -1,0 +1,171 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Modal Popup</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()"><span ion-text color="primary" showWhen="ios, browser">Cancel</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<ion-grid no-padding>
+  <ion-row align-items-center no-padding>
+    <ion-col>
+      <ion-card>
+        <ion-card-content padding-horizontal>
+          <div>
+            <ion-segment [(ngModel)]="data">
+              <ion-segment-button value="monthly">
+                Monthly
+              </ion-segment-button>
+              <ion-segment-button value="cumulative">
+                Cumulative
+              </ion-segment-button>
+              <ion-segment-button value="other">
+                Other
+              </ion-segment-button>
+            </ion-segment>
+          </div>
+
+          <div [ngSwitch]="data">
+            <ion-list *ngSwitchCase="'monthly'">
+              <ion-row padding-top>
+                <ion-col>
+                  <p #changeText>Monthly Contributions</p>
+                </ion-col>
+              </ion-row>
+              <ion-row no-padding>
+                <ion-col>
+                  <bar-chart></bar-chart>
+                </ion-col>
+              </ion-row>
+              <ion-row no-padding>
+                <ion-col>
+                  <div class="table">
+                    <div class="table-row row header">
+                      <div class="table-col col">Header 1</div>
+                      <div class="table-col col">Header 2</div>
+                      <div class="table-col col">Header 3</div>
+                      <div class="table-col col">Header 4</div>
+                    </div>
+                    <div class="table-row row">
+                      <div class="table-col col">1</div>
+                      <div class="table-col col">2</div>
+                      <div class="table-col col">3</div>
+                      <div class="table-col col">4</div>
+                    </div>
+                    <div class="table-row row">
+                      <div class="table-col col">1</div>
+                      <div class="table-col col">2</div>
+                      <div class="table-col col">3</div>
+                      <div class="table-col col">4</div>
+                    </div>
+                    <div class="table-row row">
+                      <div class="table-col col">1</div>
+                      <div class="table-col col">2</div>
+                      <div class="table-col col">3</div>
+                      <div class="table-col col">4</div>
+                    </div>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-list>
+
+            <ion-list *ngSwitchCase="'cumulative'">
+              <ion-row padding-top>
+                <ion-col>
+                  <p #changeText>Cumulative Contributions</p>
+                </ion-col>
+              </ion-row>
+              <ion-row no-padding>
+                <ion-col>
+                  <bar-chart></bar-chart>
+                </ion-col>
+              </ion-row>
+              <ion-row no-padding>
+                <ion-col>
+                  <div class="table">
+                    <div class="table-row row header">
+                      <div class="table-col col">Header 1</div>
+                      <div class="table-col col">Header 2</div>
+                      <div class="table-col col">Header 3</div>
+                      <div class="table-col col">Header 4</div>
+                    </div>
+                    <div class="table-row row">
+                      <div class="table-col col">1</div>
+                      <div class="table-col col">2</div>
+                      <div class="table-col col">3</div>
+                      <div class="table-col col">4</div>
+                    </div>
+                    <div class="table-row row">
+                      <div class="table-col col">1</div>
+                      <div class="table-col col">2</div>
+                      <div class="table-col col">3</div>
+                      <div class="table-col col">4</div>
+                    </div>
+                    <div class="table-row row">
+                      <div class="table-col col">1</div>
+                      <div class="table-col col">2</div>
+                      <div class="table-col col">3</div>
+                      <div class="table-col col">4</div>
+                    </div>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-list>
+
+            <ion-list *ngSwitchCase="'other'">
+              <ion-row padding-top>
+                <ion-col>
+                  <p #changeText>Other Contributions</p>
+                </ion-col>
+              </ion-row>
+              <ion-row no-padding>
+                <ion-col>
+                  <img src="../../assets/imgs/logo.png">
+                </ion-col>
+              </ion-row>
+              <ion-row no-padding>
+                <ion-col>
+                  <div class="table">
+                    <div class="table-row row header">
+                      <div class="table-col col">Header 1</div>
+                      <div class="table-col col">Header 2</div>
+                      <div class="table-col col">Header 3</div>
+                      <div class="table-col col">Header 4</div>
+                    </div>
+                    <div class="table-row row">
+                      <div class="table-col col">1</div>
+                      <div class="table-col col">2</div>
+                      <div class="table-col col">3</div>
+                      <div class="table-col col">4</div>
+                    </div>
+                    <div class="table-row row">
+                      <div class="table-col col">1</div>
+                      <div class="table-col col">2</div>
+                      <div class="table-col col">3</div>
+                      <div class="table-col col">4</div>
+                    </div>
+                    <div class="table-row row">
+                      <div class="table-col col">1</div>
+                      <div class="table-col col">2</div>
+                      <div class="table-col col">3</div>
+                      <div class="table-col col">4</div>
+                    </div>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-list>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row padding-horizontal>
+    <ion-col>
+      <button ion-button full (click)="showPrompt()" #changeText>Email Result</button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

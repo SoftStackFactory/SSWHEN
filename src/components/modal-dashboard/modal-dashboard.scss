@@ -1,16 +1,4 @@
-page-dashboard {
-  .popover-md .popover-content {
-    max-width: 140px;
-  }
-
-  .btn-smaller {
-    transform: scale(0.7);
-  }
-
-  .table {
-    margin: 5%;
-  }
-
+modal-dashboard {
   .header .table-col {
     background-color:lightgrey;
   }
@@ -28,7 +16,4 @@ page-dashboard {
   .table-row:last-child .table-col {
     border-bottom: solid 1px grey;
   }
-
-  .menu-full-width { width: 100%; }
-  .menu-last .item .item-inner { border-bottom: 0px solid #fff; }
 }
