@@ -2,15 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ResultsPage} from '../results/results'
 import { UserDataProvider } from "../../providers/user-data/user-data";
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NumberValidator } from '../../validators/number';
 
-function numberValidator(c: AbstractControl): {[key: string] : boolean} | null {
-  if(isNaN(c.value)){
-    return { 'Not a number':true};
-  }
-  
-  return null
-}
+
 
 @IonicPage()
 
@@ -37,7 +32,7 @@ export class InfoInputPage {
         birthDate: ['', Validators.required],
         gender: ['', Validators.required],
         fra: ['', Validators.compose([
-          Validators.required, Validators.maxLength(30), numberValidator
+          Validators.required, Validators.maxLength(30), NumberValidator.numberValidator
           ]
         )]
       });

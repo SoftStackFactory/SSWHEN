@@ -47,7 +47,7 @@
         
         <ion-item text-center>
           <ion-label floating>Full Retirement Benefit</ion-label>
-          <ion-input type="number" formControlName="fra" text-center></ion-input>
+          <ion-input type="text" formControlName="fra" text-center></ion-input>
         </ion-item>
         <div *ngIf='!myForm.controls.fra.valid && (myForm.controls.fra.dirty || submitAttempt)'>
             <h4 text-center>Invalid Full Retirement Amount</h4>
