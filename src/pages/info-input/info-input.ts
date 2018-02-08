@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ResultsPage } from '../results/results'
 import { UserDataProvider } from "../../providers/user-data/user-data";
 import { BenefitProvider } from "../../providers/benefit/benefit";
+import { Storage } from "@ionic/storage";
 
 @IonicPage()
 
@@ -28,20 +29,41 @@ export class InfoInputPage {
   
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
-    public bene$: BenefitProvider) {
+    public bene$: BenefitProvider,
+    private storage: Storage) {
 
   }
 
   logForm() {
     
-    this.bene$.monthlyBenefit(this.monthlyAtFRA, this.gender, this.myDate);
+    //this.bene$.monthlyBenefit(this.monthlyAtFRA, this.gender, this.myDate);
+    this.storage.clear().then((val) => {
+      this.storage.set("inputData",  
+        {
+          pia : this.monthlyAtFRA,
+          gender: this.gender,
+          dob: this.myDate
+        })
+    });
+      
     
+      
+    // this.storage.set("gender", this.gender);
+    // this.storage.set("dob", this.myDate);
+    // this.storage.get("pia").then((val) => {
+    //   console.log(val);
+    // });
+    //   this.storage.get("gender").then((val) => {
+    //   console.log(val);
+    // });
+    //   this.storage.get("dob").then((val) => {
+    //   console.log(val);
+    // });
+   
+
     this.navCtrl.push(ResultsPage);
       
   }
-  
-
-
 }
 
 

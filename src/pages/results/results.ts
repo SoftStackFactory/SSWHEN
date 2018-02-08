@@ -3,8 +3,10 @@ import { AlertController, ModalController, IonicPage, NavController, NavParams }
 import { RegisterPage } from '../register/register';
 import { EmailModalPage } from '../email-modal/email-modal';
 import { LandingPage } from '../landing/landing';
-// import { ComponentsModule } from "../components/components.module";
+import { ComponentsModule } from "../../components/components.module";
 import { BarChartComponent } from '../../components/bar-chart/bar-chart';
+import { Storage } from '@ionic/storage';
+import { BenefitProvider } from '../../providers/benefit/benefit';
 
 
 
@@ -18,11 +20,35 @@ import { BarChartComponent } from '../../components/bar-chart/bar-chart';
 export class ResultsPage {
   results: any;
   
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(
+    public navCtrl: NavController, 
+    public alertCtrl: AlertController, 
+    public navParams: NavParams, 
+    public modalCtrl: ModalController,
+    private storage: Storage,
+    public bene$: BenefitProvider
+  ) 
+  {
+    // this.storage.get("inputData").then((val) => {
+    //   this.pia = val.pia;
+    //   this.gender = val.gender;
+    //   this.dob = val.dob;
+    //   this.data = this.data = this.bene$.monthlyBenefit(this.pia, this.gender, this.dob);
+    //   //this.storage.clear();
+    //   console.log(this.data);
+    // });
     
-    this.results = "graph";
-    this.results = this.navParams.get("data");
   }
+  
+  pia: number;
+  
+  gender: any;
+  
+  dob: any;
+  
+  data: any;
+  
+
   goToRegister(params){
     if (!params) params = {};
     this.navCtrl.push(RegisterPage);
@@ -92,6 +118,18 @@ export class ResultsPage {
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad ResultsPage');
+    
+  }
+  
+  ionViewWillEnter() {
+    this.storage.get("inputData").then((val) => {
+      this.pia = val.pia;
+      this.gender = val.gender;
+      this.dob = val.dob;
+      this.data = this.data = this.bene$.monthlyBenefit(this.pia, this.gender, this.dob);
+      //this.storage.clear();
+      console.log(this.data);
+    });
   }
 
 }

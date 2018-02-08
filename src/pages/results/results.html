@@ -32,7 +32,11 @@
     
     <div [ngSwitch]="results">
       <div *ngSwitchCase="'graph'">
-            <bar-chart></bar-chart>
+          <div *ngIf="this.pia">
+            <p>{{ this.pia }}</p>
+          
+            <!--<bar-chart></bar-chart>-->
+          </div>
       </div>
       <div *ngSwitchCase="'chart'">
         

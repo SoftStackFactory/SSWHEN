@@ -24,6 +24,7 @@ import { DataTablePage } from '../pages/data-table/data-table';
 import { ChartsModule } from 'ng2-charts';
 import { BarChartComponent } from '../components/bar-chart/bar-chart';
 import { BenefitProvider } from '../providers/benefit/benefit';
+import { IonicStorageModule } from '@ionic/storage';
 
 
 
@@ -50,7 +51,8 @@ import { BenefitProvider } from '../providers/benefit/benefit';
     BrowserModule,
     ChartsModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

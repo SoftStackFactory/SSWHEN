@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { InfoInputPage } from "../info-input/info-input";
 import { BenefitProvider } from "../../providers/benefit/benefit";
 
 /**
@@ -24,57 +25,66 @@ export class DataTablePage {
     
   //NONE OF THIS WORKS.  READ UP ON NAVPARAMS
   
-  monthlyBenefitArray: any [] = this.$bene.benefitData.monthly;
-  cumulativeBenefitArray: any [] = this.$bene.benefitData.cumulative;
-  benefitData: any [] = [];
+  // monthlyBenefitArray: any [] = this.$bene.benefitData(
+  //     InfoInputPage.monthlyAtFRA, 
+  //     InfoInputPage.gender, 
+  //     InfoInputPage.myDate).monthly;
+      
+      
+  // cumulativeBenefitArray: any [] = this.$bene.benefitData(
+  //     InfoInputPage.monthlyAtFRA, 
+  //     InfoInputPage.gender, 
+  //     InfoInputPage.myDate).cumulative;
   
-  dataObject: any;
+  // benefitData: any [] = [];
   
-  //console.log(monthly);
+  // dataObject: any;
   
-  sortTableData() {
+  // //console.log(monthly);
+  
+  // sortTableData() {
     
-    console.log(this.monthlyBenefitArray);
+  //   console.log(this.monthlyBenefitArray);
   
-    for (let i = 0;  i < this.monthlyBenefitArray.length; i ++) {
+  //   for (let i = 0;  i < this.monthlyBenefitArray.length; i ++) {
       
-      let month = this.monthlyBenefitArray[i]
-      let total = this.cumulativeBenefitArray[i]
+  //     let month = this.monthlyBenefitArray[i]
+  //     let total = this.cumulativeBenefitArray[i]
       
-      this.dataObject = {
-        age: 62 + i,
-        monthly: month,
-        cumulatve: total
-      }
+  //     this.dataObject = {
+  //       age: 62 + i,
+  //       monthly: month,
+  //       cumulatve: total
+  //     }
       
-      this.benefitData.push(this.dataObject);
+  //     this.benefitData.push(this.dataObject);
       
-    }
+  //   }
     
-    console.log(this.benefitData);
+  //   console.log(this.benefitData);
   
-  }
+  // }
     
     
     // mock data array for testing 
     
-    // benefitData: any[] = [
-    //     {
-    //       age: 62,
-    //       monthly: 1000,
-    //       cumulative: 10000
-    //     },
-    //     {
-    //       age:63, 
-    //       monthly: 2000,
-    //       cumulative: 20000
-    //     },
-    //     {
-    //       age: 64,
-    //       monthly: 3000,
-    //       cumulative: 30000
-    //     }
-    //   ]
+    benefitData: any[] = [
+        {
+          age: 62,
+          monthly: 1000,
+          cumulative: 10000
+        },
+        {
+          age:63, 
+          monthly: 2000,
+          cumulative: 20000
+        },
+        {
+          age: 64,
+          monthly: 3000,
+          cumulative: 30000
+        }
+    ]
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DataTablePage');
