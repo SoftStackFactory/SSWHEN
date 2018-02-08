@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ResultsPage} from '../results/results'
 import { UserDataProvider } from "../../providers/user-data/user-data";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NumberValidator } from '../../validators/number';
+
+
 
 @IonicPage()
 
@@ -11,22 +15,46 @@ import { UserDataProvider } from "../../providers/user-data/user-data";
 })
 
 export class InfoInputPage {
-  myDate: string;
-  gender: string;
-  monthlyAtFRA: number;
+  myForm: FormGroup;
+  submitAttempt: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public user$: UserDataProvider) {
-    this.user$.date = this.myDate;
-    this.user$.sex = this.gender;
-    this.user$.FRA = this.monthlyAtFRA;
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public user$: UserDataProvider, 
+              public formBuilder: FormBuilder
+              )
+    {
+      /*this.user$.date = this.myDate;
+      this.user$.sex = this.gender;
+      this.user$.FRA = this.monthlyAtFRA;*/
+      
+      this.myForm = formBuilder.group({
+        birthDate: ['', Validators.required],
+        gender: ['', Validators.required],
+        fra: ['', Validators.compose([
+          Validators.required, Validators.maxLength(30), NumberValidator.numberValidator
+          ]
+        )]
+      });
+  }
+  
+  onSubmit(){
+    this.submitAttempt = true;
+    
+    if(!this.myForm.valid){
+      console.log('Unsuccessful input', this.myForm.value);
+    }else{
+      console.log('Successful input ', this.myForm.value);
+      this.navCtrl.push(ResultsPage);
+    }
   }
 
-  logForm() {
+  /*logForm() {
       console.log(this.myDate);
       console.log(this.gender);
       console.log(this.monthlyAtFRA);
-      this.navCtrl.push(ResultsPage)
-  }
+      
+  }*/
 
 }
 
