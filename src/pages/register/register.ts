@@ -18,22 +18,20 @@ export class RegisterPage {
         totalTaxContribution: ['', 
           Validators.compose([
               Validators.required,
-                Validators.pattern('[0-9]{4}'),
-                Validators.minLength(3)
+                Validators.pattern('[0-9]{1,9}')
             ])
         ],
       email: ['', 
           Validators.compose([
               Validators.required,
               Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
-              Validators.maxLength(30)
+              Validators.maxLength(30),
             ])
         ],
         password: ['', 
           Validators.compose([
               Validators.required,
-              Validators.pattern('[0-9]{4}'),
-              Validators.minLength(3)
+              Validators.pattern('[A-Za-z0-9!@#$%]{6,12}')
             ])
         ]
       });
