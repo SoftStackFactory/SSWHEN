@@ -8,10 +8,6 @@ import { BarChartComponent } from '../../components/bar-chart/bar-chart';
 import { Storage } from '@ionic/storage';
 import { BenefitProvider } from '../../providers/benefit/benefit';
 
-
-
-
-
 @IonicPage()
 @Component({
   selector: 'page-results',
@@ -28,17 +24,8 @@ export class ResultsPage {
     private storage: Storage,
     public bene$: BenefitProvider
   ) 
-  {
-    // this.storage.get("inputData").then((val) => {
-    //   this.pia = val.pia;
-    //   this.gender = val.gender;
-    //   this.dob = val.dob;
-    //   this.data = this.data = this.bene$.monthlyBenefit(this.pia, this.gender, this.dob);
-    //   //this.storage.clear();
-    //   console.log(this.data);
-    // });
-    
-  }
+  {}
+
   
   pia: number;
   
@@ -126,9 +113,10 @@ export class ResultsPage {
       this.pia = val.pia;
       this.gender = val.gender;
       this.dob = val.dob;
-      this.data = this.data = this.bene$.monthlyBenefit(this.pia, this.gender, this.dob);
+      this.data = this.bene$.monthlyBenefit(this.pia, this.gender, this.dob);
       //this.storage.clear();
       console.log(this.data);
+      console.log(this.data.monthly);
     });
   }
 

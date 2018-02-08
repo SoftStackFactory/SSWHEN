@@ -32,8 +32,8 @@
     
     <div [ngSwitch]="results">
       <div *ngSwitchCase="'graph'">
-          <div *ngIf="this.pia">
-            <p>{{ this.pia }}</p>
+          <div *ngIf="this.data">
+            <p>{{ this.data.monthly }}</p>
           
             <!--<bar-chart></bar-chart>-->
           </div>
@@ -41,13 +41,13 @@
       <div *ngSwitchCase="'chart'">
         
         
-        <page-data-table></page-data-table>
+        <page-data-table [benefitData] = "this.data.monthly"></page-data-table>
        
 
       </div>
     </div>
     
-     Bottom Buttons  
+   
     <ion-row>
       <ion-col col-6 offset-3>
           <button ion-button full (click)="openEmailModal()">Email Results</button>
