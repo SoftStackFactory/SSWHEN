@@ -25199,6 +25199,14 @@ ion-navbar.toolbar {
   }
 }
 
+langauge-popover .font-smaller {
+  font-size: 1rem;
+}
+
+langauge-popover .font-larger {
+  font-size: 1.4rem;
+}
+
 page-app-description button.customBtn {
   height: 20px;
   width: 20px;
@@ -25262,12 +25270,12 @@ page-app-description button.customBtn {
   border-bottom: solid 1px grey;
 }
 
-img {
+page-landing img {
   border-radius: 10%;
   border: 5px solid silver;
 }
 
-.landing-card {
+page-landing .landing-card {
   min-width: 210px;
   padding: 0;
 }
