@@ -4,6 +4,7 @@
   "homepage": "https://ionicframework.com/",
   "private": true,
   "scripts": {
+    "start": "ionic serve -p $PORT -l",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "ionic:build": "ionic-app-scripts build",
