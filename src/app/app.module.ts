@@ -24,6 +24,7 @@ import { DataTablePage } from '../pages/data-table/data-table';
 import { ChartsModule } from 'ng2-charts';
 import { BarChartComponent } from '../components/bar-chart/bar-chart';
 import { LangaugePopoverComponent } from '../components/langauge-popover/langauge-popover';
+import { MockDataProvider } from '../providers/mock-data/mock-data';
 
 
 
@@ -77,7 +78,8 @@ import { LangaugePopoverComponent } from '../components/langauge-popover/langaug
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserDataProvider,
     UserDataProvider,
-    CalculationsProvider
+    CalculationsProvider,
+    MockDataProvider
   ]
 })
 export class AppModule {}
