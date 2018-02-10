@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { RegisterPage } from '../register/register'
+import { LoginPage } from '../login/login';
 import { AppDescriptionPage } from '../app-description/app-description';
 
 /**
@@ -24,14 +24,14 @@ export class LandingPage {
     //console.log('ionViewDidLoad LandingPage');
   }
   
+  toLogin(params){
+    if (!params) params = {};
+    this.navCtrl.push(LoginPage);
+  }
+  
   toAppDescription(params){
     if (!params) params = {};
     this.navCtrl.push(AppDescriptionPage);
-  }
-  
-  toRegister(params){
-    if (!params) params = {};
-    this.navCtrl.push(RegisterPage);
   }
 
 }

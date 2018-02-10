@@ -25199,75 +25199,104 @@ ion-navbar.toolbar {
   }
 }
 
+langauge-popover .font-smaller {
+  font-size: 1rem;
+}
+
+langauge-popover .font-larger {
+  font-size: 1.4rem;
+}
+
+modal-dashboard .header .table-col {
+  background-color: lightgrey;
+}
+
+modal-dashboard .table-col {
+  border: solid 1px grey;
+  border-bottom-style: none;
+  border-right-style: none;
+}
+
+modal-dashboard .table-col:last-child {
+  border-right: solid 1px grey;
+}
+
+modal-dashboard .table-row:last-child .table-col {
+  border-bottom: solid 1px grey;
+}
+
+modal-history .header .table-col {
+  background-color: lightgrey;
+}
+
+modal-history .table-col {
+  border: solid 1px grey;
+  border-bottom-style: none;
+  border-right-style: none;
+}
+
+modal-history .table-col:last-child {
+  border-right: solid 1px grey;
+}
+
+modal-history .table-row:last-child .table-col {
+  border-bottom: solid 1px grey;
+}
+
 page-app-description button.customBtn {
   height: 20px;
   width: 20px;
   vertical-align: baseline;
 }
 
-.popover-md .popover-content {
+page-dashboard .popover-md .popover-content {
   max-width: 140px;
 }
 
-.btn-smaller {
+page-dashboard .btn-smaller {
   -webkit-transform: scale(0.7);
   transform: scale(0.7);
 }
 
-.table {
+page-dashboard .table {
   margin: 5%;
 }
 
-.header .table-col {
+page-dashboard .header .table-col {
   background-color: lightgrey;
 }
 
-.table-col {
+page-dashboard .table-col {
   border: solid 1px grey;
   border-bottom-style: none;
   border-right-style: none;
 }
 
-.table-col:last-child {
+page-dashboard .table-col:last-child {
   border-right: solid 1px grey;
 }
 
-.table-row:last-child .table-col {
+page-dashboard .table-row:last-child .table-col {
   border-bottom: solid 1px grey;
 }
 
-.menu-full-width {
+page-dashboard .menu-full-width {
   width: 100%;
 }
 
-.menu-last .item .item-inner {
+page-dashboard .menu-last .item .item-inner {
   border-bottom: 0px solid #fff;
 }
 
-.header .table-col {
-  background-color: lightgrey;
-}
-
-.table-col {
-  border: solid 1px grey;
-  border-bottom-style: none;
-  border-right-style: none;
-}
-
-.table-col:last-child {
-  border-right: solid 1px grey;
-}
-
-.table-row:last-child .table-col {
-  border-bottom: solid 1px grey;
-}
-
-img {
+page-landing img {
   border-radius: 10%;
   border: 5px solid silver;
+  width: 400px !important;
+  display: block;
+  margin: 0 auto;
 }
 
-.landing-card {
+page-landing .landing-card {
   min-width: 210px;
   padding: 0;
 }
