@@ -1,14 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { InfoInputPage } from "../info-input/info-input";
-import { BenefitProvider } from "../../providers/benefit/benefit";
-
-/**
- * Generated class for the DataTablePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -20,76 +12,15 @@ export class DataTablePage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
-    public $bene: BenefitProvider
     ){}
     
-    @Input() benefitData: any[] = [];
     
-  //NONE OF THIS WORKS.  READ UP ON NAVPARAMS
-  
-  // monthlyBenefitArray: any [] = this.$bene.benefitData(
-  //     InfoInputPage.monthlyAtFRA, 
-  //     InfoInputPage.gender, 
-  //     InfoInputPage.myDate).monthly;
-      
-      
-  // cumulativeBenefitArray: any [] = this.$bene.benefitData(
-  //     InfoInputPage.monthlyAtFRA, 
-  //     InfoInputPage.gender, 
-  //     InfoInputPage.myDate).cumulative;
-  
-  // benefitData: any [] = [];
-  
-  // dataObject: any;
-  
-  // //console.log(monthly);
-  
-  // sortTableData() {
-    
-  //   console.log(this.monthlyBenefitArray);
-  
-  //   for (let i = 0;  i < this.monthlyBenefitArray.length; i ++) {
-      
-  //     let month = this.monthlyBenefitArray[i]
-  //     let total = this.cumulativeBenefitArray[i]
-      
-  //     this.dataObject = {
-  //       age: 62 + i,
-  //       monthly: month,
-  //       cumulatve: total
-  //     }
-      
-  //     this.benefitData.push(this.dataObject);
-      
-  //   }
-    
-  //   console.log(this.benefitData);
-  
-  // }
+    @Input() benefitData: any [] = [];
     
     
-    // mock data array for testing 
-    
-    // benefitData: any[] = [
-    //     {
-    //       age: 62,
-    //       monthly: 1000,
-    //       cumulative: 10000
-    //     },
-    //     {
-    //       age:63, 
-    //       monthly: 2000,
-    //       cumulative: 20000
-    //     },
-    //     {
-    //       age: 64,
-    //       monthly: 3000,
-    //       cumulative: 30000
-    //     }
-    // ]
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad DataTablePage');
+    
   }
 
 }

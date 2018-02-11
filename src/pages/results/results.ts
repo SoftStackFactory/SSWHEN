@@ -14,7 +14,7 @@ import { BenefitProvider } from '../../providers/benefit/benefit';
   templateUrl: 'results.html',
 })
 export class ResultsPage {
-  results: any;
+  
   
   constructor(
     public navCtrl: NavController, 
@@ -33,7 +33,9 @@ export class ResultsPage {
   
   dob: any;
   
-  data: any;
+  results: any;
+  
+  data: any [] = [];
   
 
   goToRegister(params){
@@ -109,15 +111,24 @@ export class ResultsPage {
   }
   
   ionViewWillEnter() {
+    this.data = [];
     this.storage.get("inputData").then((val) => {
       this.pia = val.pia;
       this.gender = val.gender;
       this.dob = val.dob;
-      this.data = this.bene$.monthlyBenefit(this.pia, this.gender, this.dob);
-      //this.storage.clear();
+      this.results = this.bene$.monthlyBenefit(this.pia, this.gender, this.dob);
+      this.storage.clear();
+      console.log(this.results);
       console.log(this.data);
-      console.log(this.data.monthly);
+      for(let i = 0; i < this.results.age.length; i++){
+        let item = {
+          age: this.results.age[i],
+          monthly: this.results.monthly[i],
+          cumulative: this.results.cumulative[i]
+        }
+        this.data.push(item);
+      }
+      console.log(this.data);
     });
   }
-
 }

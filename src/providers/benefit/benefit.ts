@@ -26,6 +26,8 @@ export class BenefitProvider {
   
   cumulativeArray: any[] = [];
   
+  ageArray: any[] = [62, 63, 64, 65, 66, 67, 68, 69, 70];
+  
   benefitData: any;
 
   monthlyBenefit(pia, gender, dob) {
@@ -117,21 +119,19 @@ export class BenefitProvider {
       this.monthlyArray.push(this.benefit);
       this.cumulativeArray.push(this.cumBenefit);
       
-      //KEEP THIS IN CASE WE NEED ARRAY OF OBJECTS FOR EACH AGE, BENEFIT, CUMULATIVE BENEFIT
-      
-      // this.ageBenefit = {
-      //   age: targetAge / 12,
-      //   monthly: this.benefit,
-      //   cumulative: this.cumBenefit
-      // }
     }
     
+      //create final data object for output
+    
     this.benefitData = {
+      age: this.ageArray,
       monthly: this.monthlyArray,
       cumulative: this.cumulativeArray
     }
     
     //USE THESE FOR TESTING ONLY
+    //NEED TO ACCOUNT FOR USE CASE WHEN USER BACKS UP AND TRIES AGAIN, 
+    //CURRENTLY ADDS NEW FIGURES TO EXISTING ARRAY
     
     // console.log(this.monthlyArray);
     // console.log(this.cumulativeArray);
