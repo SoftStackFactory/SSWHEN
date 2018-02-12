@@ -1,12 +1,6 @@
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 
-/*
-  Generated class for the BenefitProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class BenefitProvider {
 
@@ -129,18 +123,11 @@ export class BenefitProvider {
       cumulative: this.cumulativeArray
     }
     
-    //USE THESE FOR TESTING ONLY
-    //NEED TO ACCOUNT FOR USE CASE WHEN USER BACKS UP AND TRIES AGAIN, 
-    //CURRENTLY ADDS NEW FIGURES TO EXISTING ARRAY
-    
-    // console.log(this.monthlyArray);
-    // console.log(this.cumulativeArray);
-    // console.log(this.benefitData);
-    // console.log(this.fullRetAge);
-    // this.monthlyArray = [];
-    // this.cumulativeArray =[];
-    // this.benefitData = {};
-    
+    //empty calculation arrays
+
+    this.monthlyArray = [];
+    this.cumulativeArray =[];
+   
     return(this.benefitData);
     
   }

@@ -33,15 +33,11 @@
     <div [ngSwitch]="results">
       <div *ngSwitchCase="'graph'">
           <div *ngIf="this.data">
-            
-          
-            <!--<bar-chart></bar-chart>-->
+         <!-- chart component here -->
           </div>
       </div>
       <div *ngSwitchCase="'chart'">
-        <!--<div *ngIf="this.data">-->
-          <page-data-table [benefitData] = "this.data"></page-data-table>
-          <!--</div>-->
+        <page-data-table [benefitData] = "this.data"></page-data-table>
       </div>
     </div>
     
