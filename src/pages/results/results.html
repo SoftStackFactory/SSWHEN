@@ -1,75 +1,69 @@
 <ion-header>
-
   <ion-navbar>
     <ion-title>Results</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
   <ion-grid no-padding>
     
     <!--  Before Segment -->
-    <ion-row>
+<!--    <ion-row>
       <ion-col col-6 offset-3>
         <h2 style="text-align:center;">SSWHEN</h2>
       </ion-col>
-    </ion-row>
+    </ion-row>-->
     
     <!-- Segments  -->
-    <div>
-      <ion-segment [(ngModel)]="results">
-        <ion-segment-button value="graph">
-          Graph
-        </ion-segment-button>
-        <ion-segment-button value="chart">
-          Chart
-        </ion-segment-button>
-      </ion-segment>
-    </div>
-    
-    <ion-row align-items-center no-padding>
+    <ion-row align-items-center padding-top>
       <ion-col>
-        <div [ngSwitch]="results">
-          <div *ngSwitchCase="'graph'">
-            <ion-card>
-              <ion-card-header style="text-align: center;">
-                Monthly Payout
-                <br> 
-                by
-                <br>
-                Retirement Age
-              </ion-card-header>
-              <ion-card-content>
-                <ion-grid no-padding>
-                  <bar-chart></bar-chart>
-                </ion-grid>
-              </ion-card-content>
-            </ion-card>
-          </div>
-          <div *ngSwitchCase="'chart'">
-            <page-data-table></page-data-table>
-          </div>
-        </div>
+        <ion-card>
+          <ion-card-content padding-horizontal>
+            <div>
+              <ion-segment [(ngModel)]="results">
+                <ion-segment-button value="graph">
+                  Graph
+                </ion-segment-button>
+                <ion-segment-button value="chart">
+                  Chart
+                </ion-segment-button>
+              </ion-segment>
+            </div>
+            <div [ngSwitch]="results">
+              <div *ngSwitchCase="'graph'">
+                <ion-card no-padding>
+                  <ion-card-header style="text-align: center;">
+                    Monthly Payout
+                    <br>
+                    by
+                    <br>
+                    Retirement Age
+                  </ion-card-header>
+                  <ion-card-content no-padding>
+                    <ion-grid no-padding>
+                      <bar-chart></bar-chart>
+                    </ion-grid>
+                  </ion-card-content>
+                </ion-card>
+              </div>
+              <div *ngSwitchCase="'chart'">
+                <page-data-table></page-data-table>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
       </ion-col>
     </ion-row>
     
-    <ion-row>
-      <ion-col col-6 offset-3>
-          <button ion-button full (click)="showPrompt()">Email Result</button>
+    <ion-row padding-horizontal>
+      <ion-col margin-right>
+          <button ion-button block (click)="showPrompt()">Email Result</button>
+      </ion-col>
+      <ion-col margin-left>
+        <button ion-button block  on-click="goToRegister()">Register</button>
       </ion-col>
     </ion-row>
-    
-    <!--Register-->
-    <ion-row>
-      <ion-col col-6 offset-3>
-          <button ion-button full on-click="goToRegister()">Register</button>
-      </ion-col>
-    </ion-row>
-    
-    
-  </ion-grid>
 
+  </ion-grid>
 </ion-content>

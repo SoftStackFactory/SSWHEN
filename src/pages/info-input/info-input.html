@@ -1,56 +1,50 @@
-
 <ion-header>
-
-  <ion-navbar text-center>
-    <ion-title>infoInputPage</ion-title>
+  <ion-navbar>
+    <ion-title>Benefit Information</ion-title>
   </ion-navbar>
-  
-  <ion-grid>
-  <ion-row align-items-center>
-    <ion-col style = "margin: 0 auto">
-      <img src="https://preview.ibb.co/c39yyb/Senior_Security.jpg">
-    </ion-col>
-  </ion-row>
-</ion-grid>
-
 </ion-header>
 
 
-<ion-content padding>
-  <h3 text-center> <ion-icon name="arrow-round-down"></ion-icon> Please Enter Your Information  <ion-icon name="arrow-round-down"></ion-icon> </h3>
-  
-  <h1>  {{ user$.start}} </h1>
-  
-    <form (ngSubmit)="logForm()">
-      <ion-list>
-        
-        <ion-item text-center>
-          <ion-label floating>Date of Birth</ion-label>
-          <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="myDate" name="Date"></ion-datetime>
-        </ion-item>
-        
-        <ion-item text-center>
-          <ion-label floating>Gender</ion-label>
-          <ion-select [(ngModel)]="gender" name = "gender">
-            <ion-option value="f">Female</ion-option>
-            <ion-option value="m">Male</ion-option>
-          </ion-select>
-        </ion-item>
-        
-        <ion-item>
-          <ion-label floating>Full Retirement Benefit</ion-label>
-          <ion-input type="number" [(ngModel)]="monthlyAtFRA" name="FRA" text-center></ion-input>
-        </ion-item>
-        
-      </ion-list>
-      
-      <ion-grid>
-        <ion-row>
-          <ion-col width-4>
-            <button ion-button type="submit" block>Submit</button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </form>
+<ion-content>
+  <ion-grid no-padding>
+    <ion-row justify-content-center padding-top>
+      <ion-col>
+        <ion-card>
+          <img style="min-height: 200px;" src="https://preview.ibb.co/c39yyb/Senior_Security.jpg">
+          <ion-card-title text-center>
+            <h2>
+              <ion-icon name="arrow-round-down"></ion-icon>
+              Please Enter Your Information
+              <ion-icon name="arrow-round-down"></ion-icon>
+            </h2>
+          </ion-card-title>
+          <ion-card-content padding-horizontal>
+            <!--<h1>test {{ user$.start}} </h1>-->
+            <form (ngSubmit)="logForm()">
+              <ion-list>
+                <ion-item>
+                  <ion-label floating>Date of Birth</ion-label>
+                  <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="myDate" name="Date"></ion-datetime>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>Gender</ion-label>
+                  <ion-select [(ngModel)]="gender" name="gender">
+                    <ion-option value="f">Female</ion-option>
+                    <ion-option value="m">Male</ion-option>
+                  </ion-select>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>Full Retirement Benefit</ion-label>
+                  <ion-input type="number" [(ngModel)]="monthlyAtFRA" name="FRA"></ion-input>
+                </ion-item>
+              </ion-list>
+              <button margin-top ion-button full type="submit" block>Submit</button>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 
 </ion-content>
