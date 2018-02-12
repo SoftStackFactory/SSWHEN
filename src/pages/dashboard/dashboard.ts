@@ -1,8 +1,9 @@
-import {Component, ElementRef, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {Component, ElementRef, QueryList, ViewChild, ViewChildren, OnInit} from '@angular/core';
 import {AlertController, IonicPage, ModalController, NavController, NavParams, PopoverController} from 'ionic-angular';
 import {PopoverPage} from './popover-page';
 import {ModalDashboardComponent} from '../../components/modal-dashboard/modal-dashboard';
 import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
+import { CalculationsProvider } from '../../providers/calculations/calculations';
 
 @IonicPage()
 
@@ -11,23 +12,27 @@ import {LangaugePopoverComponent} from '../../components/langauge-popover/langau
   templateUrl: 'dashboard.html',
 })
 
-export class DashboardPage {
+export class DashboardPage implements OnInit {
+  
   @ViewChildren('changeText',  {read: ElementRef}) components: QueryList<ElementRef>;
   data = 'monthly';
   editable = false;
-  
-  // GET THIS DATA FROM SERVICE
-  chartDataMonthly: any;
-  chartDataCumulative: any;
+  chartType: string = 'line';
+  retYears: any[] = [];
+  monthlyPay: any[] = [];
+  totalAccumulated: any[] = [];
+  lifeExpectancy: number;
+  benefitAtFRA: number;
+  ageFRA: number;
 
-  retirementAge: any;
-  payout: any;
+
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
               public popoverCtrl: PopoverController, 
               public modalCtrl: ModalController, 
-              public alertCtrl: AlertController) {}
+              public alertCtrl: AlertController,
+              public calculations$: CalculationsProvider) {}
 
   isEditable() {
     if (this.editable = false) {
@@ -54,18 +59,19 @@ export class DashboardPage {
     });
   }
 
-  presentModal() {
-    let modal = this.modalCtrl.create(ModalDashboardComponent);
-    let ev = {
-      target: {
-        getBoundingClientRect: () => {
-          return {
-            top: '100'
-          };
-        }
-      }
-    };
-    modal.present({ev});
+  presentModal(type) {
+    let modal = this.modalCtrl.create(ModalDashboardComponent, type);
+    // let ev = {
+    //   target: {
+    //     getBoundingClientRect: () => {
+    //       return {
+    //         top: '100'
+    //       };
+    //     }
+    //   }
+    // };
+    // modal.present({ev});
+    modal.present();
   }
 
   showPrompt() {
@@ -94,6 +100,15 @@ export class DashboardPage {
       ]
     });
     prompt.present();
+  }
+  
+    ngOnInit() {
+    this.retYears = this.calculations$.retirementYears;
+    this.monthlyPay = [ {data: this.calculations$.monthlyArray, label: 'Monthly Payout per Retirement Year'} ];
+    this.totalAccumulated = [ {data: this.calculations$.cumulativeArray, label: 'Cumulative Benefits per Retirement Year'} ];
+    this.lifeExpectancy = this.calculations$.lifeExpect;
+    this.benefitAtFRA = this.calculations$.FRAbenefitAmount;
+    this.ageFRA = this.calculations$.fullRetAge;
   }
 
 

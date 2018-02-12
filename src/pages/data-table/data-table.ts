@@ -9,17 +9,17 @@ import { Component, Input, OnInit } from '@angular/core';
 
 export class DataTablePage implements OnInit {
 
-  @Input() xData: any[];
-  @Input() yData: any[];
+  @Input() leftCol: any[];
+  @Input() rightCol: any[];
   benefitData: any[] = [];
   
   constructor() {}
   
   ngOnInit() {
-        for (let i=0; i<this.xData.length; i++) {
+        for (let i=0; i<this.leftCol.length; i++) {
         let item = {
-          columnOne: this.xData[i],
-          columnTwo: this.yData[i],
+          columnOne: this.leftCol[i],
+          columnTwo: this.rightCol[i],
         };
       this.benefitData.push(item);
     }

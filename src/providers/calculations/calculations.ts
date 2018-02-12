@@ -25,11 +25,15 @@ export class CalculationsProvider {
   pvOfBenefits: any = [];
   
   tableData: any[] = [];
+  
+  FRAbenefitAmount: number;
 
   benefitData: any;
 
   monthlyBenefit(pia, gender, dob) {
 
+    this.FRAbenefitAmount = pia;
+    
     //set average life expectancy based on gender
 
     if (gender === "m") {
@@ -105,8 +109,8 @@ export class CalculationsProvider {
       }
       this.tableData.push(item);
     }
-    
     console.log("tableData: ",this.tableData);
+    
     
     this.benefitData = {
       retYears: this.retirementYears,
@@ -115,7 +119,7 @@ export class CalculationsProvider {
       pv: this.pvOfBenefits
     }
 
-    console.log("Full Retirement Age: ", this.fullRetAge / 12);
+    console.log("Full Retirement Age: ", Math.round(this.fullRetAge / 12));
     console.log("Average life expectancy for this gender " + this.lifeExpect / 12 + " years");
     console.log("Monthly Benefits per Retirement Year", this.monthlyArray);
     console.log("Total Cumulative Benefits per Retirement Year", this.cumulativeArray);
