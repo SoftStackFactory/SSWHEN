@@ -4,18 +4,13 @@ import {PopoverPage} from './popover-page';
 import {ModalDashboardComponent} from '../../components/modal-dashboard/modal-dashboard';
 import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
 
-/**
- * Generated class for the DashboardPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
+
 @Component({
   selector: 'page-dashboard',
   templateUrl: 'dashboard.html',
 })
+
 export class DashboardPage {
   @ViewChildren('changeText',  {read: ElementRef}) components: QueryList<ElementRef>;
   data = 'monthly';
@@ -28,19 +23,11 @@ export class DashboardPage {
   retirementAge: any;
   payout: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, public modalCtrl: ModalController, public alertCtrl: AlertController) {
-    
-    // JUST FILLER DATE
-    // GET THIS FROM ONCLICK EVENTS
-    this.retirementAge = "62";
-    this.payout = 1456;
-    
-  }
-  
-  
-
-  ionViewDidEnter() {
-  }
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              public popoverCtrl: PopoverController, 
+              public modalCtrl: ModalController, 
+              public alertCtrl: AlertController) {}
 
   isEditable() {
     if (this.editable = false) {
@@ -109,8 +96,5 @@ export class DashboardPage {
     prompt.present();
   }
 
-  ionViewDidLoad() {
-    // console.log('ionViewDidLoad DashboardPage');
-  }
 
 }

@@ -1,29 +1,31 @@
-<ion-row no-padding>
+
+<ion-row no-padding *ngIf="yAxis">
     <ion-col>
         <canvas baseChart
-            [datasets]="barChartData"
-            [labels]="barChartLabels"
+            [datasets]="yAxis"
+            [labels]="xAxis"
             [options]="barChartOptions"
             [legend]="barChartLegend"
-            [chartType]="barChartType"
-            (chartClick)="chartClicked($event)"
-            >
+            [chartType]="ChartType"
+        >
         </canvas>
     </ion-col>
 </ion-row>
-<ion-row>
-    <ion-col style="text-align: center;">
-        Retirement Age
-    </ion-col>
-    <ion-col style="text-align: center;">
-        Payout
-    </ion-col>
-</ion-row>
-<ion-row>
-    <ion-col style="text-align: center;">
-        {{ retirementAge }}
-    </ion-col>
-    <ion-col style="text-align: center;">
-        {{ payout }}
-    </ion-col>
-</ion-row>
+
+<!--I'm sorry, but I couldn't get this feature to work after implementing parent-child communication-->
+<!--<ion-row>-->
+<!--    <ion-col style="text-align: center;">-->
+<!--        Retirement Age-->
+<!--    </ion-col>-->
+<!--    <ion-col style="text-align: center;">-->
+<!--        Payout-->
+<!--    </ion-col>-->
+<!--</ion-row>-->
+<!--<ion-row>-->
+<!--    <ion-col style="text-align: center;">-->
+<!--        {{ this.retirementAge }}-->
+<!--    </ion-col>-->
+<!--    <ion-col style="text-align: center;">-->
+<!--        {{ this.payout }}-->
+<!--    </ion-col>-->
+<!--</ion-row>-->

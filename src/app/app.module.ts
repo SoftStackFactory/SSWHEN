@@ -27,6 +27,7 @@ import { LangaugePopoverComponent } from '../components/langauge-popover/langaug
 import { MockDataProvider } from '../providers/mock-data/mock-data';
 import { ModalDashboardComponent } from '../components/modal-dashboard/modal-dashboard';
 import { ModalHistoryComponent } from '../components/modal-history/modal-history';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ModalHistoryComponent } from '../components/modal-history/modal-history
     BrowserModule,
     ChartsModule,
     HttpModule,
+    IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -81,7 +83,6 @@ import { ModalHistoryComponent } from '../components/modal-history/modal-history
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserDataProvider,
     UserDataProvider,
     CalculationsProvider,
     MockDataProvider

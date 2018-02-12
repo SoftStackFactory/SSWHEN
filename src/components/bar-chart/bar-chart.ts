@@ -1,55 +1,60 @@
-import { Component } from '@angular/core';
+// Re-usable agnostic chart. chart type, x & y axis data fed in by parent page
 
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'bar-chart',
   templateUrl: 'bar-chart.html'
 })
+
 export class BarChartComponent {
-  retirementAge: any;
-  payout: any;
   
-  // mock data for charts
-  mockLabels: string[] = ['62', '63', '64', '65', '66', '67', '68', '69', '70'];
-  mockChartData: any[] = [1050, 1100, 1200, 1300, 1400, 1540, 1650, 1782, 1860, 1945];
-  chartData: any;
+  @Input() ChartType: string;
+  @Input() xAxis: any[];
+  @Input() yAxis: any[];
+  // retirementAge: any;
+  // payout: any;
+
+  constructor() {}
   
   public barChartOptions:any = {
-    scaleShowVerticalLines: false,
     responsive: true,
-    tooltips: {
-      enabled: false,
+    maintainAspectRatio: true,
+    scaleShowVerticalLines: false,
+    tooltips: { enabled: false },
+    events: ['click'],
+    legend: {
+      display: false,
+      labels: {
+        boxWidth: 0,
+        fontSize: 12,
+        fontStyle: 'bold',
+      }
     }
-    // scales: {
-    //     yAxes: [{id: 'y-axis-1', type: 'linear', position: 'left', ticks: {min: 500, max:2500}}]
-    //   }
   };
-  public barChartLabels:string[] = this.mockLabels;
-  public barChartType:string = 'bar';
   public barChartLegend:boolean = false;
-  public barChartData:any[] = [
-    {data: this.mockChartData, label: 'Monthly Payout'}
+  public ChartColors: Array<any> = [{
+    backgroundColor: 'rgba(148,159,177,0.2)',
+    borderColor: 'rgba(148,159,177,1)',
+    pointBackgroundColor: 'rgba(148,159,177,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+  }];
 
-  ];
   // events
   public chartClicked(e:any):void {
-    // Update retirementAge and payout on current page with
-    // the reitrement age and monthly payout from clicked bar
-    // this.retirementAge = e.active[0]._chart.data.labels[e._index]
-    this.retirementAge = e.active[0]._chart.data.labels[e.active[0]._index];
-    
-    
-    this.payout = e.active[0]._chart.data.datasets[0].data[e.active[0]._index]
-    
-    
-    console.log(e.active[0]._chart.data.datasets[0].data[e.active[0]._index]);
-    console.log(e.active[0]._chart.data.labels[e.active[0]._index]);
+    if (e.active.length > 0) {
+      this.retirementAge = e.active[0]._chart.data.labels[e.active[0]._index];
+      this.payout = e.active[0]._chart.data.datasets[0].data[e.active[0]._index];
+      console.log("You clicked a Bar");
+      // console.log("At retirementAge: ", this.retirementAge);
+      // console.log("The payout is: ", this.payout);
+    }
+    else {
+      console.log("You didn't click on a Bar")
+    }
     console.log(e);
   };
-
-
-  constructor() {
-
-  }
 
 }
