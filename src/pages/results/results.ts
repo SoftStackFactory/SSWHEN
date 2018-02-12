@@ -14,17 +14,20 @@ import { Storage } from '@ionic/storage';
 })
 
 export class ResultsPage implements OnInit {
-  results: any;
+  display: any;
   chartType: string = 'bar';
-  horizontalAxis: any[] = [];
-  verticalAxis: any[] = [];
-  // horizontalAxis: any[] = [62,63,64,65,66,67,68,69,70];
-  // verticalAxis: any[] = [1114,1421.4,1528.8,1636.2,1743.6,1851,2016.33,2181.67,2347];
+  retYears: any[] = [];
+  monthlyPay: any[] = [];
+  leftCol: any[] = [];
+  rightCol: any[] = [];
+  // tabulatedData: any[] = [];
+
   
+  results: any;
   pia: number;
   gender: any;
   dob: any;
-  dataa: any;
+  dataa: any[] = [];
   
   constructor(
     public navCtrl: NavController, 
@@ -34,7 +37,7 @@ export class ResultsPage implements OnInit {
     public calculations$: CalculationsProvider,
     private storage: Storage
     ) {
-    this.results = "graph";
+    this.display = "graph";
   }
   
   goToRegister(params){
@@ -101,32 +104,41 @@ export class ResultsPage implements OnInit {
     confirm.present();
   }
   
-  // ionViewWillEnter() {
+  ionViewWillEnter() {
   // ngOnInit() {
-  //   this.storage.get("inputData").then((val) => {
-  //     this.pia = val.pia;
-  //     this.gender = val.gender;
-  //     this.dob = val.dob;
-  //     this.dataa = this.calculations$.monthlyBenefit(this.pia, this.gender, this.dob);
-  //     //this.storage.clear();
-  //     console.log(this.dataa);
-  //     console.log(this.dataa.monthly);
-  //   });
-  //   //   this.horizontalAxis = this.calculations$.retirementYears;
-  //   //   this.verticalAxis = [ {data: this.calculations$.monthlyArray, label: 'Monthly Payout per Retirement Year'} ];
-  //   this.horizontalAxis = this.dataa.retYears;
-  //   this.verticalAxis = [ {data: this.dataa.monthly, label: 'Monthly Payout per Retirement Year'} ];
-  // }
-
-// this.pia, this.gender, this.dob, and this.dataa are not accessable outside of the storage.get method
-// The next lines of code don't seem to get those properties in time
-// Therefore I cannot populate this.horizontalAxis and this.verticalAxis for the charts
+    this.dataa = [];
+    this.storage.get("inputData").then((val) => {
+      this.pia = val.pia;
+      this.gender = val.gender;
+      this.dob = val.dob;
+      this.results = this.calculations$.monthlyBenefit(this.pia, this.gender, this.dob);
+      this.storage.clear();
+      console.log(this.results);
+      for(let i = 0; i < this.results.retYears.length; i++){
+        let item = {
+          retYear: this.results.retYears[i],
+          monthlyPay: this.results.monthly[i],
+          cumulativePay: this.results.cumulative[i]
+        }
+        this.dataa.push(item);
+      }
+      console.log(this.dataa);
+    });
+    // Assigning data to horizontal & vertical Axis doesn't seem to work here
+    // Is this.dataa is not accessable outside of the storage.get method ?
+    // console.log(this.dataa);
+    // for (let i of this.dataa) {
+    //   this.retYears.push(i.retYear);
+    //   this.monthlyPay.push(i.monthlyPay);
+    // }
+  }
 
   ngOnInit() {
-      this.horizontalAxis = this.calculations$.retirementYears;
-      this.verticalAxis = [ {data: this.calculations$.monthlyArray, label: 'Monthly Payout per Retirement Year'} ];
-      console.log(this.horizontalAxis);
-      console.log(this.verticalAxis);
+      this.retYears = this.calculations$.retirementYears;
+      this.monthlyPay = [ {data: this.calculations$.monthlyArray, label: 'Monthly Payout per Retirement Year'} ];
+      this.leftCol = this.calculations$.retirementYears;
+      this.rightCol = this.calculations$.monthlyArray;
+      // this.tabulatedData = this.calculations$.tableData;
   }
 
 }

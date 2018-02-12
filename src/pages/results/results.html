@@ -20,7 +20,7 @@
     
     <!-- Segments  -->
     <div>
-      <ion-segment [(ngModel)]="results">
+      <ion-segment [(ngModel)]="display">
         <ion-segment-button value="graph">
           Graph
         </ion-segment-button>
@@ -32,9 +32,9 @@
     
     <ion-row align-items-center no-padding>
       <ion-col>
-        <div [ngSwitch]="results">
+        <div [ngSwitch]="display">
           <div *ngSwitchCase="'graph'">
-            <ion-card>
+            <ion-card *ngIf="this.monthlyPay">
               <ion-card-header style="text-align: center">
                 Monthly Payout
                 <br> 
@@ -44,17 +44,20 @@
               </ion-card-header>
               <ion-card-content>
                 <ion-grid no-padding>
-                  <bar-chart
+                  <charts
                   [ChartType]="chartType"
-                  [xAxis]="horizontalAxis" 
-                  [yAxis]="verticalAxis"
-                  ></bar-chart>
+                  [xAxis]="retYears" 
+                  [yAxis]="monthlyPay"
+                  ></charts>
                 </ion-grid>
               </ion-card-content>
             </ion-card>
           </div>
           <div *ngSwitchCase="'chart'">
-            <page-data-table></page-data-table>
+            <page-data-table 
+              [xData]="leftCol"
+              [yData]="rightCol"
+              ></page-data-table>
           </div>
         </div>
       </ion-col>

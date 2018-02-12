@@ -23,14 +23,14 @@ export class InfoInputPage {
 
   logForm() {
     
-    // this.storage.clear().then((val) => {
-    //   this.storage.set("inputData",  
-    //     {
-    //       pia : this.monthlyAtFRA,
-    //       gender: this.gender,
-    //       dob: this.myDate
-    //     })
-    // });
+    this.storage.clear().then((val) => {
+      this.storage.set("inputData",  
+        {
+          pia : this.monthlyAtFRA,
+          gender: this.gender,
+          dob: this.myDate
+        })
+    });
     
     console.log(this.myDate);
     console.log(this.gender);

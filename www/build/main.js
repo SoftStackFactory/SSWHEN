@@ -1,4 +1,4 @@
-webpackJsonp([11],{
+webpackJsonp([10],{
 
 /***/ 118:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -6,7 +6,7 @@ webpackJsonp([11],{
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EmailModalPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register_register__ = __webpack_require__(37);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -64,7 +64,7 @@ var EmailModalPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__landing_landing__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -131,46 +131,42 @@ webpackEmptyAsyncContext.id = 130;
 var map = {
 	"../pages/app-description/app-description.module": [
 		474,
-		10
+		9
 	],
 	"../pages/dashboard/dashboard.module": [
 		475,
-		9
-	],
-	"../pages/data-table/data-table.module": [
-		476,
 		8
 	],
 	"../pages/email-modal/email-modal.module": [
-		477,
+		476,
 		7
 	],
 	"../pages/history/history.module": [
-		478,
+		477,
 		6
 	],
 	"../pages/info-input/info-input.module": [
-		479,
+		478,
 		5
 	],
 	"../pages/landing/landing.module": [
-		480,
+		479,
 		4
 	],
 	"../pages/login/login.module": [
-		481,
+		480,
 		3
 	],
 	"../pages/profile/profile.module": [
-		482,
+		481,
 		2
 	],
 	"../pages/register/register.module": [
-		483,
+		482,
 		1
 	],
 	"../pages/results/results.module": [
-		484,
+		483,
 		0
 	]
 };
@@ -196,7 +192,7 @@ module.exports = webpackAsyncContext;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PopoverPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__profile_profile__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__landing_landing__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__history_history__ = __webpack_require__(64);
@@ -255,7 +251,7 @@ var PopoverPage = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalHistoryComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -314,7 +310,7 @@ var ModalHistoryComponent = (function () {
     };
     ModalHistoryComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'modal-history',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/components/modal-history/modal-history.html"*/'<ion-header>\n  <ion-toolbar>\n    <ion-title> Modal Popup</ion-title>\n    <ion-buttons start>\n      <button ion-button (click)="dismiss()"><span ion-text color="primary" showWhen="ios, browser">Cancel</span>\n        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n<ion-grid no-padding>\n  <ion-row align-items-center no-padding>\n    <ion-col>\n      <ion-card>\n        <ion-card-content padding-horizontal>\n          <div>\n            <ion-segment [(ngModel)]="data">\n              <ion-segment-button value="monthly">\n                Monthly\n              </ion-segment-button>\n              <ion-segment-button value="cumulative">\n                Cumulative\n              </ion-segment-button>\n              <ion-segment-button value="other">\n                Other\n              </ion-segment-button>\n            </ion-segment>\n          </div>\n\n          <div [ngSwitch]="data">\n            <ion-list *ngSwitchCase="\'monthly\'">\n              <ion-row padding-top>\n                <ion-col>\n                  <p #changeText>Monthly Contributions</p>\n                </ion-col>\n              </ion-row>\n              <ion-row no-padding>\n                <ion-col>\n                  <bar-chart></bar-chart>\n                </ion-col>\n              </ion-row>\n              <ion-row no-padding>\n                <ion-col>\n                  <div class="table">\n                    <div class="table-row row header">\n                      <div class="table-col col">Header 1</div>\n                      <div class="table-col col">Header 2</div>\n                      <div class="table-col col">Header 3</div>\n                      <div class="table-col col">Header 4</div>\n                    </div>\n                    <div class="table-row row">\n                      <div class="table-col col">1</div>\n                      <div class="table-col col">2</div>\n                      <div class="table-col col">3</div>\n                      <div class="table-col col">4</div>\n                    </div>\n                    <div class="table-row row">\n                      <div class="table-col col">1</div>\n                      <div class="table-col col">2</div>\n                      <div class="table-col col">3</div>\n                      <div class="table-col col">4</div>\n                    </div>\n                    <div class="table-row row">\n                      <div class="table-col col">1</div>\n                      <div class="table-col col">2</div>\n                      <div class="table-col col">3</div>\n                      <div class="table-col col">4</div>\n                    </div>\n                  </div>\n                </ion-col>\n              </ion-row>\n            </ion-list>\n\n            <ion-list *ngSwitchCase="\'cumulative\'">\n              <ion-row padding-top>\n                <ion-col>\n                  <p #changeText>Cumulative Contributions</p>\n                </ion-col>\n              </ion-row>\n              <ion-row no-padding>\n                <ion-col>\n                  <bar-chart></bar-chart>\n                </ion-col>\n              </ion-row>\n              <ion-row no-padding>\n                <ion-col>\n                  <div class="table">\n                    <div class="table-row row header">\n                      <div class="table-col col">Header 1</div>\n                      <div class="table-col col">Header 2</div>\n                      <div class="table-col col">Header 3</div>\n                      <div class="table-col col">Header 4</div>\n                    </div>\n                    <div class="table-row row">\n                      <div class="table-col col">1</div>\n                      <div class="table-col col">2</div>\n                      <div class="table-col col">3</div>\n                      <div class="table-col col">4</div>\n                    </div>\n                    <div class="table-row row">\n                      <div class="table-col col">1</div>\n                      <div class="table-col col">2</div>\n                      <div class="table-col col">3</div>\n                      <div class="table-col col">4</div>\n                    </div>\n                    <div class="table-row row">\n                      <div class="table-col col">1</div>\n                      <div class="table-col col">2</div>\n                      <div class="table-col col">3</div>\n                      <div class="table-col col">4</div>\n                    </div>\n                  </div>\n                </ion-col>\n              </ion-row>\n            </ion-list>\n\n            <ion-list *ngSwitchCase="\'other\'">\n              <ion-row padding-top>\n                <ion-col>\n                  <p #changeText>Other Contributions</p>\n                </ion-col>\n              </ion-row>\n              <ion-row no-padding>\n                <ion-col>\n                  <img src="../../assets/imgs/logo.png">\n                </ion-col>\n              </ion-row>\n              <ion-row no-padding>\n                <ion-col>\n                  <div class="table">\n                    <div class="table-row row header">\n                      <div class="table-col col">Header 1</div>\n                      <div class="table-col col">Header 2</div>\n                      <div class="table-col col">Header 3</div>\n                      <div class="table-col col">Header 4</div>\n                    </div>\n                    <div class="table-row row">\n                      <div class="table-col col">1</div>\n                      <div class="table-col col">2</div>\n                      <div class="table-col col">3</div>\n                      <div class="table-col col">4</div>\n                    </div>\n                    <div class="table-row row">\n                      <div class="table-col col">1</div>\n                      <div class="table-col col">2</div>\n                      <div class="table-col col">3</div>\n                      <div class="table-col col">4</div>\n                    </div>\n                    <div class="table-row row">\n                      <div class="table-col col">1</div>\n                      <div class="table-col col">2</div>\n                      <div class="table-col col">3</div>\n                      <div class="table-col col">4</div>\n                    </div>\n                  </div>\n                </ion-col>\n              </ion-row>\n            </ion-list>\n          </div>\n        </ion-card-content>\n      </ion-card>\n    </ion-col>\n  </ion-row>\n  <ion-row padding-horizontal>\n    <ion-col>\n      <button ion-button full (click)="showPrompt()" #changeText>Email Result</button>\n    </ion-col>\n  </ion-row>\n</ion-grid>\n</ion-content>'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/components/modal-history/modal-history.html"*/
+            selector: 'modal-history',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/components/modal-history/modal-history.html"*/'<ion-header>\n  <ion-toolbar>\n    <ion-title> Modal Popup</ion-title>\n    <ion-buttons start>\n      <button ion-button (click)="dismiss()"><span ion-text color="primary" showWhen="ios, browser">Cancel</span>\n        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n<ion-grid no-padding>\n  <ion-row align-items-center no-padding>\n    <ion-col>\n      <ion-card>\n        <ion-card-content padding-horizontal>\n          <div>\n            <ion-segment [(ngModel)]="data">\n              <ion-segment-button value="monthly">\n                Monthly\n              </ion-segment-button>\n              <ion-segment-button value="cumulative">\n                Cumulative\n              </ion-segment-button>\n              <ion-segment-button value="other">\n                Other\n              </ion-segment-button>\n            </ion-segment>\n          </div>\n\n          <div [ngSwitch]="data">\n            <ion-list *ngSwitchCase="\'monthly\'">\n              <ion-row padding-top>\n                <ion-col>\n                  <p #changeText>Monthly Contributions</p>\n                </ion-col>\n              </ion-row>\n              <ion-row no-padding>\n                <ion-col>\n                  <charts></charts>\n                </ion-col>\n              </ion-row>\n              <ion-row no-padding>\n                <ion-col>\n                  <div class="table">\n                    <div class="table-row row header">\n                      <div class="table-col col">Header 1</div>\n                      <div class="table-col col">Header 2</div>\n                      <div class="table-col col">Header 3</div>\n                      <div class="table-col col">Header 4</div>\n                    </div>\n                    <div class="table-row row">\n                      <div class="table-col col">1</div>\n                      <div class="table-col col">2</div>\n                      <div class="table-col col">3</div>\n                      <div class="table-col col">4</div>\n                    </div>\n                    <div class="table-row row">\n                      <div class="table-col col">1</div>\n                      <div class="table-col col">2</div>\n                      <div class="table-col col">3</div>\n                      <div class="table-col col">4</div>\n                    </div>\n                    <div class="table-row row">\n                      <div class="table-col col">1</div>\n                      <div class="table-col col">2</div>\n                      <div class="table-col col">3</div>\n                      <div class="table-col col">4</div>\n                    </div>\n                  </div>\n                </ion-col>\n              </ion-row>\n            </ion-list>\n\n            <ion-list *ngSwitchCase="\'cumulative\'">\n              <ion-row padding-top>\n                <ion-col>\n                  <p #changeText>Cumulative Contributions</p>\n                </ion-col>\n              </ion-row>\n              <ion-row no-padding>\n                <ion-col>\n                  <charts></charts>\n                </ion-col>\n              </ion-row>\n              <ion-row no-padding>\n                <ion-col>\n                  <div class="table">\n                    <div class="table-row row header">\n                      <div class="table-col col">Header 1</div>\n                      <div class="table-col col">Header 2</div>\n                      <div class="table-col col">Header 3</div>\n                      <div class="table-col col">Header 4</div>\n                    </div>\n                    <div class="table-row row">\n                      <div class="table-col col">1</div>\n                      <div class="table-col col">2</div>\n                      <div class="table-col col">3</div>\n                      <div class="table-col col">4</div>\n                    </div>\n                    <div class="table-row row">\n                      <div class="table-col col">1</div>\n                      <div class="table-col col">2</div>\n                      <div class="table-col col">3</div>\n                      <div class="table-col col">4</div>\n                    </div>\n                    <div class="table-row row">\n                      <div class="table-col col">1</div>\n                      <div class="table-col col">2</div>\n                      <div class="table-col col">3</div>\n                      <div class="table-col col">4</div>\n                    </div>\n                  </div>\n                </ion-col>\n              </ion-row>\n            </ion-list>\n\n            <ion-list *ngSwitchCase="\'other\'">\n              <ion-row padding-top>\n                <ion-col>\n                  <p #changeText>Other Contributions</p>\n                </ion-col>\n              </ion-row>\n              <ion-row no-padding>\n                <ion-col>\n                  <img src="../../assets/imgs/logo.png">\n                </ion-col>\n              </ion-row>\n              <ion-row no-padding>\n                <ion-col>\n                  <div class="table">\n                    <div class="table-row row header">\n                      <div class="table-col col">Header 1</div>\n                      <div class="table-col col">Header 2</div>\n                      <div class="table-col col">Header 3</div>\n                      <div class="table-col col">Header 4</div>\n                    </div>\n                    <div class="table-row row">\n                      <div class="table-col col">1</div>\n                      <div class="table-col col">2</div>\n                      <div class="table-col col">3</div>\n                      <div class="table-col col">4</div>\n                    </div>\n                    <div class="table-row row">\n                      <div class="table-col col">1</div>\n                      <div class="table-col col">2</div>\n                      <div class="table-col col">3</div>\n                      <div class="table-col col">4</div>\n                    </div>\n                    <div class="table-row row">\n                      <div class="table-col col">1</div>\n                      <div class="table-col col">2</div>\n                      <div class="table-col col">3</div>\n                      <div class="table-col col">4</div>\n                    </div>\n                  </div>\n                </ion-col>\n              </ion-row>\n            </ion-list>\n          </div>\n        </ion-card-content>\n      </ion-card>\n    </ion-col>\n  </ion-row>\n  <ion-row padding-horizontal>\n    <ion-col>\n      <button ion-button full (click)="showPrompt()" #changeText>Email Result</button>\n    </ion-col>\n  </ion-row>\n</ion-grid>\n</ion-content>'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/components/modal-history/modal-history.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], ModalHistoryComponent);
@@ -331,7 +327,7 @@ var ModalHistoryComponent = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalDashboardComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -378,7 +374,7 @@ var ModalDashboardComponent = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__landing_landing__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_description_app_description__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__info_input_info_input__ = __webpack_require__(61);
@@ -474,66 +470,9 @@ var HomePage = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataTablePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var DataTablePage = (function () {
-    function DataTablePage(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        //mock data array for testing
-        this.benefitData = [
-            {
-                age: 62,
-                monthly: 1000,
-                cumulative: 10000
-            },
-            {
-                age: 63,
-                monthly: 2000,
-                cumulative: 20000
-            },
-            {
-                age: 64,
-                monthly: 3000,
-                cumulative: 30000
-            }
-        ];
-    }
-    DataTablePage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad DataTablePage');
-    };
-    DataTablePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-data-table',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/pages/data-table/data-table.html"*/'  <ion-card>\n    <ion-card-content>\n      <ion-grid no-padding>\n      \n      <!-- HEADER -->\n      <ion-row style="border-bottom: 2px solid black;">\n        <ion-col col-4>Retirement <br/> Age </ion-col>\n        <ion-col col-4>Monthly <br/> Payout</ion-col>\n        <ion-col col-4>Cumulative <br> Payout</ion-col>\n      </ion-row>\n                \n          <!-- DATA  -->\n    \n      <ion-row *ngFor="let result of benefitData">\n        <ion-col col-4>{{ result.age }}</ion-col>\n        <ion-col col-4>{{ result.monthly }}</ion-col>\n        <ion-col col-4>{{ result.cumulative }}</ion-col>\n      </ion-row>\n\n'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/pages/data-table/data-table.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
-    ], DataTablePage);
-    return DataTablePage;
-}());
-
-//# sourceMappingURL=data-table.js.map
-
-/***/ }),
-
-/***/ 340:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(340);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(362);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -541,18 +480,18 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 363:
+/***/ 362:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(363);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(214);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(418);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(417);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_landing_landing__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_app_description_app_description__ = __webpack_require__(60);
@@ -562,15 +501,15 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_dashboard_dashboard__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_history_history__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_profile_profile__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_user_data_user_data__ = __webpack_require__(419);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_user_data_user_data__ = __webpack_require__(418);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__providers_calculations_calculations__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_login_login__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_email_modal_email_modal__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_dashboard_popover_page__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_data_table_data_table__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_data_table_data_table__ = __webpack_require__(419);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_ng2_charts__ = __webpack_require__(420);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22_ng2_charts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_bar_chart_bar_chart__ = __webpack_require__(470);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_charts_charts__ = __webpack_require__(470);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_langauge_popover_langauge_popover__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__providers_mock_data_mock_data__ = __webpack_require__(471);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_modal_dashboard_modal_dashboard__ = __webpack_require__(174);
@@ -632,7 +571,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_20__pages_dashboard_popover_page__["a" /* PopoverPage */],
                 __WEBPACK_IMPORTED_MODULE_26__components_modal_dashboard_modal_dashboard__["a" /* ModalDashboardComponent */],
                 __WEBPACK_IMPORTED_MODULE_21__pages_data_table_data_table__["a" /* DataTablePage */],
-                __WEBPACK_IMPORTED_MODULE_23__components_bar_chart_bar_chart__["a" /* BarChartComponent */],
+                __WEBPACK_IMPORTED_MODULE_23__components_charts_charts__["a" /* ChartComponent */],
                 __WEBPACK_IMPORTED_MODULE_24__components_langauge_popover_langauge_popover__["a" /* LangaugePopoverComponent */],
                 __WEBPACK_IMPORTED_MODULE_26__components_modal_dashboard_modal_dashboard__["a" /* ModalDashboardComponent */],
                 __WEBPACK_IMPORTED_MODULE_27__components_modal_history_modal_history__["a" /* ModalHistoryComponent */]
@@ -646,7 +585,6 @@ var AppModule = (function () {
                     links: [
                         { loadChildren: '../pages/app-description/app-description.module#AppDescriptionPageModule', name: 'AppDescriptionPage', segment: 'app-description', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/data-table/data-table.module#DataTablePageModule', name: 'DataTablePage', segment: 'data-table', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/email-modal/email-modal.module#EmailModalPageModule', name: 'EmailModalPage', segment: 'email-modal', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/history/history.module#HistoryPageModule', name: 'HistoryPage', segment: 'history', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/info-input/info-input.module#InfoInputPageModule', name: 'InfoInputPage', segment: 'info-input', priority: 'low', defaultHistory: [] },
@@ -674,7 +612,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_19__pages_email_modal_email_modal__["a" /* EmailModalPage */],
                 __WEBPACK_IMPORTED_MODULE_20__pages_dashboard_popover_page__["a" /* PopoverPage */],
                 __WEBPACK_IMPORTED_MODULE_26__components_modal_dashboard_modal_dashboard__["a" /* ModalDashboardComponent */],
-                __WEBPACK_IMPORTED_MODULE_23__components_bar_chart_bar_chart__["a" /* BarChartComponent */],
+                __WEBPACK_IMPORTED_MODULE_23__components_charts_charts__["a" /* ChartComponent */],
                 __WEBPACK_IMPORTED_MODULE_24__components_langauge_popover_langauge_popover__["a" /* LangaugePopoverComponent */],
                 __WEBPACK_IMPORTED_MODULE_26__components_modal_dashboard_modal_dashboard__["a" /* ModalDashboardComponent */],
                 __WEBPACK_IMPORTED_MODULE_27__components_modal_history_modal_history__["a" /* ModalHistoryComponent */]
@@ -702,7 +640,7 @@ var AppModule = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_dashboard__ = __webpack_require__(48);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -755,7 +693,7 @@ var RegisterPage = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LandingPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register_register__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_description_app_description__ = __webpack_require__(60);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -808,13 +746,13 @@ var LandingPage = (function () {
 
 /***/ }),
 
-/***/ 418:
+/***/ 417:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(217);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(214);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(218);
@@ -855,7 +793,7 @@ var MyApp = (function () {
 
 /***/ }),
 
-/***/ 419:
+/***/ 418:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -882,6 +820,57 @@ var UserDataProvider = (function () {
 }());
 
 //# sourceMappingURL=user-data.js.map
+
+/***/ }),
+
+/***/ 419:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataTablePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+// Re-usable agnostic table. x & y data fed in by parent page
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var DataTablePage = (function () {
+    function DataTablePage() {
+        this.benefitData = [];
+    }
+    DataTablePage.prototype.ngOnInit = function () {
+        for (var i = 0; i < this.xData.length; i++) {
+            var item = {
+                columnOne: this.xData[i],
+                columnTwo: this.yData[i],
+            };
+            this.benefitData.push(item);
+        }
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Array)
+    ], DataTablePage.prototype, "xData", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Array)
+    ], DataTablePage.prototype, "yData", void 0);
+    DataTablePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-data-table',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/pages/data-table/data-table.html"*/'<ion-card>\n  <ion-card-content>\n    <ion-grid no-padding>\n\n      <!-- HEADER -->\n      <ion-row style="border-bottom: 2px solid black;">\n        <ion-col col-6 text-center>Retirement <br/> Age </ion-col>\n        <ion-col col-6 text-center>Monthly <br/> Payout</ion-col>\n      </ion-row>\n\n      <!-- DATA  -->\n      <ion-row *ngFor="let result of benefitData">\n        <ion-col col-6 text-center>{{ result.columnOne }}</ion-col>\n        <ion-col col-6 text-center>{{ result.columnTwo }}</ion-col>\n        <!--<ion-col col-4>{{ result.cumulativePay }}</ion-col>-->\n      </ion-row>\n \n    </ion-grid> \n  </ion-card-content>\n</ion-card>'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/pages/data-table/data-table.html"*/,
+        }),
+        __metadata("design:paramtypes", [])
+    ], DataTablePage);
+    return DataTablePage;
+}());
+
+//# sourceMappingURL=data-table.js.map
 
 /***/ }),
 
@@ -1142,7 +1131,7 @@ webpackContext.id = 452;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BarChartComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChartComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 // Re-usable agnostic chart. chart type, x & y axis data fed in by parent page
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1155,11 +1144,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var BarChartComponent = (function () {
-    // retirementAge: any;
-    // payout: any;
-    function BarChartComponent() {
-        this.barChartOptions = {
+var ChartComponent = (function () {
+    function ChartComponent() {
+        this.ChartOptions = {
             responsive: true,
             maintainAspectRatio: true,
             scaleShowVerticalLines: false,
@@ -1174,7 +1161,7 @@ var BarChartComponent = (function () {
                 }
             }
         };
-        this.barChartLegend = false;
+        this.ChartLegend = false;
         this.ChartColors = [{
                 backgroundColor: 'rgba(148,159,177,0.2)',
                 borderColor: 'rgba(148,159,177,1)',
@@ -1185,7 +1172,7 @@ var BarChartComponent = (function () {
             }];
     }
     // events
-    BarChartComponent.prototype.chartClicked = function (e) {
+    ChartComponent.prototype.chartClicked = function (e) {
         if (e.active.length > 0) {
             this.retirementAge = e.active[0]._chart.data.labels[e.active[0]._index];
             this.payout = e.active[0]._chart.data.datasets[0].data[e.active[0]._index];
@@ -1202,25 +1189,25 @@ var BarChartComponent = (function () {
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         __metadata("design:type", String)
-    ], BarChartComponent.prototype, "ChartType", void 0);
+    ], ChartComponent.prototype, "ChartType", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         __metadata("design:type", Array)
-    ], BarChartComponent.prototype, "xAxis", void 0);
+    ], ChartComponent.prototype, "xAxis", void 0);
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         __metadata("design:type", Array)
-    ], BarChartComponent.prototype, "yAxis", void 0);
-    BarChartComponent = __decorate([
+    ], ChartComponent.prototype, "yAxis", void 0);
+    ChartComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'bar-chart',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/components/bar-chart/bar-chart.html"*/'\n<ion-row no-padding *ngIf="yAxis">\n    <ion-col>\n        <canvas baseChart\n            [datasets]="yAxis"\n            [labels]="xAxis"\n            [options]="barChartOptions"\n            [legend]="barChartLegend"\n            [chartType]="ChartType"\n        >\n        </canvas>\n    </ion-col>\n</ion-row>\n\n<!--I\'m sorry, but I couldn\'t get this feature to work after implementing parent-child communication-->\n<!--<ion-row>-->\n<!--    <ion-col style="text-align: center;">-->\n<!--        Retirement Age-->\n<!--    </ion-col>-->\n<!--    <ion-col style="text-align: center;">-->\n<!--        Payout-->\n<!--    </ion-col>-->\n<!--</ion-row>-->\n<!--<ion-row>-->\n<!--    <ion-col style="text-align: center;">-->\n<!--        {{ this.retirementAge }}-->\n<!--    </ion-col>-->\n<!--    <ion-col style="text-align: center;">-->\n<!--        {{ this.payout }}-->\n<!--    </ion-col>-->\n<!--</ion-row>-->\n'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/components/bar-chart/bar-chart.html"*/
+            selector: 'charts',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/components/charts/charts.html"*/'\n<ion-row no-padding *ngIf="yAxis">\n    <ion-col>\n        <canvas baseChart\n            [datasets]="yAxis"\n            [labels]="xAxis"\n            [options]="ChartOptions"\n            [legend]="ChartLegend"\n            [chartType]="ChartType"\n        >\n        </canvas>\n    </ion-col>\n</ion-row>\n\n<!--I\'m sorry, but I couldn\'t get this feature to work upon implementing parent-child communication-->\n\n<!--<ion-row>-->\n<!--    <ion-col style="text-align: center;">-->\n<!--        Retirement Age-->\n<!--    </ion-col>-->\n<!--    <ion-col style="text-align: center;">-->\n<!--        Payout-->\n<!--    </ion-col>-->\n<!--</ion-row>-->\n<!--<ion-row>-->\n<!--    <ion-col style="text-align: center;">-->\n<!--        {{ this.retirementAge }}-->\n<!--    </ion-col>-->\n<!--    <ion-col style="text-align: center;">-->\n<!--        {{ this.payout }}-->\n<!--    </ion-col>-->\n<!--</ion-row>-->\n'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/components/charts/charts.html"*/
         }),
         __metadata("design:paramtypes", [])
-    ], BarChartComponent);
-    return BarChartComponent;
+    ], ChartComponent);
+    return ChartComponent;
 }());
 
-//# sourceMappingURL=bar-chart.js.map
+//# sourceMappingURL=charts.js.map
 
 /***/ }),
 
@@ -1314,7 +1301,7 @@ var mockUsers = [
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__popover_page__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_modal_dashboard_modal_dashboard__ = __webpack_require__(174);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_langauge_popover_langauge_popover__ = __webpack_require__(93);
@@ -1407,16 +1394,19 @@ var DashboardPage = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChildren"])('changeText', { read: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] }),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"]) === "function" && _a || Object)
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"])
     ], DashboardPage.prototype, "components", void 0);
     DashboardPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-dashboard',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/pages/dashboard/dashboard.html"*/'<ion-header>\n\n  <ion-navbar hideBackButton="true">\n    <ion-title>Dashboard</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="presentLanguagePopover($event)">\n        <ion-icon name="more"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n  <!--Some more details can be added here-->\n</ion-header>\n\n\n<ion-content>\n\n  <ion-grid no-padding>\n    <ion-row align-items-center padding-horizontal>\n      <ion-col align-self-start>\n        <h1>SSWhen</h1>\n      </ion-col>\n      <ion-col align-self-end>\n        <button ion-button float-end color="light" icon-left (click)="presentAccountPopover($event)">\n          <ion-icon name="person"></ion-icon>\n          <ion-icon md="md-arrow-dropdown"></ion-icon>\n        </button>\n      </ion-col>\n    </ion-row>\n\n    <ion-row align-items-center no-padding>\n      <ion-col>\n        <ion-card>\n          <ion-card-content padding-horizontal>\n            <ion-row align-items-center>\n              <ion-col>\n                <h2  #changeText>User Information</h2>\n              </ion-col>\n              <ion-col>\n                <button style="vertical-align: top;" class="btn-smaller" ion-button icon-only float-end color="dark" on-click="isEditable()">\n                  <ion-icon md="md-create"></ion-icon>\n                </button>\n              </ion-col>\n            </ion-row>\n            <ion-row align-items-start>\n              <ion-col>\n                <div #changeText><strong>Life Expectancy:</strong></div>\n                <div #changeText>62</div>\n                <ion-item *ngIf="editable">\n                  <ion-label floating>Life Expectancy</ion-label>\n                  <ion-input type="text"></ion-input>\n                </ion-item>\n              </ion-col>\n              <ion-col align-items-end>\n                <div #changeText><strong>FRA Age:</strong></div>\n                <div #changeText>65</div>\n                <ion-item *ngIf="editable">\n                  <ion-label floating>FRA Age</ion-label>\n                  <ion-input type="text"></ion-input>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n            <ion-row align-items-start>\n              <ion-col>\n                <div #changeText><strong>FRA Benefit Amount:</strong></div>\n                <div #changeText>$1,080</div>\n                <ion-item *ngIf="editable">\n                  <ion-label floating>FRA Benefit Amount</ion-label>\n                  <ion-input type="text"></ion-input>\n                </ion-item>\n              </ion-col>\n              <ion-col>\n                <div #changeText><strong>Total Tax Contribution:</strong></div>\n                <div #changeText>$40,110</div>\n                <ion-item *ngIf="editable">\n                  <ion-label floating>Total Tax Contribution</ion-label>\n                  <ion-input type="text"></ion-input>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n\n    <ion-row align-items-center no-padding>\n      <ion-col>\n        <ion-card>\n          <ion-card-content padding-horizontal>\n            <div>\n              <ion-segment [(ngModel)]="data">\n                <ion-segment-button value="monthly">\n                  Monthly\n                </ion-segment-button>\n                <ion-segment-button value="cumulative">\n                  Cumulative\n                </ion-segment-button>\n                <ion-segment-button value="other">\n                  Other\n                </ion-segment-button>\n              </ion-segment>\n            </div>\n\n            <div [ngSwitch]="data">\n              <ion-list *ngSwitchCase="\'monthly\'">\n                <ion-row padding-top>\n                  <ion-col col-8>\n                    <p #changeText>Monthly Contributions</p>\n                  </ion-col>\n                  <ion-col col-4>\n                    <a (click)="presentModal()" float-end color="primary" #changeText>View Table</a>\n                  </ion-col>\n                </ion-row>\n                <bar-chart></bar-chart>\n              </ion-list>\n\n              <ion-list *ngSwitchCase="\'cumulative\'">\n                <ion-row padding-top>\n                  <ion-col col-8>\n                    <p #changeText>Cumulative Contributions</p>\n                  </ion-col>\n                  <ion-col col-4>\n                    <a (click)="presentModal()" float-end color="primary" #changeText>View Table</a>\n                  </ion-col>\n                </ion-row>\n                <bar-chart></bar-chart>\n              </ion-list>\n\n              <ion-list *ngSwitchCase="\'other\'">\n                <ion-row padding-top>\n                  <ion-col col-8>\n                    <p #changeText>Other Contributions</p>\n                  </ion-col>\n                  <ion-col col-4>\n                    <a (click)="presentModal()" float-end color="primary" #changeText>View Table</a>\n                  </ion-col>\n                </ion-row>\n                <ion-row>\n                  <ion-col>\n                    <img src="../../assets/imgs/logo.png">\n                  </ion-col>\n                </ion-row>\n              </ion-list>\n            </div>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n    <ion-row padding-horizontal="">\n      <ion-col>\n        <button ion-button full (click)="showPrompt()" #changeText>Email Result</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <!--<ion-grid>-->\n\n  <!--  <dropdown-menu>-->\n  <!--    Account-->\n  <!--    Logout-->\n  <!--  </dropdown-menu>-->\n\n  <!--  <ion-card>-->\n  <!--    User Info Card-->\n  <!--    Edit link/button-->\n  <!--  </ion-card>-->\n\n  <!--  <ion-segments>-->\n\n  <!--    <ion-segment>-->\n  <!--      Monthly Chart-->\n  <!--      View Table button-->\n  <!--      ? helper - chart description-->\n\n  <!--      <ion-modal>-->\n  <!--        Data Table-->\n  <!--      </ion-modal>-->\n\n  <!--    </ion-segment>-->\n\n  <!--    <ion-segment>-->\n  <!--      Cumulative Chart-->\n  <!--      View Table button-->\n  <!--      ? helper - chart description-->\n\n  <!--      <ion-modal>-->\n  <!--        Data Table-->\n  <!--      </ion-modal>-->\n\n  <!--    </ion-segment>-->\n\n\n  <!--  </ion-segments>-->\n\n  <!--</ion-grid>-->\n\n</ion-content>\n'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/pages/dashboard/dashboard.html"*/,
+            selector: 'page-dashboard',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/pages/dashboard/dashboard.html"*/'<ion-header>\n\n  <ion-navbar hideBackButton="true">\n    <ion-title>Dashboard</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="presentLanguagePopover($event)">\n        <ion-icon name="more"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n  <!--Some more details can be added here-->\n</ion-header>\n\n\n<ion-content>\n\n  <ion-grid no-padding>\n    <ion-row align-items-center padding-horizontal>\n      <ion-col align-self-start>\n        <h1>SSWhen</h1>\n      </ion-col>\n      <ion-col align-self-end>\n        <button ion-button float-end color="light" icon-left (click)="presentAccountPopover($event)">\n          <ion-icon name="person"></ion-icon>\n          <ion-icon md="md-arrow-dropdown"></ion-icon>\n        </button>\n      </ion-col>\n    </ion-row>\n\n    <ion-row align-items-center no-padding>\n      <ion-col>\n        <ion-card>\n          <ion-card-content padding-horizontal>\n            <ion-row align-items-center>\n              <ion-col>\n                <h2  #changeText>User Information</h2>\n              </ion-col>\n              <ion-col>\n                <button style="vertical-align: top;" class="btn-smaller" ion-button icon-only float-end color="dark" on-click="isEditable()">\n                  <ion-icon md="md-create"></ion-icon>\n                </button>\n              </ion-col>\n            </ion-row>\n            <ion-row align-items-start>\n              <ion-col>\n                <div #changeText><strong>Life Expectancy:</strong></div>\n                <div #changeText>62</div>\n                <ion-item *ngIf="editable">\n                  <ion-label floating>Life Expectancy</ion-label>\n                  <ion-input type="text"></ion-input>\n                </ion-item>\n              </ion-col>\n              <ion-col align-items-end>\n                <div #changeText><strong>FRA Age:</strong></div>\n                <div #changeText>65</div>\n                <ion-item *ngIf="editable">\n                  <ion-label floating>FRA Age</ion-label>\n                  <ion-input type="text"></ion-input>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n            <ion-row align-items-start>\n              <ion-col>\n                <div #changeText><strong>FRA Benefit Amount:</strong></div>\n                <div #changeText>$1,080</div>\n                <ion-item *ngIf="editable">\n                  <ion-label floating>FRA Benefit Amount</ion-label>\n                  <ion-input type="text"></ion-input>\n                </ion-item>\n              </ion-col>\n              <ion-col>\n                <div #changeText><strong>Total Tax Contribution:</strong></div>\n                <div #changeText>$40,110</div>\n                <ion-item *ngIf="editable">\n                  <ion-label floating>Total Tax Contribution</ion-label>\n                  <ion-input type="text"></ion-input>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n\n    <ion-row align-items-center no-padding>\n      <ion-col>\n        <ion-card>\n          <ion-card-content padding-horizontal>\n            <div>\n              <ion-segment [(ngModel)]="data">\n                <ion-segment-button value="monthly">\n                  Monthly\n                </ion-segment-button>\n                <ion-segment-button value="cumulative">\n                  Cumulative\n                </ion-segment-button>\n                <ion-segment-button value="other">\n                  Other\n                </ion-segment-button>\n              </ion-segment>\n            </div>\n\n            <div [ngSwitch]="data">\n              <ion-list *ngSwitchCase="\'monthly\'">\n                <ion-row padding-top>\n                  <ion-col col-8>\n                    <p #changeText>Monthly Contributions</p>\n                  </ion-col>\n                  <ion-col col-4>\n                    <a (click)="presentModal()" float-end color="primary" #changeText>View Table</a>\n                  </ion-col>\n                </ion-row>\n                <charts></charts>\n              </ion-list>\n\n              <ion-list *ngSwitchCase="\'cumulative\'">\n                <ion-row padding-top>\n                  <ion-col col-8>\n                    <p #changeText>Cumulative Contributions</p>\n                  </ion-col>\n                  <ion-col col-4>\n                    <a (click)="presentModal()" float-end color="primary" #changeText>View Table</a>\n                  </ion-col>\n                </ion-row>\n                <charts></charts>\n              </ion-list>\n\n              <ion-list *ngSwitchCase="\'other\'">\n                <ion-row padding-top>\n                  <ion-col col-8>\n                    <p #changeText>Other Contributions</p>\n                  </ion-col>\n                  <ion-col col-4>\n                    <a (click)="presentModal()" float-end color="primary" #changeText>View Table</a>\n                  </ion-col>\n                </ion-row>\n                <ion-row>\n                  <ion-col>\n                    <img src="../../assets/imgs/logo.png">\n                  </ion-col>\n                </ion-row>\n              </ion-list>\n            </div>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n    <ion-row padding-horizontal="">\n      <ion-col>\n        <button ion-button full (click)="showPrompt()" #changeText>Email Result</button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <!--<ion-grid>-->\n\n  <!--  <dropdown-menu>-->\n  <!--    Account-->\n  <!--    Logout-->\n  <!--  </dropdown-menu>-->\n\n  <!--  <ion-card>-->\n  <!--    User Info Card-->\n  <!--    Edit link/button-->\n  <!--  </ion-card>-->\n\n  <!--  <ion-segments>-->\n\n  <!--    <ion-segment>-->\n  <!--      Monthly Chart-->\n  <!--      View Table button-->\n  <!--      ? helper - chart description-->\n\n  <!--      <ion-modal>-->\n  <!--        Data Table-->\n  <!--      </ion-modal>-->\n\n  <!--    </ion-segment>-->\n\n  <!--    <ion-segment>-->\n  <!--      Cumulative Chart-->\n  <!--      View Table button-->\n  <!--      ? helper - chart description-->\n\n  <!--      <ion-modal>-->\n  <!--        Data Table-->\n  <!--      </ion-modal>-->\n\n  <!--    </ion-segment>-->\n\n\n  <!--  </ion-segments>-->\n\n  <!--</ion-grid>-->\n\n</ion-content>\n'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/pages/dashboard/dashboard.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* PopoverController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* PopoverController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _f || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* PopoverController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], DashboardPage);
     return DashboardPage;
-    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=dashboard.js.map
@@ -1429,7 +1419,7 @@ var DashboardPage = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppDescriptionPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__info_input_info_input__ = __webpack_require__(61);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1488,7 +1478,7 @@ var AppDescriptionPage = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InfoInputPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__results_results__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_calculations_calculations__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(95);
@@ -1514,14 +1504,14 @@ var InfoInputPage = (function () {
         this.storage = storage;
     }
     InfoInputPage.prototype.logForm = function () {
-        // this.storage.clear().then((val) => {
-        //   this.storage.set("inputData",  
-        //     {
-        //       pia : this.monthlyAtFRA,
-        //       gender: this.gender,
-        //       dob: this.myDate
-        //     })
-        // });
+        var _this = this;
+        this.storage.clear().then(function (val) {
+            _this.storage.set("inputData", {
+                pia: _this.monthlyAtFRA,
+                gender: _this.gender,
+                dob: _this.myDate
+            });
+        });
         console.log(this.myDate);
         console.log(this.gender);
         console.log(this.monthlyAtFRA);
@@ -1550,7 +1540,7 @@ var InfoInputPage = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResultsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register_register__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__email_modal_email_modal__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__landing_landing__ = __webpack_require__(38);
@@ -1581,9 +1571,12 @@ var ResultsPage = (function () {
         this.calculations$ = calculations$;
         this.storage = storage;
         this.chartType = 'bar';
-        this.horizontalAxis = [];
-        this.verticalAxis = [];
-        this.results = "graph";
+        this.retYears = [];
+        this.monthlyPay = [];
+        this.leftCol = [];
+        this.rightCol = [];
+        this.dataa = [];
+        this.display = "graph";
     }
     ResultsPage.prototype.goToRegister = function (params) {
         if (!params)
@@ -1652,34 +1645,45 @@ var ResultsPage = (function () {
         });
         confirm.present();
     };
-    // ionViewWillEnter() {
-    // ngOnInit() {
-    //   this.storage.get("inputData").then((val) => {
-    //     this.pia = val.pia;
-    //     this.gender = val.gender;
-    //     this.dob = val.dob;
-    //     this.dataa = this.calculations$.monthlyBenefit(this.pia, this.gender, this.dob);
-    //     //this.storage.clear();
-    //     console.log(this.dataa);
-    //     console.log(this.dataa.monthly);
-    //   });
-    //   //   this.horizontalAxis = this.calculations$.retirementYears;
-    //   //   this.verticalAxis = [ {data: this.calculations$.monthlyArray, label: 'Monthly Payout per Retirement Year'} ];
-    //   this.horizontalAxis = this.dataa.retYears;
-    //   this.verticalAxis = [ {data: this.dataa.monthly, label: 'Monthly Payout per Retirement Year'} ];
-    // }
-    // this.pia, this.gender, this.dob, and this.dataa are not accessable outside of the storage.get method
-    // The next lines of code don't seem to get those properties in time
-    // Therefore I cannot populate this.horizontalAxis and this.verticalAxis for the charts
+    ResultsPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        // ngOnInit() {
+        this.dataa = [];
+        this.storage.get("inputData").then(function (val) {
+            _this.pia = val.pia;
+            _this.gender = val.gender;
+            _this.dob = val.dob;
+            _this.results = _this.calculations$.monthlyBenefit(_this.pia, _this.gender, _this.dob);
+            _this.storage.clear();
+            console.log(_this.results);
+            for (var i = 0; i < _this.results.retYears.length; i++) {
+                var item = {
+                    retYear: _this.results.retYears[i],
+                    monthlyPay: _this.results.monthly[i],
+                    cumulativePay: _this.results.cumulative[i]
+                };
+                _this.dataa.push(item);
+            }
+            console.log(_this.dataa);
+        });
+        // Assigning data to horizontal & vertical Axis doesn't seem to work here
+        // Is this.dataa is not accessable outside of the storage.get method ?
+        // console.log(this.dataa);
+        // for (let i of this.dataa) {
+        //   this.retYears.push(i.retYear);
+        //   this.monthlyPay.push(i.monthlyPay);
+        // }
+    };
     ResultsPage.prototype.ngOnInit = function () {
-        this.horizontalAxis = this.calculations$.retirementYears;
-        this.verticalAxis = [{ data: this.calculations$.monthlyArray, label: 'Monthly Payout per Retirement Year' }];
-        console.log(this.horizontalAxis);
-        console.log(this.verticalAxis);
+        this.retYears = this.calculations$.retirementYears;
+        this.monthlyPay = [{ data: this.calculations$.monthlyArray, label: 'Monthly Payout per Retirement Year' }];
+        this.leftCol = this.calculations$.retirementYears;
+        this.rightCol = this.calculations$.monthlyArray;
+        // this.tabulatedData = this.calculations$.tableData;
     };
     ResultsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-results',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/pages/results/results.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Results</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-grid no-padding>\n    \n    <!--  Before Segment -->\n    <ion-row>\n      <ion-col col-6 offset-3>\n        <h2 style="text-align:center">SSWHEN</h2>\n      </ion-col>\n    </ion-row>\n    \n    <!-- Segments  -->\n    <div>\n      <ion-segment [(ngModel)]="results">\n        <ion-segment-button value="graph">\n          Graph\n        </ion-segment-button>\n        <ion-segment-button value="chart">\n          Table\n        </ion-segment-button>\n      </ion-segment>\n    </div>\n    \n    <ion-row align-items-center no-padding>\n      <ion-col>\n        <div [ngSwitch]="results">\n          <div *ngSwitchCase="\'graph\'">\n            <ion-card>\n              <ion-card-header style="text-align: center">\n                Monthly Payout\n                <br> \n                by\n                <br>\n                Retirement Age\n              </ion-card-header>\n              <ion-card-content>\n                <ion-grid no-padding>\n                  <bar-chart\n                  [ChartType]="chartType"\n                  [xAxis]="horizontalAxis" \n                  [yAxis]="verticalAxis"\n                  ></bar-chart>\n                </ion-grid>\n              </ion-card-content>\n            </ion-card>\n          </div>\n          <div *ngSwitchCase="\'chart\'">\n            <page-data-table></page-data-table>\n          </div>\n        </div>\n      </ion-col>\n    </ion-row>\n    \n    <ion-row>\n      <ion-col col-6 offset-3>\n          <button ion-button full (click)="showPrompt()">Email Result</button>\n      </ion-col>\n    </ion-row>\n    \n    <!--Register-->\n    <ion-row>\n      <ion-col col-6 offset-3>\n          <button ion-button full on-click="goToRegister()">Register</button>\n      </ion-col>\n    </ion-row>\n    \n    \n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/pages/results/results.html"*/,
+            selector: 'page-results',template:/*ion-inline-start:"/home/ubuntu/workspace/SSWHEN/src/pages/results/results.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Results</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-grid no-padding>\n    \n    <!--  Before Segment -->\n    <ion-row>\n      <ion-col col-6 offset-3>\n        <h2 style="text-align:center">SSWHEN</h2>\n      </ion-col>\n    </ion-row>\n    \n    <!-- Segments  -->\n    <div>\n      <ion-segment [(ngModel)]="display">\n        <ion-segment-button value="graph">\n          Graph\n        </ion-segment-button>\n        <ion-segment-button value="chart">\n          Table\n        </ion-segment-button>\n      </ion-segment>\n    </div>\n    \n    <ion-row align-items-center no-padding>\n      <ion-col>\n        <div [ngSwitch]="display">\n          <div *ngSwitchCase="\'graph\'">\n            <ion-card *ngIf="this.monthlyPay">\n              <ion-card-header style="text-align: center">\n                Monthly Payout\n                <br> \n                by\n                <br>\n                Retirement Age\n              </ion-card-header>\n              <ion-card-content>\n                <ion-grid no-padding>\n                  <charts\n                  [ChartType]="chartType"\n                  [xAxis]="retYears" \n                  [yAxis]="monthlyPay"\n                  ></charts>\n                </ion-grid>\n              </ion-card-content>\n            </ion-card>\n          </div>\n          <div *ngSwitchCase="\'chart\'">\n            <page-data-table \n              [xData]="leftCol"\n              [yData]="rightCol"\n              ></page-data-table>\n          </div>\n        </div>\n      </ion-col>\n    </ion-row>\n    \n    <ion-row>\n      <ion-col col-6 offset-3>\n          <button ion-button full (click)="showPrompt()">Email Result</button>\n      </ion-col>\n    </ion-row>\n    \n    <!--Register-->\n    <ion-row>\n      <ion-col col-6 offset-3>\n          <button ion-button full on-click="goToRegister()">Register</button>\n      </ion-col>\n    </ion-row>\n    \n    \n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/home/ubuntu/workspace/SSWHEN/src/pages/results/results.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
@@ -1702,7 +1706,7 @@ var ResultsPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfilePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_dashboard__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1753,7 +1757,7 @@ var ProfilePage = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HistoryPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_langauge_popover_langauge_popover__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_modal_history_modal_history__ = __webpack_require__(173);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1829,7 +1833,7 @@ var HistoryPage = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LangaugePopoverComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1899,6 +1903,7 @@ var CalculationsProvider = (function () {
         this.monthlyArray = [];
         this.cumulativeArray = [];
         this.pvOfBenefits = [];
+        this.tableData = [];
     }
     CalculationsProvider.prototype.monthlyBenefit = function (pia, gender, dob) {
         //set average life expectancy based on gender
@@ -1953,35 +1958,39 @@ var CalculationsProvider = (function () {
             //push benefit numbers into separate arrays for use in charts
             this.monthlyArray.push(this.benefit);
             this.cumulativeArray.push(this.cumBenefit);
-            //KEEP THIS IN CASE WE NEED ARRAY OF OBJECTS FOR EACH AGE, BENEFIT, CUMULATIVE BENEFIT
-            // this.ageBenefit = {
-            //   age: targetAge / 12,
-            //   monthly: this.benefit,
-            //   cumulative: this.cumBenefit
-            // }
         }
+        // logic to calculate present value of benefits per retirement age. Discount rate is assumed at 3.5%
         var r_monthly = (this.discountRate / 12) / 100;
         for (var i = 0; i < this.retirementYears.length; i++) {
             var n = (this.lifeExpect / 12 - this.retirementYears[i]) * 12;
             this.pvOfBenefits.push(Math.round((this.monthlyArray[i]) * ((1 - Math.pow((1 + r_monthly), (-n))) / r_monthly)));
         }
+        // logic to create rows for table
+        for (var i = 0; i < this.retirementYears.length; i++) {
+            var item = {
+                retYear: this.retirementYears[i],
+                monthlyPay: this.monthlyArray[i],
+                cumulativePay: this.cumulativeArray[i]
+            };
+            this.tableData.push(item);
+        }
+        console.log("tableData: ", this.tableData);
         this.benefitData = {
             retYears: this.retirementYears,
             monthly: this.monthlyArray,
             cumulative: this.cumulativeArray,
             pv: this.pvOfBenefits
         };
-        //USE THESE FOR TESTING ONLY
         console.log("Full Retirement Age: ", this.fullRetAge / 12);
         console.log("Average life expectancy for this gender " + this.lifeExpect / 12 + " years");
         console.log("Monthly Benefits per Retirement Year", this.monthlyArray);
         console.log("Total Cumulative Benefits per Retirement Year", this.cumulativeArray);
         console.log("Present Value of Total Cumulative Benefits per Retirement Year", this.pvOfBenefits);
         console.log("benefitData:", this.benefitData);
+        //empty calculation arrays
         // this.monthlyArray = [];
         // this.cumulativeArray =[];
         // this.pvOfBenefits = [];
-        // this.benefitData = {};
         return (this.benefitData);
     };
     CalculationsProvider = __decorate([
@@ -1995,5 +2004,5 @@ var CalculationsProvider = (function () {
 
 /***/ })
 
-},[340]);
+},[339]);
 //# sourceMappingURL=main.js.map

@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
-import { BarChartComponent } from './bar-chart/bar-chart';
+import { ChartComponent } from './charts/charts';
 import { LangaugePopoverComponent } from './langauge-popover/langauge-popover';
 import { ModalHistoryComponent } from './modal-history/modal-history';
 import { ModalDashboardComponent } from './modal-dashboard/modal-dashboard';
 @NgModule({
-	declarations: [BarChartComponent,
+	declarations: [ChartComponent,
     LangaugePopoverComponent,
     ModalHistoryComponent,
     ModalDashboardComponent],
 	imports: [],
-	exports: [BarChartComponent,
+	exports: [ChartComponent,
     LangaugePopoverComponent,
     ModalHistoryComponent,
     ModalDashboardComponent]
