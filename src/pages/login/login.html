@@ -5,66 +5,57 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>login</ion-title>
+    <ion-title>Login</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
-
-
-<ion-content center text-center>
-  <ion-grid>
-        <ion-row center>
-              <ion-col>
-                <h1 no-padding no-margin>SSWHEN</h1>
-                
-                 <h3 float-center>Log In</h3>
-                
-                <ion-icon name="log-in"></ion-icon>
-                    
-                <h3 no-padding no-margin></h3>
-                
-                <ion-card>
-                  <ion-card-header>
-                    Email Address: 
-                  </ion-card-header>
-                  <ion-card-content>
-                      <ion-icon name="mail" float-right></ion-icon>
-                   <ion-input 
-                   type="email" 
-                    name="email"
-                    value=""
-                    placeholder="example@gmail.com"></ion-input>
-                  </ion-card-content>
-              
-                  <ion-card-header>
-                    Password: 
-                  </ion-card-header>
-                  <ion-card-content>
+<ion-content>
+  <ion-grid no-padding>
+    <ion-row justify-content-center padding-top padding-horizontal>
+      <ion-col>
+        <h4 text-center>SSWHEN Login
+          <ion-icon name="log-in"></ion-icon>
+        </h4>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-content>
+            <form (ngSubmit)="logForm()">
+              <ion-list>
+                <ion-item>
+                  <ion-label floating>Email Address:
+                    <ion-icon name="mail" float-right></ion-icon>
+                  </ion-label>
+                  <ion-input type="email" name="email" value=""></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-icon name="lock" float-right></ion-icon>
+                  <ion-label floating>Password:
                     <ion-icon name="lock" float-right></ion-icon>
-                    <ion-input 
-                   type="password" 
-                    name="Password"
-                    value=""
-                    placeholder="••••••••••"></ion-input>
-                  </ion-card-content>
-                </ion-card>
-                </ion-col>
-          </ion-row>
-          
-          <ion-row>
-            <button ion-button 
-        (click)="login()"
-        type="submit"
-         > 
-          Login</button> 
-          </ion-row>
-          <ion-row>
-            Forgot Password?
-          </ion-row>
-  </ion-grid>        
-        
+                  </ion-label>
+                  <ion-input type="password" name="Password" value=""></ion-input>
+                </ion-item>
+              </ion-list>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row padding-horizontal>
+      <ion-col text-center>
+        <button ion-button  full block (click)="login()" type="submit">
+          Login
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row margin-top padding-horizontal>
+      <ion-col text-center>
+        <a href="#">Forgot Password?</a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

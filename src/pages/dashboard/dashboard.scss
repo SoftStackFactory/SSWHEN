@@ -1,5 +1,8 @@
 page-dashboard {
-  .popover-md .popover-content {
+  .account-popover {
+    background: red;
+  }
+  .account-popover .popover-wrapper .popover-content {
     max-width: 140px;
   }
 

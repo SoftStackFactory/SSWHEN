@@ -1,25 +1,16 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>Back</ion-title> 
-    <!--takes the user back to the register page? -->
+    <ion-title>Profile</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content center text-center>
-  <ion-grid>
-        <ion-row center>
+<ion-content>
+  <ion-grid no-padding>
+        <ion-row  justify-content-center padding-top>
               <ion-col>
-                <h1 no-padding no-margin>SSWHEN</h1>
-                <h1 no-padding no-margin>Profile Page</h1>
-                
-                <img src='http://www.freeiconspng.com/uploads/am-a-19-year-old-multimedia-artist-student-from-manila--21.png' alt="Logo Image">
-                    
-                <h3 no-padding no-margin></h3>
-                
-                <ion-card>
+                <img style="margin: 0 auto; display: block;" src='http://www.freeiconspng.com/uploads/am-a-19-year-old-multimedia-artist-student-from-manila--21.png' alt="Logo Image">
+                <ion-card  padding-horizontal>
                   <ion-card-header>
                     Current Email Address: 
                   </ion-card-header>
@@ -34,7 +25,7 @@
                   </ion-card-content>
                 </ion-card>
                 
-                <ion-card>
+                <ion-card  padding-horizontal>
                   <ion-card-header>
                     Password: 
                   </ion-card-header>
@@ -49,7 +40,8 @@
                     placeholder="••••••••••"></ion-input>
                   </ion-card-content>
                 </ion-card>
-                
+              </ion-col>
+        </ion-row>
                  <!-- <button ion-button -->
                  <!--type="submit"-->
                  <!-- > -->
@@ -99,19 +91,23 @@
                 <!--    [minlength]="6"></ion-input>-->
                 <!--</ion-item>-->
                             
-        <!--This button will link to next page:-->
+        <!--This button will link to next page:-
         <button ion-button 
         (click)="popView()"
         type="submit"
-         > 
-        <!--[disabled]="!f.valid" to go in after submit-->
-        <!--^propery binding gets a reference to the form from above. Action: disable this if the form is not valid-->
-          Confirm Edit</button> 
+         > ->
+        <!--[disabled]="!f.valid" to go in after submit-
+        ^propery binding gets a reference to the form from above. Action: disable this if the form is not valid-
+          Confirm Edi t</button>
+        </form>  -->
 
-                <h1 no-padding no-margin></h1>
-                
-              <!--</form>  -->
-              </ion-col>
-        </ion-row>
+    <ion-row padding-horizontal>
+      <ion-col>
+        <button ion-button full
+                (click)="popView()"
+                type="submit"
+        >Confirm Edit</button>
+      </ion-col>
+    </ion-row>
   </ion-grid>  
 </ion-content>
