@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegisterPage } from '../register/register'
 import { AppDescriptionPage } from '../app-description/app-description';
+import {LoginPage} from '../login/login';
 
 /**
  * Generated class for the LandingPage page.
@@ -29,9 +30,9 @@ export class LandingPage {
     this.navCtrl.push(AppDescriptionPage);
   }
   
-  toRegister(params){
+  toLogin(params){
     if (!params) params = {};
-    this.navCtrl.push(RegisterPage);
+    this.navCtrl.push(LoginPage);
   }
 
 }

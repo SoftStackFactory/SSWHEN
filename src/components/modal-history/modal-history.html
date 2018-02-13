@@ -2,8 +2,8 @@
   <ion-toolbar>
     <ion-title> Modal Popup</ion-title>
     <ion-buttons start>
-      <button ion-button (click)="dismiss()"><span ion-text color="primary" showWhen="ios, browser">Cancel</span>
-        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      <button ion-button (click)="dismiss()">
+        <ion-icon name="close-circle"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>
@@ -169,7 +169,7 @@
   </ion-row>
   <ion-row padding-horizontal>
     <ion-col>
-      <button ion-button icon-start block full (click)="showPrompt()" #changeText><ion-icon name="clipboard"></ion-icon> Email Result</button>
+      <button ion-button icon-start block full (click)="showPrompt()" #changeText><ion-icon name="send"></ion-icon> Email Result</button>
     </ion-col>
   </ion-row>
 </ion-grid>
