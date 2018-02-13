@@ -7,26 +7,26 @@
             [options]="ChartOptions"
             [legend]="ChartLegend"
             [chartType]="ChartType"
+            (chartClick)="chartClicked($event)"
         >
         </canvas>
     </ion-col>
 </ion-row>
 
-<!--I'm sorry, but I couldn't get this feature to work upon implementing parent-child communication-->
 
-<!--<ion-row>-->
-<!--    <ion-col style="text-align: center;">-->
-<!--        Retirement Age-->
-<!--    </ion-col>-->
-<!--    <ion-col style="text-align: center;">-->
-<!--        Payout-->
-<!--    </ion-col>-->
-<!--</ion-row>-->
-<!--<ion-row>-->
-<!--    <ion-col style="text-align: center;">-->
-<!--        {{ this.retirementAge }}-->
-<!--    </ion-col>-->
-<!--    <ion-col style="text-align: center;">-->
-<!--        {{ this.payout }}-->
-<!--    </ion-col>-->
-<!--</ion-row>-->
+<ion-row>
+    <ion-col style="text-align: center;">
+        Retirement Age
+    </ion-col>
+    <ion-col style="text-align: center;">
+        Payout
+    </ion-col>
+</ion-row>
+<ion-row>
+    <ion-col style="text-align: center;">
+        {{ this.retirementAge }}
+    </ion-col>
+    <ion-col style="text-align: center;">
+        {{ this.payout }}
+    </ion-col>
+</ion-row>

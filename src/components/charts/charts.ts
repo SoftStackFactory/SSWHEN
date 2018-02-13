@@ -48,8 +48,8 @@ export class ChartComponent {
       this.retirementAge = e.active[0]._chart.data.labels[e.active[0]._index];
       this.payout = e.active[0]._chart.data.datasets[0].data[e.active[0]._index];
       console.log("You clicked a Bar");
-      // console.log("At retirementAge: ", this.retirementAge);
-      // console.log("The payout is: ", this.payout);
+      console.log("At retirementAge: ", this.retirementAge);
+      console.log("The payout is: ", this.payout);
     }
     else {
       console.log("You didn't click on a Bar")
