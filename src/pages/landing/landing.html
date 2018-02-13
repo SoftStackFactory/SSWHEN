@@ -8,7 +8,7 @@
   <ion-navbar>
     <ion-title>SSWHEN</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="toRegister()">
+      <button ion-button (click)="toRegister()">
         Login
       </button>
     </ion-buttons>
@@ -34,7 +34,7 @@
     </ion-row>
     <ion-row justify-content-center padding-horizontal>
       <ion-col>
-        <button ion-button full (click)="toAppDescription()">Begin</button>
+        <button ion-button icon-end block full (click)="toAppDescription()">Begin <ion-icon name="arrow-dropright"></ion-icon></button>
       </ion-col>
     </ion-row>
   </ion-grid>

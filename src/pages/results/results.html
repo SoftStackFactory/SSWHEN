@@ -20,7 +20,7 @@
       <ion-col>
         <ion-card>
           <ion-card-content padding-horizontal>
-            <div>
+            <div margin-bottom>
               <ion-segment [(ngModel)]="results">
                 <ion-segment-button value="graph">
                   Graph
@@ -58,10 +58,12 @@
     
     <ion-row padding-horizontal>
       <ion-col margin-right>
-          <button ion-button block (click)="showPrompt()">Email Result</button>
+          <button ion-button icon-start block (click)="showPrompt()"><ion-icon name="send"></ion-icon>
+            Email Result</button>
       </ion-col>
       <ion-col margin-left>
-        <button ion-button block  on-click="goToRegister()">Register</button>
+        <button ion-button icon-start block on-click="goToRegister()"><ion-icon name="clipboard"></ion-icon>
+          Register</button>
       </ion-col>
     </ion-row>
 

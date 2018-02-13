@@ -1,5 +1,4 @@
 <ion-header>
-
   <ion-navbar hideBackButton="true">
     <ion-title>Dashboard</ion-title>
     <ion-buttons end>
@@ -8,8 +7,6 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-
-  <!--Some more details can be added here-->
 </ion-header>
 
 
@@ -21,9 +18,9 @@
         <h1>SSWhen</h1>
       </ion-col>
       <ion-col align-self-end>
-        <button ion-button float-end color="light" icon-left (click)="presentAccountPopover($event)">
+        <button ion-button float-end color="light" icon-end (click)="presentAccountPopover($event)">
           <ion-icon name="person"></ion-icon>
-          <ion-icon md="md-arrow-dropdown"></ion-icon>
+          <ion-icon name="arrow-dropdown"></ion-icon>
         </button>
       </ion-col>
     </ion-row>
@@ -38,7 +35,7 @@
               </ion-col>
               <ion-col>
                 <button style="vertical-align: top;" class="btn-smaller" ion-button icon-only float-end color="dark" on-click="isEditable()">
-                  <ion-icon md="md-create"></ion-icon>
+                  <ion-icon name="create"></ion-icon>
                 </button>
               </ion-col>
             </ion-row>
@@ -148,7 +145,7 @@
     </ion-row>
     <ion-row padding-horizontal>
       <ion-col>
-        <button ion-button full (click)="showPrompt()" #changeText>Email Result</button>
+        <button ion-button icon-start block full (click)="showPrompt()" #changeText><ion-icon name="send"></ion-icon> Email Result</button>
       </ion-col>
     </ion-row>
   </ion-grid>

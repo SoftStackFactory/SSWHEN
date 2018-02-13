@@ -1,77 +1,82 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Register Page</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Registration</ion-title>
+    </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
-<ion-grid>
-    <h1 id ="logo">SSWHEN</h1>
-    
-    <!--IONIC CARD CONTAINER-->
-    <ion-card>
-      <ion-card-content>
-          <ion-list>
-              
-     <!--MARITAL STATUS-->
-            <ion-item>
-              <ion-label>Marital Status</ion-label>
-                 <ion-select [(ngModel)]="maritalStatus">
-                  <ion-option value="single">Single</ion-option>
-                  <ion-option value="married">Married</ion-option>
-                 </ion-select>
-             </ion-item>
-             
-     <!--TOTAL TAX CONTRIBUTION-->
-              <ion-item>
-                <ion-label floating>Total Tax Contribution</ion-label>
-                <ion-input type="text" [(ngModel)]="totalTaxContribution"></ion-input>
-              </ion-item>
-   
-     <!--EMAIL-->
-            <ion-item>
-                <ion-label floating>Email</ion-label>
-                <ion-input type="text" [(ngModel)]="email"></ion-input>
-             </ion-item>
-             
-    <!--COFNIRM EMAIL-->
-              <ion-item>
-                <ion-label floating>Confirm Email</ion-label>
-                <ion-input type="text"></ion-input>
-              </ion-item>
-              
-    <!--PASSWORD-->
-              <ion-item>
-                <ion-label floating>Password</ion-label>
-                <ion-input type="password" [(ngModel)]="password"></ion-input>
-              </ion-item>
-              
-    <!--CONFIRM PASSWORD-->
-              <ion-item>
-                <ion-label floating>Confirm Password</ion-label>
-                <ion-input type="password"></ion-input>
-              </ion-item>
-    </ion-list>
-  </ion-card-content>
-</ion-card>
+<ion-content>
+    <ion-grid no-padding>
+        <ion-row justify-content-center padding-horizontal>
+            <ion-col>
+                <h4 text-center>Registar to complete your account</h4>
+                <p text-center> Please fill out all the following information</p>
+            </ion-col>
+        </ion-row>
+        <ion-row justify-content-center>
+            <ion-col>
+                <!--IONIC CARD CONTAINER-->
+                <ion-card>
+                    <ion-card-content>
+                        <ion-list>
 
-<ion-row justify-content-center>
-    <!--ION BUTTON-->
-    <button ion-button (click)='toDashboard()'>Register</button>
-    <!--change that so it routes to the next page-->
-</ion-row>
+                            <!--MARITAL STATUS-->
+                            <ion-item>
+                                <ion-label>Marital Status</ion-label>
+                                <ion-select [(ngModel)]="maritalStatus">
+                                    <ion-option value="single">Single</ion-option>
+                                    <ion-option value="married">Married</ion-option>
+                                </ion-select>
+                            </ion-item>
+
+                            <!--TOTAL TAX CONTRIBUTION-->
+                            <ion-item>
+                                <ion-label floating>Total Tax Contribution</ion-label>
+                                <ion-input type="text" [(ngModel)]="totalTaxContribution"></ion-input>
+                            </ion-item>
+
+                            <!--EMAIL-->
+                            <ion-item>
+                                <ion-label floating>Email</ion-label>
+                                <ion-input type="text" [(ngModel)]="email"></ion-input>
+                            </ion-item>
+
+                            <!--COFNIRM EMAIL-->
+                            <ion-item>
+                                <ion-label floating>Confirm Email</ion-label>
+                                <ion-input type="text"></ion-input>
+                            </ion-item>
+
+                            <!--PASSWORD-->
+                            <ion-item>
+                                <ion-label floating>Password</ion-label>
+                                <ion-input type="password" [(ngModel)]="password"></ion-input>
+                            </ion-item>
+
+                            <!--CONFIRM PASSWORD-->
+                            <ion-item>
+                                <ion-label floating>Confirm Password</ion-label>
+                                <ion-input type="password"></ion-input>
+                            </ion-item>
+                        </ion-list>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+        <ion-row padding-horizontal>
+            <!--ION BUTTON-->
+            <button ion-button block full (click)='toDashboard()'>Register</button>
+            <!--change that so it routes to the next page-->
+        </ion-row>
 
 
+        <!--TEST NG MODEL DATA BINDING WILL DELETE-->
+        <!--https://codeburst.io/angular-4-custom-validation-for-template-based-forms-b7dee9be48a6-->
+        <!--<p>{{totalTaxContribution}}</p>-->
+        <!--<p>{{maritalStatus}}</p>-->
+        <!--<p>{{email}}</p>-->
+        <!--<p>{{password}}</p>-->
 
-
-<!--TEST NG MODEL DATA BINDING WILL DELETE-->
-<!--https://codeburst.io/angular-4-custom-validation-for-template-based-forms-b7dee9be48a6-->
-<!--<p>{{totalTaxContribution}}</p>-->
-<!--<p>{{maritalStatus}}</p>-->
-<!--<p>{{email}}</p>-->
-<!--<p>{{password}}</p>-->
-
-<!--in using col you will want to figure out the middle size for the 12 columns-->
-</ion-grid>
+        <!--in using col you will want to figure out the middle size for the 12 columns-->
+    </ion-grid>
 </ion-content>

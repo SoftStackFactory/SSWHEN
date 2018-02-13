@@ -61,7 +61,7 @@ export class DashboardPage {
   }
 
   presentAccountPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage);
+    let popover = this.popoverCtrl.create(PopoverPage, myEvent, { cssClass: 'account-popover'});
     popover.present({
       ev: myEvent
     });
