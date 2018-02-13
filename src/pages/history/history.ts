@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component, ElementRef, QueryList, ViewChildren} from '@angular/core';
+import { IonicPage, ModalController, NavController, NavParams, PopoverController } from 'ionic-angular';
+import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
+import {ModalHistoryComponent} from '../../components/modal-history/modal-history';
 
 /**
  * Generated class for the HistoryPage page.
@@ -14,12 +16,37 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'history.html',
 })
 export class HistoryPage {
+  @ViewChildren('changeText',  {read: ElementRef}) components: QueryList<ElementRef>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, public modalCtrl: ModalController) {
   }
 
+  presentLanguagePopover(myEvent) {
+    let popover = this.popoverCtrl.create(LangaugePopoverComponent, {
+      queryEle: this.components.toArray()
+    });
+    popover.present({
+      ev: myEvent
+    });
+  }
+
+  presentHistoryModal() {
+    let modal = this.modalCtrl.create(ModalHistoryComponent);
+    let ev = {
+      target: {
+        getBoundingClientRect: () => {
+          return {
+            top: '100'
+          };
+        }
+      }
+    };
+    modal.present({ev});
+  }
+
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HistoryPage');
+    // console.log('ionViewDidLoad HistoryPage');
   }
 
 }

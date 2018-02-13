@@ -1,7 +1,7 @@
 import {Component, ElementRef, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {AlertController, IonicPage, ModalController, NavController, NavParams, PopoverController} from 'ionic-angular';
 import {PopoverPage} from './popover-page';
-import {ModalPage} from './modal-page';
+import {ModalDashboardComponent} from '../../components/modal-dashboard/modal-dashboard';
 import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
 
 /**
@@ -24,8 +24,7 @@ export class DashboardPage {
   // GET THIS DATA FROM SERVICE
   chartDataMonthly: any;
   chartDataCumulative: any;
-  
-  
+
   retirementAge: any;
   payout: any;
 
@@ -69,7 +68,7 @@ export class DashboardPage {
   }
 
   presentModal() {
-    let modal = this.modalCtrl.create(ModalPage);
+    let modal = this.modalCtrl.create(ModalDashboardComponent);
     let ev = {
       target: {
         getBoundingClientRect: () => {
