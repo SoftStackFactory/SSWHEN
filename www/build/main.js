@@ -162,11 +162,11 @@ var map = {
 		2
 	],
 	"../pages/register/register.module": [
-		482,
+		483,
 		1
 	],
 	"../pages/results/results.module": [
-		483,
+		482,
 		0
 	]
 };
@@ -597,8 +597,8 @@ var AppModule = (function () {
                         { loadChildren: '../pages/landing/landing.module#LandingPageModule', name: 'LandingPage', segment: 'landing', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/profile/profile.module#ProfilePageModule', name: 'ProfilePage', segment: 'profile', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/results/results.module#ResultsPageModule', name: 'ResultsPage', segment: 'results', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/results/results.module#ResultsPageModule', name: 'ResultsPage', segment: 'results', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] }
                     ]
                 })
             ],
@@ -1537,7 +1537,7 @@ var DashboardPage = (function () {
         this.totalAccumulated = [{ data: this.calculations$.cumulativeArray, label: 'Cumulative Benefits per Retirement Year' }];
         this.lifeExpectancy = this.calculations$.lifeExpect;
         this.benefitAtFRA = this.calculations$.FRAbenefitAmount;
-        this.ageFRA = this.calculations$.fullRetAge;
+        this.ageFRA = this.calculations$.fullRetAge / 12;
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChildren"])('changeText', { read: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"] }),

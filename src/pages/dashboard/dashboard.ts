@@ -108,7 +108,7 @@ export class DashboardPage implements OnInit {
     this.totalAccumulated = [ {data: this.calculations$.cumulativeArray, label: 'Cumulative Benefits per Retirement Year'} ];
     this.lifeExpectancy = this.calculations$.lifeExpect;
     this.benefitAtFRA = this.calculations$.FRAbenefitAmount;
-    this.ageFRA = this.calculations$.fullRetAge;
+    this.ageFRA = this.calculations$.fullRetAge / 12;
   }
 
 
