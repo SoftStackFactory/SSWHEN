@@ -33,17 +33,15 @@ export class BarChartComponent {
   ];
   // events
   public chartClicked(e:any):void {
-    // Update retirementAge and payout on current page with
-    // the reitrement age and monthly payout from clicked bar
-    // this.retirementAge = e.active[0]._chart.data.labels[e._index]
-    this.retirementAge = e.active[0]._chart.data.labels[e.active[0]._index];
+    if (e.active.length > 0) {
+      this.retirementAge = e.active[0]._chart.data.labels[e.active[0]._index];
+      this.payout = e.active[0]._chart.data.datasets[0].data[e.active[0]._index];
+      console.log("Bar")
+    }
+    else {
+      console.log("not Bar")
+    }
     
-    
-    this.payout = e.active[0]._chart.data.datasets[0].data[e.active[0]._index]
-    
-    
-    console.log(e.active[0]._chart.data.datasets[0].data[e.active[0]._index]);
-    console.log(e.active[0]._chart.data.labels[e.active[0]._index]);
     console.log(e);
   };
 
