@@ -29,6 +29,12 @@ import { ModalDashboardComponent } from '../components/modal-dashboard/modal-das
 import { ModalHistoryComponent } from '../components/modal-history/modal-history';
 import { IonicStorageModule } from '@ionic/storage';
 
+
+
+
+
+
+
 @NgModule({
   declarations: [
     MyApp,
