@@ -1,24 +1,27 @@
-import {Component} from '@angular/core';
-import {NavParams, ViewController} from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
+import { NavParams, ViewController } from 'ionic-angular';
+import { CalculationsProvider } from '../../providers/calculations/calculations';
 
-/**
- * Generated class for the ModalDashboardComponent component.
- *
- * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
- * for more info on Angular Components.
- */
+
 @Component({
   selector: 'modal-dashboard',
   templateUrl: 'modal-dashboard.html'
 })
-export class ModalDashboardComponent {
-  background: string;
 
-  constructor(private navParams: NavParams, public viewCtrl: ViewController) {
-
-  }
+export class ModalDashboardComponent implements OnInit{
+    retYears: any[] = [];
+    tableMonthly: any[] = [];
+    totalAccumulated: any[] = [];
+    chartType: string = this.navParams.get('type');
+    
+  constructor(public navParams: NavParams, 
+              public viewCtrl: ViewController, 
+              public calculations$: CalculationsProvider) {}
 
   ngOnInit() {
+      this.retYears = this.calculations$.retirementYears;
+      this.tableMonthly = this.calculations$.monthlyArray;
+      this.totalAccumulated = this.calculations$.cumulativeArray
   }
 
   dismiss() {
