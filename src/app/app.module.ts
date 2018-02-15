@@ -22,12 +22,12 @@ import { EmailModalPage } from '../pages/email-modal/email-modal';
 import { PopoverPage } from '../pages/dashboard/popover-page';
 import { DataTablePage } from '../pages/data-table/data-table';
 import { ChartsModule } from 'ng2-charts';
-import { BarChartComponent } from '../components/bar-chart/bar-chart';
+import { ChartComponent } from '../components/charts/charts';
 import { LangaugePopoverComponent } from '../components/langauge-popover/langauge-popover';
+import { MockDataProvider } from '../providers/mock-data/mock-data';
 import { ModalDashboardComponent } from '../components/modal-dashboard/modal-dashboard';
 import { ModalHistoryComponent } from '../components/modal-history/modal-history';
-
-
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import { ModalHistoryComponent } from '../components/modal-history/modal-history
     PopoverPage,
     ModalDashboardComponent,
     DataTablePage,
-    BarChartComponent,
+    ChartComponent,
     LangaugePopoverComponent,
     ModalDashboardComponent,
     ModalHistoryComponent
@@ -55,6 +55,7 @@ import { ModalHistoryComponent } from '../components/modal-history/modal-history
     BrowserModule,
     ChartsModule,
     HttpModule,
+    IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -73,7 +74,7 @@ import { ModalHistoryComponent } from '../components/modal-history/modal-history
     EmailModalPage,
     PopoverPage,
     ModalDashboardComponent,
-    BarChartComponent,
+    ChartComponent,
     LangaugePopoverComponent,
     ModalDashboardComponent,
     ModalHistoryComponent
@@ -83,8 +84,8 @@ import { ModalHistoryComponent } from '../components/modal-history/modal-history
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserDataProvider,
-    UserDataProvider,
-    CalculationsProvider
+    CalculationsProvider,
+    MockDataProvider
   ]
 })
 export class AppModule {}

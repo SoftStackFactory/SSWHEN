@@ -42,7 +42,7 @@
             <ion-row align-items-start>
               <ion-col>
                 <div #changeText><strong>Life Expectancy:</strong></div>
-                <div #changeText>62</div>
+                <div #changeText>{{lifeExpectancy}}</div>
                 <ion-item *ngIf="editable">
                   <ion-label floating>Life Expectancy</ion-label>
                   <ion-input type="text"></ion-input>
@@ -50,7 +50,7 @@
               </ion-col>
               <ion-col align-items-end>
                 <div #changeText><strong>FRA Age:</strong></div>
-                <div #changeText>65</div>
+                <div #changeText>{{ageFRA}}</div>
                 <ion-item *ngIf="editable">
                   <ion-label floating>FRA Age</ion-label>
                   <ion-input type="text"></ion-input>
@@ -60,7 +60,7 @@
             <ion-row align-items-start>
               <ion-col>
                 <div #changeText><strong>FRA Benefit Amount:</strong></div>
-                <div #changeText>$1,080</div>
+                <div #changeText>{{benefitAtFRA}}</div>
                 <ion-item *ngIf="editable">
                   <ion-label floating>FRA Benefit Amount</ion-label>
                   <ion-input type="text"></ion-input>
@@ -92,6 +92,9 @@
                 <ion-segment-button value="cumulative">
                   Cumulative
                 </ion-segment-button>
+                <!--<ion-segment-button value="other">-->
+                <!--  Other-->
+                <!--</ion-segment-button>-->
               </ion-segment>
             </div>
 
@@ -99,27 +102,50 @@
               <ion-list *ngSwitchCase="'monthly'">
                 <ion-row padding-top>
                   <ion-col col-8>
-                    <p #changeText>Monthly Contributions</p>
+                    <p #changeText text-center>Monthly Benefit</p>
                   </ion-col>
                   <ion-col col-4>
-                    <a (click)="presentModal()" float-end color="primary" #changeText>View Table</a>
+                    <a (click)="presentModal(monthly)" float-end color="primary" #changeText>View Table</a>
                   </ion-col>
                 </ion-row>
-                <bar-chart></bar-chart>
+                    <charts
+                    [ChartType]="chartType"
+                    [xAxis]="retYears" 
+                    [yAxis]="monthlyPay"
+                    ></charts> 
               </ion-list>
 
               <ion-list *ngSwitchCase="'cumulative'">
                 <ion-row padding-top>
                   <ion-col col-8>
-                    <p #changeText>Cumulative Contributions</p>
+                    <p #changeText text-center>Cumulative Benefits</p>
                   </ion-col>
                   <ion-col col-4>
-                    <a (click)="presentModal()" float-end color="primary" #changeText>View Table</a>
+                    <a (click)="presentModal(cumulative)" float-end color="primary" #changeText>View Table</a>
                   </ion-col>
                 </ion-row>
-                <bar-chart></bar-chart>
+                      <charts
+                      [ChartType]="chartType"
+                      [xAxis]="retYears" 
+                      [yAxis]="totalAccumulated"
+                      ></charts> 
               </ion-list>
 
+              <!--<ion-list *ngSwitchCase="'other'">-->
+              <!--  <ion-row padding-top>-->
+              <!--    <ion-col col-8>-->
+              <!--      <p #changeText>Other Contributions</p>-->
+              <!--    </ion-col>-->
+              <!--    <ion-col col-4>-->
+              <!--      <a (click)="presentModal()" float-end color="primary" #changeText>View Table</a>-->
+              <!--    </ion-col>-->
+              <!--  </ion-row>-->
+              <!--  <ion-row>-->
+              <!--    <ion-col>-->
+              <!--      <img src="../../assets/imgs/logo.png">-->
+              <!--    </ion-col>-->
+              <!--  </ion-row>-->
+              <!--</ion-list>-->
             </div>
           </ion-card-content>
         </ion-card>

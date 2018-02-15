@@ -1,19 +1,12 @@
-  <ion-card>
-    <ion-card-content>
-      <ion-grid no-padding>
-      
-      <!-- HEADER -->
-      <ion-row style="border-bottom: 2px solid black;">
-        <ion-col col-4>Retirement <br/> Age </ion-col>
-        <ion-col col-4>Monthly <br/> Payout</ion-col>
-        <ion-col col-4>Cumulative <br> Payout</ion-col>
-      </ion-row>
-                
-          <!-- DATA  -->
-    
-      <ion-row *ngFor="let result of benefitData">
-        <ion-col col-4>{{ result.age }}</ion-col>
-        <ion-col col-4>{{ result.monthly }}</ion-col>
-        <ion-col col-4>{{ result.cumulative }}</ion-col>
-      </ion-row>
+<ion-card>
+  <ion-card-content>
+    <ion-grid no-padding>
 
+      <ion-row *ngFor="let result of benefitData">
+        <ion-col col-6 text-center>{{ result.columnOne }}</ion-col>
+        <ion-col col-6 text-center>{{ result.columnTwo }}</ion-col>
+      </ion-row>
+ 
+    </ion-grid> 
+  </ion-card-content>
+</ion-card>

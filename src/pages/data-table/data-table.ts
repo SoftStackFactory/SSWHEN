@@ -1,45 +1,29 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+// Re-usable agnostic table. x & y data fed in by parent page
 
-/**
- * Generated class for the DataTablePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Component, Input, OnInit } from '@angular/core';
 
-@IonicPage()
 @Component({
   selector: 'page-data-table',
   templateUrl: 'data-table.html',
 })
-export class DataTablePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-  
-  //mock data array for testing
-  
-  benefitData: any[] = [
-      {
-        age: 62,
-        monthly: 1000,
-        cumulative: 10000
-      },
-      {
-        age:63, 
-        monthly: 2000,
-        cumulative: 20000
-      },
-      {
-        age: 64,
-        monthly: 3000,
-        cumulative: 30000
-      }
-    ]
+export class DataTablePage implements OnInit {
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DataTablePage');
+  @Input() leftCol: any[];
+  @Input() rightCol: any[];
+  benefitData: any[] = [];
+  
+  constructor() {}
+  
+  ngOnInit() {
+        for (let i=0; i<this.leftCol.length; i++) {
+        let item = {
+          columnOne: this.leftCol[i],
+          columnTwo: this.rightCol[i],
+        };
+      this.benefitData.push(item);
+    }
   }
+
 
 }
