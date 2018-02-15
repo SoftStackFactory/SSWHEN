@@ -6,6 +6,12 @@ export class CalculationsProvider {
 
   constructor() { }
 
+  pia: number;
+  
+  gender: string;
+  
+  dob: any;
+  
   fullRetAge: number;
 
   lifeExpect: number;
@@ -30,13 +36,13 @@ export class CalculationsProvider {
 
   benefitData: any;
 
-  monthlyBenefit(pia, gender, dob) {
+  monthlyBenefit() {
 
-    this.FRAbenefitAmount = pia;
+    this.FRAbenefitAmount = this.pia;
     
     //set average life expectancy based on gender
 
-    if (gender === "m") {
+    if (this.gender === "m") {
       //male life expectancy = 83 years = 996 months
       this.lifeExpect = 996;
     } else {
@@ -46,7 +52,7 @@ export class CalculationsProvider {
 
     //Manipulate user input to extract year of birth
 
-    let dateString: string = dob;
+    let dateString: string = this.dob;
     let yearString: any = dateString.substr(0, 4);
     let dobYear = Number(yearString);
 
@@ -70,16 +76,16 @@ export class CalculationsProvider {
       if (targetAge <= this.fullRetAge) {
         let monthDelta = this.fullRetAge - targetAge;
         if (monthDelta <= 36) {
-          this.benefit = Math.round((1 - (monthDelta * (5 / 9) * 0.01)) * pia);
+          this.benefit = Math.round((1 - (monthDelta * (5 / 9) * 0.01)) * this.pia);
         } else {
           //0.2 = reduction for first 36 months
-          this.benefit = Math.round((1 - (((monthDelta - 36) * (5 / 12) * 0.01) + 0.2)) * pia);
+          this.benefit = Math.round((1 - (((monthDelta - 36) * (5 / 12) * 0.01) + 0.2)) * this.pia);
         }
       } else {
         let monthDelta = targetAge - this.fullRetAge;
         let monthlyCredit = 0.08 / 12;
         let creditFactor = 1 + (monthDelta * monthlyCredit);
-        this.benefit = Math.round(pia * creditFactor);
+        this.benefit = Math.round(this.pia * creditFactor);
       }
 
       //calculate cumulative total benefit based on life expectancy
@@ -128,9 +134,9 @@ export class CalculationsProvider {
 
     //empty calculation arrays
     
-    // this.monthlyArray = [];
-    // this.cumulativeArray =[];
-    // this.pvOfBenefits = [];
+    this.monthlyArray = [];
+    this.cumulativeArray =[];
+    this.pvOfBenefits = [];
     
     return (this.benefitData);
 

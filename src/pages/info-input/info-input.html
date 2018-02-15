@@ -12,7 +12,7 @@
       <form [formGroup]='myForm' novalidate>
          <ion-item text-center>
           <ion-label floating>Date of Birth</ion-label>
-          <ion-datetime displayFormat="MM/YYYY" formControlName="birthDate" [(ngModel)]="myDate"></ion-datetime>
+          <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="calculations$.dob" name="Date"></ion-datetime>
         </ion-item>
         
         <div *ngIf='!myForm.controls.birthDate.valid && submitAttempt'>
@@ -21,7 +21,7 @@
         
         <ion-item text-center>
           <ion-label floating>Gender</ion-label>
-          <ion-select formControlName="gender" [(ngModel)]="gender">
+          <ion-select [(ngModel)]="calculations$.gender" name = "gender">
             <ion-option value="f">Female</ion-option>
             <ion-option value="m">Male</ion-option>
           </ion-select>
@@ -32,7 +32,7 @@
         
         <ion-item>
           <ion-label floating text-center>Full Retirement Benefit</ion-label>
-          <ion-input type="number" [(ngModel)]="monthlyAtFRA" name="FRA"  formControlName="fra" text-center></ion-input>
+          <ion-input type="number" [(ngModel)]="calculations$.pia" name="FRA" text-center></ion-input>
         </ion-item>
         <div *ngIf='!myForm.controls.fra.valid && (myForm.controls.fra.dirty || submitAttempt)'>
             <h4 text-center>Invalid Full Retirement Amount</h4>
