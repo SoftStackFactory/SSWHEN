@@ -1,0 +1,32 @@
+
+<ion-row no-padding *ngIf="yAxis">
+    <ion-col>
+        <canvas baseChart
+            [datasets]="yAxis"
+            [labels]="xAxis"
+            [options]="ChartOptions"
+            [legend]="ChartLegend"
+            [chartType]="ChartType"
+            (chartClick)="chartClicked($event)"
+        >
+        </canvas>
+    </ion-col>
+</ion-row>
+
+
+<ion-row>
+    <ion-col style="text-align: center;">
+        Retirement Age
+    </ion-col>
+    <ion-col style="text-align: center;">
+        Payout
+    </ion-col>
+</ion-row>
+<ion-row>
+    <ion-col style="text-align: center;">
+        {{ this.retirementAge }}
+    </ion-col>
+    <ion-col style="text-align: center;">
+        {{ this.payout }}
+    </ion-col>
+</ion-row>

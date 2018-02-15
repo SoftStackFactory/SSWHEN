@@ -1,10 +1,7 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>Back</ion-title> 
-    <!--takes the user back to the register page? -->
+    <ion-title>Profile</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
@@ -43,7 +40,7 @@
                 </ion-card>
               
                 
-                <ion-card>
+                <ion-card  padding-horizontal>
                   <ion-card-header>
                     {{onTheEdit1}}
                   </ion-card-header>
@@ -75,7 +72,7 @@
                     type="password"></ion-input>
                     </ion-card-content>
                 </ion-card>
-                
+               
                 <!--<form -->
                 <!--#f="ngForm" (ngSubmit)="onEdit(f)">-->
                   <!--^added #f as a local reference to the form-->
@@ -119,19 +116,23 @@
                 <!--    [minlength]="6"></ion-input>-->
                 <!--</ion-item>-->
                             
-        <!--This button will link to next page:-->
+        <!--This button will link to next page:-
         <button ion-button 
         (click)="doAlertAndPopView()"
         type="submit"
-         > 
-        <!--[disabled]="!f.valid" to go in after submit-->
-        <!--^propery binding gets a reference to the form from above. Action: disable this if the form is not valid-->
-          Confirm Edit</button> 
+         > ->
+        <!--[disabled]="!f.valid" to go in after submit-
+        ^propery binding gets a reference to the form from above. Action: disable this if the form is not valid-
+          Confirm Edi t</button>
+        </form>  -->
 
-                <h1 no-padding no-margin></h1>
-                
-              <!--</form>  -->
-              </ion-col>
-        </ion-row>
+    <ion-row padding-horizontal>
+      <ion-col>
+        <button ion-button full
+                (click)="popView()"
+                type="submit"
+        >Confirm Edit</button>
+      </ion-col>
+    </ion-row>
   </ion-grid>  
 <!--</ion-content>-->

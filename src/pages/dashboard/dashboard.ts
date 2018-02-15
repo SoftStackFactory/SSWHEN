@@ -1,27 +1,38 @@
-import {Component, ViewChild, ElementRef} from '@angular/core';
-import {IonicPage, NavController, NavParams, PopoverController, ModalController, AlertController} from 'ionic-angular';
+import {Component, ElementRef, QueryList, ViewChild, ViewChildren, OnInit} from '@angular/core';
+import {AlertController, IonicPage, ModalController, NavController, NavParams, PopoverController} from 'ionic-angular';
 import {PopoverPage} from './popover-page';
-import {ModalPage} from './modal-page';
-
-/**
- * Generated class for the DashboardPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {ModalDashboardComponent} from '../../components/modal-dashboard/modal-dashboard';
+import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
+import { CalculationsProvider } from '../../providers/calculations/calculations';
 
 @IonicPage()
+
 @Component({
   selector: 'page-dashboard',
   templateUrl: 'dashboard.html',
 })
-export class DashboardPage {
 
+export class DashboardPage implements OnInit {
+  
+  @ViewChildren('changeText',  {read: ElementRef}) components: QueryList<ElementRef>;
   data = 'monthly';
   editable = false;
+  chartType: string = 'line';
+  retYears: any[] = [];
+  monthlyPay: any[] = [];
+  totalAccumulated: any[] = [];
+  lifeExpectancy: number;
+  benefitAtFRA: number;
+  ageFRA: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, public modalCtrl: ModalController, public alertCtrl: AlertController) {
-  }
+
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              public popoverCtrl: PopoverController, 
+              public modalCtrl: ModalController, 
+              public alertCtrl: AlertController,
+              public calculations$: CalculationsProvider) {}
 
   isEditable() {
     if (this.editable = false) {
@@ -29,28 +40,38 @@ export class DashboardPage {
     } else {
       this.editable = false;
     }
-    console.log("editable clicked");
+    // console.log("editable clicked");
   }
 
-  presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage);
+  presentLanguagePopover(myEvent) {
+    let popover = this.popoverCtrl.create(LangaugePopoverComponent, {
+      queryEle: this.components.toArray()
+    });
     popover.present({
       ev: myEvent
     });
   }
 
-  presentModal() {
-    let modal = this.modalCtrl.create(ModalPage);
-    let ev = {
-      target: {
-        getBoundingClientRect: () => {
-          return {
-            top: '100'
-          };
-        }
-      }
-    };
-    modal.present({ev});
+  presentAccountPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopoverPage, myEvent, { cssClass: 'account-popover'});
+    popover.present({
+      ev: myEvent
+    });
+  }
+
+  presentModal(type) {
+    let modal = this.modalCtrl.create(ModalDashboardComponent, type);
+    // let ev = {
+    //   target: {
+    //     getBoundingClientRect: () => {
+    //       return {
+    //         top: '100'
+    //       };
+    //     }
+    //   }
+    // };
+    // modal.present({ev});
+    modal.present();
   }
 
   showPrompt() {
@@ -80,9 +101,15 @@ export class DashboardPage {
     });
     prompt.present();
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DashboardPage');
+  
+    ngOnInit() {
+    this.retYears = this.calculations$.retirementYears;
+    this.monthlyPay = [ {data: this.calculations$.monthlyArray, label: 'Monthly Payout per Retirement Year'} ];
+    this.totalAccumulated = [ {data: this.calculations$.cumulativeArray, label: 'Cumulative Benefits per Retirement Year'} ];
+    this.lifeExpectancy = this.calculations$.lifeExpect;
+    this.benefitAtFRA = this.calculations$.FRAbenefitAmount;
+    this.ageFRA = this.calculations$.fullRetAge / 12;
   }
+
 
 }

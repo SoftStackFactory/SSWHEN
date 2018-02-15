@@ -1,12 +1,11 @@
-import { FormControl } from '@angular/forms';
+// import { FormControl } from '@angular/forms';
 
-export class PasswordValidator {
-  
-password: ['', 
-          Validators.compose([
-              Validators.required,
-              Validators.pattern('[0-9]{4}'),
-              Validators.minLength(3),
-            ])
-        ]
-}
+// export class PasswordValidator {
+//         password: ['', 
+//           Validators.compose([
+//               Validators.required,
+//               Validators.pattern('[A-Za-z0-9!@#$%]{6,12}')
+//             ])
+//         ]
+    
+//     }

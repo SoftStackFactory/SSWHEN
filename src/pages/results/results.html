@@ -1,69 +1,81 @@
 <ion-header>
-
   <ion-navbar>
     <ion-title>Results</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
-
-  <ion-grid>
+<ion-content>
+  <ion-grid no-padding>
     
     <!--  Before Segment -->
-    <ion-row>
+<!--    <ion-row>
       <ion-col col-6 offset-3>
-        <h2 style="text-align:center;">SSWHEN</h2>
+        <h2 style="text-align:center">SSWHEN</h2>
       </ion-col>
-    </ion-row>
+    </ion-row>-->
     
     <!-- Segments  -->
     <div>
-      <ion-segment [(ngModel)]="results">
+      <ion-segment [(ngModel)]="display">
         <ion-segment-button value="graph">
           Graph
         </ion-segment-button>
         <ion-segment-button value="chart">
-          Chart
+          Table
         </ion-segment-button>
       </ion-segment>
     </div>
     
-    <div [ngSwitch]="results">
-      <div *ngSwitchCase="'graph'">
-            <bar-chart></bar-chart>
-      </div>
-      <div *ngSwitchCase="'chart'">
-        
-        
-        <page-data-table></page-data-table>
-       
+    <ion-row align-items-center no-padding>
+      <ion-col>
+        <div [ngSwitch]="display">
+          <div *ngSwitchCase="'graph'">
+            <ion-card *ngIf="this.monthlyPay">
+              <ion-card-header style="text-align: center">
+                Monthly Payout
+                <br> 
+                by
+                <br>
+                Retirement Age
+              </ion-card-header>
+              <ion-card-content>
+                <ion-grid no-padding>
+                  <charts
+                  [ChartType]="chartType"
+                  [xAxis]="retYears" 
+                  [yAxis]="monthlyPay"
+                  ></charts>
+                </ion-grid>
+              </ion-card-content>
+            </ion-card>
+          </div>
+          <div *ngSwitchCase="'chart'">
+            <!-- Table HEADER -->
+            <ion-row style="border-bottom: 2px solid black;">
+            <ion-col col-6 text-center>Retirement <br/> Age </ion-col>
+            <ion-col col-6 text-center>Monthly <br/> Payout</ion-col>
+            </ion-row>
+            
+            <page-data-table 
+              [leftCol]="retYears"
+              [rightCol]="tableMonthly"
+              ></page-data-table>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row padding-horizontal>
+      <ion-col margin-right>
+          <button ion-button icon-start block (click)="showPrompt()"><ion-icon name="send"></ion-icon>
+            Email Result</button>
+      </ion-col>
+      <ion-col margin-left>
+        <button ion-button icon-start block on-click="goToRegister()"><ion-icon name="clipboard"></ion-icon>
+          Register</button>
+      </ion-col>
+    </ion-row>
 
-      </div>
-    </div>
-    
-<!--      Bottom Buttons   -->
-<!--     <ion-row> -->
-<!--       <ion-col col-6 offset-3> -->
-<!--           <button ion-button full (click)="openEmailModal()">Email Results</button> -->
-<!--       </ion-col> -->
-<!--     </ion-row> -->
-    
-    <ion-row>
-      <ion-col col-6 offset-3>
-          <button ion-button full (click)="showPrompt()">Email Result</button>
-      </ion-col>
-    </ion-row>
-    
-    <!--Register-->
-    <ion-row>
-      <ion-col col-6 offset-3>
-          <button ion-button full on-click="goToRegister()">Register</button>
-      </ion-col>
-    </ion-row>
-    
-    
   </ion-grid>
-
 </ion-content>

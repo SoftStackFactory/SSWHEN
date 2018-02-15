@@ -1,35 +1,37 @@
 page-dashboard {
-}
+  .account-popover {
+    background: red;
+  }
+  .account-popover .popover-wrapper .popover-content {
+    max-width: 140px;
+  }
 
-.popover-md .popover-content {
-  max-width: 140px;
-}
+  .btn-smaller {
+    transform: scale(0.7);
+  }
 
-.btn-smaller {
-  transform: scale(0.7);
-}
+  .table {
+    margin: 5%;
+  }
 
-.table {
-  margin: 5%;
-}
+  .header .table-col {
+    background-color:lightgrey;
+  }
 
-.header .table-col {
-  background-color:lightgrey;
-}
+  .table-col {
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
+  }
 
-.table-col {
-  border: solid 1px grey;
-  border-bottom-style: none;
-  border-right-style: none;
-}
+  .table-col:last-child {
+    border-right: solid 1px grey;
+  }
 
-.table-col:last-child {
-  border-right: solid 1px grey;
-}
+  .table-row:last-child .table-col {
+    border-bottom: solid 1px grey;
+  }
 
-.table-row:last-child .table-col {
-  border-bottom: solid 1px grey;
+  .menu-full-width { width: 100%; }
+  .menu-last .item .item-inner { border-bottom: 0px solid #fff; }
 }
-
-.menu-full-width { width: 100%; }
-.menu-last .item .item-inner { border-bottom: 0px solid #fff; }
