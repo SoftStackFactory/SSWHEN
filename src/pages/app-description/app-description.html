@@ -5,49 +5,50 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>Introduction</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content padding>
-  
-  <ion-grid>
-    
-    <h3 style=text-align:center>SSWHEN Social Security Calculator</h3>
-    
-    <ion-card>
-      
-      <ion-card-header>
-        Before we begin...
-      </ion-card-header>
-      
-      <ion-card-content>
-        This site will give you an estimate of your Social Security benefit options, based on the age that you elect to begin
-        receiving benefits.  
-        <br>
-        <br>
-        To proceed, you will need a copy of your Social Security statement OR an estimate of your Full Retirement Benefit . 
-        <button ion-button icon-only small clear on-click="benefitInfoAlert()"  class="customBtn">
-          <ion-icon name="information-circle"></ion-icon>
-        </button>
-        <br>
-        <br>
-        Get a copy of your Social Security statement by logging into the Social Security Administration home page 
-        <a target="_blank" href="https://www.ssa.gov/myaccount/">here</a>.
-        <br>
-        <br>
-        Get it an estimate of your Full Retirement Benefit  
-        <a target="_blank" href="https://www.ssa.gov/benefits/retirement/estimator.html">here</a>.
-      </ion-card-content>
-    </ion-card>
-    
-    <button ion-button on-click="goToInfoInput()">Begin</button>
-
+<ion-content>
+  <ion-grid no-padding>
+    <ion-row justify-content-center padding-top padding-horizontal>
+      <ion-col>
+        <h4 text-center>SSWHEN Social Security Calculator</h4>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center no-padding>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            Before we begin...
+          </ion-card-header>
+          <ion-card-content>
+            This site will give you an estimate of your Social Security benefit options, based on the age that you elect to begin
+            receiving benefits.
+            <br>
+            <br>
+            To proceed, you will need a copy of your Social Security statement OR an estimate of your Full Retirement Benefit .
+            <button ion-button icon-only small clear on-click="benefitInfoAlert()" class="customBtn">
+              <ion-icon name="information-circle"></ion-icon>
+            </button>
+            <br>
+            <br>
+            Get a copy of your Social Security statement by logging into the Social Security Administration home page
+            <a target="_blank" href="https://www.ssa.gov/myaccount/">here</a>.
+            <br>
+            <br>
+            Get it an estimate of your Full Retirement Benefit
+            <a target="_blank" href="https://www.ssa.gov/benefits/retirement/estimator.html">here</a>.
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center padding-horizontal>
+      <ion-col>
+        <button ion-button icon-end block full on-click="goToInfoInput()">Begin <ion-icon name="arrow-dropright"></ion-icon></button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
-
 </ion-content>
 

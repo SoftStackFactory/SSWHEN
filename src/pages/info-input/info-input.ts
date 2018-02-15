@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ResultsPage} from '../results/results'
-import { UserDataProvider } from "../../providers/user-data/user-data";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NumberValidator } from '../../validators/number';
-
-
+import { CalculationsProvider } from "../../providers/calculations/calculations";
+import { Storage } from "@ionic/storage";
 
 @IonicPage()
 
@@ -17,16 +16,18 @@ import { NumberValidator } from '../../validators/number';
 export class InfoInputPage {
   myForm: FormGroup;
   submitAttempt: boolean = false;
+  myDate: string;
+  gender: string;
+  monthlyAtFRA: number;
+
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public user$: UserDataProvider, 
-              public formBuilder: FormBuilder
+              public formBuilder: FormBuilder,
+              public calculations$: CalculationsProvider,
+              private storage: Storag
               )
     {
-      /*this.user$.date = this.myDate;
-      this.user$.sex = this.gender;
-      this.user$.FRA = this.monthlyAtFRA;*/
       
       this.myForm = formBuilder.group({
         birthDate: ['', Validators.required],
@@ -49,32 +50,22 @@ export class InfoInputPage {
     }
   }
 
-  /*logForm() {
-      console.log(this.myDate);
-      console.log(this.gender);
-      console.log(this.monthlyAtFRA);
-      
-  }*/
+  logForm() {
+    
+    this.storage.clear().then((val) => {
+      this.storage.set("inputData",  
+        {
+          pia : this.monthlyAtFRA,
+          gender: this.gender,
+          dob: this.myDate
+        })
+    });
+    
+    console.log(this.myDate);
+    console.log(this.gender);
+    console.log(this.monthlyAtFRA);
+    this.calculations$.monthlyBenefit(this.monthlyAtFRA, this.gender, this.myDate);
+    this.navCtrl.push(ResultsPage)
+  }
 
 }
-
-
-// Recommendation for resultsPage
-// Import the Pages you want to communicate with;
-// import {InfoInputPage} from '../info-input/info-input';
-// Import the service which has the data;
-// import { UserDataProvider } from "../../providers/user-data/user-data";
-// .
-// .
-// .
-// export class ResultsPage implements OnInit {
-
-//   constructor( public user$: UserDataProvider ) {}
-  
-//   ngOnInit(){
-//     this.user$.FRA
-//   }
-
-// }
-
-//Then in the html, interpolation gives {{user$.start}}

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { ProfilePage } from '../profile/profile';
-import { LandingPage } from '../landing/landing';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {DashboardPage} from '../dashboard/dashboard';
 
 /**
  * Generated class for the LoginPage page.
@@ -26,7 +25,7 @@ export class LoginPage {
   }
   
   login(){
-    this.navCtrl.push(LandingPage);
+    this.navCtrl.push(DashboardPage);
     }
 
 }

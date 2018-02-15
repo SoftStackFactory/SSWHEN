@@ -1,7 +1,7 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Register Page</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Registration</ion-title>
+    </ion-navbar>
 </ion-header>
 
 
@@ -25,7 +25,7 @@
             <form [formGroup] = "registerForm">
               <ion-item>
                 <ion-label>Total Tax Contribution: </ion-label>
-                <ion-input formControlName="totalTaxContribution" type="text"></ion-input>
+                <ion-input formControlName="totalTaxContribution" type="text" [(ngModel)]="totalTaxContribution"></ion-input>
                 <div *ngIf="!registerForm.controls.totalTaxContribution.valid && (registerForm.controls.totalTaxContribution.dirty || submitAttempt)">
                 <p>Please fill in your email</p>
                 </div>
@@ -33,7 +33,7 @@
 <!--EMAIL-->
               <ion-item>
                 <ion-label>Email: </ion-label>
-                <ion-input formControlName="email" type="email"></ion-input>
+                <ion-input formControlName="email" type="email" [(ngModel)]="email></ion-input>
                 <div *ngIf="!registerForm.controls.email.valid && (registerForm.controls.email.dirty || submitAttempt)">
                 <p>Please fill in your email</p>
                 </div>
@@ -41,7 +41,7 @@
 <!--PASSWORD-->
               <ion-item>
                 <ion-label>Password: </ion-label>
-                <ion-input formControlName="password" type="password"></ion-input>
+                <ion-input formControlName="password" type="password" [(ngModel)]="password"></ion-input>
                 <div *ngIf="!registerForm.controls.password.valid && (registerForm.controls.password.dirty || submitAttempt)">
                 <p>Please fill in your password</p>
                 </div>

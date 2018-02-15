@@ -13,20 +13,21 @@ import { InfoInputPage } from '../pages/info-input/info-input';
 import { ResultsPage } from '../pages/results/results';
 import { RegisterPage } from '../pages/register/register';
 import { DashboardPage } from '../pages/dashboard/dashboard';
+import { HistoryPage } from '../pages/history/history';
 import { ProfilePage } from '../pages/profile/profile';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { CalculationsProvider } from '../providers/calculations/calculations';
 import { LoginPage } from '../pages/login/login';
 import { EmailModalPage } from '../pages/email-modal/email-modal';
 import { PopoverPage } from '../pages/dashboard/popover-page';
-import { ModalPage } from '../pages/dashboard/modal-page';
 import { DataTablePage } from '../pages/data-table/data-table';
 import { ChartsModule } from 'ng2-charts';
-import { BarChartComponent } from '../components/bar-chart/bar-chart';
+import { ChartComponent } from '../components/charts/charts';
 import { LangaugePopoverComponent } from '../components/langauge-popover/langauge-popover';
-
-
-
+import { MockDataProvider } from '../providers/mock-data/mock-data';
+import { ModalDashboardComponent } from '../components/modal-dashboard/modal-dashboard';
+import { ModalHistoryComponent } from '../components/modal-history/modal-history';
+import { IonicStorageModule } from '@ionic/storage';
 
 
 
@@ -44,19 +45,23 @@ import { LangaugePopoverComponent } from '../components/langauge-popover/langaug
     ResultsPage,
     RegisterPage,
     DashboardPage,
+    HistoryPage,
     ProfilePage,
     LoginPage,
     EmailModalPage,
     PopoverPage,
-    ModalPage,
+    ModalDashboardComponent,
     DataTablePage,
-    BarChartComponent,
-    LangaugePopoverComponent
+    ChartComponent,
+    LangaugePopoverComponent,
+    ModalDashboardComponent,
+    ModalHistoryComponent
   ],
   imports: [
     BrowserModule,
     ChartsModule,
     HttpModule,
+    IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -69,21 +74,24 @@ import { LangaugePopoverComponent } from '../components/langauge-popover/langaug
     ResultsPage,
     RegisterPage,
     DashboardPage,
+    HistoryPage,
     ProfilePage,
     LoginPage,
     EmailModalPage,
     PopoverPage,
-    ModalPage,
-    BarChartComponent,
-    LangaugePopoverComponent
+    ModalDashboardComponent,
+    ChartComponent,
+    LangaugePopoverComponent,
+    ModalDashboardComponent,
+    ModalHistoryComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserDataProvider,
-    UserDataProvider,
-    CalculationsProvider
+    CalculationsProvider,
+    MockDataProvider
   ]
 })
 export class AppModule {}
