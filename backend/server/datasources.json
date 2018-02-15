@@ -6,11 +6,11 @@
   "mongodb": {
     "host": "",
     "port": 0,
-    "url": "",
-    "database": "",
+    "url": "mongodb://SSFdev2018:ziKTRYPF0jrUh18E@sswhen-shard-00-00-z0etd.mongodb.net:27017,sswhen-shard-00-01-z0etd.mongodb.net:27017,sswhen-shard-00-02-z0etd.mongodb.net:27017/test?ssl=true&replicaSet=SSWhen-shard-0&authSource=admin",
+    "database": "guidebook",
     "password": "",
     "name": "mongodb",
-    "user": "",
+    "user": "ziKTRYPF0jrUh18E",
     "connector": "mongodb"
   }
 }
