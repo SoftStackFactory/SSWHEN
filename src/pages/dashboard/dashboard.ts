@@ -104,8 +104,8 @@ export class DashboardPage implements OnInit {
   
     ngOnInit() {
     this.retYears = this.calculations$.retirementYears;
-    this.monthlyPay = [ {data: this.calculations$.monthlyArray, label: 'Monthly Payout per Retirement Year'} ];
-    this.totalAccumulated = [ {data: this.calculations$.cumulativeArray, label: 'Cumulative Benefits per Retirement Year'} ];
+    this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
+    this.totalAccumulated = [ {data: this.calculations$.monthlyBenefit().cumulative, label: 'Cumulative Benefits per Retirement Year'} ];
     this.lifeExpectancy = this.calculations$.lifeExpect;
     this.benefitAtFRA = this.calculations$.FRAbenefitAmount;
     this.ageFRA = this.calculations$.fullRetAge / 12;

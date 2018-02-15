@@ -12,9 +12,6 @@ import { Storage } from "@ionic/storage";
 })
 
 export class InfoInputPage {
-  myDate: string;
-  gender: string;
-  monthlyAtFRA: number;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
@@ -23,19 +20,15 @@ export class InfoInputPage {
 
   logForm() {
     
-    this.storage.clear().then((val) => {
-      this.storage.set("inputData",  
-        {
-          pia : this.monthlyAtFRA,
-          gender: this.gender,
-          dob: this.myDate
-        })
-    });
+    // this.storage.clear().then((val) => {
+    //   this.storage.set("inputData",  
+    //     {
+    //       pia : this.calculations$.pia,
+    //       gender: this.calculations$.gender,
+    //       dob: this.calculations$.dob
+    //     })
+    // });
     
-    console.log(this.myDate);
-    console.log(this.gender);
-    console.log(this.monthlyAtFRA);
-    this.calculations$.monthlyBenefit(this.monthlyAtFRA, this.gender, this.myDate);
     this.navCtrl.push(ResultsPage)
   }
 
