@@ -6,48 +6,73 @@
 
 
 <ion-content>
-  <ion-grid no-padding>
-        <ion-row  justify-content-center padding-top>
-              <ion-col>
-                <img style="margin: 0 auto; display: block;" src='http://www.freeiconspng.com/uploads/am-a-19-year-old-multimedia-artist-student-from-manila--21.png' alt="Logo Image">
-                <ion-card  padding-horizontal>
+  <div class="container">
+  <ion-grid>
+        <ion-row center>
+              <ion-col text-center>
+                <h1>SSWHEN</h1>
+                <h1>Profile Page</h1>
+                
+                <img src='http://www.freeiconspng.com/uploads/am-a-19-year-old-multimedia-artist-student-from-manila--21.png' alt="Logo Image">
+                    
+                <h3 no-padding no-margin></h3>
+                
+                <ion-card>
                   <ion-card-header>
-                    Current Email Address: 
+                    {{onTheEdit}} 
                   </ion-card-header>
                   <ion-card-content>
-                      <ion-icon name="create" float-right></ion-icon>
                    <ion-input 
-                   type="email" 
-                    name="email"
-                    value=""
-                    ngModel
-                    placeholder="example@gmail.com"></ion-input>
+                   disabled="{{inputDisabledEmail}}" 
+                  [(ngModel)]="drill_plus" 
+                  placeholder="Email@example.com" 
+                  type="email"
+                    placeholder="example@gmail.com">
+                   </ion-input>
+                   <button ion-button 
+                      (click)="editEmail()"
+                      type="submit"
+                      float-right
+                       > 
+                       <ion-icon name="create"></ion-icon>
+                       </button>
                   </ion-card-content>
                 </ion-card>
+              
                 
                 <ion-card  padding-horizontal>
                   <ion-card-header>
-                    Password: 
+                    {{onTheEdit1}}
                   </ion-card-header>
                   <ion-card-content>
-                     <ion-icon name="create" float-right></ion-icon>
+                     
                     <ion-input 
+                  disabled="{{inputDisabledPass}}" 
+                   [(ngModel)]="drill_plus1" 
                    type="password" 
                     name="Password"
-                    value=""
-                    ngModel
                     [minlength]="6"
                     placeholder="••••••••••"></ion-input>
+                    <button ion-button 
+                    (click)="editPassAddRow()"
+                    type="submit"
+                     float-right
+                     > <ion-icon name="create"></ion-icon></button>
                   </ion-card-content>
                 </ion-card>
-              </ion-col>
-        </ion-row>
-                 <!-- <button ion-button -->
-                 <!--type="submit"-->
-                 <!-- > -->
-                  <!--(click)=""-->
-                 <!--   Password:   <ion-icon name="create"></ion-icon></button> -->
-                 
+                
+                
+                 <ion-card *ngIf="addRow">
+                    <ion-card-header>
+                    Re-Type Password: 
+                   </ion-card-header>
+                     <ion-card-content>
+                    <ion-input
+                    placeholder="••••••••••" 
+                    type="password"></ion-input>
+                    </ion-card-content>
+                </ion-card>
+               
                 <!--<form -->
                 <!--#f="ngForm" (ngSubmit)="onEdit(f)">-->
                   <!--^added #f as a local reference to the form-->
@@ -93,7 +118,7 @@
                             
         <!--This button will link to next page:-
         <button ion-button 
-        (click)="popView()"
+        (click)="doAlertAndPopView()"
         type="submit"
          > ->
         <!--[disabled]="!f.valid" to go in after submit-
@@ -110,4 +135,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>  
-</ion-content>
+<!--</ion-content>-->
