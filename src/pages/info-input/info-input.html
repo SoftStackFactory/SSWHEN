@@ -4,19 +4,15 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
   <h3 text-center> <ion-icon name="arrow-round-down"></ion-icon> Please Enter Your Information  <ion-icon name="arrow-round-down"></ion-icon> </h3>
-  
-  <h1>  {{ user$.start}} </h1>
-  
     <form (ngSubmit)="logForm()">
       <ion-list>
         
       <form [formGroup]='myForm' novalidate>
          <ion-item text-center>
           <ion-label floating>Date of Birth</ion-label>
-          <ion-datetime displayFormat="MM/YYYY" formControlName="birthDate"></ion-datetime>
+          <ion-datetime displayFormat="MM/YYYY" formControlName="birthDate" [(ngModel)]="myDate"></ion-datetime>
         </ion-item>
         
         <div *ngIf='!myForm.controls.birthDate.valid && submitAttempt'>
@@ -25,7 +21,7 @@
         
         <ion-item text-center>
           <ion-label floating>Gender</ion-label>
-          <ion-select formControlName="gender">
+          <ion-select formControlName="gender" [(ngModel)]="gender">
             <ion-option value="f">Female</ion-option>
             <ion-option value="m">Male</ion-option>
           </ion-select>

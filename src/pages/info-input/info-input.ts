@@ -25,7 +25,7 @@ export class InfoInputPage {
               public navParams: NavParams,
               public formBuilder: FormBuilder,
               public calculations$: CalculationsProvider,
-              private storage: Storag
+              private storage: Storage
               )
     {
       
@@ -65,7 +65,6 @@ export class InfoInputPage {
     console.log(this.gender);
     console.log(this.monthlyAtFRA);
     this.calculations$.monthlyBenefit(this.monthlyAtFRA, this.gender, this.myDate);
-    this.navCtrl.push(ResultsPage)
   }
 
 }

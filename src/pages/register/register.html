@@ -33,7 +33,7 @@
 <!--EMAIL-->
               <ion-item>
                 <ion-label>Email: </ion-label>
-                <ion-input formControlName="email" type="email" [(ngModel)]="email></ion-input>
+                <ion-input formControlName="email" type="email" [(ngModel)]="email"></ion-input>
                 <div *ngIf="!registerForm.controls.email.valid && (registerForm.controls.email.dirty || submitAttempt)">
                 <p>Please fill in your email</p>
                 </div>
