@@ -19,6 +19,8 @@ export class ResultsPage implements OnInit {
   retYears: any[] = [];
   monthlyPay: any[] = [];
   tableMonthly: any[] = [];
+  leftTitle: string = "Retirement Age";
+  rightTitleMonthly: string = "Monthly Payout";
   // tabulatedData: any[] = [];
 
   

@@ -4,6 +4,7 @@ import {PopoverPage} from './popover-page';
 import {ModalDashboardComponent} from '../../components/modal-dashboard/modal-dashboard';
 import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
+import { MockDataProvider } from '../../providers/mock-data/mock-data';
 
 @IonicPage()
 
@@ -17,7 +18,7 @@ export class DashboardPage implements OnInit {
   @ViewChildren('changeText',  {read: ElementRef}) components: QueryList<ElementRef>;
   data = 'monthly';
   editable = false;
-  chartType: string = 'line';
+  chartType: string = 'bar';
   retYears: any[] = [];
   monthlyPay: any[] = [];
   totalAccumulated: any[] = [];
@@ -26,13 +27,13 @@ export class DashboardPage implements OnInit {
   ageFRA: number;
 
 
-
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
               public popoverCtrl: PopoverController, 
               public modalCtrl: ModalController, 
               public alertCtrl: AlertController,
-              public calculations$: CalculationsProvider) {}
+              public calculations$: CalculationsProvider,
+              public mock$: MockDataProvider) {}
 
   isEditable() {
     if (this.editable = false) {
@@ -57,21 +58,6 @@ export class DashboardPage implements OnInit {
     popover.present({
       ev: myEvent
     });
-  }
-
-  presentModal(type) {
-    let modal = this.modalCtrl.create(ModalDashboardComponent, type);
-    // let ev = {
-    //   target: {
-    //     getBoundingClientRect: () => {
-    //       return {
-    //         top: '100'
-    //       };
-    //     }
-    //   }
-    // };
-    // modal.present({ev});
-    modal.present();
   }
 
   showPrompt() {
@@ -102,14 +88,27 @@ export class DashboardPage implements OnInit {
     prompt.present();
   }
   
-    ngOnInit() {
-    this.retYears = this.calculations$.retirementYears;
-    this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
-    this.totalAccumulated = [ {data: this.calculations$.monthlyBenefit().cumulative, label: 'Cumulative Benefits per Retirement Year'} ];
-    this.lifeExpectancy = this.calculations$.lifeExpect;
-    this.benefitAtFRA = this.calculations$.FRAbenefitAmount;
-    this.ageFRA = this.calculations$.fullRetAge / 12;
+  presentModal(type) {
+    let modal = this.modalCtrl.create(ModalDashboardComponent, type);
+    modal.present();
   }
-
+  
+    ngOnInit() {
+      if(this.calculations$) {
+        this.retYears = this.calculations$.retirementYears;
+        this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
+        this.totalAccumulated = [ {data: this.calculations$.monthlyBenefit().cumulative, label: 'Cumulative Benefits per Retirement Year'} ];
+        this.lifeExpectancy = Math.round(this.calculations$.lifeExpect / 12);
+        this.benefitAtFRA = this.calculations$.FRAbenefitAmount;
+        this.ageFRA = this.calculations$.fullRetAge / 12;
+      }
+      else {
+        this.retYears = [62, 63, 64, 65, 66, 67, 68, 69, 70];
+        this.monthlyPay = this.mock$.getResults()[0].monthly;
+        this.totalAccumulated = this.mock$.getResults()[0].cumulative;
+        this.lifeExpectancy = this.mock$.getResults()[0].lifeExpectancy;
+        this.benefitAtFRA = this.mock$.getResults()[0].ageFRA;
+      }
+    }
 
 }

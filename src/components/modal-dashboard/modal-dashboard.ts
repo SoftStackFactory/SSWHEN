@@ -12,7 +12,11 @@ export class ModalDashboardComponent implements OnInit{
     retYears: any[] = [];
     tableMonthly: any[] = [];
     totalAccumulated: any[] = [];
+    leftTitle: string = "Retirement Age";
+    rightTitleMonthly: string = "Monthly Payout";
+    rightTitleCumulative: string = "Cumulative Payout";
     chartType: string = this.navParams.get('type');
+    
     
   constructor(public navParams: NavParams, 
               public viewCtrl: ViewController, 
@@ -20,8 +24,8 @@ export class ModalDashboardComponent implements OnInit{
 
   ngOnInit() {
       this.retYears = this.calculations$.retirementYears;
-      this.tableMonthly = this.calculations$.monthlyArray;
-      this.totalAccumulated = this.calculations$.cumulativeArray
+      this.tableMonthly = this.calculations$.monthlyBenefit().monthly;
+      this.totalAccumulated = this.calculations$.monthlyBenefit().cumulative;
   }
 
   dismiss() {
