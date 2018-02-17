@@ -10,7 +10,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class DataTablePage implements OnInit {
 
   @Input() leftCol: any[];
+  @Input() leftColTitle: string;
   @Input() rightCol: any[];
+  @Input() rightColTitle: string;
   benefitData: any[] = [];
   
   constructor() {}
@@ -24,6 +26,5 @@ export class DataTablePage implements OnInit {
       this.benefitData.push(item);
     }
   }
-
 
 }

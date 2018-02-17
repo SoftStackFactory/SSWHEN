@@ -12,7 +12,11 @@ export class ModalDashboardComponent implements OnInit{
     retYears: any[] = [];
     tableMonthly: any[] = [];
     totalAccumulated: any[] = [];
+    leftTitle: string = "Retirement Age";
+    rightTitleMonthly: string = "Monthly Payout";
+    rightTitleCumulative: string = "Cumulative Payout";
     chartType: string = this.navParams.get('type');
+    
     
   constructor(public navParams: NavParams, 
               public viewCtrl: ViewController, 
