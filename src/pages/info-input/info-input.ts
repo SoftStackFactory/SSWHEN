@@ -5,6 +5,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NumberValidator } from '../../validators/number';
 import { CalculationsProvider } from "../../providers/calculations/calculations";
 import { Storage } from "@ionic/storage";
+import { UserDataProvider } from "../../providers/user-data/user-data";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NumberValidator } from '../../validators/number';
+
+
 
 @IonicPage()
 
@@ -16,8 +21,7 @@ import { Storage } from "@ionic/storage";
 export class InfoInputPage {
   myForm: FormGroup;
   submitAttempt: boolean = false;
-
-
+  
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public formBuilder: FormBuilder,
@@ -46,18 +50,4 @@ export class InfoInputPage {
       this.navCtrl.push(ResultsPage);
     }
   }
-
-  logForm() {
-    
-    // this.storage.clear().then((val) => {
-    //   this.storage.set("inputData",  
-    //     {
-    //       pia : this.calculations$.pia,
-    //       gender: this.calculations$.gender,
-    //       dob: this.calculations$.dob
-    //     })
-    // });
-    
-  }
-
 }

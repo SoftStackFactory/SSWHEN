@@ -4,6 +4,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -28,6 +29,13 @@ import { MockDataProvider } from '../providers/mock-data/mock-data';
 import { ModalDashboardComponent } from '../components/modal-dashboard/modal-dashboard';
 import { ModalHistoryComponent } from '../components/modal-history/modal-history';
 import { IonicStorageModule } from '@ionic/storage';
+import { AppConfig } from '../providers/app-config';
+
+
+
+
+
+
 
 
 
@@ -61,7 +69,8 @@ import { IonicStorageModule } from '@ionic/storage';
     BrowserModule,
     ChartsModule,
     HttpModule,
-    IonicStorageModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -91,7 +100,8 @@ import { IonicStorageModule } from '@ionic/storage';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserDataProvider,
     CalculationsProvider,
-    MockDataProvider
+    MockDataProvider,
+    AppConfig
   ]
 })
 export class AppModule {}
