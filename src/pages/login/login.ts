@@ -42,8 +42,8 @@ export class LoginPage {
       if(!this.myForm.valid) {
         console.log("Unsuccessful registration :("); 
       } else {
-        alert('Thank you for registering!');
-        console.log("Successful registration", this.myForm.value);
+        alert('Thank you for loging in!');
+        console.log("Successful login", this.myForm.value);
         this.navCtrl.push(DashboardPage);
       }
     }

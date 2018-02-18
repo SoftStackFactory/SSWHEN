@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {App, NavController, ViewController} from 'ionic-angular';
 import {ProfilePage} from '../profile/profile';
 import {LandingPage} from '../landing/landing';
 import {HistoryPage} from '../history/history';
@@ -35,9 +35,11 @@ export class PopoverPage {
   background: string;
   showBackdrop: true;
 
-  constructor(private navParams: NavParams, public navCtrl: NavController) {
-
-  }
+  constructor(
+    public navCtrl: NavController,
+    public appCtrl: App,
+    public viewCtrl: ViewController
+  ) {}
 
   ngOnInit() {
   }
@@ -45,16 +47,20 @@ export class PopoverPage {
   goToProfile(params) {
     if (!params) params = {};
     this.navCtrl.push(ProfilePage);
+    this.viewCtrl.dismiss();
   }
 
   goToHistory(params) {
     if (!params) params = {};
     this.navCtrl.push(HistoryPage);
+    this.viewCtrl.dismiss();
   }
 
   goToLanding(params) {
     if (!params) params = {};
-    this.navCtrl.push(LandingPage);
+    // this.navCtrl.setRoot(LandingPage);
+    this.appCtrl.getRootNav().setRoot(LandingPage);
+    this.viewCtrl.dismiss();
   }
 
 }
