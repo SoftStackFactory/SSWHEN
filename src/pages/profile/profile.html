@@ -6,133 +6,57 @@
 
 
 <ion-content>
-  <div class="container">
   <ion-grid>
-        <ion-row center>
-              <ion-col text-center>
-                <h1>SSWHEN</h1>
-                <h1>Profile Page</h1>
-                
-                <img src='http://www.freeiconspng.com/uploads/am-a-19-year-old-multimedia-artist-student-from-manila--21.png' alt="Logo Image">
-                    
-                <h3 no-padding no-margin></h3>
-                
-                <ion-card>
-                  <ion-card-header>
-                    {{onTheEdit}} 
-                  </ion-card-header>
-                  <ion-card-content>
-                   <ion-input 
-                   disabled="{{inputDisabledEmail}}" 
-                  [(ngModel)]="drill_plus" 
-                  placeholder="Email@example.com" 
-                  type="email"
-                    placeholder="example@gmail.com">
-                   </ion-input>
-                   <button ion-button 
-                      (click)="editEmail()"
-                      type="submit"
-                      float-right
-                       > 
-                       <ion-icon name="create"></ion-icon>
-                       </button>
-                  </ion-card-content>
-                </ion-card>
-              
-                
-                <ion-card  padding-horizontal>
-                  <ion-card-header>
-                    {{onTheEdit1}}
-                  </ion-card-header>
-                  <ion-card-content>
-                     
-                    <ion-input 
-                  disabled="{{inputDisabledPass}}" 
-                   [(ngModel)]="drill_plus1" 
-                   type="password" 
-                    name="Password"
-                    [minlength]="6"
-                    placeholder="••••••••••"></ion-input>
-                    <button ion-button 
-                    (click)="editPassAddRow()"
-                    type="submit"
-                     float-right
-                     > <ion-icon name="create"></ion-icon></button>
-                  </ion-card-content>
-                </ion-card>
-                
-                
-                 <ion-card *ngIf="addRow">
-                    <ion-card-header>
-                    Re-Type Password: 
-                   </ion-card-header>
-                     <ion-card-content>
-                    <ion-input
-                    placeholder="••••••••••" 
-                    type="password"></ion-input>
-                    </ion-card-content>
-                </ion-card>
-               
-                <!--<form -->
-                <!--#f="ngForm" (ngSubmit)="onEdit(f)">-->
-                  <!--^added #f as a local reference to the form-->
-                <!--  <ion-item>-->
-                <!--    <ion-label -->
-                <!--    color="primary" -->
-                <!--    floating>Change Email</ion-label>-->
-                <!--    <ion-input -->
-                <!--    type="email" -->
-                <!--    name="email"-->
-                <!--    ngModel-->
-                <!--    placeholder=""></ion-input>-->
-                <!--  </ion-item>-->
-                
-                <!--<ion-item>-->
-                <!--    <ion-label color="primary" floating>Confirm Email</ion-label>-->
-                <!--    <ion-input -->
-                <!--    type="email" -->
-                <!--    name="email"-->
-                <!--    ngModel-->
-                <!--    placeholder=""></ion-input>-->
-                <!--</ion-item>-->
-                
-                <!--<ion-item>-->
-                <!--    <ion-label color="primary" floating>Password (Must be at least 6 characters)</ion-label>-->
-                <!--    <ion-input -->
-                <!--    type="password" -->
-                <!--    name="Password"-->
-                <!--    value=""-->
-                <!--    ngModel-->
-                <!--    [minlength]="6"></ion-input>-->
-                <!--</ion-item>-->
-                
-                <!--<ion-item>-->
-                <!--    <ion-label color="primary" floating> Confirm Password</ion-label>-->
-                <!--    <ion-input -->
-                <!--    type="password" -->
-                <!--    name="password"-->
-                <!--    value=""-->
-                <!--    ngModel-->
-                <!--    [minlength]="6"></ion-input>-->
-                <!--</ion-item>-->
-                            
-        <!--This button will link to next page:-
-        <button ion-button 
-        (click)="doAlertAndPopView()"
-        type="submit"
-         > ->
-        <!--[disabled]="!f.valid" to go in after submit-
-        ^propery binding gets a reference to the form from above. Action: disable this if the form is not valid-
-          Confirm Edi t</button>
-        </form>  -->
+    <ion-row center>
+      <ion-col text-center>
+        <h1>SSWHEN</h1>
+        <h1>Profile Page</h1>
 
-    <ion-row padding-horizontal>
-      <ion-col>
-        <button ion-button full
-                (click)="popView()"
-                type="submit"
-        >Confirm Edit</button>
+        <img src='http://www.freeiconspng.com/uploads/am-a-19-year-old-multimedia-artist-student-from-manila--21.png' alt="Logo Image">
+
+        <h3 no-padding no-margin></h3>
+
+        <ion-card>
+          <ion-card-header>
+            {{onTheEdit}}
+          </ion-card-header>
+          <ion-card-content>
+            <ion-input disabled="{{inputDisabledEmail}}" [(ngModel)]="drill_plus" placeholder="Email@example.com" type="email" placeholder="example@gmail.com">
+            </ion-input>
+            <button ion-button (click)="editEmail()" type="submit" float-right> 
+                     <ion-icon name="create"></ion-icon>
+                     </button>
+          </ion-card-content>
+        </ion-card>
+
+
+        <ion-card padding-horizontal>
+          <ion-card-header>
+            {{onTheEdit1}}
+          </ion-card-header>
+          <ion-card-content>
+
+            <ion-input disabled="{{inputDisabledPass}}" [(ngModel)]="drill_plus1" type="password" name="Password" [minlength]="6" placeholder="••••••••••"></ion-input>
+            <button ion-button (click)="editPassAddRow()" type="submit" float-right> <ion-icon name="create"></ion-icon></button>
+          </ion-card-content>
+        </ion-card>
+
+
+        <ion-card *ngIf="addRow">
+          <ion-card-header>
+            Re-Type Password:
+          </ion-card-header>
+          <ion-card-content>
+            <ion-input placeholder="••••••••••" type="password"></ion-input>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-row padding-horizontal>
+          <ion-col>
+            <button ion-button full (click)="popView()" type="submit">Confirm Edit</button>
+          </ion-col>
+        </ion-row>
       </ion-col>
     </ion-row>
-  </ion-grid>  
-<!--</ion-content>-->
+  </ion-grid>
+</ion-content>
