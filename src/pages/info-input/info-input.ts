@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {ResultsPage} from '../results/results';
+import {ResultsPage} from '../results/results'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NumberValidator } from '../../validators/number';
 import { CalculationsProvider } from "../../providers/calculations/calculations";
 import { Storage } from "@ionic/storage";
 import { UserDataProvider } from "../../providers/user-data/user-data";
@@ -19,16 +21,14 @@ import { NumberValidator } from '../../validators/number';
 export class InfoInputPage {
   myForm: FormGroup;
   submitAttempt: boolean = false;
-
+  
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public user$: UserDataProvider, 
-              public formBuilder: FormBuilder
+              public formBuilder: FormBuilder,
+              public calculations$: CalculationsProvider,
+              private storage: Storage
               )
     {
-      /*this.user$.date = this.myDate;
-      this.user$.sex = this.gender;
-      this.user$.FRA = this.monthlyAtFRA;*/
       
       this.myForm = formBuilder.group({
         birthDate: ['', Validators.required],
@@ -50,12 +50,4 @@ export class InfoInputPage {
       this.navCtrl.push(ResultsPage);
     }
   }
-
-  /*logForm() {
-      console.log(this.myDate);
-      console.log(this.gender);
-      console.log(this.monthlyAtFRA);
-      
-  }*/
-
 }
