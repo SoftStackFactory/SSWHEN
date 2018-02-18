@@ -31,7 +31,7 @@
           <ion-card-content padding-horizontal>
             <ion-row align-items-center>
               <ion-col>
-                <h2  #changeText>User Information</h2>
+                <h2 #changeText>User Information</h2>
               </ion-col>
               <ion-col>
                 <button style="vertical-align: top;" class="btn-smaller" ion-button icon-only float-end color="dark" on-click="isEditable()">
@@ -108,11 +108,7 @@
                     <a (click)="presentModal(monthly)" float-end color="primary" #changeText>View Table</a>
                   </ion-col>
                 </ion-row>
-                    <charts
-                    [ChartType]="chartType"
-                    [xAxis]="retYears" 
-                    [yAxis]="monthlyPay"
-                    ></charts> 
+                <charts [ChartType]="chartType" [xAxis]="retYears" [yAxis]="monthlyPay"></charts>
               </ion-list>
 
               <ion-list *ngSwitchCase="'cumulative'">
@@ -124,11 +120,7 @@
                     <a (click)="presentModal(cumulative)" float-end color="primary" #changeText>View Table</a>
                   </ion-col>
                 </ion-row>
-                      <charts
-                      [ChartType]="chartType"
-                      [xAxis]="retYears" 
-                      [yAxis]="totalAccumulated"
-                      ></charts> 
+                <charts [ChartType]="chartType" [xAxis]="retYears" [yAxis]="totalAccumulated"></charts>
               </ion-list>
 
               <!--<ion-list *ngSwitchCase="'other'">-->

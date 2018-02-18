@@ -17,7 +17,7 @@ export class DashboardPage implements OnInit {
   @ViewChildren('changeText',  {read: ElementRef}) components: QueryList<ElementRef>;
   data = 'monthly';
   editable = false;
-  chartType: string = 'line';
+  chartType: string = 'bar';
   retYears: any[] = [];
   monthlyPay: any[] = [];
   totalAccumulated: any[] = [];
