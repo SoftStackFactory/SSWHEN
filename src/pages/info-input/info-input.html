@@ -3,6 +3,7 @@
     <ion-title>Benefit Information</ion-title>
   </ion-navbar>
 
+
 </ion-header>
 
 <ion-content padding>
@@ -14,6 +15,7 @@
          <ion-item text-center>
           <ion-label floating>Date of Birth</ion-label>
           <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="calculations$.dob" name="Date"  formControlName="birthDate"></ion-datetime>
+
         </ion-item>
         
         <div *ngIf='!myForm.controls.birthDate.valid && submitAttempt'>

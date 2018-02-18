@@ -16,8 +16,7 @@ import { CalculationsProvider } from "../../providers/calculations/calculations"
 export class InfoInputPage {
   myForm: FormGroup;
   submitAttempt: boolean = false;
-
-
+  
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public formBuilder: FormBuilder,
