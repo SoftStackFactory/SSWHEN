@@ -4,12 +4,7 @@ import {ResultsPage} from '../results/results'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NumberValidator } from '../../validators/number';
 import { CalculationsProvider } from "../../providers/calculations/calculations";
-import { Storage } from "@ionic/storage";
-import { UserDataProvider } from "../../providers/user-data/user-data";
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NumberValidator } from '../../validators/number';
-
-
+// import { Storage } from "@ionic/storage";
 
 @IonicPage()
 
@@ -26,7 +21,7 @@ export class InfoInputPage {
               public navParams: NavParams,
               public formBuilder: FormBuilder,
               public calculations$: CalculationsProvider,
-              private storage: Storage
+              // private storage: Storage
               )
     {
       
@@ -50,4 +45,5 @@ export class InfoInputPage {
       this.navCtrl.push(ResultsPage);
     }
   }
+
 }

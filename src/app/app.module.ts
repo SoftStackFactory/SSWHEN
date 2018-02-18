@@ -28,19 +28,7 @@ import { LangaugePopoverComponent } from '../components/langauge-popover/langaug
 import { MockDataProvider } from '../providers/mock-data/mock-data';
 import { ModalDashboardComponent } from '../components/modal-dashboard/modal-dashboard';
 import { ModalHistoryComponent } from '../components/modal-history/modal-history';
-import { IonicStorageModule } from '@ionic/storage';
 import { AppConfig } from '../providers/app-config';
-
-
-
-
-
-
-
-
-
-
-
 
 
 @NgModule({
