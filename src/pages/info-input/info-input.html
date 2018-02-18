@@ -2,11 +2,12 @@
   <ion-navbar>
     <ion-title>Benefit Information</ion-title>
   </ion-navbar>
+
 </ion-header>
 
 <ion-content padding>
   <h3 text-center> <ion-icon name="arrow-round-down"></ion-icon> Please Enter Your Information  <ion-icon name="arrow-round-down"></ion-icon> </h3>
-    <form (ngSubmit)="logForm()">
+    <form>
       <ion-list>
         
       <form [formGroup]='myForm' novalidate>

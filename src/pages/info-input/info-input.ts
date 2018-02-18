@@ -4,7 +4,7 @@ import {ResultsPage} from '../results/results'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NumberValidator } from '../../validators/number';
 import { CalculationsProvider } from "../../providers/calculations/calculations";
-import { Storage } from "@ionic/storage";
+// import { Storage } from "@ionic/storage";
 
 @IonicPage()
 
@@ -22,7 +22,7 @@ export class InfoInputPage {
               public navParams: NavParams,
               public formBuilder: FormBuilder,
               public calculations$: CalculationsProvider,
-              private storage: Storage
+              // private storage: Storage
               )
     {
       
@@ -45,19 +45,6 @@ export class InfoInputPage {
       console.log('Successful input ', this.myForm.value);
       this.navCtrl.push(ResultsPage);
     }
-  }
-
-  logForm() {
-    
-    // this.storage.clear().then((val) => {
-    //   this.storage.set("inputData",  
-    //     {
-    //       pia : this.calculations$.pia,
-    //       gender: this.calculations$.gender,
-    //       dob: this.calculations$.dob
-    //     })
-    // });
-    
   }
 
 }

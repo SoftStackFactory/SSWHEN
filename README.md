@@ -1,3 +1,2 @@
-## Client
+#SSWhen - Social Security Calculator
 
-This is the place for your application front-end files.

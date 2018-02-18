@@ -4,7 +4,7 @@ import { RegisterPage } from '../register/register';
 import { EmailModalPage } from '../email-modal/email-modal';
 import { LandingPage } from '../landing/landing';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
-import { Storage } from '@ionic/storage';
+// import { Storage } from '@ionic/storage';
 
 @IonicPage()
 
@@ -34,7 +34,7 @@ export class ResultsPage implements OnInit {
     public navParams: NavParams, 
     public modalCtrl: ModalController,
     public calculations$: CalculationsProvider,
-    private storage: Storage
+    // private storage: Storage
     ) {
     this.display = "graph";
   }
