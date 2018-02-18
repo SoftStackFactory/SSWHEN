@@ -4,7 +4,6 @@ import {ResultsPage} from '../results/results'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NumberValidator } from '../../validators/number';
 import { CalculationsProvider } from "../../providers/calculations/calculations";
-// import { Storage } from "@ionic/storage";
 
 @IonicPage()
 
@@ -20,8 +19,7 @@ export class InfoInputPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public formBuilder: FormBuilder,
-              public calculations$: CalculationsProvider,
-              // private storage: Storage
+              public calculations$: CalculationsProvider
               )
     {
       
