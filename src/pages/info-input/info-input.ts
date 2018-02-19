@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ResultsPage} from '../results/results';
-import { CalculationsProvider } from "../../providers/calculations/calculations";
+import { Calculations1Provider } from "../../providers/calculations1/calculations1";
 import { Storage } from "@ionic/storage";
 import { UserDataProvider } from "../../providers/user-data/user-data";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -23,7 +23,8 @@ export class InfoInputPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public user$: UserDataProvider, 
-              public formBuilder: FormBuilder
+              public formBuilder: FormBuilder,
+              public calculations1$: Calculations1Provider
               )
     {
       /*this.user$.date = this.myDate;
@@ -49,6 +50,9 @@ export class InfoInputPage {
       console.log('Successful input ', this.myForm.value);
       this.navCtrl.push(ResultsPage);
     }
+    this.calculations1$.getBenefitData();
+    
+  
   }
 
   /*logForm() {

@@ -3,8 +3,8 @@ import { AlertController, ModalController, IonicPage, NavController, NavParams }
 import { RegisterPage } from '../register/register';
 import { EmailModalPage } from '../email-modal/email-modal';
 import { LandingPage } from '../landing/landing';
-import { CalculationsProvider } from '../../providers/calculations/calculations';
-import { Storage } from '@ionic/storage';
+import { Calculations1Provider } from '../../providers/calculations1/calculations1';
+//import { Storage } from '@ionic/storage';
 
 @IonicPage()
 
@@ -33,8 +33,7 @@ export class ResultsPage implements OnInit {
     public alertCtrl: AlertController, 
     public navParams: NavParams, 
     public modalCtrl: ModalController,
-    public calculations$: CalculationsProvider,
-    private storage: Storage
+    public calculations1$: Calculations1Provider,
     ) {
     this.display = "graph";
   }
@@ -103,38 +102,12 @@ export class ResultsPage implements OnInit {
     confirm.present();
   }
   
-  // ionViewWillEnter() {
-  //   this.dataa = [];
-  //   this.storage.get("inputData").then((val) => {
-  //     this.pia = val.pia;
-  //     this.gender = val.gender;
-  //     this.dob = val.dob;
-  //     this.results = this.calculations$.monthlyBenefit(this.pia, this.gender, this.dob);
-  //     this.storage.clear();
-  //     console.log(this.results);
-  //     for(let i = 0; i < this.results.retYears.length; i++){
-  //       let item = {
-  //         retYear: this.results.retYears[i],
-  //         monthlyPay: this.results.monthly[i],
-  //         cumulativePay: this.results.cumulative[i]
-  //       }
-  //       this.dataa.push(item);
-  //     }
-  //     console.log(this.dataa);
-  //   });
-  //   // Assigning data to horizontal & vertical Axis doesn't seem to work here
-  //   // Is this.dataa is not accessable outside of the storage.get method ?
-  //   // console.log(this.dataa);
-  //   // for (let i of this.dataa) {
-  //   //   this.retYears.push(i.retYear);
-  //   //   this.monthlyPay.push(i.monthlyPay);
-  //   // }
-  // }
+  //PROBLEM IS HERE WITH ASYNC, MUST FIGURE OUT WAY TO LOAD SERVICE PROPERTIES AFTER DATA IS RETRIEVED 
 
-  ngOnInit() {
-      this.retYears = this.calculations$.retirementYears;
-      this.monthlyPay = [ {data: this.calculations$.monthlyArray, label: 'Monthly Payout per Retirement Year'} ];
-      this.tableMonthly = this.calculations$.monthlyArray;
+  ngOnInit () {
+      this.retYears = this.calculations1$.benefitData.retYears;
+      this.monthlyPay = [ {data: this.calculations1$.benefitData.monthly, label: 'Monthly Payout per Retirement Year'} ];
+      this.tableMonthly = this.calculations1$.benefitData.monthly;
       // this.tabulatedData = this.calculations$.tableData;
   }
 
