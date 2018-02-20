@@ -22,9 +22,9 @@
               <ion-segment-button value="cumulative">
                 Cumulative
               </ion-segment-button>
-              <ion-segment-button value="other">
-                Other
-              </ion-segment-button>
+              <!--<ion-segment-button value="other">-->
+              <!--  Other-->
+              <!--</ion-segment-button>-->
             </ion-segment>
           </div>
 
@@ -37,7 +37,7 @@
               </ion-row>
               <ion-row no-padding>
                 <ion-col>
-                  <charts></charts>
+                  <charts [ChartType]="chartType" [xAxis]="retYears" [yAxis]="monthlyPay"></charts>
                 </ion-col>
               </ion-row>
               <ion-row padding-top>
@@ -47,32 +47,10 @@
               </ion-row>
               <ion-row no-padding>
                 <ion-col>
-                  <div class="table">
-                    <div class="table-row row header">
-                      <div class="table-col col">Header 1</div>
-                      <div class="table-col col">Header 2</div>
-                      <div class="table-col col">Header 3</div>
-                      <div class="table-col col">Header 4</div>
-                    </div>
-                    <div class="table-row row">
-                      <div class="table-col col">1</div>
-                      <div class="table-col col">2</div>
-                      <div class="table-col col">3</div>
-                      <div class="table-col col">4</div>
-                    </div>
-                    <div class="table-row row">
-                      <div class="table-col col">1</div>
-                      <div class="table-col col">2</div>
-                      <div class="table-col col">3</div>
-                      <div class="table-col col">4</div>
-                    </div>
-                    <div class="table-row row">
-                      <div class="table-col col">1</div>
-                      <div class="table-col col">2</div>
-                      <div class="table-col col">3</div>
-                      <div class="table-col col">4</div>
-                    </div>
-                  </div>
+                  <page-data-table 
+                    [leftCol]="retYears"
+                    [rightCol]="tableMonthly"
+                    ></page-data-table>
                 </ion-col>
               </ion-row>
             </ion-list>
@@ -85,37 +63,15 @@
               </ion-row>
               <ion-row no-padding>
                 <ion-col>
-                  <charts></charts>
+                  <charts [ChartType]="chartType" [xAxis]="retYears" [yAxis]="totalAccumulated"></charts>
                 </ion-col>
               </ion-row>
               <ion-row no-padding>
                 <ion-col>
-                  <div class="table">
-                    <div class="table-row row header">
-                      <div class="table-col col">Header 1</div>
-                      <div class="table-col col">Header 2</div>
-                      <div class="table-col col">Header 3</div>
-                      <div class="table-col col">Header 4</div>
-                    </div>
-                    <div class="table-row row">
-                      <div class="table-col col">1</div>
-                      <div class="table-col col">2</div>
-                      <div class="table-col col">3</div>
-                      <div class="table-col col">4</div>
-                    </div>
-                    <div class="table-row row">
-                      <div class="table-col col">1</div>
-                      <div class="table-col col">2</div>
-                      <div class="table-col col">3</div>
-                      <div class="table-col col">4</div>
-                    </div>
-                    <div class="table-row row">
-                      <div class="table-col col">1</div>
-                      <div class="table-col col">2</div>
-                      <div class="table-col col">3</div>
-                      <div class="table-col col">4</div>
-                    </div>
-                  </div>
+                  <page-data-table 
+                    [leftCol]="retYears"
+                    [rightCol]="tableTotalAccumulated"
+                    ></page-data-table>
                 </ion-col>
               </ion-row>
             </ion-list>

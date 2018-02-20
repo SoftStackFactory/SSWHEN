@@ -43,35 +43,46 @@
               <ion-col>
                 <div #changeText><strong>Life Expectancy:</strong></div>
                 <div #changeText>{{lifeExpectancy}}</div>
-                <ion-item *ngIf="editable">
-                  <ion-label floating>Life Expectancy</ion-label>
-                  <ion-input type="text"></ion-input>
-                </ion-item>
               </ion-col>
               <ion-col align-items-end>
                 <div #changeText><strong>FRA Age:</strong></div>
                 <div #changeText>{{ageFRA}}</div>
-                <ion-item *ngIf="editable">
-                  <ion-label floating>FRA Age</ion-label>
-                  <ion-input type="text"></ion-input>
-                </ion-item>
               </ion-col>
             </ion-row>
             <ion-row align-items-start>
               <ion-col>
                 <div #changeText><strong>FRA Benefit Amount:</strong></div>
                 <div #changeText>{{benefitAtFRA}}</div>
-                <ion-item *ngIf="editable">
-                  <ion-label floating>FRA Benefit Amount</ion-label>
-                  <ion-input type="text"></ion-input>
-                </ion-item>
               </ion-col>
               <ion-col>
                 <div #changeText><strong>Total Tax Contribution:</strong></div>
                 <div #changeText>$40,110</div>
+              </ion-col>
+            </ion-row>
+
+            <ion-row align-items-start>
+              <ion-col>
+                <ion-item *ngIf="editable">
+                  <ion-label floating>Life Expectancy</ion-label>
+                  <ion-input type="text" placeholder="{{lifeExpectancy}}"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item *ngIf="editable">
+                  <ion-label floating>FRA Age</ion-label>
+                  <ion-input type="text" placeholder="{{ageFRA}}"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item *ngIf="editable">
+                  <ion-label floating>FRA Benefit Amount</ion-label>
+                  <ion-input type="text" placeholder="{{benefitAtFRA}}"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col>
                 <ion-item *ngIf="editable">
                   <ion-label floating>Total Tax Contribution</ion-label>
-                  <ion-input type="text"></ion-input>
+                  <ion-input type="text" placeholder="$40,110"></ion-input>
                 </ion-item>
               </ion-col>
             </ion-row>
@@ -105,7 +116,7 @@
                     <p #changeText text-center>Monthly Benefit</p>
                   </ion-col>
                   <ion-col col-4>
-                    <a (click)="presentModal(monthly)" float-end color="primary" #changeText>View Table</a>
+                    <a (click)="presentModal('monthly')" float-end color="primary" #changeText>View Table</a>
                   </ion-col>
                 </ion-row>
                 <charts [ChartType]="chartType" [xAxis]="retYears" [yAxis]="monthlyPay"></charts>
@@ -117,7 +128,7 @@
                     <p #changeText text-center>Cumulative Benefits</p>
                   </ion-col>
                   <ion-col col-4>
-                    <a (click)="presentModal(cumulative)" float-end color="primary" #changeText>View Table</a>
+                    <a (click)="presentModal('cumulative')" float-end color="primary" #changeText>View Table</a>
                   </ion-col>
                 </ion-row>
                 <charts [ChartType]="chartType" [xAxis]="retYears" [yAxis]="totalAccumulated"></charts>

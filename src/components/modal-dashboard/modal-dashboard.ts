@@ -12,16 +12,20 @@ export class ModalDashboardComponent implements OnInit{
     retYears: any[] = [];
     tableMonthly: any[] = [];
     totalAccumulated: any[] = [];
-    chartType: string = this.navParams.get('type');
+    chartType: string;
     
   constructor(public navParams: NavParams, 
               public viewCtrl: ViewController, 
-              public calculations$: CalculationsProvider) {}
+              public calculations$: CalculationsProvider
+  ) {
+    this.chartType = this.navParams.get('modalType');
+  }
 
   ngOnInit() {
       this.retYears = this.calculations$.retirementYears;
-      this.tableMonthly = this.calculations$.monthlyArray;
-      this.totalAccumulated = this.calculations$.cumulativeArray
+      this.tableMonthly = this.calculations$.monthlyBenefit().monthly;;
+      this.totalAccumulated = this.calculations$.monthlyBenefit().cumulative;
+      console.log(this.chartType)
   }
 
   dismiss() {

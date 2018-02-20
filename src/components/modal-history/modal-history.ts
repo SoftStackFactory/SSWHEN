@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {AlertController, NavParams, ViewController} from 'ionic-angular';
+import { CalculationsProvider } from '../../providers/calculations/calculations';
 
 /**
  * Generated class for the ModalHistoryComponent component.
@@ -14,12 +15,26 @@ import {AlertController, NavParams, ViewController} from 'ionic-angular';
 export class ModalHistoryComponent {
   background: string;
   data = 'monthly';
-
-  constructor(private navParams: NavParams, public viewCtrl: ViewController, public alertCtrl: AlertController) {
+  chartType: string = 'bar';
+  retYears: any[] = [];
+  monthlyPay: any[] = [];
+  totalAccumulated: any[] = [];
+  tableMonthly: any[] = [];
+  tableTotalAccumulated: any[] = [];
+ 
+  constructor(public navParams: NavParams, 
+              public viewCtrl: ViewController, 
+              public alertCtrl: AlertController,
+              public calculations$: CalculationsProvider) {
 
   }
 
   ngOnInit() {
+    this.retYears = this.calculations$.retirementYears;
+    this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
+    this.totalAccumulated = [ {data: this.calculations$.monthlyBenefit().cumulative, label: 'Cumulative Benefits per Retirement Year'} ];
+    this.tableMonthly = this.calculations$.monthlyBenefit().monthly;;
+    this.tableTotalAccumulated = this.calculations$.monthlyBenefit().cumulative;
   }
 
   showPrompt() {

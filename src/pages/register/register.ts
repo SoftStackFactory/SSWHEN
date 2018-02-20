@@ -15,13 +15,18 @@ export class RegisterPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
        this.registerForm = formBuilder.group({
+        maritalStatus: ['', 
+          Validators.compose([
+              Validators.required
+            ])
+        ],
         totalTaxContribution: ['', 
           Validators.compose([
               Validators.required,
                 Validators.pattern('[0-9]{1,9}')
             ])
         ],
-      email: ['', 
+        email: ['', 
           Validators.compose([
               Validators.required,
               Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
@@ -45,7 +50,7 @@ export class RegisterPage {
     } else {
       alert("Thank you for registering!");
       console.log("Successful registration", this.registerForm.value);
-      this.navCtrl.push(DashboardPage);
+      this.navCtrl.setRoot(DashboardPage);
     }
     
   }

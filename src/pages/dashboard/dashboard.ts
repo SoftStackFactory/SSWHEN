@@ -1,4 +1,4 @@
-import {Component, ElementRef, QueryList, ViewChild, ViewChildren, OnInit} from '@angular/core';
+import {Component, ElementRef, QueryList, ViewChildren, OnInit} from '@angular/core';
 import {AlertController, IonicPage, ModalController, NavController, NavParams, PopoverController} from 'ionic-angular';
 import {PopoverPage} from './popover-page';
 import {ModalDashboardComponent} from '../../components/modal-dashboard/modal-dashboard';
@@ -35,11 +35,12 @@ export class DashboardPage implements OnInit {
               public calculations$: CalculationsProvider) {}
 
   isEditable() {
-    if (this.editable = false) {
-      this.editable = true;
-    } else {
-      this.editable = false;
-    }
+    this.editable = !this.editable;
+    // if (this.editable = false) {
+    //   this.editable = true;
+    // } else {
+    //   this.editable = false;
+    // }
     // console.log("editable clicked");
   }
 
@@ -60,7 +61,11 @@ export class DashboardPage implements OnInit {
   }
 
   presentModal(type) {
-    let modal = this.modalCtrl.create(ModalDashboardComponent, type);
+    let chartType = type;
+    console.log(chartType);
+    let modal = this.modalCtrl.create(ModalDashboardComponent, {
+      'modalType': chartType
+    });
     // let ev = {
     //   target: {
     //     getBoundingClientRect: () => {
