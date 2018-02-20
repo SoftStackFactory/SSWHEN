@@ -42,6 +42,9 @@ export class InfoInputPage {
       console.log('Successful input ', this.myForm.value);
       this.navCtrl.push(ResultsPage);
     }
+    
+    this.calculations$.getBenefitData();
+    
   }
 
 }
