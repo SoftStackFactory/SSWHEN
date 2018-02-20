@@ -29,6 +29,7 @@ import { MockDataProvider } from '../providers/mock-data/mock-data';
 import { ModalDashboardComponent } from '../components/modal-dashboard/modal-dashboard';
 import { ModalHistoryComponent } from '../components/modal-history/modal-history';
 import { AppConfig } from '../providers/app-config';
+import { SsUsersProvider } from '../providers/ss-users/ss-users';
 
 
 @NgModule({
@@ -89,7 +90,8 @@ import { AppConfig } from '../providers/app-config';
     UserDataProvider,
     CalculationsProvider,
     MockDataProvider,
-    AppConfig
+    AppConfig,
+    SsUsersProvider
   ]
 })
 export class AppModule {}

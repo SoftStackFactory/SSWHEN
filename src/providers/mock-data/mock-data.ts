@@ -4,7 +4,7 @@ import { map } from 'rxjs/operator/map';
 
 // This service gets its data from mockUsers[], which is of type SSUser{} - an object with properties email - isMarried. 
 // The service could just as well get data from local storage or from the back end
-import {SSUser} from '../../models/SSUser';
+import { SSUser } from '../../models/SSUser';
 import { mockUsers } from '../../models/mockData/mockUsers';
 
 

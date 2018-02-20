@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { DashboardPage } from '../dashboard/dashboard';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SSUser } from '../../models/SSUser';
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -15,9 +17,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  
-    myForm: FormGroup;
-    submitAttempt: boolean = false;
+  user: SSUser;  
+  myForm: FormGroup;
+  submitAttempt: boolean = false;
 
   constructor(public navCtrl: NavController, 
   public navParams: NavParams,
@@ -92,7 +94,10 @@ export class LoginPage {
       if(!this.myForm.valid) {
         console.log("Unsuccessful registration :("); 
       } else {
+        // login user using /SSUser/login
+        
         console.log("Successful registration", this.myForm.value);
+        
       }
     }
 

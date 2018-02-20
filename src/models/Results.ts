@@ -5,7 +5,6 @@
 // Averages are currently being used for life expectancy. We'd inculde LE here if its to be user supplied.
 
 export class Results {
-    
     monthly: number[];
     cumulative: number[];
     createdAt: string;
