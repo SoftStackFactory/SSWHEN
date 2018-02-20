@@ -61,6 +61,7 @@ export class LoginPage {
             console.log("Successful login", this.myForm.value);
             this.navCtrl.push(DashboardPage);
           }, err => {
+            // handle common error codes, 401, 422, 500, etc.
             console.log(err);
           });
       }

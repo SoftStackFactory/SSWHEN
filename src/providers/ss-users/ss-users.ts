@@ -18,24 +18,28 @@ export class SsUsersProvider {
 
   login(user) {
     let path = '/SSUsers/login';
-    return this.http.post(
-      this.apiUrl + path, user)
+    return this.http.post(this.apiUrl + path, user)
   }
   
-  register() {
+  register(user) {
+    let path = '/SSUsers';
+    return this.http.post(this.apiUrl + path, user)
     
   }
   
-  updateUser() {
-    
+  updateUser(user, token) {
+    let path = '/SSUsers/' + user.id + '/replace?access_token=' + token;
+    return this.http.post(this.apiUrl + path, user)
   }
 
-  logout() {
-    
+  logout(token) {
+    let path = '/SSUsers/?access_token=' + token;
+    return this.http.post(this.apiUrl + path, {})
   }
   
-  getResultsByUser() {
-    
+  getResultsByUser(user, token) {
+    let path = '/SSUsers/' + user.id + '/results?access_token=' + token;
+    return this.http.post(this.apiUrl + path, user)
   }
 
 }
