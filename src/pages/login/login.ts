@@ -3,6 +3,7 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SSUser } from '../../models/SSUser';
+import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 
 /**
  * Generated class for the LoginPage page.
@@ -21,17 +22,26 @@ export class LoginPage {
   myForm: FormGroup;
   submitAttempt: boolean = false;
 
-  constructor(public navCtrl: NavController, 
-  public navParams: NavParams,
-  public formBuilder: FormBuilder,
-  public alertCtrl: AlertController) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public formBuilder: FormBuilder,
+    public alertCtrl: AlertController,
+    public ssUsersProvider: SsUsersProvider  
+  ) {
     
-     this.myForm = formBuilder.group({
+  this.myForm = formBuilder.group({
     email: ['',
-    Validators.compose([ 
-    Validators.required,
-    Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')]
+      Validators.compose([ 
+      Validators.required,
+      Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')]
     )],
+    password: ['', 
+      Validators.compose([
+          Validators.required,
+          Validators.pattern('[A-Za-z0-9!@#$%]{6,12}')
+        ])
+    ]
   });
   }
 
@@ -42,11 +52,17 @@ export class LoginPage {
   popView(){
       this.submitAttempt = true;
       if(!this.myForm.valid) {
-        console.log("Unsuccessful registration :("); 
+        console.log("Unsuccessful registration :(", this.myForm); 
       } else {
-        alert('Thank you for loging in!');
-        console.log("Successful login", this.myForm.value);
-        this.navCtrl.push(DashboardPage);
+        // login user using /SSUser/login
+        this.ssUsersProvider.login(this.myForm.value)
+          .subscribe( res => {
+            alert('Thank you for loging in!');
+            console.log("Successful login", this.myForm.value);
+            this.navCtrl.push(DashboardPage);
+          }, err => {
+            console.log(err);
+          });
       }
     }
   
@@ -94,10 +110,7 @@ export class LoginPage {
       if(!this.myForm.valid) {
         console.log("Unsuccessful registration :("); 
       } else {
-        // login user using /SSUser/login
-        
-        console.log("Successful registration", this.myForm.value);
-        
+        console.log("Successful Email Submission", this.myForm.value);
       }
     }
 
