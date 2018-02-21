@@ -91,7 +91,12 @@ export class DashboardPage implements OnInit {
   }
   
   presentModal(type) {
-    let modal = this.modalCtrl.create(ModalDashboardComponent, type);
+    let chartType = type;
+    console.log(chartType);
+    let modal = this.modalCtrl.create(ModalDashboardComponent, {
+      'modalType': chartType
+    });
+    
     modal.present();
   }
   
