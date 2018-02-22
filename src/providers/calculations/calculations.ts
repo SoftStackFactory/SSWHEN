@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 /*
@@ -9,10 +8,10 @@ import 'rxjs/add/operator/map';
   for more info on providers and Angular DI.
 */
 @Injectable()
-export class Calculations1Provider {
+export class CalculationsProvider {
 
   constructor(public http: Http) {
-    console.log('Hello Calculations1Provider Provider');
+    console.log('Hello CalculationsProvider Provider');
   }
   
   pia: number;
@@ -27,8 +26,7 @@ export class Calculations1Provider {
     
     return this.http.get(apiUrl);
     
-    });
+    };
   }
 
-}
 

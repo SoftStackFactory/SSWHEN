@@ -130,9 +130,9 @@ export class ResultsPage implements OnInit {
   // }
 
   ngOnInit() {
-      this.retYears = this.calculations$.retirementYears;
-      this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
-      this.tableMonthly = this.calculations$.monthlyBenefit().monthly;
+      // this.retYears = this.calculations$.retirementYears;
+      // this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
+      // this.tableMonthly = this.calculations$.monthlyBenefit().monthly;
       // this.tabulatedData = this.calculations$.tableData;
   }
 
