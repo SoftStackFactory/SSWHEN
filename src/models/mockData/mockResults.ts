@@ -1,5 +1,4 @@
 //  MOCKRESULTS is an array of Results{}
-
 import {Results } from '../Results';
 
 export const MOCKRESULTS: Results[] = [
@@ -9,7 +8,9 @@ export const MOCKRESULTS: Results[] = [
     createdAt: "01/08/2018",
     isRegistered: true,
     gender: 'male',
+    lifeExpectancy: 78,
     FRAbenefit: 1851,
+    ageFRA: 67,
     totalContribution: 133917,
     isMarried: false,
   },
@@ -19,7 +20,9 @@ export const MOCKRESULTS: Results[] = [
     createdAt: "01/01/0101",
     isRegistered: true,
     gender: 'male',
+    lifeExpectancy: 80,
     FRAbenefit: 200,
+    ageFRA: 67,
     totalContribution: 2,
     isMarried: false,
   },
@@ -29,7 +32,9 @@ export const MOCKRESULTS: Results[] = [
     createdAt: "08/08/8080",
     isRegistered: false,
     gender: 'female',
+    lifeExpectancy: 82,
     FRAbenefit: 8888,
+    ageFRA: 67,
     totalContribution: 8,
     isMarried: false,
   },
@@ -39,7 +44,9 @@ export const MOCKRESULTS: Results[] = [
     createdAt: "98/98/9880",
     isRegistered: true,
     gender: 'female',
+    lifeExpectancy: 84,
     FRAbenefit: 8898,
+    ageFRA: 67,
     totalContribution: 8,
     isMarried: false,
   },
@@ -49,7 +56,9 @@ export const MOCKRESULTS: Results[] = [
     createdAt: "98/98/9880",
     isRegistered: true,
     gender: 'female',
+    lifeExpectancy: 86,
     FRAbenefit: 8898,
+    ageFRA: 67,
     totalContribution: 8,
     isMarried: false,
   }
