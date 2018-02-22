@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SsUsersProvider } from '../../providers/ss-users/ss-users';
+import { SSUser } from '../../models/SSUser';
 
 @IonicPage()
 @Component({
@@ -10,10 +12,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterPage {
   
+  ssUser: SSUser;
+  infoData: any;
   registerForm: FormGroup;
   submitAttempt: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public ssusers$: SsUsersProvider) {
        this.registerForm = formBuilder.group({
         maritalStatus: ['', 
           Validators.compose([
@@ -48,9 +52,22 @@ export class RegisterPage {
     if(!this.registerForm.valid){
      console.log("Unsuccessful registration");
     } else {
-      alert("Thank you for registering!");
-      console.log("Successful registration", this.registerForm.value);
-      this.navCtrl.setRoot(DashboardPage);
+      this.ssusers$.register(this.ssUser)
+        .subscribe(res => {
+          this.ssUser.email = this.registerForm.value.email;
+          this.ssUser.password = this.registerForm.value.password;
+          this.ssUser.totalContribution = this.registerForm.value.totalContribution
+          this.ssUser.isMarried = this.registerForm.value.maritalStatus;
+          this.ssUser.dateOfBirth = this.infoData.birthDate;
+          this.ssUser.gender = this.infoData.gender;
+          this.ssUser.FRAbenefit = this.infoData.fra;
+
+          alert("Thank you for registering!");
+          console.log("Successful registration", this.ssUser);
+          this.navCtrl.setRoot(DashboardPage);
+        }, err => {
+          console.log(err);
+        });
     }
     
   }
@@ -58,6 +75,7 @@ export class RegisterPage {
   //IONIC VIEW LOAD CONFIRMATION FUNCTION
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
+    this.infoData = this.navParams.get('infoData');
   }
   
 

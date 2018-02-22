@@ -35,12 +35,13 @@ export class InfoInputPage {
   
   onSubmit(){
     this.submitAttempt = true;
-    
     if(!this.myForm.valid){
       console.log('Unsuccessful input', this.myForm.value);
     }else{
       console.log('Successful input ', this.myForm.value);
-      this.navCtrl.push(ResultsPage);
+      this.navCtrl.push(ResultsPage, {
+        'myForm': this.myForm.value
+      });
     }
   }
 
