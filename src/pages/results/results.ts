@@ -18,6 +18,7 @@ export class ResultsPage implements OnInit {
   retYears: any[] = [];
   monthlyPay: any[] = [];
   tableMonthly: any[] = [];
+  dataObject: any;
   // tabulatedData: any[] = [];
 
   
@@ -130,10 +131,16 @@ export class ResultsPage implements OnInit {
   // }
 
   ngOnInit() {
-      // this.retYears = this.calculations$.retirementYears;
-      // this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
-      // this.tableMonthly = this.calculations$.monthlyBenefit().monthly;
-      // this.tabulatedData = this.calculations$.tableData;
+      
+      this.calculations$.getBenefitData().subscribe ( data => {
+        this.dataObject = data;
+        console.log(this.dataObject);
+      });
+      
+      // this.retYears = this.dataObject.retYears;
+      // this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
+      // this.tableMonthly = this.dataObject.monthly;
+      
   }
 
 }
