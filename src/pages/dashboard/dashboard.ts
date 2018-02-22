@@ -36,12 +36,7 @@ export class DashboardPage implements OnInit {
 
   isEditable() {
     this.editable = !this.editable;
-    // if (this.editable = false) {
-    //   this.editable = true;
-    // } else {
-    //   this.editable = false;
-    // }
-    // console.log("editable clicked");
+    console.log("editable clicked", this.editable);
   }
 
   presentLanguagePopover(myEvent) {
