@@ -1,4 +1,4 @@
-// Re-usable agnostic table. x & y data fed in by parent page
+// Re-usable agnostic table. x & y data, as well as headers fed in by parent page
 
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -10,7 +10,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class DataTablePage implements OnInit {
 
   @Input() leftCol: any[];
+  @Input() leftColTitle: string;
   @Input() rightCol: any[];
+  @Input() rightColTitle: string;
   benefitData: any[] = [];
   
   constructor() {}
@@ -24,6 +26,5 @@ export class DataTablePage implements OnInit {
       this.benefitData.push(item);
     }
   }
-
 
 }
