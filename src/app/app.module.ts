@@ -31,6 +31,7 @@ import { ModalHistoryComponent } from '../components/modal-history/modal-history
 import { AppConfig } from '../providers/app-config';
 
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -90,6 +91,7 @@ import { AppConfig } from '../providers/app-config';
     CalculationsProvider,
     MockDataProvider,
     AppConfig
+    
   ]
 })
 export class AppModule {}

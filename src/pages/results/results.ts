@@ -19,7 +19,7 @@ export class ResultsPage implements OnInit {
   monthlyPay: any[] = [];
   tableMonthly: any[] = [];
   dataObject: any;
-  // tabulatedData: any[] = [];
+ 
 
   
   results: any;
@@ -36,7 +36,12 @@ export class ResultsPage implements OnInit {
     public calculations$: CalculationsProvider
     ) {
     this.display = "graph";
+    //this.getData();
+    
+    
   }
+  
+
   
   goToRegister(params){
     if (!params) params = {};
@@ -102,46 +107,21 @@ export class ResultsPage implements OnInit {
     confirm.present();
   }
   
-  // ionViewWillEnter() {
-  //   this.dataa = [];
-  //   this.storage.get("inputData").then((val) => {
-  //     this.pia = val.pia;
-  //     this.gender = val.gender;
-  //     this.dob = val.dob;
-  //     this.results = this.calculations$.monthlyBenefit(this.pia, this.gender, this.dob);
-  //     this.storage.clear();
-  //     console.log(this.results);
-  //     for(let i = 0; i < this.results.retYears.length; i++){
-  //       let item = {
-  //         retYear: this.results.retYears[i],
-  //         monthlyPay: this.results.monthly[i],
-  //         cumulativePay: this.results.cumulative[i]
-  //       }
-  //       this.dataa.push(item);
-  //     }
-  //     console.log(this.dataa);
-  //   });
-  //   // Assigning data to horizontal & vertical Axis doesn't seem to work here
-  //   // Is this.dataa is not accessable outside of the storage.get method ?
-  //   // console.log(this.dataa);
-  //   // for (let i of this.dataa) {
-  //   //   this.retYears.push(i.retYear);
-  //   //   this.monthlyPay.push(i.monthlyPay);
-  //   // }
-  // }
 
-  ngOnInit() {
-      
-      this.calculations$.getBenefitData().subscribe ( data => {
-        this.dataObject = data;
-        console.log(this.dataObject);
-      });
-      
-      // this.retYears = this.dataObject.retYears;
-      // this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
-      // this.tableMonthly = this.dataObject.monthly;
-      
+  ngOnInit(){
+    this.calculations$.getBenefitData().subscribe ( data => {
+    this.dataObject = data;
+    this.dataObject = JSON.parse(this.dataObject._body);
+    console.log(this.dataObject, "PETER!!!!");
+    this.retYears = this.dataObject.retYears;
+    this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
+    this.tableMonthly = this.dataObject.monthly;
+    console.log(this.retYears, "retYears");
+    console.log(this.monthlyPay, "monthlyPay");
+    console.log(this.tableMonthly, "tableMonthly");
+    });
   }
-
 }
+
+
   
