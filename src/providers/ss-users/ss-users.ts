@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class SsUsersProvider {
-  apiUrl: string = "http://shaun-winter-2017-phortonssf.c9users.io:8080/api";
+  apiUrl: string = "http://sswhen-bk-danilo-phortonssf.c9users.io:8080/api";
 
   constructor(public http: Http) {
     console.log('Hello SsUsersProvider Provider');
@@ -24,7 +24,6 @@ export class SsUsersProvider {
   register(user) {
     let path = '/SSUsers';
     return this.http.post(this.apiUrl + path, user)
-    
   }
   
   updateUser(user, token) {
