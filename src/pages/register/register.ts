@@ -4,6 +4,7 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 import { SSUser } from '../../models/SSUser';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -17,36 +18,40 @@ export class RegisterPage {
   registerForm: FormGroup;
   submitAttempt: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public ssusers$: SsUsersProvider) {
-    this.registerForm = formBuilder.group({
-      maritalStatus: ['', 
-        Validators.compose([
-            Validators.required
-          ])
-      ],
-      totalTaxContribution: ['', 
-        Validators.compose([
-            Validators.required,
-              Validators.pattern('[0-9]{1,9}')
-          ])
-      ],
-      email: ['', 
-        Validators.compose([
-            Validators.required,
-            Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
-            Validators.maxLength(30),
-          ])
-      ],
-      password: ['', 
-        Validators.compose([
-            Validators.required,
-            Validators.pattern('[A-Za-z0-9!@#$%]{6,12}')
-          ])
-      ]
-    });
-      
-    this.infoData = this.navParams.get('infoData');
-  }
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public formBuilder: FormBuilder, 
+    public ssusers$: SsUsersProvider,
+    public storage: Storage) {
+      this.registerForm = formBuilder.group({
+        maritalStatus: ['', 
+          Validators.compose([
+              Validators.required
+            ])
+        ],
+        totalTaxContribution: ['', 
+          Validators.compose([
+              Validators.required,
+                Validators.pattern('[0-9]{1,9}')
+            ])
+        ],
+        email: ['', 
+          Validators.compose([
+              Validators.required,
+              Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
+              Validators.maxLength(30),
+            ])
+        ],
+        password: ['', 
+          Validators.compose([
+              Validators.required,
+              Validators.pattern('[A-Za-z0-9!@#$%]{6,12}')
+            ])
+        ]
+      });
+      this.infoData = this.navParams.get('infoData');
+    }
   
   //SUBMIT AND NAVIGATION FUNCTION
   submit() {
