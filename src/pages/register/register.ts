@@ -71,8 +71,11 @@ export class RegisterPage {
       this.ssusers$.register(this.ssUser)
         .subscribe(res => {
           alert("Thank you for registering!");
+          console.log(res);
           console.log("Successful registration", this.ssUser);
-          
+          this.storage.set('SSUser', this.ssUser);
+          this.storage.set('userId', res.id);
+          this.storage.set('token', res.token);
           this.navCtrl.setRoot(DashboardPage);
         }, err => {
           console.log(err);
