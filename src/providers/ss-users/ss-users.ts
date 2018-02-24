@@ -24,7 +24,6 @@ export class SsUsersProvider {
   register(user) {
     let path = '/SSUsers';
     return this.http.post(this.apiUrl + path, user)
-    
   }
   
   updateUser(user, token) {
