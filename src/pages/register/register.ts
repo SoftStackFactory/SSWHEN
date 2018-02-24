@@ -12,38 +12,40 @@ import { SSUser } from '../../models/SSUser';
 })
 export class RegisterPage {
   
-  ssUser: SSUser;
+  ssUser = new SSUser();
   infoData: any;
   registerForm: FormGroup;
   submitAttempt: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public ssusers$: SsUsersProvider) {
-       this.registerForm = formBuilder.group({
-        maritalStatus: ['', 
-          Validators.compose([
-              Validators.required
-            ])
-        ],
-        totalTaxContribution: ['', 
-          Validators.compose([
-              Validators.required,
-                Validators.pattern('[0-9]{1,9}')
-            ])
-        ],
-        email: ['', 
-          Validators.compose([
-              Validators.required,
-              Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
-              Validators.maxLength(30),
-            ])
-        ],
-        password: ['', 
-          Validators.compose([
-              Validators.required,
-              Validators.pattern('[A-Za-z0-9!@#$%]{6,12}')
-            ])
-        ]
-      });
+    this.registerForm = formBuilder.group({
+      maritalStatus: ['', 
+        Validators.compose([
+            Validators.required
+          ])
+      ],
+      totalTaxContribution: ['', 
+        Validators.compose([
+            Validators.required,
+              Validators.pattern('[0-9]{1,9}')
+          ])
+      ],
+      email: ['', 
+        Validators.compose([
+            Validators.required,
+            Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
+            Validators.maxLength(30),
+          ])
+      ],
+      password: ['', 
+        Validators.compose([
+            Validators.required,
+            Validators.pattern('[A-Za-z0-9!@#$%]{6,12}')
+          ])
+      ]
+    });
+      
+    this.infoData = this.navParams.get('infoData');
   }
   
   //SUBMIT AND NAVIGATION FUNCTION
@@ -52,21 +54,23 @@ export class RegisterPage {
     if(!this.registerForm.valid){
      console.log("Unsuccessful registration");
     } else {
+      console.log(this.infoData);
+      console.log(this.registerForm);
+      this.ssUser.email = this.registerForm.value.email;
+      this.ssUser.password = this.registerForm.value.password;
+      this.ssUser.totalContribution = this.registerForm.value.totalTaxContribution;
+      this.ssUser.isMarried = this.registerForm.value.maritalStatus;
+
+      console.log(this.ssUser);
+
       this.ssusers$.register(this.ssUser)
         .subscribe(res => {
-          this.ssUser.email = this.registerForm.value.email;
-          this.ssUser.password = this.registerForm.value.password;
-          this.ssUser.totalContribution = this.registerForm.value.totalContribution
-          this.ssUser.isMarried = this.registerForm.value.maritalStatus;
-          this.ssUser.dateOfBirth = this.infoData.birthDate;
-          this.ssUser.gender = this.infoData.gender;
-          this.ssUser.FRAbenefit = this.infoData.fra;
-
           alert("Thank you for registering!");
           console.log("Successful registration", this.ssUser);
           this.navCtrl.setRoot(DashboardPage);
         }, err => {
           console.log(err);
+          console.log("Unsuccessful registration", this.ssUser);
         });
     }
     
@@ -75,7 +79,12 @@ export class RegisterPage {
   //IONIC VIEW LOAD CONFIRMATION FUNCTION
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
-    this.infoData = this.navParams.get('infoData');
+    console.log(this.infoData);
+      console.log(this.ssUser);
+      this.ssUser.dateOfBirth = this.infoData.birthDate;
+      this.ssUser.gender = this.infoData.gender;
+      this.ssUser.FRAbenefit = this.infoData.fra;
+      console.log(this.ssUser);
   }
   
 
