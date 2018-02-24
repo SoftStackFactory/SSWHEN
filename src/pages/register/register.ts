@@ -67,6 +67,7 @@ export class RegisterPage {
         .subscribe(res => {
           alert("Thank you for registering!");
           console.log("Successful registration", this.ssUser);
+          
           this.navCtrl.setRoot(DashboardPage);
         }, err => {
           console.log(err);
