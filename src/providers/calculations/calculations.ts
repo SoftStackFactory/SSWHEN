@@ -115,7 +115,6 @@ export class CalculationsProvider {
       }
       this.tableData.push(item);
     }
-    console.log("tableData: ",this.tableData);
     
     
     this.benefitData = {
@@ -125,12 +124,12 @@ export class CalculationsProvider {
       pv: this.pvOfBenefits
     }
 
-    console.log("Full Retirement Age: ", Math.round(this.fullRetAge / 12));
-    console.log("Average life expectancy for this gender " + this.lifeExpect / 12 + " years");
-    console.log("Monthly Benefits per Retirement Year", this.monthlyArray);
-    console.log("Total Cumulative Benefits per Retirement Year", this.cumulativeArray);
-    console.log("Present Value of Total Cumulative Benefits per Retirement Year", this.pvOfBenefits);
-    console.log("benefitData:", this.benefitData);
+    // console.log("Full Retirement Age: ", Math.round(this.fullRetAge / 12));
+    // console.log("Average life expectancy for this gender " + this.lifeExpect / 12 + " years");
+    // console.log("Monthly Benefits per Retirement Year", this.monthlyArray);
+    // console.log("Total Cumulative Benefits per Retirement Year", this.cumulativeArray);
+    // console.log("Present Value of Total Cumulative Benefits per Retirement Year", this.pvOfBenefits);
+    // console.log("benefitData:", this.benefitData);
 
     //empty calculation arrays
     
