@@ -15,6 +15,7 @@ import { CalculationsProvider } from "../../providers/calculations/calculations"
 export class InfoInputPage {
   myForm: FormGroup;
   submitAttempt: boolean = false;
+
   
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -43,6 +44,9 @@ export class InfoInputPage {
         'myForm': this.myForm.value
       });
     }
+    
+    this.calculations$.getBenefitData();
+    
   }
 
 }
