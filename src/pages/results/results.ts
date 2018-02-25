@@ -26,6 +26,7 @@ export class ResultsPage implements OnInit {
   gender: any;
   dob: any;
   dataa: any[] = [];
+  infoData: any;
   
   constructor(
     public navCtrl: NavController, 
@@ -39,7 +40,9 @@ export class ResultsPage implements OnInit {
   
   goToRegister(params){
     if (!params) params = {};
-    this.navCtrl.push(RegisterPage);
+    this.navCtrl.push(RegisterPage, {
+      'infoData': this.infoData
+    });
   }
   goToLanding(params){
     if (!params) params = {};
@@ -105,6 +108,10 @@ export class ResultsPage implements OnInit {
       this.retYears = this.calculations$.retirementYears;
       this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
       this.tableMonthly = this.calculations$.monthlyBenefit().monthly;
+  }
+  
+  ionViewDidLoad() {
+    this.infoData = this.navParams.get('myForm');
   }
 
 }
