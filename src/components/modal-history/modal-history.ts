@@ -16,9 +16,9 @@ export class ModalHistoryComponent {
   background: string;
   data = 'monthly';
   chartType: string = 'bar';
-  retYears: any[] = [];
-  monthlyPay: any[] = [];
-  totalAccumulated: any[] = [];
+  retYears: any[];
+  monthlyPay: any[];
+  totalAccumulated: any[];
   tableMonthly: any[] = [];
   tableTotalAccumulated: any[] = [];
  

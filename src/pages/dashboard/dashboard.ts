@@ -19,9 +19,9 @@ export class DashboardPage implements OnInit {
   data = 'monthly';
   editable = false;
   chartType: string = 'bar';
-  retYears: any[] = [];
-  monthlyPay: any[] = [];
-  totalAccumulated: any[] = [];
+  retYears: any[];
+  monthlyPay: any[];
+  totalAccumulated: any[];
   lifeExpectancy: number;
   benefitAtFRA: number;
   ageFRA: number;
@@ -92,6 +92,8 @@ export class DashboardPage implements OnInit {
     // this.lifeExpectancy = this.calculations$.lifeExpect/12;
     // this.benefitAtFRA = this.calculations$.FRAbenefitAmount;
     // this.ageFRA = this.calculations$.fullRetAge / 12;
+    }
+    
   presentModal(type) {
     let chartType = type;
     console.log(chartType);
@@ -100,10 +102,6 @@ export class DashboardPage implements OnInit {
     });
     
     modal.present();
-  }
-
-  ionViewWillEnter() {
-    
   }
 
 }

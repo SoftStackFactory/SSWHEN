@@ -29,7 +29,7 @@
           </div>
 
           <div [ngSwitch]="data">
-            <ion-list *ngSwitchCase="'monthly'">
+            <ion-list *ngSwitchCase="'monthly'" ngIf="monthlyPay">
               <ion-row padding-top>
                 <ion-col>
                   <h4 #changeText>Monthly Contributions</h4>
@@ -55,7 +55,7 @@
               </ion-row>
             </ion-list>
 
-            <ion-list *ngSwitchCase="'cumulative'">
+            <ion-list *ngSwitchCase="'cumulative'" ngIf="cumulative">
               <ion-row padding-top>
                 <ion-col>
                   <p #changeText>Cumulative Contributions</p>
