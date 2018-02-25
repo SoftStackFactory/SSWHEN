@@ -25,6 +25,7 @@ export class DashboardPage implements OnInit {
   lifeExpectancy: number;
   benefitAtFRA: number;
   ageFRA: number;
+  totalContribution: number;
 
 
 
