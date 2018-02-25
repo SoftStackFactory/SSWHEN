@@ -9,9 +9,7 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content>
-
   <ion-grid no-padding>
     <ion-row align-items-center padding-horizontal>
       <ion-col align-self-start>
@@ -34,56 +32,53 @@
                 <h2 #changeText>User Information</h2>
               </ion-col>
               <ion-col>
-                <button style="vertical-align: top;" class="btn-smaller" ion-button icon-only float-end color="dark" on-click="isEditable()">
+                <button style="vertical-align: top;" class="btn-smaller" ion-button icon-only float-end color="dark" (click)="isEditable()">
                   <ion-icon name="create"></ion-icon>
                 </button>
               </ion-col>
             </ion-row>
             <ion-row align-items-start>
-              <ion-col>
+              <ion-col *ngIf="!editable">
                 <div #changeText><strong>Life Expectancy:</strong></div>
                 <div #changeText>{{lifeExpectancy}}</div>
               </ion-col>
-              <ion-col align-items-end>
+              <ion-col *ngIf="editable">
+                <ion-label #changeText><strong>Life Expectancy:</strong></ion-label>
+                <ion-input #changeText type="text" placeholder="{{lifeExpectancy}}"></ion-input>
+              </ion-col>
+              <ion-col *ngIf="!editable">
                 <div #changeText><strong>FRA Age:</strong></div>
                 <div #changeText>{{ageFRA}}</div>
               </ion-col>
+              <ion-col *ngIf="editable">
+                <ion-label #changeText><strong>FRA Age</strong></ion-label>
+                <ion-input #changeText type="text" placeholder="{{ageFRA}}"></ion-input>
+              </ion-col>
             </ion-row>
             <ion-row align-items-start>
-              <ion-col>
+              <ion-col *ngIf="!editable">
                 <div #changeText><strong>FRA Benefit Amount:</strong></div>
                 <div #changeText>{{benefitAtFRA}}</div>
               </ion-col>
-              <ion-col>
+              <ion-col *ngIf="editable">
+                <ion-label #changeText><strong>FRA Benefit Amount</strong></ion-label>
+                <ion-input #changeText type="text" placeholder="{{benefitAtFRA}}"></ion-input>
+              </ion-col>
+              <ion-col *ngIf="!editable">
                 <div #changeText><strong>Total Tax Contribution:</strong></div>
                 <div #changeText>$40,110</div>
               </ion-col>
+              <ion-col *ngIf="editable">
+                <ion-label #changeText><strong>Total Tax Contribution</strong></ion-label>
+                <ion-input #changeText type="text" placeholder="$40,110"></ion-input>
+              </ion-col>
             </ion-row>
-
-            <ion-row align-items-start>
+            <ion-row *ngIf="editable">
               <ion-col>
-                <ion-item *ngIf="editable">
-                  <ion-label floating>Life Expectancy</ion-label>
-                  <ion-input type="text" placeholder="{{lifeExpectancy}}"></ion-input>
-                </ion-item>
-              </ion-col>
-              <ion-col>
-                <ion-item *ngIf="editable">
-                  <ion-label floating>FRA Age</ion-label>
-                  <ion-input type="text" placeholder="{{ageFRA}}"></ion-input>
-                </ion-item>
-              </ion-col>
-              <ion-col>
-                <ion-item *ngIf="editable">
-                  <ion-label floating>FRA Benefit Amount</ion-label>
-                  <ion-input type="text" placeholder="{{benefitAtFRA}}"></ion-input>
-                </ion-item>
-              </ion-col>
-              <ion-col>
-                <ion-item *ngIf="editable">
-                  <ion-label floating>Total Tax Contribution</ion-label>
-                  <ion-input type="text" placeholder="$40,110"></ion-input>
-                </ion-item>
+                <button ion-button icon-start block full #changeText (click)="isEditable()">
+                  <ion-icon name="checkbox"></ion-icon>
+                  Save Edits
+                </button>
               </ion-col>
             </ion-row>
           </ion-card-content>
@@ -103,9 +98,6 @@
                 <ion-segment-button value="cumulative">
                   Cumulative
                 </ion-segment-button>
-                <!--<ion-segment-button value="other">-->
-                <!--  Other-->
-                <!--</ion-segment-button>-->
               </ion-segment>
             </div>
 
@@ -133,22 +125,6 @@
                 </ion-row>
                 <charts [ChartType]="chartType" [xAxis]="retYears" [yAxis]="totalAccumulated"></charts>
               </ion-list>
-
-              <!--<ion-list *ngSwitchCase="'other'">-->
-              <!--  <ion-row padding-top>-->
-              <!--    <ion-col col-8>-->
-              <!--      <p #changeText>Other Contributions</p>-->
-              <!--    </ion-col>-->
-              <!--    <ion-col col-4>-->
-              <!--      <a (click)="presentModal()" float-end color="primary" #changeText>View Table</a>-->
-              <!--    </ion-col>-->
-              <!--  </ion-row>-->
-              <!--  <ion-row>-->
-              <!--    <ion-col>-->
-              <!--      <img src="../../assets/imgs/logo.png">-->
-              <!--    </ion-col>-->
-              <!--  </ion-row>-->
-              <!--</ion-list>-->
             </div>
           </ion-card-content>
         </ion-card>
@@ -156,50 +132,11 @@
     </ion-row>
     <ion-row padding-horizontal margin-bottom>
       <ion-col>
-        <button ion-button icon-start block full (click)="showPrompt()" #changeText><ion-icon name="send"></ion-icon> Email Result</button>
+        <button ion-button icon-start block full (click)="showPrompt()" #changeText>
+          <ion-icon name="send"></ion-icon>
+          Email Result
+        </button>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <!--<ion-grid>-->
-
-  <!--  <dropdown-menu>-->
-  <!--    Account-->
-  <!--    Logout-->
-  <!--  </dropdown-menu>-->
-
-  <!--  <ion-card>-->
-  <!--    User Info Card-->
-  <!--    Edit link/button-->
-  <!--  </ion-card>-->
-
-  <!--  <ion-segments>-->
-
-  <!--    <ion-segment>-->
-  <!--      Monthly Chart-->
-  <!--      View Table button-->
-  <!--      ? helper - chart description-->
-
-  <!--      <ion-modal>-->
-  <!--        Data Table-->
-  <!--      </ion-modal>-->
-
-  <!--    </ion-segment>-->
-
-  <!--    <ion-segment>-->
-  <!--      Cumulative Chart-->
-  <!--      View Table button-->
-  <!--      ? helper - chart description-->
-
-  <!--      <ion-modal>-->
-  <!--        Data Table-->
-  <!--      </ion-modal>-->
-
-  <!--    </ion-segment>-->
-
-
-  <!--  </ion-segments>-->
-
-  <!--</ion-grid>-->
-
 </ion-content>

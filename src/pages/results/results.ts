@@ -19,8 +19,8 @@ export class ResultsPage implements OnInit {
   retYears: any[] = [];
   monthlyPay: any[] = [];
   tableMonthly: any[] = [];
-  // tabulatedData: any[] = [];
-
+  leftTitle: string = "Retirement Age";
+  rightTitleMonthly: string = "Monthly Payout";
   
   results: any;
   pia: number;
@@ -107,39 +107,10 @@ export class ResultsPage implements OnInit {
     confirm.present();
   }
   
-  // ionViewWillEnter() {
-  //   this.dataa = [];
-  //   this.storage.get("inputData").then((val) => {
-  //     this.pia = val.pia;
-  //     this.gender = val.gender;
-  //     this.dob = val.dob;
-  //     this.results = this.calculations$.monthlyBenefit(this.pia, this.gender, this.dob);
-  //     this.storage.clear();
-  //     console.log(this.results);
-  //     for(let i = 0; i < this.results.retYears.length; i++){
-  //       let item = {
-  //         retYear: this.results.retYears[i],
-  //         monthlyPay: this.results.monthly[i],
-  //         cumulativePay: this.results.cumulative[i]
-  //       }
-  //       this.dataa.push(item);
-  //     }
-  //     console.log(this.dataa);
-  //   });
-  //   // Assigning data to horizontal & vertical Axis doesn't seem to work here
-  //   // Is this.dataa is not accessable outside of the storage.get method ?
-  //   // console.log(this.dataa);
-  //   // for (let i of this.dataa) {
-  //   //   this.retYears.push(i.retYear);
-  //   //   this.monthlyPay.push(i.monthlyPay);
-  //   // }
-  // }
-
   ngOnInit() {
       this.retYears = this.calculations$.retirementYears;
       this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
       this.tableMonthly = this.calculations$.monthlyBenefit().monthly;
-      // this.tabulatedData = this.calculations$.tableData;
   }
   
   ionViewDidLoad() {
