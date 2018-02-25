@@ -38,6 +38,7 @@ export class ResultsPage implements OnInit {
     public ssUsersProvider: SsUsersProvider
     ) {
     this.display = "graph";
+    this.infoData = this.navParams.get('myForm');
   }
   
   goToRegister(params){
@@ -142,17 +143,16 @@ export class ResultsPage implements OnInit {
   }
   
   ionViewDidLoad() {
-    this.infoData = this.navParams.get('myForm');
   }
 
-  ionViewDidLoad() {
-    this.ssUsersProvider.getResultsByUser({ id: 1 }, 'K5mFHf8WW6CgaIXEGKXxnNp7LkoraUnP6lvjq8Arpi5TeCzedPvg5Q5rBllO4BzU')
-      .subscribe( res => {
-        console.log(res);
-      }, error => {
-        console.log(error)
-      });
-  }
+  // ionViewDidLoad() {
+  //   this.ssUsersProvider.getResultsByUser({ id: 1 }, 'K5mFHf8WW6CgaIXEGKXxnNp7LkoraUnP6lvjq8Arpi5TeCzedPvg5Q5rBllO4BzU')
+  //     .subscribe( res => {
+  //       console.log(res);
+  //     }, error => {
+  //       console.log(error)
+  //     });
+  // }
 
 }
   

@@ -4,7 +4,7 @@ import {PopoverPage} from './popover-page';
 import {ModalDashboardComponent} from '../../components/modal-dashboard/modal-dashboard';
 import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
-
+import { UserDataProvider } from '../../providers/user-data/user-data';
 @IonicPage()
 
 @Component({
@@ -116,5 +116,8 @@ export class DashboardPage implements OnInit {
     this.ageFRA = this.calculations$.fullRetAge / 12;
   }
 
+  ionViewWillEnter() {
+    
+  }
 
 }

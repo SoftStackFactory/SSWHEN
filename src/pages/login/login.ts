@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { DashboardPage } from '../dashboard/dashboard';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SSUser } from '../../models/SSUser';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the LoginPage page.
@@ -18,7 +18,6 @@ import { SsUsersProvider } from '../../providers/ss-users/ss-users';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  user: SSUser;  
   myForm: FormGroup;
   submitAttempt: boolean = false;
 
@@ -27,7 +26,8 @@ export class LoginPage {
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public alertCtrl: AlertController,
-    public ssUsersProvider: SsUsersProvider  
+    public ssUsersProvider: SsUsersProvider,
+    public storage: Storage
   ) {
     
   this.myForm = formBuilder.group({
@@ -59,6 +59,9 @@ export class LoginPage {
           .subscribe( res => {
             alert('Thank you for loging in!');
             console.log("Successful login", this.myForm.value);
+            console.log(res);
+            this.storage.set('userId', res.userId);
+            this.storage.set('token', res.id);
             this.navCtrl.push(DashboardPage);
           }, err => {
             // handle common error codes, 401, 422, 500, etc.
