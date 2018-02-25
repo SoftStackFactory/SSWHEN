@@ -1,6 +1,7 @@
 // Re-usable agnostic chart. chart type, x & y axis data fed in by parent page
 
 import { Component, Input } from '@angular/core';
+import { CalculationsProvider } from '../../providers/calculations/calculations';
 
 @Component({
   selector: 'charts',
@@ -15,7 +16,7 @@ export class ChartComponent {
   retirementAge: any;
   payout: any;
 
-  constructor() {}
+  constructor( public calculations$: CalculationsProvider) {}
   
   public ChartOptions:any = {
     responsive: true,
@@ -56,5 +57,4 @@ export class ChartComponent {
     }
     console.log(e);
   };
-
 }

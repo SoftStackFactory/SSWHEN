@@ -17,11 +17,13 @@ export class ResultsPage implements OnInit {
   display: any;
   chartType: string = 'bar';
   retYears: any[] = [];
-  monthlyPay: any[] = [];
+  monthlyPay: any[];
   tableMonthly: any[] = [];
+  dataObject: any;
+ 
   leftTitle: string = "Retirement Age";
   rightTitleMonthly: string = "Monthly Payout";
-  
+ 
   results: any;
   pia: number;
   gender: any;
@@ -40,6 +42,8 @@ export class ResultsPage implements OnInit {
     this.display = "graph";
     this.infoData = this.navParams.get('myForm');
   }
+  
+
   
   goToRegister(params){
     if (!params) params = {};
@@ -107,14 +111,17 @@ export class ResultsPage implements OnInit {
     confirm.present();
   }
   
-  ngOnInit() {
-      this.retYears = this.calculations$.retirementYears;
-      this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
-      this.tableMonthly = this.calculations$.monthlyBenefit().monthly;
-  }
+  //getbenefitData() returns an observable
+  //subsribe to observable, then parse data for graph and table
   
-  ionViewDidLoad() {
-  }
+  ngOnInit(){
+    this.calculations$.getBenefitData().subscribe ( data => {
+    this.dataObject = data;
+    this.dataObject = JSON.parse(this.dataObject._body);
+    this.retYears = this.dataObject.retYears;
+    this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
+    this.tableMonthly = this.dataObject.monthly;
+    });
 
   // ionViewDidLoad() {
   //   this.ssUsersProvider.getResultsByUser({ id: 1 }, 'K5mFHf8WW6CgaIXEGKXxnNp7LkoraUnP6lvjq8Arpi5TeCzedPvg5Q5rBllO4BzU')
@@ -124,6 +131,7 @@ export class ResultsPage implements OnInit {
   //       console.log(error)
   //     });
   // }
-
 }
+
+
   

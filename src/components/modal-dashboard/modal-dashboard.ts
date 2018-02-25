@@ -26,16 +26,10 @@ export class ModalDashboardComponent implements OnInit{
   }
   
   ngOnInit() {
-    if(typeof this.calculations$ !== 'undefined') {
-      this.retYears = this.calculations$.retirementYears;
-      this.tableMonthly = this.calculations$.monthlyBenefit().monthly;
-      this.totalAccumulated = this.calculations$.monthlyBenefit().cumulative;
-    }
-    else {
-      this.retYears = [62, 63, 64, 65, 66, 67, 68, 69, 70];
-      this.tableMonthly = this.mock$.getResults()[0].monthly;
-      this.totalAccumulated = this.mock$.getResults()[0].cumulative;
-    }
+      // this.retYears = this.calculations$.retirementYears;
+      // this.tableMonthly = this.calculations$.monthlyBenefit().monthly;;
+      // this.totalAccumulated = this.calculations$.monthlyBenefit().cumulative;
+      // console.log(this.chartType)
   }
 
   dismiss() {
