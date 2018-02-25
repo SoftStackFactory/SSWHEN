@@ -9,6 +9,3 @@ export class SSUser {
     totalContribution: number;
     isMarried: boolean;
 }
-
-
-

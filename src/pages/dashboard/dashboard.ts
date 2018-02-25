@@ -4,6 +4,7 @@ import {PopoverPage} from './popover-page';
 import {ModalDashboardComponent} from '../../components/modal-dashboard/modal-dashboard';
 import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
+import { MockDataProvider } from '../../providers/mock-data/mock-data';
 
 @IonicPage()
 
@@ -32,16 +33,12 @@ export class DashboardPage implements OnInit {
               public popoverCtrl: PopoverController, 
               public modalCtrl: ModalController, 
               public alertCtrl: AlertController,
-              public calculations$: CalculationsProvider) {}
+              public calculations$: CalculationsProvider,
+              public mock$: MockDataProvider) {}
 
   isEditable() {
     this.editable = !this.editable;
-    // if (this.editable = false) {
-    //   this.editable = true;
-    // } else {
-    //   this.editable = false;
-    // }
-    // console.log("editable clicked");
+    console.log("editable clicked", this.editable);
   }
 
   presentLanguagePopover(myEvent) {
@@ -58,25 +55,6 @@ export class DashboardPage implements OnInit {
     popover.present({
       ev: myEvent
     });
-  }
-
-  presentModal(type) {
-    let chartType = type;
-    console.log(chartType);
-    let modal = this.modalCtrl.create(ModalDashboardComponent, {
-      'modalType': chartType
-    });
-    // let ev = {
-    //   target: {
-    //     getBoundingClientRect: () => {
-    //       return {
-    //         top: '100'
-    //       };
-    //     }
-    //   }
-    // };
-    // modal.present({ev});
-    modal.present();
   }
 
   showPrompt() {
@@ -114,6 +92,14 @@ export class DashboardPage implements OnInit {
     // this.lifeExpectancy = this.calculations$.lifeExpect/12;
     // this.benefitAtFRA = this.calculations$.FRAbenefitAmount;
     // this.ageFRA = this.calculations$.fullRetAge / 12;
+  presentModal(type) {
+    let chartType = type;
+    console.log(chartType);
+    let modal = this.modalCtrl.create(ModalDashboardComponent, {
+      'modalType': chartType
+    });
+    
+    modal.present();
   }
 
 

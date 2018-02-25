@@ -58,6 +58,7 @@
               </ion-card-content>
             </ion-card>
           </div>
+          
           <div *ngSwitchCase="'chart'">
             <ion-row style="border-bottom: 2px solid black;">
             <ion-col col-6 text-center>Retirement <br/> Age </ion-col>
@@ -66,7 +67,9 @@
             
             <page-data-table 
               [leftCol]="retYears"
+              [leftColTitle] = "leftTitle"
               [rightCol]="tableMonthly"
+              [rightColTitle]="rightTitleMonthly"
               ></page-data-table>
           </div>
         </div>

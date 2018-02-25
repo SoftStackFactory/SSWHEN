@@ -20,11 +20,16 @@ export class ResultsPage implements OnInit {
   tableMonthly: any[] = [];
   dataObject: any;
  
+  leftTitle: string = "Retirement Age";
+  rightTitleMonthly: string = "Monthly Payout";
+ 
   results: any;
   pia: number;
   gender: any;
   dob: any;
-
+  dataa: any[] = [];
+  infoData: any;
+  
   constructor(
     public navCtrl: NavController, 
     public alertCtrl: AlertController, 
@@ -39,7 +44,9 @@ export class ResultsPage implements OnInit {
   
   goToRegister(params){
     if (!params) params = {};
-    this.navCtrl.push(RegisterPage);
+    this.navCtrl.push(RegisterPage, {
+      'infoData': this.infoData
+    });
   }
   goToLanding(params){
     if (!params) params = {};
@@ -112,6 +119,9 @@ export class ResultsPage implements OnInit {
     this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
     this.tableMonthly = this.dataObject.monthly;
     });
+    
+  ionViewDidLoad() {
+    this.infoData = this.navParams.get('myForm');
   }
 }
 

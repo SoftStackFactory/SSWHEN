@@ -6,69 +6,54 @@
 
 <ion-content center text-center>
   <div class="container">
-  <ion-grid>
-        <ion-row center>
-              <ion-col>
-                <h1 no-padding no-margin>SSWHEN</h1>
-                <h1></h1>
-                <h1 no-padding no-margin>Login</h1>
-                    
-                <h3 no-padding no-margin></h3>
-                
-                <form [formGroup]="myForm">
-                <!--<form (ngSubmit)="logForm()"> -->
-                <ion-card>
-                  <ion-card-header>
-                    Email Address: 
-                  </ion-card-header>
-                  <ion-card-content>
-                
-                  <ion-icon name="mail" float-right></ion-icon>
-                       
-                  <ion-input 
-                  formControlName="email" 
-                  type="email" 
-                  placeholder="email"
-                  ></ion-input>
-                  <div *ngIf="!myForm.controls.email.valid && (myForm.controls.email.dirty || submitAttempt)">
+    <ion-grid>
+      <ion-row center>
+        <ion-col>
+          <h1 no-padding no-margin>SSWHEN</h1>
+          <h1></h1>
+          <h1 no-padding no-margin>Login</h1>
+
+          <h3 no-padding no-margin></h3>
+
+          <form [formGroup]="myForm">
+            <!--<form (ngSubmit)="logForm()"> -->
+            <ion-card>
+              <ion-card-header>
+                Email Address:
+              </ion-card-header>
+              <ion-card-content>
+
+                <ion-icon name="mail" float-right></ion-icon>
+
+                <ion-input formControlName="email" type="email" placeholder="email"></ion-input>
+                <div *ngIf="!myForm.controls.email.valid && (myForm.controls.email.dirty || submitAttempt)">
                   <p>Email Invalid</p>
-                  </div>  
-                </ion-card-content>
-                </ion-card>
-               </form>
-                
-                <form>
-                <ion-card>
-                  <ion-card-header>
-                    Password: 
-                  </ion-card-header>
-                  <ion-card-content>
-                    <ion-icon name="lock" float-right></ion-icon>
-                    <ion-input 
-                   type="password" 
-                    name="Password"
-                    placeholder="••••••••••"></ion-input>
-                  </ion-card-content>
-                </ion-card>
-                </form>
-                            
-        <!--This button will link to next page:-->
-        <button ion-button 
-        (click)="popView()"
-        type="submit"
-         > 
-        Login</button> 
+                </div>
+              </ion-card-content>
+            </ion-card>
+            
+            <ion-card>
+              <ion-card-header>
+                Password:
+              </ion-card-header>
+              <ion-card-content>
+                <ion-icon name="lock" float-right></ion-icon>
+                <ion-input formControlName="password" type="password" name="Password" placeholder="••••••••••"></ion-input>
+              </ion-card-content>
+            </ion-card>
+          </form>
+
+          <!--This button will link to next page:-->
+          <button ion-button (click)="popView()" type="submit"> 
+        Login</button>
 
 
-                <ion-row justify-content-around>
-                   <button ion-button 
-                  (click)="sendLink()"
-                  type="submit"
-                   > 
-                  Forgot Password?</button> 
-                </ion-row>
-           
-              </ion-col>
-        </ion-row>
-  </ion-grid>  
-<!--</ion-content>-->
+          <ion-row justify-content-around>
+            <button ion-button (click)="sendLink()" type="submit"> 
+                  Forgot Password?</button>
+          </ion-row>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <!--</ion-content>-->
