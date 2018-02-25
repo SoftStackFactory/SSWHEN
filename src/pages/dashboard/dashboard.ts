@@ -19,9 +19,9 @@ export class DashboardPage implements OnInit {
   data = 'monthly';
   editable = false;
   chartType: string = 'bar';
-  retYears: any[] = [];
-  monthlyPay: any[] = [];
-  totalAccumulated: any[] = [];
+  retYears: any[];
+  monthlyPay: any[];
+  totalAccumulated: any[];
   lifeExpectancy: number;
   benefitAtFRA: number;
   ageFRA: number;

@@ -102,7 +102,7 @@
             </div>
 
             <div [ngSwitch]="data">
-              <ion-list *ngSwitchCase="'monthly'">
+              <ion-list *ngSwitchCase="'monthly'" ngIf="monthlyPay">
                 <ion-row padding-top>
                   <ion-col col-8>
                     <p #changeText text-center>Monthly Benefit</p>
@@ -114,7 +114,7 @@
                 <charts [ChartType]="chartType" [xAxis]="retYears" [yAxis]="monthlyPay"></charts>
               </ion-list>
 
-              <ion-list *ngSwitchCase="'cumulative'">
+              <ion-list *ngSwitchCase="'cumulative'" ngIf="totalAccumulated">
                 <ion-row padding-top>
                   <ion-col col-8>
                     <p #changeText text-center>Cumulative Benefits</p>
