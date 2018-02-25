@@ -59,10 +59,11 @@ export class HistoryPage implements OnInit {
     this.results$.getResults({"id": 1}, "dWt6GiL5LlLPjJpKMXVIAqzv1h9o211mo4tVtQOWRJYvVa1WDlwtFACvV2vN49Cv")
     .subscribe(response => {
       this.testResults = response;
-      this.testResults = JSON.parse(this.testResults._body);
       console.log(this.testResults);
+      console.log(typeof this.testResults);
+
       for (let i=0; i<this.testResults.length; i++) {
-        this.dates.push( new Date(Date.parse(this.testResults[i].createdAt)) );
+        this.dates.push( (new Date(Date.parse(this.testResults[i].createdAt))).toLocaleDateString() );
         this.monthlies.push(this.testResults[i].monthly);
         this.cumulatives.push(this.testResults[i].cumulative);
         this.sendData.push({
@@ -77,8 +78,6 @@ export class HistoryPage implements OnInit {
       // Create cases where the error message depends on the service error, ex 400
       // See common error codes
     })
-
-    // this.navCtrl.push(ModalHistoryComponent, {historyResult:this.testResults});
   }
 
 }

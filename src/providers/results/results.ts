@@ -25,7 +25,7 @@ export class ResultsProvider {
   // let path = '/results?filter=' + userId + '&access_token=' + token;
   // let path = '/results/' + userId + '?access_token=' + token;
    let path = '/results?access_token=' + token;
-   return this.http.get(this.apiUrl + path)
+   return this.http.get(this.apiUrl + path).map(res => res.json());
   }
   
   deleteResults(resultId, token) {
