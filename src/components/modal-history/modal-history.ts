@@ -18,9 +18,9 @@ export class ModalHistoryComponent {
   totalAccumulated: any[] = [];
   tableMonthly: any[] = [];
   tableTotalAccumulated: any[] = [];
-  leftTitle: string = 'Retirement Years';
-  rightTitleMonthly: string = 'Monthly Payout per Retirement Year';
-  rightTitleCumulative: string = 'Cumulative Benefits per Retirement Year';
+  leftTitle: string = 'Retirement Year';
+  rightTitleMonthly: string = 'Monthly Payout';
+  rightTitleCumulative: string = 'Cumulative Benefit';
 
   constructor(public navParams: NavParams, 
               public viewCtrl: ViewController, 
@@ -30,14 +30,12 @@ export class ModalHistoryComponent {
   ngOnInit() {
     this.historyResult = this.navParams.get('result');
     console.log("result from history page: ",this.historyResult);
-    console.log(this.historyResult.monthly);
-    console.log(this.historyResult.cumulative);
-    
+
     this.retYears = [62, 63, 64, 65, 66, 67, 68, 69, 70];
-    this.monthlyPay = [ {data: this.historyResult.monthly, label: 'Monthly Payout per Retirement Year'} ];
-    this.totalAccumulated = [ {data: this.historyResult.cumulative, label: 'Cumulative Benefits per Retirement Year'} ];
-    this.tableMonthly = this.historyResult.monthly;
-    this.tableTotalAccumulated = this.historyResult.cumulative;
+    this.monthlyPay = [ {data: this.historyResult.monthly[0], label: 'Monthly Payout per Retirement Year'} ];
+    this.totalAccumulated = [ {data: this.historyResult.cumulative[0], label: 'Cumulative Benefits per Retirement Year'} ];
+    this.tableMonthly = this.historyResult.monthly[0];
+    this.tableTotalAccumulated = this.historyResult.cumulative[0];
   }
 
   showPrompt() {

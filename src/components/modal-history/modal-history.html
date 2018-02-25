@@ -35,7 +35,7 @@
             <ion-list *ngSwitchCase="'monthly'">
               <ion-row padding-top>
                 <ion-col>
-                  <h4 #changeText>Monthly Contributions</h4>
+                  <h4 #changeText text-center>Monthly Contributions</h4>
                 </ion-col>
               </ion-row>
               <ion-row no-padding>
@@ -45,7 +45,7 @@
               </ion-row>
               <ion-row padding-top>
                 <ion-col>
-                  <h4 #changeText>Data Table:</h4>
+                  <h4 #changeText text-center>Data Table:</h4>
                 </ion-col>
               </ion-row>
               <ion-row no-padding>
@@ -63,12 +63,17 @@
             <ion-list *ngSwitchCase="'cumulative'">
               <ion-row padding-top>
                 <ion-col>
-                  <p #changeText>Cumulative Contributions</p>
+                  <h4 #changeText text-center>Cumulative Contributions</h4>
                 </ion-col>
               </ion-row>
               <ion-row no-padding>
                 <ion-col>
                   <charts [ChartType]="chartType" [xAxis]="retYears" [yAxis]="totalAccumulated"></charts>
+                </ion-col>
+              </ion-row>
+              <ion-row padding-top>
+                <ion-col>
+                  <h4 #changeText text-center>Data Table:</h4>
                 </ion-col>
               </ion-row>
               <ion-row no-padding>

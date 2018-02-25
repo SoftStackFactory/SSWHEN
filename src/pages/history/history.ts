@@ -39,16 +39,17 @@ export class HistoryPage implements OnInit {
 
   presentHistoryModal(result) {
     let modal = this.modalCtrl.create(ModalHistoryComponent, { 'result': result } );
-    let ev = {
-      target: {
-        getBoundingClientRect: () => {
-          return {
-            top: '100'
-          };
-        }
-      }
-    };
-    modal.present({ev});
+    // let ev = {
+    //   target: {
+    //     getBoundingClientRect: () => {
+    //       return {
+    //         top: '100'
+    //       };
+    //     }
+    //   }
+    // };
+    // modal.present({ev});
+      modal.present();
   }
 
 
@@ -60,7 +61,6 @@ export class HistoryPage implements OnInit {
     .subscribe(response => {
       this.testResults = response;
       console.log(this.testResults);
-      console.log(typeof this.testResults);
 
       for (let i=0; i<this.testResults.length; i++) {
         this.dates.push( (new Date(Date.parse(this.testResults[i].createdAt))).toLocaleDateString() );
