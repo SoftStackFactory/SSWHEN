@@ -16,18 +16,15 @@ export class ResultsPage implements OnInit {
   display: any;
   chartType: string = 'bar';
   retYears: any[] = [];
-  monthlyPay: any[] = [];
+  monthlyPay: any[];
   tableMonthly: any[] = [];
   dataObject: any;
  
-
-  
   results: any;
   pia: number;
   gender: any;
   dob: any;
-  dataa: any[] = [];
-  
+
   constructor(
     public navCtrl: NavController, 
     public alertCtrl: AlertController, 
@@ -36,9 +33,6 @@ export class ResultsPage implements OnInit {
     public calculations$: CalculationsProvider
     ) {
     this.display = "graph";
-    //this.getData();
-    
-    
   }
   
 
@@ -107,18 +101,16 @@ export class ResultsPage implements OnInit {
     confirm.present();
   }
   
-
+  //getbenefitData() returns an observable
+  //subsribe to observable, then parse data for graph and table
+  
   ngOnInit(){
     this.calculations$.getBenefitData().subscribe ( data => {
     this.dataObject = data;
     this.dataObject = JSON.parse(this.dataObject._body);
-    console.log(this.dataObject, "PETER!!!!");
     this.retYears = this.dataObject.retYears;
     this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
     this.tableMonthly = this.dataObject.monthly;
-    console.log(this.retYears, "retYears");
-    console.log(this.monthlyPay, "monthlyPay");
-    console.log(this.tableMonthly, "tableMonthly");
     });
   }
 }
