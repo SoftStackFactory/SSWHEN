@@ -4,6 +4,7 @@ import { RegisterPage } from '../register/register';
 import { EmailModalPage } from '../email-modal/email-modal';
 import { LandingPage } from '../landing/landing';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
+import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 
 @IonicPage()
 
@@ -33,7 +34,8 @@ export class ResultsPage implements OnInit {
     public alertCtrl: AlertController, 
     public navParams: NavParams, 
     public modalCtrl: ModalController,
-    public calculations$: CalculationsProvider
+    public calculations$: CalculationsProvider,
+    public ssUsersProvider: SsUsersProvider
     ) {
     this.display = "graph";
   }
@@ -141,6 +143,15 @@ export class ResultsPage implements OnInit {
   
   ionViewDidLoad() {
     this.infoData = this.navParams.get('myForm');
+  }
+
+  ionViewDidLoad() {
+    this.ssUsersProvider.getResultsByUser({ id: 1 }, 'K5mFHf8WW6CgaIXEGKXxnNp7LkoraUnP6lvjq8Arpi5TeCzedPvg5Q5rBllO4BzU')
+      .subscribe( res => {
+        console.log(res);
+      }, error => {
+        console.log(error)
+      });
   }
 
 }
