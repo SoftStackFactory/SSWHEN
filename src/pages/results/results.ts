@@ -119,6 +119,7 @@ export class ResultsPage implements OnInit {
     this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
     this.tableMonthly = this.dataObject.monthly;
     });
+  }
     
   ionViewDidLoad() {
     this.infoData = this.navParams.get('myForm');

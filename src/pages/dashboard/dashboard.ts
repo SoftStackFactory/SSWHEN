@@ -86,12 +86,8 @@ export class DashboardPage implements OnInit {
   }
   
     ngOnInit() {
-    // this.retYears = this.calculations$.retirementYears;
-    // this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
-    // this.totalAccumulated = [ {data: this.calculations$.monthlyBenefit().cumulative, label: 'Cumulative Benefits per Retirement Year'} ];
-    // this.lifeExpectancy = this.calculations$.lifeExpect/12;
-    // this.benefitAtFRA = this.calculations$.FRAbenefitAmount;
-    // this.ageFRA = this.calculations$.fullRetAge / 12;
+    }
+    
   presentModal(type) {
     let chartType = type;
     console.log(chartType);
