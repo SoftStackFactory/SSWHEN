@@ -19,17 +19,17 @@ export class ResultsProvider {
   
   saveResults(result, token) {
     let path = '/results?access_token=' + token;
-    return this.http.post(this.apiUrl + path, result)
+    return this.http.post(this.apiUrl + path, result).map( res => res.json())
   }
   
   getResults(userId, token) {
-    let path = '/results/' + userId + '/sSUser?access_token=' + token;
-    return this.http.get(this.apiUrl + path)
+    let path = '/results?filter=[where][sSUserId]' + userId + '&access_token=' + token;
+    return this.http.get(this.apiUrl + path).map( res => res.json())
   }
   
   deleteResults(resultId, token) {
     let path = '/results/' + resultId + '?access_token=' + token;
-    return this.http.delete(this.apiUrl + path)
+    return this.http.delete(this.apiUrl + path).map( res => res.json())
   }
 
 }
