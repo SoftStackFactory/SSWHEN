@@ -43,14 +43,31 @@ export class ResultsPage implements OnInit {
     if (!params) params = {};
     this.navCtrl.push(RegisterPage);
   }
+  
   goToLanding(params){
     if (!params) params = {};
     this.navCtrl.push(LandingPage);
   }
+  
   openEmailModal() {
     let resultsModal = this.modalCtrl.create(EmailModalPage);
     resultsModal.present();
   }
+  
+  emailResults(data) {
+    let emailData = {
+        email: "",
+        date: "",
+        montlyPayout: ""
+      };
+      emailData.email = data.email;
+      emailData.date = "";
+      emailData.montlyPayout = "";
+    console.log(data);
+    console.log(data);
+    this.email$.sendEmailResults();
+  }
+  
   showPrompt() {
     let prompt = this.alertCtrl.create({
       title: 'Email Results',
@@ -72,6 +89,9 @@ export class ResultsPage implements OnInit {
           text: 'Email',
           handler: data => {
             console.log('Saved clicked');
+            // Pass in email, array of calculations, date 
+            this.emailResults(data);
+            console.log(data.email);
             this.showConfirm();
           }
         }
@@ -79,6 +99,7 @@ export class ResultsPage implements OnInit {
     });
     prompt.present();
   }
+  
   showConfirm() {
     let confirm = this.alertCtrl.create({
       title: 'Thank you for using SSWHEN',
@@ -101,6 +122,10 @@ export class ResultsPage implements OnInit {
       ]
     });
     confirm.present();
+  }
+  
+  sendEmail() {
+    
   }
   
   // ionViewWillEnter() {

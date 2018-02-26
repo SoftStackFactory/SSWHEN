@@ -11,18 +11,17 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class EmailProvider {
   
-  url: string = "http://james-winter-2017-phortonssf.c9users.io:8080/api/results/emailResults";
+  urlResults: string = "http://james-winter-2017-phortonssf.c9users.io:8080/api/results/emailResults";
+  urlDashboard: string = "http://james-winter-2017-phortonssf.c9users.io:8080/api/results/emailResultsDashBoard";
   
-  constructor(public http: Http) {
-    console.log('Hello EmailProvider Provider');
+  constructor(public http: Http) {}
+  
+  sendEmailResults(data) {
+    this.http.post(this.urlResults, data)
   }
   
-  sendEmailResults() {
-    
-  }
-  
-  sendEmailDashboard() {
-    
+  sendEmailDashboard(data) {
+    this.http.post(this.urlDashboard, data)
   }
 
 }

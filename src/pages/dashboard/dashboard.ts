@@ -80,7 +80,22 @@ export class DashboardPage implements OnInit {
     // modal.present({ev});
     modal.present();
   }
-
+  
+  emailResults(data) {
+      let emailData = {
+        email: "",
+        date: "",
+        montlyPayout: "",
+        cumulativepayout: ""
+      };
+      emailData.email = data.email;
+      emailData.date = "";
+      emailData.montlyPayout = "";
+      emailData.cumulativepayout = "";
+    console.log(data);
+    this.email$.sendEmailDashboard(emailData);
+  }
+  
   showPrompt() {
     let prompt = this.alertCtrl.create({
       title: 'Email Results',
@@ -101,6 +116,8 @@ export class DashboardPage implements OnInit {
         {
           text: 'Email',
           handler: data => {
+            this.emailResults(data);
+            console.log(date);
             console.log('Saved clicked');
           }
         }
@@ -109,9 +126,6 @@ export class DashboardPage implements OnInit {
     prompt.present();
   }
   
-  sendEmail() {
-    
-  }
   
     ngOnInit() {
     this.retYears = this.calculations$.retirementYears;
