@@ -4,6 +4,7 @@ import {PopoverPage} from './popover-page';
 import {ModalDashboardComponent} from '../../components/modal-dashboard/modal-dashboard';
 import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
+import { EmailProvider } from '../../providers/email/email';
 
 @IonicPage()
 
@@ -32,7 +33,8 @@ export class DashboardPage implements OnInit {
               public popoverCtrl: PopoverController, 
               public modalCtrl: ModalController, 
               public alertCtrl: AlertController,
-              public calculations$: CalculationsProvider) {}
+              public calculations$: CalculationsProvider,
+              public email$: EmailProvider) {}
 
   isEditable() {
     this.editable = !this.editable;
@@ -105,6 +107,10 @@ export class DashboardPage implements OnInit {
       ]
     });
     prompt.present();
+  }
+  
+  sendEmail() {
+    
   }
   
     ngOnInit() {

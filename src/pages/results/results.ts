@@ -4,6 +4,7 @@ import { RegisterPage } from '../register/register';
 import { EmailModalPage } from '../email-modal/email-modal';
 import { LandingPage } from '../landing/landing';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
+import { EmailProvider } from '../../providers/email/email';
 
 @IonicPage()
 
@@ -32,7 +33,8 @@ export class ResultsPage implements OnInit {
     public alertCtrl: AlertController, 
     public navParams: NavParams, 
     public modalCtrl: ModalController,
-    public calculations$: CalculationsProvider
+    public calculations$: CalculationsProvider,
+    public email$: EmailProvider
     ) {
     this.display = "graph";
   }
