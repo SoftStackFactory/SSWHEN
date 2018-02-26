@@ -58,19 +58,19 @@
             <ion-row align-items-start>
               <ion-col *ngIf="!editable">
                 <div #changeText><strong>FRA Benefit Amount:</strong></div>
-                <div #changeText>{{benefitAtFRA}}</div>
+                <div #changeText *ngIf="this.ssUser.FRAbenefit">{{this.ssUser.FRAbenefit}}</div>
               </ion-col>
               <ion-col *ngIf="editable">
                 <ion-label #changeText><strong>FRA Benefit Amount</strong></ion-label>
-                <ion-input #changeText type="text" placeholder="{{benefitAtFRA}}"></ion-input>
+                <ion-input #changeText type="text" placeholder="{{this.ssUser.FRAbenefit}}"></ion-input>
               </ion-col>
               <ion-col *ngIf="!editable">
                 <div #changeText><strong>Total Tax Contribution:</strong></div>
-                <div #changeText>$40,110</div>
+                <div #changeText *ngIf="this.ssUser.totalContribution">{{this.ssUser.totalContribution}}</div>
               </ion-col>
               <ion-col *ngIf="editable">
                 <ion-label #changeText><strong>Total Tax Contribution</strong></ion-label>
-                <ion-input #changeText type="text" placeholder="$40,110"></ion-input>
+                <ion-input #changeText type="text" placeholder="{{this.ssUser.totalContribution}}"></ion-input>
               </ion-col>
             </ion-row>
             <ion-row *ngIf="editable">

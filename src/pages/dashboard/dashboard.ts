@@ -5,6 +5,8 @@ import {ModalDashboardComponent} from '../../components/modal-dashboard/modal-da
 import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
 import { MockDataProvider } from '../../providers/mock-data/mock-data';
+import { Storage } from '@ionic/storage';
+import { SSUser } from '../../models/SSUser';
 
 @IonicPage()
 
@@ -25,16 +27,20 @@ export class DashboardPage implements OnInit {
   lifeExpectancy: number;
   benefitAtFRA: number;
   ageFRA: number;
+  ssUser: SSUser = new SSUser();
 
 
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams, 
-              public popoverCtrl: PopoverController, 
-              public modalCtrl: ModalController, 
-              public alertCtrl: AlertController,
-              public calculations$: CalculationsProvider,
-              public mock$: MockDataProvider) {}
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public popoverCtrl: PopoverController, 
+    public modalCtrl: ModalController, 
+    public alertCtrl: AlertController,
+    public calculations$: CalculationsProvider,
+    public mock$: MockDataProvider,
+    public storage: Storage) {
+  }
 
   isEditable() {
     this.editable = !this.editable;
@@ -85,14 +91,15 @@ export class DashboardPage implements OnInit {
     prompt.present();
   }
   
-    ngOnInit() {
-    // this.retYears = this.calculations$.retirementYears;
-    // this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
-    // this.totalAccumulated = [ {data: this.calculations$.monthlyBenefit().cumulative, label: 'Cumulative Benefits per Retirement Year'} ];
-    // this.lifeExpectancy = this.calculations$.lifeExpect/12;
-    // this.benefitAtFRA = this.calculations$.FRAbenefitAmount;
-    // this.ageFRA = this.calculations$.fullRetAge / 12;
-    }
+  ngOnInit() {
+  }
+  
+  ionViewWillEnter() {
+    this.storage.get('SSUser').then( (val) => {
+      this.ssUser = val;
+      console.log('Current User: ', this.ssUser)
+    })
+  }
     
   presentModal(type) {
     let chartType = type;

@@ -18,6 +18,7 @@ export class RegisterPage {
   registerForm: FormGroup;
   submitAttempt: boolean = false;
 
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 

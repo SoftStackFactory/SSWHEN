@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { RegisterPage } from '../register/register'
 import { AppDescriptionPage } from '../app-description/app-description';
-import {LoginPage} from '../login/login';
+import { LoginPage } from '../login/login';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the LandingPage page.
@@ -18,11 +18,15 @@ import {LoginPage} from '../login/login';
 })
 export class LandingPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public storage: Storage) {
   }
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad LandingPage');
+    this.storage.clear();
   }
   
   toAppDescription(params){
