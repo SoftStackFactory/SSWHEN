@@ -62,7 +62,14 @@ export class LoginPage {
             console.log(res);
             this.storage.set('userId', res.userId);
             this.storage.set('token', res.id);
-            this.navCtrl.push(DashboardPage);
+            
+            this.ssUsersProvider.getUser(res.userId, res.id)
+              .subscribe( res => {
+                this.storage.set('SSUser', res);
+                this.navCtrl.push(DashboardPage);
+              }, err => {
+                console.log(err);
+              })
           }, err => {
             // handle common error codes, 401, 422, 500, etc.
             console.log(err);
