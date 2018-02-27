@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title> Modal Popup</ion-title>
+    <ion-title> Prior Results</ion-title>
     <ion-buttons start>
       <button ion-button (click)="dismiss()">
         <ion-icon name="close-circle"></ion-icon>
@@ -8,12 +8,14 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
 <ion-grid no-padding>
   <ion-row align-items-center no-padding>
     <ion-col>
       <ion-card>
         <ion-card-content padding-horizontal>
+          
           <div>
             <ion-segment [(ngModel)]="data">
               <ion-segment-button value="monthly">
@@ -29,10 +31,10 @@
           </div>
 
           <div [ngSwitch]="data">
-            <ion-list *ngSwitchCase="'monthly'" ngIf="monthlyPay">
+            <ion-list *ngSwitchCase="'monthly'" *ngIf="monthlyPay">
               <ion-row padding-top>
                 <ion-col>
-                  <h4 #changeText>Monthly Contributions</h4>
+                  <h4 #changeText text-center>Monthly Contributions</h4>
                 </ion-col>
               </ion-row>
               <ion-row no-padding>
@@ -42,23 +44,25 @@
               </ion-row>
               <ion-row padding-top>
                 <ion-col>
-                  <h4 #changeText>Data Table:</h4>
+                  <h4 #changeText text-center>Data Table:</h4>
                 </ion-col>
               </ion-row>
               <ion-row no-padding>
                 <ion-col>
                   <page-data-table 
                     [leftCol]="retYears"
+                    [leftColTitle] = "leftTitle"
                     [rightCol]="tableMonthly"
+                    [rightColTitle] = "rightTitleMonthly"
                     ></page-data-table>
                 </ion-col>
               </ion-row>
             </ion-list>
 
-            <ion-list *ngSwitchCase="'cumulative'" ngIf="cumulative">
+            <ion-list *ngSwitchCase="'cumulative'" *ngIf="cumulative">
               <ion-row padding-top>
                 <ion-col>
-                  <p #changeText>Cumulative Contributions</p>
+                  <h4 #changeText text-center>Cumulative Contributions</h4>
                 </ion-col>
               </ion-row>
               <ion-row no-padding>
@@ -66,67 +70,35 @@
                   <charts [ChartType]="chartType" [xAxis]="retYears" [yAxis]="totalAccumulated"></charts>
                 </ion-col>
               </ion-row>
+              <ion-row padding-top>
+                <ion-col>
+                  <h4 #changeText text-center>Data Table:</h4>
+                </ion-col>
+              </ion-row>
               <ion-row no-padding>
                 <ion-col>
                   <page-data-table 
                     [leftCol]="retYears"
+                    [leftColTitle] = "leftTitle"
                     [rightCol]="tableTotalAccumulated"
+                    [rightColTitle] = "rightTitleCumulative"
                     ></page-data-table>
                 </ion-col>
               </ion-row>
             </ion-list>
-
-            <!--<ion-list *ngSwitchCase="'other'">-->
-            <!--  <ion-row padding-top>-->
-            <!--    <ion-col>-->
-            <!--      <p #changeText>Other Contributions</p>-->
-            <!--    </ion-col>-->
-            <!--  </ion-row>-->
-            <!--  <ion-row no-padding>-->
-            <!--    <ion-col>-->
-            <!--      <img src="../../assets/imgs/logo.png">-->
-            <!--    </ion-col>-->
-            <!--  </ion-row>-->
-            <!--  <ion-row no-padding>-->
-            <!--    <ion-col>-->
-            <!--      <div class="table">-->
-            <!--        <div class="table-row row header">-->
-            <!--          <div class="table-col col">Header 1</div>-->
-            <!--          <div class="table-col col">Header 2</div>-->
-            <!--          <div class="table-col col">Header 3</div>-->
-            <!--          <div class="table-col col">Header 4</div>-->
-            <!--        </div>-->
-            <!--        <div class="table-row row">-->
-            <!--          <div class="table-col col">1</div>-->
-            <!--          <div class="table-col col">2</div>-->
-            <!--          <div class="table-col col">3</div>-->
-            <!--          <div class="table-col col">4</div>-->
-            <!--        </div>-->
-            <!--        <div class="table-row row">-->
-            <!--          <div class="table-col col">1</div>-->
-            <!--          <div class="table-col col">2</div>-->
-            <!--          <div class="table-col col">3</div>-->
-            <!--          <div class="table-col col">4</div>-->
-            <!--        </div>-->
-            <!--        <div class="table-row row">-->
-            <!--          <div class="table-col col">1</div>-->
-            <!--          <div class="table-col col">2</div>-->
-            <!--          <div class="table-col col">3</div>-->
-            <!--          <div class="table-col col">4</div>-->
-            <!--        </div>-->
-            <!--      </div>-->
-            <!--    </ion-col>-->
-            <!--  </ion-row>-->
-            <!--</ion-list>-->
+            
           </div>
+          
         </ion-card-content>
       </ion-card>
     </ion-col>
   </ion-row>
+  
   <ion-row padding-horizontal>
     <ion-col>
       <button ion-button icon-start block full (click)="showPrompt()" #changeText><ion-icon name="send"></ion-icon> Email Result</button>
     </ion-col>
   </ion-row>
+  
 </ion-grid>
 </ion-content>
