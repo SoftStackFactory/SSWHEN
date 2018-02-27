@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgForm } from "@angular/forms";
+import { NgForm, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { DashboardPage } from '../dashboard/dashboard';
 import { LoginPage } from '../login/login';
 import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
@@ -13,28 +13,45 @@ import { IonicPage, NavController, NavParams, AlertController, ModalController }
 })
 export class ProfilePage {
   
+  profileForm: FormGroup;
   inputDisabledEmail: boolean = false;
   inputDisabledPass: boolean = false;
   // the input is set to false by default 
+  
   addRow: boolean = false;
   onTheEdit = 'Current Email:';
   onTheEdit1 = 'Password:';
+  validateForm: boolean = false;
 
   constructor(public navCtrl: NavController, 
   public navParams: NavParams,
   private alertCtrl: AlertController,
   public modalCtrl: ModalController,
+  public formBuilder: FormBuilder
   ) {
   
      this.inputDisabledEmail = true;
      this.inputDisabledPass = true;
+     
+      this.profileForm = formBuilder.group({
+      email: ['', 
+          Validators.compose([
+              Validators.required,
+              Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
+              Validators.maxLength(30),
+            ])
+        ],
+        password: ['', 
+          Validators.compose([
+              Validators.required,
+              Validators.pattern('[A-Za-z0-9!@#$%]{6,12}')
+            ])
+        ]
+      });
    
   }
-  
-//   onEdit(form: NgForm) {
-//   console.log(form.value);
-// }
 
+   //lets user edit email and changes text instructions for user
    editEmail() {
     this.onTheEdit = 'Change email to:'; 
     this.inputDisabledEmail = false;
@@ -45,6 +62,8 @@ export class ProfilePage {
     console.log('ionViewDidLoad ProfilePage');
   }
 
+
+    //this event is not fired on submit 
     doAlertAndPopView(){
       let alert = this.alertCtrl.create({
       title: '',
@@ -54,10 +73,8 @@ export class ProfilePage {
     alert.present();
     this.navCtrl.push(DashboardPage);
     }
-
     popView(){
      alert('Your account information has been updated');
-     
     }
     
     
@@ -68,16 +85,34 @@ export class ProfilePage {
       console.log('you can edit the password now');
   }
   // on click of edit button, input is re-enabled
+  
+    //doesn't let user submit the form if invalid
+    //this function is fired when user clicks "confirm edit" button
+    submitIfValid() {
+    this.validateForm = true;
+    // if(!this.profileForm.controls.password.valid){
+    //   let alert = this.alertCtrl.create({
+    //   title: '',
+    //   subTitle: 'Please re-enter your information',
+    //   buttons: ['OK']
+    //   });
+    // alert.present();
+    // console.log("Password is not valid, Unsuccessful registration");
+    // } else {
+      let alert = this.alertCtrl.create({
+      title: '',
+      subTitle: 'Your account information has been updated',
+      buttons: ['OK']
+    });
+    alert.present();
+    this.navCtrl.push(DashboardPage);
+    console.log("Successful registration", this.validateForm.value);
+     
+    }
+    
+  }
 
-//   ValidateEmail(mail) 
-// {
-// if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value))
-//   {
-//     return (true)
-//   }
-//     alert("You have entered an invalid email address!")
-//     return (false)
-//     console.log("User entered an invalid email address")
+// function check_fil() {
+//   num = 0;
+//   $('input[id="email'])
 // }
-
-}
