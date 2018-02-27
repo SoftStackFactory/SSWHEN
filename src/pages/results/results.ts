@@ -55,14 +55,18 @@ export class ResultsPage implements OnInit {
   }
   
   emailResults(data) {
-    // let payload = {
-    //   email: "",
-    //   date: "01/19/1990",
-    //   monthlyPayout: []
-    // };
     this.email$.date = "test";
     this.email$.email = data.title;
-    this.email$.monthlyPayout = this.tableMonthly;
+    this.email$.sixtwo = this.tableMonthly[0];
+    this.email$.sixthree = this.tableMonthly[1];
+    this.email$.sixfour = this.tableMonthly[2];
+    this.email$.sixfive = this.tableMonthly[3];
+    this.email$.sixsix = this.tableMonthly[4];
+    this.email$.sixseven = this.tableMonthly[5];
+    this.email$.sixeight = this.tableMonthly[6];
+    this.email$.sixnine = this.tableMonthly[7];
+    this.email$.sevenzero = this.tableMonthly[8];
+
     console.log(this.tableMonthly);
     // console.log(payload);
     this.email$.sendEmailResults()
