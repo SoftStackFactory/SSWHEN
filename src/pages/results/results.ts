@@ -4,6 +4,7 @@ import { RegisterPage } from '../register/register';
 import { EmailModalPage } from '../email-modal/email-modal';
 import { LandingPage } from '../landing/landing';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
+import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 
 @IonicPage()
 
@@ -16,30 +17,39 @@ export class ResultsPage implements OnInit {
   display: any;
   chartType: string = 'bar';
   retYears: any[] = [];
-  monthlyPay: any[] = [];
+  monthlyPay: any[];
   tableMonthly: any[] = [];
+  dataObject: any;
+ 
   leftTitle: string = "Retirement Age";
   rightTitleMonthly: string = "Monthly Payout";
-  
+ 
   results: any;
   pia: number;
   gender: any;
   dob: any;
   dataa: any[] = [];
+  infoData: any;
   
   constructor(
     public navCtrl: NavController, 
     public alertCtrl: AlertController, 
     public navParams: NavParams, 
     public modalCtrl: ModalController,
-    public calculations$: CalculationsProvider
+    public calculations$: CalculationsProvider,
+    public ssUsersProvider: SsUsersProvider
     ) {
     this.display = "graph";
+    this.infoData = this.navParams.get('myForm');
   }
+  
+
   
   goToRegister(params){
     if (!params) params = {};
-    this.navCtrl.push(RegisterPage);
+    this.navCtrl.push(RegisterPage, {
+      'infoData': this.infoData
+    });
   }
   goToLanding(params){
     if (!params) params = {};
@@ -101,11 +111,17 @@ export class ResultsPage implements OnInit {
     confirm.present();
   }
   
-  ngOnInit() {
-      this.retYears = this.calculations$.retirementYears;
-      this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
-      this.tableMonthly = this.calculations$.monthlyBenefit().monthly;
+  //getbenefitData() returns an observable
+  //subsribe to observable, then parse data for graph and table
+  
+  ngOnInit(){
+    this.calculations$.getBenefitData().subscribe ( data => {
+    this.dataObject = data;
+    this.dataObject = JSON.parse(this.dataObject._body);
+    this.retYears = this.dataObject.retYears;
+    this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
+    this.tableMonthly = this.dataObject.monthly;
+    });
   }
 
 }
-  

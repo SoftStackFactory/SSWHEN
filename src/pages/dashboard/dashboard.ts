@@ -19,9 +19,9 @@ export class DashboardPage implements OnInit {
   data = 'monthly';
   editable = false;
   chartType: string = 'bar';
-  retYears: any[] = [];
-  monthlyPay: any[] = [];
-  totalAccumulated: any[] = [];
+  retYears: any[];
+  monthlyPay: any[];
+  totalAccumulated: any[];
   lifeExpectancy: number;
   benefitAtFRA: number;
   ageFRA: number;
@@ -85,6 +85,15 @@ export class DashboardPage implements OnInit {
     prompt.present();
   }
   
+    ngOnInit() {
+    // this.retYears = this.calculations$.retirementYears;
+    // this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
+    // this.totalAccumulated = [ {data: this.calculations$.monthlyBenefit().cumulative, label: 'Cumulative Benefits per Retirement Year'} ];
+    // this.lifeExpectancy = this.calculations$.lifeExpect/12;
+    // this.benefitAtFRA = this.calculations$.FRAbenefitAmount;
+    // this.ageFRA = this.calculations$.fullRetAge / 12;
+    }
+    
   presentModal(type) {
     let chartType = type;
     console.log(chartType);
@@ -94,25 +103,5 @@ export class DashboardPage implements OnInit {
     
     modal.present();
   }
-  
-  ngOnInit() {
-      if(typeof this.calculations$ !== 'undefined') {
-        this.retYears = this.calculations$.retirementYears;
-        this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
-        this.totalAccumulated = [ {data: this.calculations$.monthlyBenefit().cumulative, label: 'Cumulative Benefits per Retirement Year'} ];
-        this.lifeExpectancy = Math.round(this.calculations$.lifeExpect / 12);
-        this.benefitAtFRA = this.calculations$.FRAbenefitAmount;
-        this.ageFRA = this.calculations$.fullRetAge / 12;
-      }
-      else {
-        this.retYears = [62, 63, 64, 65, 66, 67, 68, 69, 70];
-        this.monthlyPay = [ {data: this.mock$.getResults()[0].monthly, label: 'Monthly Payout per Retirement Year'} ];
-        this.totalAccumulated = [ {data: this.mock$.getResults()[0].cumulative, label: 'Cumulative Benefits per Retirement Year'} ];
-        this.lifeExpectancy = this.mock$.getResults()[0].lifeExpectancy;
-        this.benefitAtFRA = this.mock$.getResults()[0].FRAbenefit;
-        this.ageFRA = this.mock$.getResults()[0].ageFRA;
-      }
-    }
-
 
 }
