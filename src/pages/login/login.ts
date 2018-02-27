@@ -57,12 +57,19 @@ export class LoginPage {
         // login user using /SSUser/login
         this.ssUsersProvider.login(this.myForm.value)
           .subscribe( res => {
-            alert('Thank you for loging in!');
-            console.log("Successful login", this.myForm.value);
-            console.log(res);
             this.storage.set('userId', res.userId);
             this.storage.set('token', res.id);
-            this.navCtrl.push(DashboardPage);
+            
+            this.ssUsersProvider.getUser(res.userId, res.id)
+              .subscribe( res => {
+                alert('Thank you for loging in!');
+                console.log("Successful login", this.myForm.value);
+                console.log(res);
+                this.storage.set('SSUser', res);
+                this.navCtrl.push(DashboardPage);
+              }, err => {
+                console.log(err)
+              });
           }, err => {
             // handle common error codes, 401, 422, 500, etc.
             console.log(err);

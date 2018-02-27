@@ -27,7 +27,7 @@ export class SsUsersProvider {
   }
   
   updateUser(user, token) {
-    let path = '/SSUsers/' + user.id + '/replace?access_token=' + token;
+    let path = '/SSUsers/' + user.userId + '/replace?access_token=' + token;
     return this.http.post(this.apiUrl + path, user).map(res => res.json())
   }
 
@@ -39,6 +39,11 @@ export class SsUsersProvider {
   getResultsByUser(user, token) {
     let path = '/SSUsers/' + user.id + '/results?access_token=' + token;
     return this.http.post(this.apiUrl + path, user).map(res => res.json())
+  }
+  
+  getUser(userId, token) {
+    let path = '/SSUsers/' + userId + '?access_token=' + token;
+    return this.http.get(this.apiUrl + path).map(res => res.json())
   }
 
 }

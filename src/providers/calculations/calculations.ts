@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular DI.
 */
+
 @Injectable()
 export class CalculationsProvider {
 
@@ -25,8 +26,10 @@ export class CalculationsProvider {
     "&gender=" + this.gender +"&dob=" + this.dob +"11-2011";
     
     return this.http.get(apiUrl);
+
     
   };
 }
+
 
 
