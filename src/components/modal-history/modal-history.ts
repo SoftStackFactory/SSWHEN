@@ -16,9 +16,9 @@ export class ModalHistoryComponent {
   background: string;
   data = 'monthly';
   chartType: string = 'bar';
-  retYears: any[] = [];
-  monthlyPay: any[] = [];
-  totalAccumulated: any[] = [];
+  retYears: any[];
+  monthlyPay: any[];
+  totalAccumulated: any[];
   tableMonthly: any[] = [];
   tableTotalAccumulated: any[] = [];
  
@@ -30,11 +30,11 @@ export class ModalHistoryComponent {
   }
 
   ngOnInit() {
-    this.retYears = this.calculations$.retirementYears;
-    this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
-    this.totalAccumulated = [ {data: this.calculations$.monthlyBenefit().cumulative, label: 'Cumulative Benefits per Retirement Year'} ];
-    this.tableMonthly = this.calculations$.monthlyBenefit().monthly;;
-    this.tableTotalAccumulated = this.calculations$.monthlyBenefit().cumulative;
+    // this.retYears = this.calculations$.retirementYears;
+    // this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
+    // this.totalAccumulated = [ {data: this.calculations$.monthlyBenefit().cumulative, label: 'Cumulative Benefits per Retirement Year'} ];
+    // this.tableMonthly = this.calculations$.monthlyBenefit().monthly;;
+    // this.tableTotalAccumulated = this.calculations$.monthlyBenefit().cumulative;
   }
 
   showPrompt() {
