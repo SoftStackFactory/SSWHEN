@@ -22,11 +22,11 @@ export class CalculationsProvider {
   
   getBenefitData() {
     let apiUrl = "https://andrew-winter-2017-phortonssf.c9users.io/api/results/benefitData?pia=" + this.pia +
-    "&gender=" + this.gender +"&dob=" + this.dob +"11-2011"
+    "&gender=" + this.gender +"&dob=" + this.dob +"11-2011";
     
     return this.http.get(apiUrl);
     
-    };
-  }
+  };
+}
 
 

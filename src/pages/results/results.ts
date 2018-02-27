@@ -114,17 +114,8 @@ export class ResultsPage implements OnInit {
   //getbenefitData() returns an observable
   //subsribe to observable, then parse data for graph and table
   
-<<<<<<< HEAD
 
-  ionViewDidLoad() {
-    this.infoData = this.navParams.get('myForm');
-    this.ssUsersProvider.getResultsByUser({ id: 1 }, 'K5mFHf8WW6CgaIXEGKXxnNp7LkoraUnP6lvjq8Arpi5TeCzedPvg5Q5rBllO4BzU')
-      .subscribe( res => {
-        console.log(res);
-      }, error => {
-        console.log(error)
-      });
-=======
+
   ngOnInit(){
     this.calculations$.getBenefitData().subscribe ( data => {
     this.dataObject = data;
@@ -133,7 +124,7 @@ export class ResultsPage implements OnInit {
     this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
     this.tableMonthly = this.dataObject.monthly;
     });
->>>>>>> faa7554cc8d0f1566f13891eb287dfade390b5d5
+
   }
 
 }
