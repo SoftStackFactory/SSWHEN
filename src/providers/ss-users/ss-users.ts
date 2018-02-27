@@ -40,5 +40,10 @@ export class SsUsersProvider {
     let path = '/SSUsers/' + user.id + '/results?access_token=' + token;
     return this.http.post(this.apiUrl + path, user).map(res => res.json())
   }
+  
+  getUser(userId, token) {
+    let path = '/SSUsers/' + userId + '?access_token=' + token;
+    return this.http.get(this.apiUrl + path).map(res => res.json())
+  }
 
 }
