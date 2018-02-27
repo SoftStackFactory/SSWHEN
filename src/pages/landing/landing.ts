@@ -19,7 +19,7 @@ import { Storage } from '@ionic/storage';
 })
 export class LandingPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
     this.storage.clear();
   }
 
