@@ -81,9 +81,22 @@ export class DashboardPage implements OnInit {
     modal.present();
   }
   
-  emailResults() {
-    this.email$.sendEmailDashboard();
-  }
+  // emailResults(data) {
+  //   let payload = {
+  //     email: "",
+  //     date: "01/19/1990",
+  //     monthlyPayout: [],
+  //     cumulativePayout: []
+  //   }
+    
+  //   payload.email = data.title;
+  //   payload.monthlyPayout = this.tableMonthly;
+  //   payload.cumulativePayout = 
+  //   console.log(this.tableMonthly);
+  //   console.log(payload);
+  //   this.email$.sendEmailDashboard(payload)
+  //   .subscribe( res => console.log(res), err => console.log(err))
+  // }
   
   showPrompt() {
     let prompt = this.alertCtrl.create({
@@ -105,9 +118,10 @@ export class DashboardPage implements OnInit {
         {
           text: 'Email',
           handler: data => {
-            this.emailResults();
-            console.log(data);
             console.log('Saved clicked');
+            // Pass in email, array of calculations, date 
+            // this.emailResults(data);
+            console.log(data);
           }
         }
       ]
