@@ -112,11 +112,9 @@ export class ResultsPage implements OnInit {
       this.tableMonthly = this.calculations$.monthlyBenefit().monthly;
   }
   
-  ionViewDidLoad() {
-    this.infoData = this.navParams.get('myForm');
-  }
 
   ionViewDidLoad() {
+    this.infoData = this.navParams.get('myForm');
     this.ssUsersProvider.getResultsByUser({ id: 1 }, 'K5mFHf8WW6CgaIXEGKXxnNp7LkoraUnP6lvjq8Arpi5TeCzedPvg5Q5rBllO4BzU')
       .subscribe( res => {
         console.log(res);
