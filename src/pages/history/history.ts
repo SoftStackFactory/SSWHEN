@@ -3,21 +3,20 @@ import { IonicPage, ModalController, NavController, NavParams, PopoverController
 import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
 import {ModalHistoryComponent} from '../../components/modal-history/modal-history';
 import { ResultsProvider } from '../../providers/results/results';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 
 @Component({
   selector: 'page-history',
-  templateUrl: 'history.html',
+  templateUrl: 'history.html'
 })
 
 export class HistoryPage implements OnInit {
   
   testResults: any;
-  monthlies: any = [];
-  cumulatives: any = [];
-  dates: any = [];
-  sendData: any = [];
+  userId: number;
+  token: string;
   
   @ViewChildren('changeText',  {read: ElementRef}) components: QueryList<ElementRef>;
 
@@ -26,7 +25,8 @@ export class HistoryPage implements OnInit {
     public navParams: NavParams, 
     public popoverCtrl: PopoverController, 
     public modalCtrl: ModalController,
-    public results$: ResultsProvider) {}
+    public results$: ResultsProvider,
+    private storage: Storage) {}
 
   presentLanguagePopover(myEvent) {
     let popover = this.popoverCtrl.create(LangaugePopoverComponent, {
@@ -39,40 +39,30 @@ export class HistoryPage implements OnInit {
 
   presentHistoryModal(result) {
     let modal = this.modalCtrl.create(ModalHistoryComponent, { 'result': result } );
-    // let ev = {
-    //   target: {
-    //     getBoundingClientRect: () => {
-    //       return {
-    //         top: '100'
-    //       };
-    //     }
-    //   }
-    // };
-    // modal.present({ev});
       modal.present();
   }
 
 
   ngOnInit() {
-    // pass userId & token into getResults()
-    // The response will be an array of multiple user data objects.
-    // The charts need to access only one of these user data objects.
-    this.results$.getResults({"id": 1}, "dWt6GiL5LlLPjJpKMXVIAqzv1h9o211mo4tVtQOWRJYvVa1WDlwtFACvV2vN49Cv")
+  
+    this.storage.get('userId').then((val) => {
+      this.userId = val;
+    });
+    this.storage.get('token').then((val) => {
+      this.token = val;
+    });
+    
+    console.log(this.userId);
+    console.log(this.token);
+    
+    // getResults() is passed userId & token - from local storage
+    // The response will be an array containing the user data object associated with the passed userId.
+    // From this user data object, history.ts needs the createdAt date string property
+    // history.ts needs to send modal-history component the monthly array, and the cumulative array properties 
+    this.results$.getResults({"id": this.userId}, this.token)
     .subscribe(response => {
       this.testResults = response;
       console.log(this.testResults);
-
-      for (let i=0; i<this.testResults.length; i++) {
-        this.dates.push( (new Date(Date.parse(this.testResults[i].createdAt))).toLocaleDateString() );
-        this.monthlies.push(this.testResults[i].monthly);
-        this.cumulatives.push(this.testResults[i].cumulative);
-        this.sendData.push({
-          date: this.dates,
-          monthly: this.monthlies,
-          cumulative: this.cumulatives
-        });
-      }
-      console.log("Data to send to modal-history component: ",this.sendData);
     }, error => {
         alert("Error");
       // Create cases where the error message depends on the service error, ex 400

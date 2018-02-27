@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import {AlertController, NavParams, ViewController} from 'ionic-angular';
-import { CalculationsProvider } from '../../providers/calculations/calculations';
-import { HistoryPage } from '../../pages/history/history';
 
 @Component({
   selector: 'modal-history',
@@ -24,18 +22,17 @@ export class ModalHistoryComponent {
 
   constructor(public navParams: NavParams, 
               public viewCtrl: ViewController, 
-              public alertCtrl: AlertController,
-              public calculations$: CalculationsProvider) {}
+              public alertCtrl: AlertController) {}
 
   ngOnInit() {
     this.historyResult = this.navParams.get('result');
     console.log("result from history page: ",this.historyResult);
-
+    
     this.retYears = [62, 63, 64, 65, 66, 67, 68, 69, 70];
-    this.monthlyPay = [ {data: this.historyResult.monthly[0], label: 'Monthly Payout per Retirement Year'} ];
-    this.totalAccumulated = [ {data: this.historyResult.cumulative[0], label: 'Cumulative Benefits per Retirement Year'} ];
-    this.tableMonthly = this.historyResult.monthly[0];
-    this.tableTotalAccumulated = this.historyResult.cumulative[0];
+    this.monthlyPay = [ {data: this.historyResult.monthly, label: 'Monthly Payout per Retirement Year'} ];
+    this.totalAccumulated = [ {data: this.historyResult.cumulative, label: 'Cumulative Benefits per Retirement Year'} ];
+    this.tableMonthly = this.historyResult.monthly;
+    this.tableTotalAccumulated = this.historyResult.cumulative;
   }
 
   showPrompt() {
