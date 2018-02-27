@@ -81,19 +81,8 @@ export class DashboardPage implements OnInit {
     modal.present();
   }
   
-  emailResults(data) {
-      let emailData = {
-        email: "",
-        date: "",
-        montlyPayout: "",
-        cumulativepayout: ""
-      };
-      emailData.email = data.email;
-      emailData.date = "";
-      emailData.montlyPayout = "";
-      emailData.cumulativepayout = "";
-    console.log(data);
-    this.email$.sendEmailDashboard(emailData);
+  emailResults() {
+    this.email$.sendEmailDashboard();
   }
   
   showPrompt() {
@@ -116,8 +105,8 @@ export class DashboardPage implements OnInit {
         {
           text: 'Email',
           handler: data => {
-            this.emailResults(data);
-            console.log(date);
+            this.emailResults();
+            console.log(data);
             console.log('Saved clicked');
           }
         }

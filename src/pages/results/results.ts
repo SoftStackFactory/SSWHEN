@@ -55,17 +55,10 @@ export class ResultsPage implements OnInit {
   }
   
   emailResults(data) {
-    let emailData = {
-        email: "",
-        date: "",
-        montlyPayout: ""
-      };
-      emailData.email = data.email;
-      emailData.date = "";
-      emailData.montlyPayout = "";
-    console.log(data);
-    console.log(data);
-    this.email$.sendEmailResults();
+    let userEmail = data.title;
+    console.log(data.title);
+    this.email$.sendEmailResults(userEmail)
+    .subscribe( res => console.log(res), err => console.log(err))
   }
   
   showPrompt() {
@@ -91,7 +84,7 @@ export class ResultsPage implements OnInit {
             console.log('Saved clicked');
             // Pass in email, array of calculations, date 
             this.emailResults(data);
-            console.log(data.email);
+            console.log(data);
             this.showConfirm();
           }
         }
@@ -161,6 +154,7 @@ export class ResultsPage implements OnInit {
       this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
       this.tableMonthly = this.calculations$.monthlyBenefit().monthly;
       // this.tabulatedData = this.calculations$.tableData;
+      
   }
 
 }

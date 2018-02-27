@@ -2,12 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-/*
-  Generated class for the EmailProvider provider.
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular DI.
-*/
 @Injectable()
 export class EmailProvider {
   
@@ -16,12 +11,27 @@ export class EmailProvider {
   
   constructor(public http: Http) {}
   
-  sendEmailResults(data) {
-    this.http.post(this.urlResults, data)
+  sendEmailResults(userEmail) {
+    let datapayload = {
+      email: "",
+      date: "01/19/1990",
+      monthlyPayout: ""
+    }
+    datapayload.email = userEmail;
+    console.log("test");
+    console.log(this.urlResults);
+    return this.http.post(this.urlResults, datapayload);
   }
   
-  sendEmailDashboard(data) {
-    this.http.post(this.urlDashboard, data)
+  sendEmailDashboard() {
+    let datapayload = {
+      email: "jorduno19@gmail.com",
+      date: "01/19/1990",
+      monthlyPayout: "",
+      cumulativepayout: ""
+    }
+    console.log("test");
+    this.http.post(this.urlDashboard, datapayload);
   }
 
 }
