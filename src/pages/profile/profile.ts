@@ -3,7 +3,8 @@ import { NgForm, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { DashboardPage } from '../dashboard/dashboard';
 import { LoginPage } from '../login/login';
 import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
-
+import { SsUsersProvider } from '../../providers/ss-users/ss-users';
+import { SSUser } from '../../models/SSUser';
 
 
 @IonicPage()
@@ -13,6 +14,8 @@ import { IonicPage, NavController, NavParams, AlertController, ModalController }
 })
 export class ProfilePage {
   
+  
+  ssUser = new SSUser();
   profileForm: FormGroup;
   inputDisabledEmail: boolean = false;
   inputDisabledPass: boolean = false;
@@ -44,7 +47,7 @@ export class ProfilePage {
         password: ['', 
           Validators.compose([
               Validators.required,
-              Validators.pattern('[A-Za-z0-9!@#$%]{6,12}')
+              Validators.pattern('^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,12}$')
             ])
         ]
       });
@@ -99,14 +102,32 @@ export class ProfilePage {
     // alert.present();
     // console.log("Password is not valid, Unsuccessful registration");
     // } else {
-      let alert = this.alertCtrl.create({
-      title: '',
-      subTitle: 'Your account information has been updated',
-      buttons: ['OK']
-    });
-    alert.present();
-    this.navCtrl.push(DashboardPage);
-    console.log("Successful registration", this.validateForm.value);
+    
+      this.ssUser.email = this.profileForm.value.email;
+      this.ssUser.password = this.profileForm.value.password;
+
+      console.log(this.ssUser);
+
+      this.ssusers$.register(this.ssUser)
+        .subscribe(res => {
+          alert("You have changed your password!");
+          console.log(res);
+          console.log("Successful registration", this.ssUser);
+          this.storage.replace('SSUser', this.ssUser);
+          // this.storage.set('userId', res.id);
+          // this.storage.set('token', res.token);
+        }, err => {
+          console.log(err);
+          console.log("Invalid field. Please see required field", this.ssUser);
+        });
+    //   let alert = this.alertCtrl.create({
+    //   title: '',
+    //   subTitle: 'Your account information has been updated',
+    //   buttons: ['OK']
+    // });
+    // alert.present();
+    // this.navCtrl.push(DashboardPage);
+    // console.log("Successful registration");
      
     }
     
