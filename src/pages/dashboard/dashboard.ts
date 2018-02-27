@@ -92,7 +92,11 @@ export class DashboardPage implements OnInit {
     prompt.present();
   }
   
+  //assign all properties, make all http calls OnInit
+  
   ngOnInit() {
+    
+    //get user info from local storage, assign to service properties, returns a promise
     this.storage.get('SSUser').then((val) => {
       this.calculations$.pia = val.FRAbenefit;
       this.calculations$.gender = val.gender;
@@ -102,7 +106,7 @@ export class DashboardPage implements OnInit {
       console.log(this.calculations$.dob, "dob");
       console.log(this.dataObject)
     
-    
+      //call backend calculation route, using updated service properties, returns an observable
       this.calculations$.getBenefitData().subscribe ( data => {
         this.dataObject = data;
         this.dataObject = JSON.parse(this.dataObject._body);
