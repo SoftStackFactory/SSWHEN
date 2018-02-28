@@ -1,8 +1,12 @@
 <ion-header>
+
   <ion-navbar>
-    <ion-title>Login</ion-title>
+    <ion-title>Back</ion-title>
+    <!--takes the user back to the register page? -->
   </ion-navbar>
+
 </ion-header>
+
 
 <ion-content center text-center>
   <div class="container">
@@ -27,7 +31,7 @@
 
                 <ion-input formControlName="email" type="email" placeholder="email"></ion-input>
                 <div *ngIf="!myForm.controls.email.valid && (myForm.controls.email.dirty || submitAttempt)">
-                  <p>Email Invalid</p>
+                  <p style="color:red">Email Invalid</p>
                 </div>
               </ion-card-content>
             </ion-card>
@@ -38,7 +42,10 @@
               </ion-card-header>
               <ion-card-content>
                 <ion-icon name="lock" float-right></ion-icon>
-                <ion-input formControlName="password" type="password" name="Password" placeholder="••••••••••"></ion-input>
+                <ion-input formControlName="password" type="password" placeholder="••••••••••"></ion-input>
+                  <div *ngIf="!myForm.controls.password.valid && (myForm.controls.password.dirty || submitAttempt)">
+                    <p>Password is invalid</p>
+                  </div>
               </ion-card-content>
             </ion-card>
           </form>

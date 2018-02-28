@@ -4,6 +4,8 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 import { SSUser } from '../../models/SSUser';
+import { Storage } from '@ionic/storage';
+import { UserDataProvider } from "../../providers/user-data/user-data";
 
 @IonicPage()
 @Component({
@@ -17,36 +19,41 @@ export class RegisterPage {
   registerForm: FormGroup;
   submitAttempt: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder, public ssusers$: SsUsersProvider) {
-    this.registerForm = formBuilder.group({
-      maritalStatus: ['', 
-        Validators.compose([
-            Validators.required
-          ])
-      ],
-      totalTaxContribution: ['', 
-        Validators.compose([
-            Validators.required,
-              Validators.pattern('[0-9]{1,9}')
-          ])
-      ],
-      email: ['', 
-        Validators.compose([
-            Validators.required,
-            Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
-            Validators.maxLength(30),
-          ])
-      ],
-      password: ['', 
-        Validators.compose([
-            Validators.required,
-            Validators.pattern('[A-Za-z0-9!@#$%]{6,12}')
-          ])
-      ]
-    });
-      
-    this.infoData = this.navParams.get('infoData');
-  }
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public formBuilder: FormBuilder, 
+    public ssusers$: SsUsersProvider,
+    public storage: Storage,
+    public userData$: UserDataProvider) {
+      this.registerForm = formBuilder.group({
+        maritalStatus: ['', 
+          Validators.compose([
+              Validators.required
+            ])
+        ],
+        totalTaxContribution: ['', 
+          Validators.compose([
+              Validators.required,
+                Validators.pattern('[0-9]{1,9}')
+            ])
+        ],
+        email: ['', 
+          Validators.compose([
+              Validators.required,
+              Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
+              Validators.maxLength(30),
+            ])
+        ],
+        password: ['', 
+          Validators.compose([
+              Validators.required,
+              Validators.pattern(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,12}$/)
+            ])
+        ]
+      });
+      this.infoData = this.navParams.get('infoData');
+    }
   
   //SUBMIT AND NAVIGATION FUNCTION
   submit() {
@@ -66,7 +73,15 @@ export class RegisterPage {
       this.ssusers$.register(this.ssUser)
         .subscribe(res => {
           alert("Thank you for registering!");
+          console.log(res);
           console.log("Successful registration", this.ssUser);
+          this.storage.set('SSUser', this.ssUser);
+          this.storage.set('userId', res.id);
+          this.storage.set('token', res.token);
+          
+          this.userData$.totalContribution = res.totalContribution;
+          this.userData$.isMarried = res.isMarried;
+          
           this.navCtrl.setRoot(DashboardPage);
         }, err => {
           console.log(err);
@@ -81,9 +96,9 @@ export class RegisterPage {
     console.log('ionViewDidLoad RegisterPage');
     console.log(this.infoData);
       console.log(this.ssUser);
-      this.ssUser.dateOfBirth = this.infoData.birthDate;
-      this.ssUser.gender = this.infoData.gender;
-      this.ssUser.FRAbenefit = this.infoData.fra;
+      this.ssUser.dateOfBirth = this.userData$.dateOfBirth;
+      this.ssUser.gender = this.userData$.gender;
+      this.ssUser.FRAbenefit = this.userData$.FRAbenefit;
       console.log(this.ssUser);
   }
   

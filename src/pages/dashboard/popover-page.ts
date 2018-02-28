@@ -1,8 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {App, NavController, ViewController} from 'ionic-angular';
 import {ProfilePage} from '../profile/profile';
 import {LandingPage} from '../landing/landing';
 import {HistoryPage} from '../history/history';
+import {SsUsersProvider} from '../../providers/ss-users/ss-users';
+import {Storage} from '@ionic/storage';
 
 @Component({
   template: `
@@ -31,17 +33,24 @@ import {HistoryPage} from '../history/history';
     </ion-grid>
   `
 })
-export class PopoverPage {
+export class PopoverPage implements OnInit {
   background: string;
   showBackdrop: true;
+  private token: string;
 
   constructor(
     public navCtrl: NavController,
     public appCtrl: App,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    public ssUsersProvider: SsUsersProvider,
+    public storage: Storage
   ) {}
 
   ngOnInit() {
+    this.storage.get('token').then((val) => {
+      this.token = val;
+      console.log(this.token);
+    })
   }
 
   goToProfile(params) {
@@ -59,8 +68,13 @@ export class PopoverPage {
   goToLanding(params) {
     if (!params) params = {};
     // this.navCtrl.setRoot(LandingPage);
-    this.appCtrl.getRootNav().setRoot(LandingPage);
-    this.viewCtrl.dismiss();
+    this.ssUsersProvider.logout(this.token)
+      .subscribe( res => {
+        this.appCtrl.getRootNav().setRoot(LandingPage);
+        this.viewCtrl.dismiss();
+      }, err => {
+        console.log(err);
+      });
   }
 
 }

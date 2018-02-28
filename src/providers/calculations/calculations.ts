@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular DI.
 */
+
 @Injectable()
 export class CalculationsProvider {
 
@@ -21,12 +22,14 @@ export class CalculationsProvider {
   dob: string;
   
   getBenefitData() {
-    let apiUrl = "https://andrew-winter-2017-phortonssf.c9users.io/api/results/benefitData?pia=" + this.pia +
-    "&gender=" + this.gender +"&dob=" + this.dob +"11-2011"
+    let apiUrl = "http://sswhen-bk-danilo-phortonssf.c9users.io:8080/api/results/benefitData?pia=" + this.pia +
+    "&gender=" + this.gender +"&dob=" + this.dob +"11-2011";
     
     return this.http.get(apiUrl);
+
     
-    };
-  }
+  };
+}
+
 
 

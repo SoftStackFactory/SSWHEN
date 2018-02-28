@@ -1,7 +1,7 @@
 //  MOCKRESULTS is an array of Results{}
-import {Results } from '../Results';
+// import {Results } from '../Results';
 
-export const MOCKRESULTS: Results[] = [
+export const MOCKRESULTS: any[] = [
   {
     monthly: [1314, 1421.4, 1528, 1636.2, 1743.6, 1851, 2016.3, 2181.7, 2347],
     cumulative: [268056, 272909, 275184, 247822, 272002, 266544, 266156, 261800, 253476],
