@@ -123,24 +123,24 @@ export class DashboardPage implements OnInit {
     });
   }
 
-  presentModal(type) {
-    let chartType = type;
-    console.log(chartType);
-    let modal = this.modalCtrl.create(ModalDashboardComponent, {
-      'modalType': chartType
-    });
-    // let ev = {
-    //   target: {
-    //     getBoundingClientRect: () => {
-    //       return {
-    //         top: '100'
-    //       };
-    //     }
-    //   }
-    // };
-    // modal.present({ev});
-    modal.present();
-  }
+  // presentModal(type) {
+  //   let chartType = type;
+  //   console.log(chartType);
+  //   let modal = this.modalCtrl.create(ModalDashboardComponent, {
+  //     'modalType': chartType
+  //   });
+  //   // let ev = {
+  //   //   target: {
+  //   //     getBoundingClientRect: () => {
+  //   //       return {
+  //   //         top: '100'
+  //   //       };
+  //   //     }
+  //   //   }
+  //   // };
+  //   // modal.present({ev});
+  //   modal.present();
+  // }
   
   emailResults(data) {
     this.email$.date = "test";
@@ -220,12 +220,6 @@ export class DashboardPage implements OnInit {
   //assign all properties, make all http calls OnInit
   
   ngOnInit() {
-    this.lifeExpectancy = this.calculations$.lifeExpect/12;
-    this.benefitAtFRA = this.calculations$.FRAbenefitAmount;
-    this.ageFRA = this.calculations$.fullRetAge / 12;
-    this.emailMonthly = this.calculations$.monthlyBenefit().monthly;
-    this.emailCumulative = this.calculations$.monthlyBenefit().cumulative;
-    
     //get user info from local storage, assign to service properties, returns a promise
     this.storage.get('SSUser').then((val) => {
       this.calculations$.pia = val.FRAbenefit;
@@ -235,11 +229,11 @@ export class DashboardPage implements OnInit {
       console.log(this.calculations$.gender, "gender");
       console.log(this.calculations$.dob, "dob");
       console.log(this.dataObject);
-          this.results.gender = val.gender;
-          this.results.FRAbenefit = val.FRAbenefit;
-          this.results.dateOfBirth = val.dateOfBirth;
-          this.results.isMarried = val.isMarried;
-          this.results.totalContribution = val.totalContribution;
+      this.results.gender = val.gender;
+      this.results.FRAbenefit = val.FRAbenefit;
+      this.results.dateOfBirth = val.dateOfBirth;
+      this.results.isMarried = val.isMarried;
+      this.results.totalContribution = val.totalContribution;
     
       //call backend calculation route, using updated service properties, returns an observable
       this.calculations$.getBenefitData()
@@ -263,6 +257,13 @@ export class DashboardPage implements OnInit {
           this.results.cumulative = this.dataObject.cumulative;
           this.results.createdAt = new Date();
           this.results.isRegistered = false;
+          
+          // this.lifeExpectancy = this.calculations$.lifeExpect/12;
+          // this.benefitAtFRA = val.FRAbenefit;
+          // this.ageFRA = this.calculations$.fullRetAge / 12;
+          this.emailMonthly = this.dataObject.monthly;
+          this.emailCumulative = this.dataObject.cumulative;
+          
           this.saveResults();
         }, err => console.log(err));
     });

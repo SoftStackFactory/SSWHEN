@@ -46,7 +46,7 @@ export class ResultsPage implements OnInit {
     public navParams: NavParams, 
     public modalCtrl: ModalController,
     public calculations$: CalculationsProvider,
-    public email$: EmailProvider
+    public email$: EmailProvider,
     public ssUsersProvider: SsUsersProvider,
     public resultsProvider: ResultsProvider,
     public storage: Storage

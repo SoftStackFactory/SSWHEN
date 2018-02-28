@@ -1,6 +1,6 @@
 {
   "name": "SSWhen",
-  "app_id": "",
+  "app_id": "29de74bd",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
