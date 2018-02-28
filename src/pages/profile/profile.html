@@ -82,15 +82,7 @@
                   
                </ion-card-content>
                 </ion-card>
-                
-                
-                
- <!--               <div *ngIf="!profileForm.controls.password.valid && (profileForm.controls.password.dirty || validateForm)">-->
- <!--               <p style="color:red">-->
- <!--You must enter a password with 6-12 characters, 1 number, 1 lowercase character, 1 uppercase character</p>-->
- <!--               </div>-->
-                
-                
+              
                    
                  <ion-card *ngIf="addRow">
                     <ion-card-header>
@@ -98,14 +90,19 @@
                    </ion-card-header>
                      <ion-card-content>
                     <ion-input
+                    formControlName="cpassword"
+                    name="cpassword"
                     placeholder="••••••••••" 
                     type="password"
-                    class="retypePassClass"></ion-input>
+                   ></ion-input>
+                    <div *ngIf="profileForm.controls.cpassword.dirty &&
+                    profileForm.controls.password.value !== 
+                    profileForm.controls.cpassword.value">
+                    <p>Password does not match</p>
+                      </div>
                     </ion-card-content>
                 </ion-card>
-               
-   
-        <!--[disabled]="!f.valid" to go in after submit-
+
         <!--^propery binding gets a reference to the form from above. Action: disable this if the form is not valid--->
         <!--  Confirm Edit</button>-->
       
