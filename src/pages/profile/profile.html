@@ -6,57 +6,117 @@
 
 
 <ion-content>
+  <!--<div class="container">-->
   <ion-grid>
-    <ion-row center>
-      <ion-col text-center>
-        <h1>SSWHEN</h1>
-        <h1>Profile Page</h1>
+        <ion-row center>
+              <ion-col text-center>
+                <h1>SSWHEN</h1>
+                <h1>Profile Page</h1>
+                
+                <img src='http://www.freeiconspng.com/uploads/am-a-19-year-old-multimedia-artist-student-from-manila--21.png' alt="Logo Image">
+                    
+                <h3 no-padding no-margin></h3>
+                
+                <form [formGroup] = "profileForm">
+                  
+                <ion-card>
+                  <ion-card-header>
+                    {{onTheEdit}} 
+                     <button ion-button 
+                      (click)="editEmail()"
+                      type="submit"
+                      float-right
+                      icon-only
+                       > 
+                       <ion-icon name="create"></ion-icon>
+                       </button>
+                  </ion-card-header>
+                  <ion-card-content>
+                   <ion-input 
+                   disabled="{{inputDisabledEmail}}" 
+                  [(ngModel)]="email"
+                  formControlName="email"
+                  placeholder="Email@example.com" 
+                  type="email"
+                  id="email"
+                    placeholder="example@gmail.com">
+                   </ion-input>
+                   <div *ngIf="!profileForm.controls.email.valid && (profileForm.controls.email.dirty || validateEmail)">
+                  <p>Please enter a valid email address</p>
+                </div>
+                  </ion-card-content>
+                </ion-card>
+               <!--[(ngModel)]="drill_plus"-->
+             
+                <ion-card  padding-horizontal>
+                  <ion-card-header>
+                    {{onTheEdit1}}
+                     <button ion-button 
+                    (click)="editPassAddRow()"
+                    type="submit"
+                     float-right
+                     icon-only
+                     > 
+                      <ion-icon name="create" 
+                     ></ion-icon></button>
+                  </ion-card-header>
+                  <ion-card-content>
+                  <ion-input 
+                  disabled="{{inputDisabledPass}}" 
+                   [(ngModel)]="password" 
+                   formControlName="password"
+                   type="password" 
+                    name="Password"
+                    [minlength]="6"
+                    placeholder="••••••••••"
+                    class="passClass"></ion-input>
+                    <div *ngIf="!profileForm.controls.password.valid && (profileForm.controls.password.dirty || validateForm)">
+                  <p>You must enter a password with at least 6 characters, a number and a capitalized character</p>
+                </div>
+               </ion-card-content>
+                </ion-card>
+                
+                
+                   
+                 <ion-card *ngIf="addRow">
+                    <ion-card-header>
+                    Re-Type Password: 
+                   </ion-card-header>
+                     <ion-card-content>
+                    <ion-input
+                    formControlName="cpassword"
+                    name="cPassword"
+                    placeholder="••••••••••" 
+                    type="password"
+                    class="retypePassClass"></ion-input>
+                    <div *ngIf="profileForm.controls.cpassword.dirty && profileForm.controls.password.value !== profileForm.controls.cpassword.value">
+                    <p>Password does not match</p>
+                      </div>
+                    </ion-card-content>
+                </ion-card>
+               
+   
+        <!--[disabled]="!f.valid" to go in after submit-
+        <!--^propery binding gets a reference to the form from above. Action: disable this if the form is not valid--->
+        <!--  Confirm Edit</button>-->
+      
+        
+        </form>
 
-        <img src='http://www.freeiconspng.com/uploads/am-a-19-year-old-multimedia-artist-student-from-manila--21.png' alt="Logo Image">
 
-        <h3 no-padding no-margin></h3>
-
-        <ion-card>
-          <ion-card-header>
-            {{onTheEdit}}
-          </ion-card-header>
-          <ion-card-content>
-            <ion-input disabled="{{inputDisabledEmail}}" [(ngModel)]="drill_plus" placeholder="Email@example.com" type="email" placeholder="example@gmail.com">
-            </ion-input>
-            <button ion-button (click)="editEmail()" type="submit" float-right> 
-                     <ion-icon name="create"></ion-icon>
-                     </button>
-          </ion-card-content>
-        </ion-card>
-
-
-        <ion-card padding-horizontal>
-          <ion-card-header>
-            {{onTheEdit1}}
-          </ion-card-header>
-          <ion-card-content>
-
-            <ion-input disabled="{{inputDisabledPass}}" [(ngModel)]="drill_plus1" type="password" name="Password" [minlength]="6" placeholder="••••••••••"></ion-input>
-            <button ion-button (click)="editPassAddRow()" type="submit" float-right> <ion-icon name="create"></ion-icon></button>
-          </ion-card-content>
-        </ion-card>
-
-
-        <ion-card *ngIf="addRow">
-          <ion-card-header>
-            Re-Type Password:
-          </ion-card-header>
-          <ion-card-content>
-            <ion-input placeholder="••••••••••" type="password"></ion-input>
-          </ion-card-content>
-        </ion-card>
-
-        <ion-row padding-horizontal>
-          <ion-col>
-            <button ion-button full (click)="popView()" type="submit">Confirm Edit</button>
-          </ion-col>
-        </ion-row>
+    <!--if the user has entered a valid email or a valid password, they can hit the submit button which updates their user information-->
+    <ion-row padding-horizontal>
+      <ion-col>
+     <div *ngIf="profileForm.controls.email.valid || profileForm.controls.password.valid"> 
+        <button ion-button full
+                (click)="submitIfValid()"
+                type="submit"
+                class="button"
+                >Confirm Edit</button>
+                </div>
       </ion-col>
     </ion-row>
-  </ion-grid>
-</ion-content>
+    
+    
+  <!--</ion-grid>  -->
+<!--</ion-content>-->
