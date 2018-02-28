@@ -1,19 +1,9 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-import { NgForm, FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { DashboardPage } from '../dashboard/dashboard';
-import { LoginPage } from '../login/login';
-import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
-import { SsUsersProvider } from '../../providers/ss-users/ss-users';
-import { SSUser } from '../../models/SSUser';
-=======
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 import { SSUser } from '../../models/SSUser';
 import { Storage } from '@ionic/storage';
->>>>>>> 007935cae9f2b7f31d010f982618ef678bd7b854
 
 
 @IonicPage()
@@ -21,15 +11,8 @@ import { Storage } from '@ionic/storage';
   selector: 'page-profile',
   templateUrl: 'profile.html',
 })
-<<<<<<< HEAD
-export class ProfilePage {
-  
-  
-  ssUser = new SSUser();
-=======
 export class ProfilePage implements OnInit {
 
->>>>>>> 007935cae9f2b7f31d010f982618ef678bd7b854
   profileForm: FormGroup;
   inputDisabledEmail: boolean = false;
   inputDisabledPass: boolean = false;
@@ -39,44 +22,6 @@ export class ProfilePage implements OnInit {
   onTheEdit = 'Current Email:';
   onTheEdit1 = 'Password:';
   validateForm: boolean = false;
-<<<<<<< HEAD
-
-  constructor(public navCtrl: NavController, 
-  public navParams: NavParams,
-  private alertCtrl: AlertController,
-  public modalCtrl: ModalController,
-  public formBuilder: FormBuilder
-  ) {
-
-     this.inputDisabledEmail = true;
-     this.inputDisabledPass = true;
-     
-      this.profileForm = formBuilder.group({
-      email: ['', 
-          Validators.compose([
-              Validators.required,
-              Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
-              Validators.maxLength(30),
-            ])
-        ],
-        password: ['', 
-          Validators.compose([
-              Validators.required,
-              Validators.pattern(/^(?=.\d)(?=.[A-Z])(?=.[a-z])(?=.[^\w\d\s:])([^\s]){6,12}$/)
-            ])
-        ],
-        cpassword: ['', 
-          Validators.compose([
-              Validators.required,
-              Validators.pattern(/^(?=.\d)(?=.[A-Z])(?=.[a-z])(?=.[^\w\d\s:])([^\s]){6,12}$/)
-            ])
-      });
-   
-  }
-
-   //lets user edit email and changes text instructions for user
-   editEmail() {
-=======
   ssUser: SSUser;
   private token: string;
   private userId: string;
@@ -110,7 +55,6 @@ export class ProfilePage implements OnInit {
 
    //lets user edit email and changes text instructions for user
   editEmail() {
->>>>>>> 007935cae9f2b7f31d010f982618ef678bd7b854
     this.onTheEdit = 'Change email to:'; 
     this.inputDisabledEmail = false;
     console.log('you can edit the email now');
@@ -122,21 +66,6 @@ export class ProfilePage implements OnInit {
 
 
     //this event is not fired on submit 
-<<<<<<< HEAD
-    doAlertAndPopView(){
-      let alert = this.alertCtrl.create({
-      title: '',
-      subTitle: 'Your account information has been updated',
-      buttons: ['OK']
-    });
-    alert.present();
-    this.navCtrl.push(DashboardPage);
-    }
-    popView(){
-     alert('Your account information has been updated');
-    }
-    
-=======
   doAlertAndPopView(){
     let profileAlert = this.alertCtrl.create({
       title: 'Your account information has been updated',
@@ -161,7 +90,6 @@ export class ProfilePage implements OnInit {
     });
     profileAlert.present();
   }
->>>>>>> 007935cae9f2b7f31d010f982618ef678bd7b854
     
   editPassAddRow() {
     this.onTheEdit1 = 'Type your new password:';
@@ -171,15 +99,9 @@ export class ProfilePage implements OnInit {
   }
   // on click of edit button, input is re-enabled
   
-<<<<<<< HEAD
-    //doesn't let user submit the form if invalid
-    //this function is fired when user clicks "confirm edit" button
-    submitIfValid() {
-=======
   //doesn't let user submit the form if invalid
   //this function is fired when user clicks "confirm edit" button
   submitIfValid() {
->>>>>>> 007935cae9f2b7f31d010f982618ef678bd7b854
     this.validateForm = true;
     // if(!this.profileForm.controls.password.valid){
     //   let alert = this.alertCtrl.create({
@@ -191,25 +113,6 @@ export class ProfilePage implements OnInit {
     // console.log("Password is not valid, Unsuccessful registration");
     // } else {
     
-<<<<<<< HEAD
-      this.ssUser.email = this.profileForm.value.email;
-      this.ssUser.password = this.profileForm.value.password;
-
-      console.log(this.ssUser);
-
-      this.ssusers$.profile(this.ssUser)
-        .subscribe(res => {
-          alert("You have changed your password!");
-          console.log(res);
-          console.log("Successful update", this.ssUser);
-          this.storage.get('SSUser', this.ssUser);
-          // this.storage.set('userId', res.id);
-          // this.storage.set('token', res.token);
-        }, err => {
-          console.log(err);
-          console.log("Invalid field. Please see required field", this.ssUser);
-        });
-=======
     this.ssUser.email = this.profileForm.value.email;
     this.ssUser.password = this.profileForm.value.password;
 
@@ -227,7 +130,6 @@ export class ProfilePage implements OnInit {
         console.log(err);
         console.log("Invalid field. Please see required field", this.ssUser);
       });
->>>>>>> 007935cae9f2b7f31d010f982618ef678bd7b854
     //   let alert = this.alertCtrl.create({
     //   title: '',
     //   subTitle: 'Your account information has been updated',
@@ -238,10 +140,6 @@ export class ProfilePage implements OnInit {
     // console.log("Successful registration");
      
     }
-<<<<<<< HEAD
-    
-  }
-=======
 
   ngOnInit() {
     this.storage.get('SSUser').then((val) => {
@@ -259,4 +157,3 @@ export class ProfilePage implements OnInit {
   }
     
 }
->>>>>>> 007935cae9f2b7f31d010f982618ef678bd7b854
