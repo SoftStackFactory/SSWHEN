@@ -1,7 +1,7 @@
-import {Component, ElementRef, QueryList, ViewChildren, OnInit} from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChildren, OnInit} from '@angular/core';
 import { IonicPage, ModalController, NavController, NavParams, PopoverController } from 'ionic-angular';
-import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
-import {ModalHistoryComponent} from '../../components/modal-history/modal-history';
+import { LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
+import { ModalHistoryComponent} from '../../components/modal-history/modal-history';
 import { ResultsProvider } from '../../providers/results/results';
 import { Storage } from '@ionic/storage';
 

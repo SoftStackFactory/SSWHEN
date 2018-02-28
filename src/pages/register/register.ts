@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 import { SSUser } from '../../models/SSUser';
 import { Storage } from '@ionic/storage';
+import { UserDataProvider } from "../../providers/user-data/user-data";
 
 @IonicPage()
 @Component({
@@ -23,7 +24,8 @@ export class RegisterPage {
     public navParams: NavParams, 
     public formBuilder: FormBuilder, 
     public ssusers$: SsUsersProvider,
-    public storage: Storage) {
+    public storage: Storage,
+    public userData$: UserDataProvider) {
       this.registerForm = formBuilder.group({
         maritalStatus: ['', 
           Validators.compose([
@@ -46,7 +48,7 @@ export class RegisterPage {
         password: ['', 
           Validators.compose([
               Validators.required,
-              Validators.pattern('^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,12}$')
+              Validators.pattern(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,12}$/)
             ])
         ]
       });
@@ -76,6 +78,10 @@ export class RegisterPage {
           this.storage.set('SSUser', this.ssUser);
           this.storage.set('userId', res.id);
           this.storage.set('token', res.token);
+          
+          this.userData$.totalContribution = res.totalContribution;
+          this.userData$.isMarried = res.isMarried;
+          
           this.navCtrl.setRoot(DashboardPage);
         }, err => {
           console.log(err);
@@ -90,9 +96,9 @@ export class RegisterPage {
     console.log('ionViewDidLoad RegisterPage');
     console.log(this.infoData);
       console.log(this.ssUser);
-      this.ssUser.dateOfBirth = this.infoData.birthDate;
-      this.ssUser.gender = this.infoData.gender;
-      this.ssUser.FRAbenefit = this.infoData.fra;
+      this.ssUser.dateOfBirth = this.userData$.dateOfBirth;
+      this.ssUser.gender = this.userData$.gender;
+      this.ssUser.FRAbenefit = this.userData$.FRAbenefit;
       console.log(this.ssUser);
   }
   

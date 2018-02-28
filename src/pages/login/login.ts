@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 import { Storage } from '@ionic/storage';
+import { SSUser } from '../../models/SSUser';
 
 /**
  * Generated class for the LoginPage page.
@@ -20,6 +21,7 @@ import { Storage } from '@ionic/storage';
 export class LoginPage {
   myForm: FormGroup;
   submitAttempt: boolean = false;
+  ssUser: SSUser;
 
   constructor(
     public navCtrl: NavController, 
@@ -29,20 +31,21 @@ export class LoginPage {
     public ssUsersProvider: SsUsersProvider,
     public storage: Storage
   ) {
-    
-  this.myForm = formBuilder.group({
-    email: ['',
-      Validators.compose([ 
-      Validators.required,
-      Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')]
-    )],
-    password: ['', 
-      Validators.compose([
-          Validators.required,
-          Validators.pattern('[A-Za-z0-9!@#$%]{6,12}')
-        ])
-    ]
-  });
+    this.myForm = formBuilder.group({
+      email: ['', 
+        Validators.compose([
+            Validators.required,
+            Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
+            Validators.maxLength(30),
+          ])
+      ],
+      password: ['', 
+        Validators.compose([
+            Validators.required,
+            Validators.pattern(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,12}$/)
+          ])
+      ]
+    });
   }
 
   ionViewDidLoad() {
@@ -52,7 +55,7 @@ export class LoginPage {
   popView(){
       this.submitAttempt = true;
       if(!this.myForm.valid) {
-        console.log("Unsuccessful registration :(", this.myForm); 
+        console.log("Unsuccessful login :(", this.myForm); 
       } else {
         // login user using /SSUser/login
         this.ssUsersProvider.login(this.myForm.value)
@@ -64,7 +67,8 @@ export class LoginPage {
               .subscribe( res => {
                 alert('Thank you for loging in!');
                 console.log("Successful login", this.myForm.value);
-                console.log(res);
+                this.ssUser = res;
+                console.log(this.ssUser);
                 this.storage.set('SSUser', res);
                 this.navCtrl.push(DashboardPage);
               }, err => {
@@ -107,22 +111,12 @@ export class LoginPage {
     }
     
     anotherAlert() {
-    let alert = this.alertCtrl.create({
-      title: '',
-      subTitle: 'An email has been sent to your address with a reset link. Please follow the link to set a new password',
-      buttons: ['OK']
-    });
-    alert.present();
+      let alert = this.alertCtrl.create({
+        title: '',
+        subTitle: 'An email has been sent to your address with a reset link. Please follow the link to set a new password',
+        buttons: ['OK']
+      });
+      alert.present();
     }
   
-
-  submit() {
-      this.submitAttempt = true;
-      if(!this.myForm.valid) {
-        console.log("Unsuccessful registration :("); 
-      } else {
-        console.log("Successful Email Submission", this.myForm.value);
-      }
-    }
-
 }
