@@ -95,7 +95,7 @@ import { ResultsProvider } from '../providers/results/results';
     UserDataProvider,
     CalculationsProvider,
     MockDataProvider,
-    EmailProvider
+    EmailProvider,
     // AppConfig,
     SsUsersProvider,
     ResultsProvider,

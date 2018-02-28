@@ -6,8 +6,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class EmailProvider {
   
-  urlResults: string = "http://james-winter-2017-phortonssf.c9users.io:8080/api/results/emailResults";
-  urlDashboard: string = "http://james-winter-2017-phortonssf.c9users.io:8080/api/results/emailResultsDashBoard";
+  urlResults: string = "http://sswhen-bk-danilo-phortonssf.c9users.io:8080/api/results/emailResults";
+  urlDashboard: string = "http://sswhen-bk-danilo-phortonssf.c9users.io:8080/api/results/emailResultsDashBoard";
   datapayload: any;
   date: any ;
   email: any;
