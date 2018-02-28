@@ -32,7 +32,7 @@ export class SsUsersProvider {
   }
 
   logout(token) {
-    let path = '/SSUsers/?access_token=' + token;
+    let path = '/SSUsers/logout?access_token=' + token;
     return this.http.post(this.apiUrl + path, {}).map(res => res.json())
   }
   

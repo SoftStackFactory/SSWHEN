@@ -6,7 +6,10 @@ import {LangaugePopoverComponent} from '../../components/langauge-popover/langau
 import { CalculationsProvider } from '../../providers/calculations/calculations';
 import { MockDataProvider } from '../../providers/mock-data/mock-data';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
+import { ResultsProvider } from '../../providers/results/results';
 import { Storage } from '@ionic/storage';
+import { UserDataProvider } from '../../providers/user-data/user-data';
+import { Results } from '../../models/Results';
 
 @IonicPage()
 
@@ -30,22 +33,25 @@ export class DashboardPage implements OnInit {
   ageFRA: number;
   dataObject: any;
   storageObject: any;
+  results: Results = new Results();
   totalContribution: number;
   userModel: any;
   token: string;
   id: string;
 
-
-
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams, 
-              public popoverCtrl: PopoverController, 
-              public modalCtrl: ModalController, 
-              public alertCtrl: AlertController,
-              public calculations$: CalculationsProvider,
-              public mock$: MockDataProvider,
-              public ssUsersProvider: SsUsersProvider,
-              public storage: Storage) {}
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public popoverCtrl: PopoverController, 
+    public modalCtrl: ModalController, 
+    public alertCtrl: AlertController,
+    public calculations$: CalculationsProvider,
+    public mock$: MockDataProvider,
+    public ssUsersProvider: SsUsersProvider,
+    public resultsProvider: ResultsProvider,
+    public storage: Storage,
+    public userData$: UserDataProvider
+  ) {}
 
   isEditable() {
     this.editable = !this.editable;
@@ -153,46 +159,64 @@ export class DashboardPage implements OnInit {
       console.log(this.calculations$.pia, "pia");
       console.log(this.calculations$.gender, "gender");
       console.log(this.calculations$.dob, "dob");
-      console.log(this.dataObject)
+      console.log(this.dataObject);
+          this.results.gender = val.gender;
+          this.results.FRAbenefit = val.FRAbenefit;
+          this.results.dateOfBirth = val.dateOfBirth;
+          this.results.isMarried = val.isMarried;
+          this.results.totalContribution = val.totalContribution;
     
       //call backend calculation route, using updated service properties, returns an observable
-      this.calculations$.getBenefitData().subscribe ( data => {
-        this.dataObject = data;
-        this.dataObject = JSON.parse(this.dataObject._body);
-        this.retYears = this.dataObject.retYears;
-        this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
-        this.totalAccumulated = [ {data: this.dataObject.cumulative, label: 'Cumulative Payout per Retirement Year'} ];
-        this.tableMonthly = this.dataObject.monthly;
-        console.log(this.calculations$.pia, "pia");
-        console.log(this.calculations$.gender, "gender");
-        console.log(this.calculations$.dob, "dob");
-        console.log(this.dataObject);
-        console.log(this.retYears);
-        console.log(this.monthlyPay);
-        console.log(this.totalAccumulated);
-        console.log(this.tableMonthly);
-      });
+      this.calculations$.getBenefitData()
+        .subscribe ( data => {
+          this.dataObject = data;
+          this.dataObject = JSON.parse(this.dataObject._body);
+          this.retYears = this.dataObject.retYears;
+          this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
+          this.totalAccumulated = [ {data: this.dataObject.cumulative, label: 'Cumulative Payout per Retirement Year'} ];
+          this.tableMonthly = this.dataObject.monthly;
+          console.log(this.calculations$.pia, "pia");
+          console.log(this.calculations$.gender, "gender");
+          console.log(this.calculations$.dob, "dob");
+          console.log(this.dataObject);
+          console.log(this.retYears);
+          console.log(this.monthlyPay);
+          console.log(this.totalAccumulated);
+          console.log(this.tableMonthly);
+          
+          this.results.monthly = this.dataObject.monthly;
+          this.results.cumulative = this.dataObject.cumulative;
+          this.results.createdAt = new Date();
+          this.results.isRegistered = false;
+          this.saveResults();
+        }, err => console.log(err));
     });
-   
-    // console.log(this.calculations$.pia, "pia");
-    // console.log(this.calculations$.gender, "gender");
-    // console.log(this.calculations$.dob, "dob");
-    // console.log(this.dataObject);
-
   }
   
-
-
-
-    
+  saveResults() {
+    console.log(this.results);
+    this.resultsProvider.saveResults(this.results, this.userData$.token)
+      .subscribe( res => {
+        console.log(res);
+      }, err => {
+        console.log(err);
+      });
+  }
+  
   presentModal(type) {
     let chartType = type;
     console.log(chartType);
     let modal = this.modalCtrl.create(ModalDashboardComponent, {
-      'modalType': chartType
+      'modalType': chartType,
+      'retYears': this.retYears,
+      'tableMonthly': this.dataObject.monthly,
+      'totalAccumulated': this.dataObject.cumulative
     });
     
     modal.present();
+  }
+
+  ionViewDidEnter() { 
   }
 
 }
