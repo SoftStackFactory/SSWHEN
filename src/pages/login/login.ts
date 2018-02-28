@@ -65,7 +65,13 @@ export class LoginPage {
             
             this.ssUsersProvider.getUser(res.userId, res.id)
               .subscribe( res => {
-                alert('Thank you for loging in!');
+                let alert = this.alertCtrl.create({
+                title: '',
+                subTitle: 'You are logged in',
+                buttons: ['OK']
+                });
+                alert.present();
+                // alert('Thank you for loging in!');
                 console.log("Successful login", this.myForm.value);
                 this.ssUser = res;
                 console.log(this.ssUser);
