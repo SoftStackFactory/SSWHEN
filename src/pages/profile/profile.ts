@@ -113,11 +113,11 @@ export class ProfilePage {
 
       console.log(this.ssUser);
 
-      this.ssusers$.register(this.ssUser)
+      this.ssusers$.profile(this.ssUser)
         .subscribe(res => {
           alert("You have changed your password!");
           console.log(res);
-          console.log("Successful registration", this.ssUser);
+          console.log("Successful update", this.ssUser);
           this.storage.get('SSUser', this.ssUser);
           // this.storage.set('userId', res.id);
           // this.storage.set('token', res.token);
