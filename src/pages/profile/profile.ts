@@ -137,8 +137,3 @@ export class ProfilePage {
     }
     
   }
-
-// function check_fil() {
-//   num = 0;
-//   $('input[id="email'])
-// }

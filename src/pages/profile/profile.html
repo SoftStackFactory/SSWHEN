@@ -89,7 +89,9 @@
                     placeholder="••••••••••" 
                     type="password"
                     class="retypePassClass"></ion-input>
-                    <div *ngIf="profileForm.controls.cpassword.dirty && profileForm.controls.password.value !== profileForm.controls.cpassword.value">
+                    <div *ngIf="profileForm.controls.cpassword.dirty 
+                    && profileForm.controls.password.value 
+                    !== profileForm.controls.cpassword.value">
                     <p>Password does not match</p>
                       </div>
                     </ion-card-content>
