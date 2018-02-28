@@ -4,6 +4,7 @@ import { RegisterPage } from '../register/register';
 import { EmailModalPage } from '../email-modal/email-modal';
 import { LandingPage } from '../landing/landing';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
+import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 
 @IonicPage()
 
@@ -35,9 +36,11 @@ export class ResultsPage implements OnInit {
     public alertCtrl: AlertController, 
     public navParams: NavParams, 
     public modalCtrl: ModalController,
-    public calculations$: CalculationsProvider
+    public calculations$: CalculationsProvider,
+    public ssUsersProvider: SsUsersProvider
     ) {
     this.display = "graph";
+    this.infoData = this.navParams.get('myForm');
   }
   
 
@@ -111,6 +114,8 @@ export class ResultsPage implements OnInit {
   //getbenefitData() returns an observable
   //subsribe to observable, then parse data for graph and table
   
+
+
   ngOnInit(){
     this.calculations$.getBenefitData().subscribe ( data => {
     this.dataObject = data;
@@ -124,7 +129,6 @@ export class ResultsPage implements OnInit {
   ionViewDidLoad() {
     this.infoData = this.navParams.get('myForm');
   }
+  
 }
 
-
-  

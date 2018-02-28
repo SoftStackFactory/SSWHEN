@@ -31,8 +31,10 @@
     "@ionic-native/core": "3.12.1",
     "@ionic-native/splash-screen": "3.12.1",
     "@ionic-native/status-bar": "3.12.1",
-    "@ionic/storage": "2.0.1",
+    "@ionic/storage": "^2.0.1",
     "chart.js": "^2.7.1",
+    "cordova-sqlite-storage": "^2.2.1",
+    "ionic": "^3.19.1",
     "ionic-angular": "3.6.0",
     "ionicons": "3.0.0",
     "ng2-charts": "^1.6.0",
@@ -65,5 +67,10 @@
     "typescript": "2.3.4"
   },
   "version": "0.0.5",
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "cordova": {
+    "plugins": {
+      "cordova-sqlite-storage": {}
+    }
+  }
 }
