@@ -18,7 +18,6 @@ export class ResultsProvider {
   getResults(sSUser, token) {
    let userId = sSUser.id;
    let filter = {"where": {"sSUser": userId}};
-  // let idPath = '%7B%20%22where%22%3A%20%7B%20%22sSUserId%22%3A%20'+ userId + '%7D%7D';
    let path = '/results?filter='+ JSON.stringify(filter) + '&access_token='+ token;
    return this.http.get(this.apiUrl + path).map(res => res.json());
   }
