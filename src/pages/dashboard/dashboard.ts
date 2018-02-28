@@ -5,6 +5,8 @@ import {ModalDashboardComponent} from '../../components/modal-dashboard/modal-da
 import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
 import { MockDataProvider } from '../../providers/mock-data/mock-data';
+import { SsUsersProvider } from '../../providers/ss-users/ss-users';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 
@@ -21,10 +23,14 @@ export class DashboardPage implements OnInit {
   chartType: string = 'bar';
   retYears: any[];
   monthlyPay: any[];
+  tableMonthly: any [];
   totalAccumulated: any[];
   lifeExpectancy: number;
   benefitAtFRA: number;
   ageFRA: number;
+  dataObject: any;
+  storageObject: any;
+  totalContribution: number;
 
 
 
@@ -34,7 +40,9 @@ export class DashboardPage implements OnInit {
               public modalCtrl: ModalController, 
               public alertCtrl: AlertController,
               public calculations$: CalculationsProvider,
-              public mock$: MockDataProvider) {}
+              public mock$: MockDataProvider,
+              public ssUsersProvider: SsUsersProvider,
+              public storage: Storage) {}
 
   isEditable() {
     this.editable = !this.editable;
@@ -85,14 +93,49 @@ export class DashboardPage implements OnInit {
     prompt.present();
   }
   
-    ngOnInit() {
-    // this.retYears = this.calculations$.retirementYears;
-    // this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
-    // this.totalAccumulated = [ {data: this.calculations$.monthlyBenefit().cumulative, label: 'Cumulative Benefits per Retirement Year'} ];
-    // this.lifeExpectancy = this.calculations$.lifeExpect/12;
-    // this.benefitAtFRA = this.calculations$.FRAbenefitAmount;
-    // this.ageFRA = this.calculations$.fullRetAge / 12;
-    }
+  //assign all properties, make all http calls OnInit
+  
+  ngOnInit() {
+    
+    //get user info from local storage, assign to service properties, returns a promise
+    this.storage.get('SSUser').then((val) => {
+      this.calculations$.pia = val.FRAbenefit;
+      this.calculations$.gender = val.gender;
+      this.calculations$.dob = val.dateOfBirth;
+      console.log(this.calculations$.pia, "pia");
+      console.log(this.calculations$.gender, "gender");
+      console.log(this.calculations$.dob, "dob");
+      console.log(this.dataObject)
+    
+      //call backend calculation route, using updated service properties, returns an observable
+      this.calculations$.getBenefitData().subscribe ( data => {
+        this.dataObject = data;
+        this.dataObject = JSON.parse(this.dataObject._body);
+        this.retYears = this.dataObject.retYears;
+        this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
+        this.totalAccumulated = [ {data: this.dataObject.cumulative, label: 'Cumulative Payout per Retirement Year'} ];
+        this.tableMonthly = this.dataObject.monthly;
+        console.log(this.calculations$.pia, "pia");
+        console.log(this.calculations$.gender, "gender");
+        console.log(this.calculations$.dob, "dob");
+        console.log(this.dataObject);
+        console.log(this.retYears);
+        console.log(this.monthlyPay);
+        console.log(this.totalAccumulated);
+        console.log(this.tableMonthly);
+      });
+    });
+   
+    // console.log(this.calculations$.pia, "pia");
+    // console.log(this.calculations$.gender, "gender");
+    // console.log(this.calculations$.dob, "dob");
+    // console.log(this.dataObject);
+
+  }
+  
+
+
+
     
   presentModal(type) {
     let chartType = type;

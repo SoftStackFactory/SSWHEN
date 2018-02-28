@@ -1,7 +1,3 @@
-import { Observable} from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { map } from 'rxjs/operator/map';
-
 // This service gets its data from mockUsers[] & MOCKRESULTS[], which are of type SSUser{} & Results{} 
 // The service could just as well get data from local storage or from the back end
 import { SSUser } from '../../models/SSUser';

@@ -1,18 +1,13 @@
 import { Component } from '@angular/core';
 import {AlertController, NavParams, ViewController} from 'ionic-angular';
-import { CalculationsProvider } from '../../providers/calculations/calculations';
 
-/**
- * Generated class for the ModalHistoryComponent component.
- *
- * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
- * for more info on Angular Components.
- */
 @Component({
   selector: 'modal-history',
   templateUrl: 'modal-history.html'
 })
+
 export class ModalHistoryComponent {
+  historyResult: any;
   background: string;
   data = 'monthly';
   chartType: string = 'bar';
@@ -21,20 +16,23 @@ export class ModalHistoryComponent {
   totalAccumulated: any[];
   tableMonthly: any[] = [];
   tableTotalAccumulated: any[] = [];
- 
+  leftTitle: string = 'Retirement Year';
+  rightTitleMonthly: string = 'Monthly Payout';
+  rightTitleCumulative: string = 'Cumulative Benefit';
+
   constructor(public navParams: NavParams, 
               public viewCtrl: ViewController, 
-              public alertCtrl: AlertController,
-              public calculations$: CalculationsProvider) {
-
-  }
+              public alertCtrl: AlertController) {}
 
   ngOnInit() {
-    // this.retYears = this.calculations$.retirementYears;
-    // this.monthlyPay = [ {data: this.calculations$.monthlyBenefit().monthly, label: 'Monthly Payout per Retirement Year'} ];
-    // this.totalAccumulated = [ {data: this.calculations$.monthlyBenefit().cumulative, label: 'Cumulative Benefits per Retirement Year'} ];
-    // this.tableMonthly = this.calculations$.monthlyBenefit().monthly;;
-    // this.tableTotalAccumulated = this.calculations$.monthlyBenefit().cumulative;
+    this.historyResult = this.navParams.get('result');
+    console.log("result from history page: ",this.historyResult);
+    
+    this.retYears = [62, 63, 64, 65, 66, 67, 68, 69, 70];
+    this.monthlyPay = [ {data: this.historyResult.monthly, label: 'Monthly Payout per Retirement Year'} ];
+    this.totalAccumulated = [ {data: this.historyResult.cumulative, label: 'Cumulative Benefits per Retirement Year'} ];
+    this.tableMonthly = this.historyResult.monthly;
+    this.tableTotalAccumulated = this.historyResult.cumulative;
   }
 
   showPrompt() {

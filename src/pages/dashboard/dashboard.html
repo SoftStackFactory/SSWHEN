@@ -70,7 +70,7 @@
               </ion-col>
               <ion-col *ngIf="editable">
                 <ion-label #changeText><strong>Total Tax Contribution</strong></ion-label>
-                <ion-input #changeText type="text" placeholder="$40,110"></ion-input>
+                <ion-input #changeText type="text" placeholder="{{totalContribution}}"></ion-input>
               </ion-col>
             </ion-row>
             <ion-row *ngIf="editable">
@@ -111,7 +111,7 @@
                     <a (click)="presentModal('monthly')" float-end color="primary" #changeText>View Table</a>
                   </ion-col>
                 </ion-row>
-                <charts [ChartType]="chartType" [xAxis]="retYears" [yAxis]="monthlyPay"></charts>
+                <charts *ngIf="monthlyPay" [ChartType]="chartType" [xAxis]="retYears" [yAxis]="monthlyPay"></charts>
               </ion-list>
 
               <ion-list *ngSwitchCase="'cumulative'">
@@ -123,7 +123,7 @@
                     <a (click)="presentModal('cumulative')" float-end color="primary" #changeText>View Table</a>
                   </ion-col>
                 </ion-row>
-                <charts [ChartType]="chartType" [xAxis]="retYears" [yAxis]="totalAccumulated"></charts>
+                <charts *ngIf="totalAccumulated" [ChartType]="chartType" [xAxis]="retYears" [yAxis]="totalAccumulated"></charts>
               </ion-list>
             </div>
           </ion-card-content>

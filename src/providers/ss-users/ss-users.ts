@@ -26,9 +26,9 @@ export class SsUsersProvider {
     return this.http.post(this.apiUrl + path, user).map(res => res.json())
   }
   
-  updateUser(user, token) {
-    let path = '/SSUsers/' + user.id + '/replace?access_token=' + token;
-    return this.http.post(this.apiUrl + path, user).map(res => res.json())
+  updateUser(userId, token, SSUser) {
+    let path = '/SSUsers/' + userId + '/replace?access_token=' + token;
+    return this.http.post(this.apiUrl + path, SSUser).map(res => res.json())
   }
 
   logout(token) {
@@ -39,6 +39,11 @@ export class SsUsersProvider {
   getResultsByUser(user, token) {
     let path = '/SSUsers/' + user.id + '/results?access_token=' + token;
     return this.http.post(this.apiUrl + path, user).map(res => res.json())
+  }
+  
+  getUser(userId, token) {
+    let path = '/SSUsers/' + userId + '?access_token=' + token;
+    return this.http.get(this.apiUrl + path).map(res => res.json())
   }
 
 }
