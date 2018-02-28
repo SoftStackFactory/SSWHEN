@@ -16,13 +16,16 @@ export class ModalDashboardComponent implements OnInit{
     leftTitle: string = "Retirement Age";
     rightTitleMonthly: string = "Monthly Payout";
     rightTitleCumulative: string = "Cumulative Payout";
-    
+    results: any;
     
   constructor(public navParams: NavParams, 
               public viewCtrl: ViewController, 
               public calculations$: CalculationsProvider,
               public mock$: MockDataProvider) {
     this.chartType = this.navParams.get('modalType');
+    this.retYears = this.navParams.get('retYears');
+    this.tableMonthly = this.navParams.get('tableMonthly');
+    this.totalAccumulated = this.navParams.get('totalAccumulated');
   }
   
   ngOnInit() {

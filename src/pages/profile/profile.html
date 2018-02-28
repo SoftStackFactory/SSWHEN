@@ -70,13 +70,36 @@
                     [minlength]="6"
                     placeholder="••••••••••"
                     class="passClass"></ion-input>
+<<<<<<< HEAD
                     <div *ngIf="!profileForm.controls.password.valid && (profileForm.controls.password.dirty || validateForm)">
                   <p>You must enter a password with at least 6 characters, a number and a capitalized character</p>
                 </div>
+=======
+                    
+                      
+                      
+                <div *ngIf="profileForm.controls.password.hasError('required') && profileForm.controls.password.touched">
+            <p>Sorry, field password is required!</p>
+        </div>
+        <div *ngIf="profileForm.controls.password.hasError('minlength') && profileForm.controls.password.touched">
+            <p>Sorry, minimum password length is 8!</p>
+        </div>  
+                  
+>>>>>>> 007935cae9f2b7f31d010f982618ef678bd7b854
                </ion-card-content>
                 </ion-card>
                 
                 
+<<<<<<< HEAD
+=======
+                
+ <!--               <div *ngIf="!profileForm.controls.password.valid && (profileForm.controls.password.dirty || validateForm)">-->
+ <!--               <p style="color:red">-->
+ <!--You must enter a password with 6-12 characters, 1 number, 1 lowercase character, 1 uppercase character</p>-->
+ <!--               </div>-->
+                
+                
+>>>>>>> 007935cae9f2b7f31d010f982618ef678bd7b854
                    
                  <ion-card *ngIf="addRow">
                     <ion-card-header>
@@ -84,6 +107,7 @@
                    </ion-card-header>
                      <ion-card-content>
                     <ion-input
+<<<<<<< HEAD
                     formControlName="cpassword"
                     name="cPassword"
                     placeholder="••••••••••" 
@@ -94,10 +118,19 @@
                     !== profileForm.controls.cpassword.value">
                     <p>Password does not match</p>
                       </div>
+=======
+                    placeholder="••••••••••" 
+                    type="password"
+                    class="retypePassClass"></ion-input>
+>>>>>>> 007935cae9f2b7f31d010f982618ef678bd7b854
                     </ion-card-content>
                 </ion-card>
                
    
+<<<<<<< HEAD
+=======
+        <!--[disabled]="!f.valid" to go in after submit-
+>>>>>>> 007935cae9f2b7f31d010f982618ef678bd7b854
         <!--^propery binding gets a reference to the form from above. Action: disable this if the form is not valid--->
         <!--  Confirm Edit</button>-->
       
@@ -121,3 +154,8 @@
     
   <!--</ion-grid>  -->
 <!--</ion-content>-->
+<<<<<<< HEAD
+=======
+     
+
+>>>>>>> 007935cae9f2b7f31d010f982618ef678bd7b854
