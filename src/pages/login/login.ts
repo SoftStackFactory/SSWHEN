@@ -29,20 +29,21 @@ export class LoginPage {
     public ssUsersProvider: SsUsersProvider,
     public storage: Storage
   ) {
-    
-  this.myForm = formBuilder.group({
-    email: ['',
-      Validators.compose([ 
-      Validators.required,
-      Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')]
-    )],
-    password: ['', 
-      Validators.compose([
-          Validators.required,
-          Validators.pattern('[A-Za-z0-9!@#$%]{6,12}')
-        ])
-    ]
-  });
+    this.myForm = formBuilder.group({
+      email: ['', 
+        Validators.compose([
+            Validators.required,
+            Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$'),
+            Validators.maxLength(30),
+          ])
+      ],
+      password: ['', 
+        Validators.compose([
+            Validators.required,
+            Validators.pattern(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,12}$/)
+          ])
+      ]
+    });
   }
 
   ionViewDidLoad() {
@@ -52,7 +53,7 @@ export class LoginPage {
   popView(){
       this.submitAttempt = true;
       if(!this.myForm.valid) {
-        console.log("Unsuccessful registration :(", this.myForm); 
+        console.log("Unsuccessful login :(", this.myForm); 
       } else {
         // login user using /SSUser/login
         this.ssUsersProvider.login(this.myForm.value)

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NgForm, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { DashboardPage } from '../dashboard/dashboard';
-import { LoginPage } from '../login/login';
 import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 import { SSUser } from '../../models/SSUser';
+import { Storage } from '@ionic/storage';
 
 
 @IonicPage()
@@ -13,7 +13,7 @@ import { SSUser } from '../../models/SSUser';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
-  
+
   
   ssUser = new SSUser();
   profileForm: FormGroup;
@@ -30,7 +30,9 @@ export class ProfilePage {
   public navParams: NavParams,
   private alertCtrl: AlertController,
   public modalCtrl: ModalController,
-  public formBuilder: FormBuilder
+  public formBuilder: FormBuilder,
+  public ssusers$: SsUsersProvider,
+  public storage: Storage
   ) {
   
      this.inputDisabledEmail = true;
@@ -47,7 +49,7 @@ export class ProfilePage {
         password: ['', 
           Validators.compose([
               Validators.required,
-              Validators.pattern('^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,12}$')
+              Validators.pattern(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,12}$/)
             ])
         ]
       });
@@ -113,7 +115,7 @@ export class ProfilePage {
           alert("You have changed your password!");
           console.log(res);
           console.log("Successful registration", this.ssUser);
-          this.storage.replace('SSUser', this.ssUser);
+          this.storage.set('SSUser', this.ssUser);
           // this.storage.set('userId', res.id);
           // this.storage.set('token', res.token);
         }, err => {
