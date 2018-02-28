@@ -31,6 +31,9 @@ export class DashboardPage implements OnInit {
   dataObject: any;
   storageObject: any;
   totalContribution: number;
+  userModel: any;
+  token: string;
+  id: string;
 
 
 
@@ -47,6 +50,51 @@ export class DashboardPage implements OnInit {
   isEditable() {
     this.editable = !this.editable;
     console.log("editable clicked", this.editable);
+    
+    let alert = this.alertCtrl.create({
+      title: 'Edit FRA Benefit ?',
+      inputs: [
+        {
+          name: 'PIA',
+          placeholder: 'New primary insurance amount'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Update',
+          handler: data => {
+            console.log("New primary insurance amount:",data.PIA);
+            this.storage.get('SSUser').then((val) => {
+              this.userModel = val;
+              this.storage.get('token').then((val) => {
+                this.token = val;
+                this.storage.get('userId').then((val) => {
+                  this.id = val;
+                  
+                  this.userModel.FRAbenefit = data.PIA;
+                  this.ssUsersProvider.updateUser(this.id, this.token, this.userModel)  
+                  .subscribe(response => {
+                    console.log('FRA updated');
+                  }, error => {
+                    console.log("Could not update FRA",error);
+                  })
+                        
+                });        
+              });
+            });
+          }
+        }
+      ]
+    });
+  alert.present();
+
   }
 
   presentLanguagePopover(myEvent) {
