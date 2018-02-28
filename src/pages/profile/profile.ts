@@ -49,6 +49,12 @@ export class ProfilePage implements OnInit {
                 Validators.required,
                 Validators.pattern(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,12}$/)
               ])
+          ],
+          cpassword: ['', 
+            Validators.compose([
+                Validators.required,
+                Validators.pattern(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,12}$/)
+              ])
           ]
       });
   }
