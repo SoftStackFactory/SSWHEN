@@ -5,6 +5,10 @@ import { EmailModalPage } from '../email-modal/email-modal';
 import { LandingPage } from '../landing/landing';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
+import { ResultsProvider } from '../../providers/results/results';
+import { SSUser } from '../../models/SSUser';
+import { Results } from '../../models/Results';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 
@@ -24,12 +28,16 @@ export class ResultsPage implements OnInit {
   leftTitle: string = "Retirement Age";
   rightTitleMonthly: string = "Monthly Payout";
  
-  results: any;
   pia: number;
   gender: any;
   dob: any;
   dataa: any[] = [];
   infoData: any;
+  
+  results: Results = new Results();
+  ssUser: SSUser = new SSUser();
+  userId: string;
+  token: string;
   
   constructor(
     public navCtrl: NavController, 
@@ -37,10 +45,15 @@ export class ResultsPage implements OnInit {
     public navParams: NavParams, 
     public modalCtrl: ModalController,
     public calculations$: CalculationsProvider,
-    public ssUsersProvider: SsUsersProvider
+    public ssUsersProvider: SsUsersProvider,
+    public resultsProvider: ResultsProvider,
+    public storage: Storage
     ) {
     this.display = "graph";
     this.infoData = this.navParams.get('myForm');
+    this.calculations$.pia = this.infoData.fra;
+    this.calculations$.dob = this.infoData.birthDate;
+    this.calculations$.gender = this.infoData.gender;
   }
   
 
@@ -56,7 +69,9 @@ export class ResultsPage implements OnInit {
     this.navCtrl.push(LandingPage);
   }
   openEmailModal() {
-    let resultsModal = this.modalCtrl.create(EmailModalPage);
+    let resultsModal = this.modalCtrl.create(EmailModalPage, {
+      'infoData': this.infoData
+    });
     resultsModal.present();
   }
   showPrompt() {
@@ -117,14 +132,42 @@ export class ResultsPage implements OnInit {
 
 
   ngOnInit(){
-    this.calculations$.getBenefitData().subscribe ( data => {
-    this.dataObject = data;
-    this.dataObject = JSON.parse(this.dataObject._body);
-    this.retYears = this.dataObject.retYears;
-    this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
-    this.tableMonthly = this.dataObject.monthly;
-    });
+    this.calculations$.getBenefitData()
+      .subscribe ( data => {
+        this.dataObject = data;
+        this.dataObject = JSON.parse(this.dataObject._body);
+        console.log(this.dataObject);
+        this.retYears = this.dataObject.retYears;
+        this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
+        this.tableMonthly = this.dataObject.monthly;
+        
+        console.log(this.results);
+        this.saveResults();
+      }, err => {
+        console.log(err);
+      });
+    
 
+  }
+
+  saveResults() {
+    //save results
+    this.results.monthly = this.dataObject.monthly;
+    this.results.cumulative = this.dataObject.cumulative;
+    this.results.createdAt = new Date();
+    this.results.isRegistered = false;
+    this.results.gender = this.infoData.gender;
+    this.results.FRAbenefit = this.infoData.fra;
+    this.results.isMarried = false;
+    this.results.totalContribution = 0;
+    this.results.dateOfBirth = this.infoData.birthDate;
+    console.log(this.results);
+    this.resultsProvider.saveResults(this.results, this.token)
+      .subscribe( res => {
+        console.log(res);
+      }, err => {
+        console.log(err);
+      });
   }
 
 }
