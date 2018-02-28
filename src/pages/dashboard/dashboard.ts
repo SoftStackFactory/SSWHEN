@@ -26,8 +26,9 @@ export class DashboardPage implements OnInit {
   tableMonthly: any [];
   totalAccumulated: any[];
   lifeExpectancy: number;
-  benefitAtFRA: number;
+  benefitAtFRA: any;
   ageFRA: number;
+  totalContribution: any;
   dataObject: any;
   storageObject: any;
 
@@ -101,11 +102,8 @@ export class DashboardPage implements OnInit {
       this.calculations$.pia = val.FRAbenefit;
       this.calculations$.gender = val.gender;
       this.calculations$.dob = val.dateOfBirth;
-      console.log(this.calculations$.pia, "pia");
-      console.log(this.calculations$.gender, "gender");
-      console.log(this.calculations$.dob, "dob");
-      console.log(this.dataObject)
-    
+      this.totalContribution = "$" + val.totalContribution;
+
       //call backend calculation route, using updated service properties, returns an observable
       this.calculations$.getBenefitData().subscribe ( data => {
         this.dataObject = data;
@@ -114,28 +112,13 @@ export class DashboardPage implements OnInit {
         this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
         this.totalAccumulated = [ {data: this.dataObject.cumulative, label: 'Cumulative Payout per Retirement Year'} ];
         this.tableMonthly = this.dataObject.monthly;
-        console.log(this.calculations$.pia, "pia");
-        console.log(this.calculations$.gender, "gender");
-        console.log(this.calculations$.dob, "dob");
-        console.log(this.dataObject);
-        console.log(this.retYears);
-        console.log(this.monthlyPay);
-        console.log(this.totalAccumulated);
-        console.log(this.tableMonthly);
+        this.lifeExpectancy = this.dataObject.lifeExpectancy / 12;
+        this.ageFRA = this.dataObject.FRA / 12;
+        this.benefitAtFRA = "$" + this.calculations$.pia;
       });
     });
-   
-    // console.log(this.calculations$.pia, "pia");
-    // console.log(this.calculations$.gender, "gender");
-    // console.log(this.calculations$.dob, "dob");
-    // console.log(this.dataObject);
-
   }
   
-
-
-
-    
   presentModal(type) {
     let chartType = type;
     console.log(chartType);
