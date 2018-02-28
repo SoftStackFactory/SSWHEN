@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AlertController, NavParams, ViewController} from 'ionic-angular';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
+import { EmailProvider } from '../../providers/email/email';
 
 /**
  * Generated class for the ModalHistoryComponent component.
@@ -25,7 +26,8 @@ export class ModalHistoryComponent {
   constructor(public navParams: NavParams, 
               public viewCtrl: ViewController, 
               public alertCtrl: AlertController,
-              public calculations$: CalculationsProvider) {
+              public calculations$: CalculationsProvider,
+              public email$: EmailProvider) {
 
   }
 
@@ -35,6 +37,32 @@ export class ModalHistoryComponent {
     this.totalAccumulated = [ {data: this.calculations$.monthlyBenefit().cumulative, label: 'Cumulative Benefits per Retirement Year'} ];
     this.tableMonthly = this.calculations$.monthlyBenefit().monthly;;
     this.tableTotalAccumulated = this.calculations$.monthlyBenefit().cumulative;
+  }
+  
+  emailResults(data) {
+    this.email$.date = "test";
+    this.email$.email = data.title;
+    this.email$.sixtwo = this.tableMonthly[0];
+    this.email$.sixthree = this.tableMonthly[1];
+    this.email$.sixfour = this.tableMonthly[2];
+    this.email$.sixfive = this.tableMonthly[3];
+    this.email$.sixsix = this.tableMonthly[4];
+    this.email$.sixseven = this.tableMonthly[5];
+    this.email$.sixeight = this.tableMonthly[6];
+    this.email$.sixnine = this.tableMonthly[7];
+    this.email$.sevenzero = this.tableMonthly[8];
+    this.email$.Csixtwo = this.tableTotalAccumulated[0];
+    this.email$.Csixthree = this.tableTotalAccumulated[1];
+    this.email$.Csixfour = this.tableTotalAccumulated[2];
+    this.email$.Csixfive = this.tableTotalAccumulated[3];
+    this.email$.Csixsix = this.tableTotalAccumulated[4];
+    this.email$.Csixseven = this.tableTotalAccumulated[5];
+    this.email$.Csixeight = this.tableTotalAccumulated[6];
+    this.email$.Csixnine = this.tableTotalAccumulated[7];
+    this.email$.Csevenzero = this.tableTotalAccumulated[8];
+    console.log("test");
+    this.email$.sendEmailDashboard()
+    .subscribe( res => console.log(res), err => console.log(err))
   }
 
   showPrompt() {
@@ -58,6 +86,7 @@ export class ModalHistoryComponent {
           text: 'Email',
           handler: data => {
             console.log('Saved clicked');
+            this.emailResults(data);
           }
         }
       ]

@@ -121,8 +121,7 @@ export class DashboardPage implements OnInit {
     // this.email$.Csixeight = 15;
     // this.email$.Csixnine = 16;
     // this.email$.Csevenzero = 17;
-    console.log("test")
-    console.log(this.monthlyPay);
+    console.log("test");
     this.email$.sendEmailDashboard()
     .subscribe( res => console.log(res), err => console.log(err))
   }
