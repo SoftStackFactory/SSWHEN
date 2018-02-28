@@ -30,6 +30,7 @@ export class DashboardPage implements OnInit {
   ageFRA: number;
   dataObject: any;
   storageObject: any;
+  totalContribution: number;
 
 
 
