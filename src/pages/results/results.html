@@ -16,7 +16,8 @@
     </ion-row>-->
     
     <!-- Segments  -->
-    <div>
+    
+   
       <ion-segment [(ngModel)]="display">
         <ion-segment-button value="graph">
           Graph
@@ -25,13 +26,13 @@
           Table
         </ion-segment-button>
       </ion-segment>
-    </div>
+    
     
     <ion-row align-items-center no-padding>
       <ion-col>
         <div [ngSwitch]="display">
           <div *ngSwitchCase="'graph'">
-            <ion-card *ngIf="this.monthlyPay">
+            <ion-card>
               <ion-card-header style="text-align: center">
                 Monthly Payout
                 <br> 
@@ -39,19 +40,26 @@
                 <br>
                 Retirement Age
               </ion-card-header>
+              
               <ion-card-content>
                 <ion-grid no-padding>
-                  <charts
-                  [ChartType]="chartType"
-                  [xAxis]="retYears" 
-                  [yAxis]="monthlyPay"
-                  ></charts>
+                  
+                  <!-- make sure that data has arrived before rendering chart -->
+                  
+                  <div *ngIf="monthlyPay">
+                    <charts  
+                    [ChartType]="chartType"
+                    [xAxis]="retYears" 
+                    [yAxis]="monthlyPay"
+                  
+                    ></charts>
+                  </div>
                 </ion-grid>
               </ion-card-content>
             </ion-card>
           </div>
+          
           <div *ngSwitchCase="'chart'">
-            <!-- Table HEADER -->
             <ion-row style="border-bottom: 2px solid black;">
             <ion-col col-6 text-center>Retirement <br/> Age </ion-col>
             <ion-col col-6 text-center>Monthly <br/> Payout</ion-col>
@@ -59,7 +67,9 @@
             
             <page-data-table 
               [leftCol]="retYears"
+              [leftColTitle] = "leftTitle"
               [rightCol]="tableMonthly"
+              [rightColTitle]="rightTitleMonthly"
               ></page-data-table>
           </div>
         </div>

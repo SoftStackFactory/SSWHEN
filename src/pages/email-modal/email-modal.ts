@@ -16,10 +16,10 @@ import { RegisterPage } from '../register/register';
   templateUrl: 'email-modal.html',
 })
 export class EmailModalPage {
+  infoData: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController ) {
-    
-    
+    this.infoData = this.navParams.get('infoData');
   }
   closeModal() {
       this.viewCtrl.dismiss();
@@ -27,11 +27,13 @@ export class EmailModalPage {
     
   goToRegister(params){
     if (!params) params = {};
-    this.navCtrl.push(RegisterPage);
+    this.navCtrl.push(RegisterPage, {
+      'infoData': this.infoData
+    });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EmailModalPage');
+    console.log('ionViewDidLoad EmailModalPage', this.infoData);
   }
 
 }

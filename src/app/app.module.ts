@@ -5,6 +5,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IonicStorageModule } from '@ionic/storage';
+import { DatePipe } from '@angular/common';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -28,8 +30,10 @@ import { LangaugePopoverComponent } from '../components/langauge-popover/langaug
 import { MockDataProvider } from '../providers/mock-data/mock-data';
 import { ModalDashboardComponent } from '../components/modal-dashboard/modal-dashboard';
 import { ModalHistoryComponent } from '../components/modal-history/modal-history';
-import { AppConfig } from '../providers/app-config';
 import { EmailProvider } from '../providers/email/email';
+// import { AppConfig } from '../providers/app-config';
+import { SsUsersProvider } from '../providers/ss-users/ss-users';
+import { ResultsProvider } from '../providers/results/results';
 
 
 @NgModule({
@@ -60,7 +64,8 @@ import { EmailProvider } from '../providers/email/email';
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -90,8 +95,11 @@ import { EmailProvider } from '../providers/email/email';
     UserDataProvider,
     CalculationsProvider,
     MockDataProvider,
-    AppConfig,
     EmailProvider
+    // AppConfig,
+    SsUsersProvider,
+    ResultsProvider,
+    DatePipe
   ]
 })
 export class AppModule {}
