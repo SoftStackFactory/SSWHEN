@@ -23,7 +23,7 @@
                             </ion-select>
                         </ion-item>
                          <div *ngIf="!registerForm.controls.maritalStatus.valid && (submitAttempt)">
-                                <p>Please enter marital status</p>
+                                <h4>Please enter marital status</h4>
                             </div>
                         <!--TOTAL TAX CONTRIBUTION-->
                         <ion-item>
@@ -31,7 +31,7 @@
                             <ion-input formControlName="totalTaxContribution" type="number" [(ngModel)]="totalTaxContribution"></ion-input>
                         </ion-item>
                         <div *ngIf="!registerForm.controls.totalTaxContribution.valid && (registerForm.controls.totalTaxContribution.dirty || submitAttempt)">
-                                <p>Please enter tax contribution</p>
+                                <h4>Please enter tax contribution</h4>
                             </div>
                         <!--EMAIL-->
                         <ion-item>
@@ -39,7 +39,7 @@
                             <ion-input formControlName="email" type="email" [(ngModel)]="email"></ion-input>
                         </ion-item>
                          <div *ngIf="!registerForm.controls.email.valid && (registerForm.controls.email.dirty || submitAttempt)">
-                                <p>Please fill in your email</p>
+                                <4h>Please enter valid email</4h>
                             </div>
                         <!--PASSWORD-->
                         <ion-item>
@@ -47,8 +47,11 @@
                             <ion-input formControlName="password" type="password" [(ngModel)]="password"></ion-input>
                         </ion-item>
                         <div *ngIf="!registerForm.controls.password.valid && (registerForm.controls.password.dirty || submitAttempt)">
-                                <p>Please fill in your password</p>
-                            </div>
+                            <h4>Please enter valid password</h4>
+                        </div>
+                        <div *ngIf='isError'>
+                            <h4>{{errorMessage}}</h4>
+                        </div>
                         <!--CONFIRM PASSWORD-->
                         <!--<ion-item>-->
                         <!--    <ion-label floating>Confirm Password: </ion-label>-->
