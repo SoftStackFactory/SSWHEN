@@ -133,6 +133,7 @@ export class ProfilePage implements OnInit {
         console.log(this.ssUser);
         console.log("Successful update", this.ssUser);
         this.storage.set('SSUser', this.ssUser);
+
         // this.navCtrl.setRoot(DashboardPage);
         this.doAlertAndPopView()
       }, err => {
