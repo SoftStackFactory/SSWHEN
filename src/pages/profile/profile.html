@@ -17,6 +17,7 @@
                     
                 <h3 no-padding no-margin></h3>
                 
+                 <div ng-controller="MyCtrl">
                 <form [formGroup] = "profileForm">
                   
                 <ion-card>
@@ -31,15 +32,16 @@
                        <ion-icon name="create"></ion-icon>
                        </button>
                   </ion-card-header>
+                  
                   <ion-card-content>
                    <ion-input 
                    disabled="{{inputDisabledEmail}}" 
                   [(ngModel)]="email"
                   formControlName="email"
-                  placeholder="Email@example.com" 
+                  placeholder="this.ssUser.email" 
                   type="email"
                   id="email"
-                    placeholder="example@gmail.com">
+                    >
                    </ion-input>
                    <div *ngIf="!profileForm.controls.email.valid && (profileForm.controls.email.dirty || validateEmail)">
                   <p>Please enter a valid email address</p>
@@ -74,10 +76,10 @@
                       
                       
                 <div *ngIf="profileForm.controls.password.hasError('required') && profileForm.controls.password.touched">
-            <p>Sorry, field password is required!</p>
+            <p>Sorry, you must re-type your new password! An uppercase letter, lowercase letter, number, and special character are required.</p>
         </div>
         <div *ngIf="profileForm.controls.password.hasError('minlength') && profileForm.controls.password.touched">
-            <p>Sorry, minimum password length is 8!</p>
+            <p>Sorry, minimum password length is 6</p>
         </div>  
                   
                </ion-card-content>
@@ -106,7 +108,7 @@
         <!--^propery binding gets a reference to the form from above. Action: disable this if the form is not valid--->
         <!--  Confirm Edit</button>-->
       
-        
+       
         </form>
 
 

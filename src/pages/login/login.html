@@ -31,7 +31,7 @@
 
                 <ion-input formControlName="email" type="email" placeholder="email"></ion-input>
                 <div *ngIf="!myForm.controls.email.valid && (myForm.controls.email.dirty || submitAttempt)">
-                  <p style="color:red">Email Invalid</p>
+                  <p style="color:red">Email is not registered.</p>
                 </div>
               </ion-card-content>
             </ion-card>
@@ -44,7 +44,7 @@
                 <ion-icon name="lock" float-right></ion-icon>
                 <ion-input formControlName="password" type="password" placeholder="••••••••••"></ion-input>
                   <div *ngIf="!myForm.controls.password.valid && (myForm.controls.password.dirty || submitAttempt)">
-                    <p>Password is invalid</p>
+                    <p>Password field required</p>
                   </div>
               </ion-card-content>
             </ion-card>

@@ -4,6 +4,8 @@ import { IonicPage, NavController, NavParams, AlertController, ModalController }
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 import { SSUser } from '../../models/SSUser';
 import { Storage } from '@ionic/storage';
+import { UserDataProvider } from "../../providers/user-data/user-data";
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 
 @IonicPage()
@@ -58,6 +60,7 @@ export class ProfilePage implements OnInit {
           ]
       });
   }
+
 
    //lets user edit email and changes text instructions for user
   editEmail() {
@@ -130,6 +133,7 @@ export class ProfilePage implements OnInit {
         console.log(this.ssUser);
         console.log("Successful update", this.ssUser);
         this.storage.set('SSUser', this.ssUser);
+
         // this.navCtrl.setRoot(DashboardPage);
         this.doAlertAndPopView()
       }, err => {
