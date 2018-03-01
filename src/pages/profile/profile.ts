@@ -5,7 +5,6 @@ import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 import { SSUser } from '../../models/SSUser';
 import { Storage } from '@ionic/storage';
 import { UserDataProvider } from "../../providers/user-data/user-data";
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 
 @IonicPage()
