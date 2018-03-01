@@ -45,7 +45,7 @@
                 <ion-grid no-padding>
                   
                   <!-- make sure that data has arrived before rendering chart -->
-                  
+
                   <div *ngIf="monthlyPay">
                     <charts  
                     [ChartType]="chartType"
@@ -60,11 +60,6 @@
           </div>
           
           <div *ngSwitchCase="'chart'">
-            <ion-row style="border-bottom: 2px solid black;">
-            <ion-col col-6 text-center>Retirement <br/> Age </ion-col>
-            <ion-col col-6 text-center>Monthly <br/> Payout</ion-col>
-            </ion-row>
-            
             <page-data-table 
               [leftCol]="retYears"
               [leftColTitle] = "leftTitle"
