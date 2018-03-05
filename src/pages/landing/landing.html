@@ -1,12 +1,5 @@
-<!--
-  Generated template for the LandingPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar>
-    <ion-title>SSWHEN</ion-title>
     <ion-buttons end>
       <button ion-button (click)="toLogin()">
         Login
@@ -17,16 +10,17 @@
 
 <ion-content>
   <ion-grid no-padding>
-    <ion-row justify-content-center padding-top>
+    <ion-row>
       <ion-col>
+        <h1 text-center ion-text color="primary"><strong>SSWHEN</strong></h1>
         <ion-card class="landing-card">
-          <img id="landing-img" src="https://images.unsplash.com/photo-1465508421127-4cbee06c9e73?auto=format&fit=crop&w=1500&q=80" alt="retired people" style="width:100%; height: 200px;">
+          <img id="landing-img" src="https://images.unsplash.com/photo-1465508421127-4cbee06c9e73?auto=format&fit=crop&w=1500&q=80" alt="retired people">
           <ion-card-title padding-top text-center>
-            <h2>SSWHEN Social Security Calculator</h2>
+            <h2>Social Security Calculator</h2>
           </ion-card-title>
           <ion-card-content padding-horizontal>
             <p text-center>
-              Let the Social Security Calculator help you figure out how much retirement income you’ll receive at different claiming ages so you can determine when you should claim Social Security.
+              SSWHEN is a social security calculator that will help you figure out how much retirement income you’ll receive at different claiming ages so you can determine when the optimal age to claim your benefits.
             </p>
           </ion-card-content>
         </ion-card>
@@ -34,7 +28,9 @@
     </ion-row>
     <ion-row justify-content-center padding-horizontal>
       <ion-col>
-        <button ion-button icon-end block full (click)="toAppDescription()">Begin <ion-icon name="arrow-dropright"></ion-icon></button>
+        <button ion-button icon-end block full (click)="toAppDescription()">Begin
+          <ion-icon name="arrow-dropright"></ion-icon>
+        </button>
       </ion-col>
     </ion-row>
   </ion-grid>

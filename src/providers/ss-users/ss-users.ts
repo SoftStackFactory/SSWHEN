@@ -12,9 +12,7 @@ import 'rxjs/add/operator/map';
 export class SsUsersProvider {
   apiUrl: string = "http://sswhen-bk-danilo-phortonssf.c9users.io:8080/api";
 
-  constructor(public http: Http) {
-    console.log('Hello SsUsersProvider Provider');
-  }
+  constructor(public http: Http) {}
 
   login(user) {
     let path = '/SSUsers/login';
