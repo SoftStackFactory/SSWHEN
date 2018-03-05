@@ -22,42 +22,46 @@
                                 <ion-option value="'married'">Married</ion-option>
                             </ion-select>
                         </ion-item>
-                         <div *ngIf="!registerForm.controls.maritalStatus.valid && (submitAttempt)">
-                                <h4>Please enter marital status</h4>
-                            </div>
+                        <div *ngIf='!registerForm.controls.maritalStatus.valid && submitAttempt'>
+                                <h4 text-center>Please Enter Marital Status</h4>
+                        </div>
                         <!--TOTAL TAX CONTRIBUTION-->
                         <ion-item>
                             <ion-label floating>Total Tax Contribution: </ion-label>
                             <ion-input formControlName="totalTaxContribution" type="number" [(ngModel)]="totalTaxContribution"></ion-input>
                         </ion-item>
                         <div *ngIf="!registerForm.controls.totalTaxContribution.valid && (registerForm.controls.totalTaxContribution.dirty || submitAttempt)">
-                                <h4>Please enter tax contribution</h4>
-                            </div>
+                            <h4 text-center>Please Enter Tax Contribution</h4>
+                        </div>
                         <!--EMAIL-->
                         <ion-item>
                             <ion-label floating>Email: </ion-label>
                             <ion-input formControlName="email" type="email" [(ngModel)]="email"></ion-input>
                         </ion-item>
-                         <div *ngIf="!registerForm.controls.email.valid && (registerForm.controls.email.dirty || submitAttempt)">
-                                <4h>Please enter valid email</4h>
-                            </div>
+                        <div *ngIf="!registerForm.controls.email.valid && (registerForm.controls.email.dirty || submitAttempt)">
+                            <h4 text-center>Please Enter a Valid Email</h4>
+                        </div>
                         <!--PASSWORD-->
                         <ion-item>
                             <ion-label floating>Password: </ion-label>
                             <ion-input formControlName="password" type="password" [(ngModel)]="password"></ion-input>
                         </ion-item>
                         <div *ngIf="!registerForm.controls.password.valid && (registerForm.controls.password.dirty || submitAttempt)">
-                            <h4>Please enter valid password</h4>
-                        </div>
+                            <h4 text-center>Please Enter a Valid Password</h4>
+                        </div> 
+                        
+                        <div *ngIf="registerForm.controls.password.hasError('required') && (registerForm.controls.password.touched || submitAttempt)">
+                            <h4 text-center>You must enter a password</h4>
+                        </div> 
+                        
                         <div *ngIf='isError'>
-                            <h4>{{errorMessage}}</h4>
+                            <h4 text-center>{{errorMessage}}</h4>
                         </div>
                         <!--CONFIRM PASSWORD-->
                         <!--<ion-item>-->
                         <!--    <ion-label floating>Confirm Password: </ion-label>-->
                         <!--    <p>Please fill in your password</p>-->
                         <!-- </ion-item>-->
-
                     </ion-list>
                 </form>
             </ion-card-content>
