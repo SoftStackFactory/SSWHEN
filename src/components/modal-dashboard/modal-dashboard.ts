@@ -26,6 +26,10 @@ export class ModalDashboardComponent implements OnInit{
   }
   
   ngOnInit() {
+      console.log(this.chartType);
+      console.log(this.retYears);
+      console.log(this.tableMonthly);
+      console.log(this.totalAccumulated);
       // this.retYears = this.calculations$.retirementYears;
       // this.tableMonthly = this.calculations$.monthlyBenefit().monthly;;
       // this.totalAccumulated = this.calculations$.monthlyBenefit().cumulative;
