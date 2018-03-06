@@ -21,7 +21,6 @@ export class CalculationsProvider {
   getBenefitData() {
     let apiUrl = "http://sswhen-bk-danilo-phortonssf.c9users.io:8080/api/results/benefitData?pia=" + this.pia +
       "&gender=" + this.gender + "&dob=" + this.dob + "11-2011";
-
     return this.http.get(apiUrl);
 
   };
