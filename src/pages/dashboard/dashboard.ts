@@ -4,6 +4,7 @@ import {PopoverPage} from './popover-page';
 import {ModalDashboardComponent} from '../../components/modal-dashboard/modal-dashboard';
 import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
+import { EmailProvider } from '../../providers/email/email';
 import { MockDataProvider } from '../../providers/mock-data/mock-data';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 import { ResultsProvider } from '../../providers/results/results';
@@ -33,6 +34,8 @@ export class DashboardPage implements OnInit {
   benefitAtFRA: any;
   ageFRA: number;
   totalContribution: any;
+  emailMonthly: any[] = [];
+  emailCumulative: any[] = [];
   dataObject: any;
   storageObject: any;
   results: Results = new Results();
@@ -51,7 +54,8 @@ export class DashboardPage implements OnInit {
     public ssUsersProvider: SsUsersProvider,
     public resultsProvider: ResultsProvider,
     public storage: Storage,
-    public userData$: UserDataProvider
+    public userData$: UserDataProvider,
+    public email$: EmailProvider
   ) {}
 
   isEditable() {
@@ -120,6 +124,69 @@ export class DashboardPage implements OnInit {
     });
   }
 
+  // presentModal(type) {
+  //   let chartType = type;
+  //   console.log(chartType);
+  //   let modal = this.modalCtrl.create(ModalDashboardComponent, {
+  //     'modalType': chartType
+  //   });
+  //   // let ev = {
+  //   //   target: {
+  //   //     getBoundingClientRect: () => {
+  //   //       return {
+  //   //         top: '100'
+  //   //       };
+  //   //     }
+  //   //   }
+  //   // };
+  //   // modal.present({ev});
+  //   modal.present();
+  // }
+  
+  emailResults(data) {
+    this.email$.date = "test";
+    this.email$.email = data.title;
+    this.email$.sixtwo = this.emailMonthly[0];
+    this.email$.sixthree = this.emailMonthly[1];
+    this.email$.sixfour = this.emailMonthly[2];
+    this.email$.sixfive = this.emailMonthly[3];
+    this.email$.sixsix = this.emailMonthly[4];
+    this.email$.sixseven = this.emailMonthly[5];
+    this.email$.sixeight = this.emailMonthly[6];
+    this.email$.sixnine = this.emailMonthly[7];
+    this.email$.sevenzero = this.emailMonthly[8];
+    this.email$.Csixtwo = this.emailCumulative[0];
+    this.email$.Csixthree = this.emailCumulative[1];
+    this.email$.Csixfour = this.emailCumulative[2];
+    this.email$.Csixfive = this.emailCumulative[3];
+    this.email$.Csixsix = this.emailCumulative[4];
+    this.email$.Csixseven = this.emailCumulative[5];
+    this.email$.Csixeight = this.emailCumulative[6];
+    this.email$.Csixnine = this.emailCumulative[7];
+    this.email$.Csevenzero = this.emailCumulative[8];
+    // this.email$.sixtwo = 1;
+    // this.email$.sixthree = 1;
+    // this.email$.sixfour = 2;
+    // this.email$.sixfive = 3;
+    // this.email$.sixsix = 4;
+    // this.email$.sixseven = 5;
+    // this.email$.sixeight = 6;
+    // this.email$.sixnine = 7;
+    // this.email$.sevenzero = 8;
+    // // this.email$.Csixtwo = 9;
+    // this.email$.Csixthree = 10;
+    // this.email$.Csixfour = 11;
+    // this.email$.Csixfive = 21;
+    // this.email$.Csixsix = 13;
+    // this.email$.Csixseven = 14;
+    // this.email$.Csixeight = 15;
+    // this.email$.Csixnine = 16;
+    // this.email$.Csevenzero = 17;
+    console.log("test");
+    this.email$.sendEmailDashboard()
+    .subscribe( res => console.log(res), err => console.log(err))
+  }
+  
   showPrompt() {
     let prompt = this.alertCtrl.create({
       title: 'Email Results',
@@ -141,6 +208,9 @@ export class DashboardPage implements OnInit {
           text: 'Email',
           handler: data => {
             console.log('Saved clicked');
+            // Pass in email, array of calculations, date 
+            this.emailResults(data);
+            console.log(data);
           }
         }
       ]
@@ -151,7 +221,6 @@ export class DashboardPage implements OnInit {
   //assign all properties, make all http calls OnInit
   
   ngOnInit() {
-    
     //get user info from local storage, assign to service properties, returns a promise
     this.storage.get('SSUser').then((val) => {
       this.calculations$.pia = val.FRAbenefit;
@@ -161,12 +230,11 @@ export class DashboardPage implements OnInit {
       console.log(this.calculations$.gender, "gender");
       console.log(this.calculations$.dob, "dob");
       console.log(this.dataObject);
-          this.results.gender = val.gender;
-          this.results.FRAbenefit = val.FRAbenefit;
-          this.results.dateOfBirth = val.dateOfBirth;
-          this.results.isMarried = val.isMarried;
-          this.results.totalContribution = val.totalContribution;
-          this.totalContribution = val.totalContribution;
+      this.results.gender = val.gender;
+      this.results.FRAbenefit = val.FRAbenefit;
+      this.results.dateOfBirth = val.dateOfBirth;
+      this.results.isMarried = val.isMarried;
+      this.results.totalContribution = val.totalContribution;
     
       //call backend calculation route, using updated service properties, returns an observable
       this.calculations$.getBenefitData()
@@ -196,6 +264,13 @@ export class DashboardPage implements OnInit {
           this.results.cumulative = this.dataObject.cumulative;
           this.results.createdAt = new Date();
           this.results.isRegistered = false;
+          
+          // this.lifeExpectancy = this.calculations$.lifeExpect/12;
+          // this.benefitAtFRA = val.FRAbenefit;
+          // this.ageFRA = this.calculations$.fullRetAge / 12;
+          this.emailMonthly = this.dataObject.monthly;
+          this.emailCumulative = this.dataObject.cumulative;
+          
           this.saveResults();
         }, err => console.log(err));
     });

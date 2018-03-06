@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar hideBackButton="true">
-    <ion-title>Dashboard</ion-title>
+    <ion-title>SSWhen</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="presentLanguagePopover($event)">
         <ion-icon name="more"></ion-icon>
@@ -13,7 +13,7 @@
   <ion-grid no-padding>
     <ion-row align-items-center padding-horizontal>
       <ion-col align-self-start>
-        <h1>SSWhen</h1>
+        <h1 ion-text color="primary"><strong>Dashboard</strong></h1>
       </ion-col>
       <ion-col align-self-end>
         <button ion-button float-end color="light" icon-end (click)="presentAccountPopover($event)">
@@ -29,7 +29,7 @@
           <ion-card-content padding-horizontal>
             <ion-row align-items-center>
               <ion-col>
-                <h2 #changeText>User Information</h2>
+                <h2 ion-text color="primary" #changeText>User Information</h2>
               </ion-col>
               <ion-col>
                 <button style="vertical-align: top;" class="btn-smaller" ion-button icon-only float-end color="dark" (click)="isEditable()">

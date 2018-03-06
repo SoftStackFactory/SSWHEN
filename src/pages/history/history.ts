@@ -1,5 +1,5 @@
 import { Component, ElementRef, QueryList, ViewChildren, OnInit} from '@angular/core';
-import { IonicPage, ModalController, NavController, NavParams, PopoverController } from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams, PopoverController, ViewController} from 'ionic-angular';
 import { LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
 import { ModalHistoryComponent} from '../../components/modal-history/modal-history';
 import { ResultsProvider } from '../../providers/results/results';
@@ -26,6 +26,7 @@ export class HistoryPage implements OnInit {
     public popoverCtrl: PopoverController, 
     public modalCtrl: ModalController,
     public results$: ResultsProvider,
+    public viewCtrl: ViewController,
     private storage: Storage) {}
 
   presentLanguagePopover(myEvent) {
@@ -42,6 +43,9 @@ export class HistoryPage implements OnInit {
       modal.present();
   }
 
+  ionViewDidLoad() {
+    this.viewCtrl.setBackButtonText('Back');
+  }
 
   ngOnInit() {
   

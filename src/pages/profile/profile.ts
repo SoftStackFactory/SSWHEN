@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, AlertController, ModalController, ViewController} from 'ionic-angular';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 import { SSUser } from '../../models/SSUser';
 import { Storage } from '@ionic/storage';
+import { UserDataProvider } from "../../providers/user-data/user-data";
 
 
 @IonicPage()
@@ -33,7 +34,8 @@ export class ProfilePage implements OnInit {
     public modalCtrl: ModalController,
     public formBuilder: FormBuilder,
     public ssusers$: SsUsersProvider,
-    public storage: Storage) {
+    public viewCtrl: ViewController,
+      public storage: Storage) {
       this.inputDisabledEmail = true;
       this.inputDisabledPass = true;
       this.profileForm = formBuilder.group({
@@ -49,9 +51,16 @@ export class ProfilePage implements OnInit {
                 Validators.required,
                 Validators.pattern(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,12}$/)
               ])
+          ],
+          cpassword: ['', 
+            Validators.compose([
+                Validators.required,
+                Validators.pattern(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,12}$/)
+              ])
           ]
       });
   }
+
 
    //lets user edit email and changes text instructions for user
   editEmail() {
@@ -61,7 +70,7 @@ export class ProfilePage implements OnInit {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+    this.viewCtrl.setBackButtonText('Back');
   }
 
 
@@ -124,6 +133,7 @@ export class ProfilePage implements OnInit {
         console.log(this.ssUser);
         console.log("Successful update", this.ssUser);
         this.storage.set('SSUser', this.ssUser);
+
         // this.navCtrl.setRoot(DashboardPage);
         this.doAlertAndPopView()
       }, err => {

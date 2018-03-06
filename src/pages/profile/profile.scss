@@ -4,10 +4,15 @@ page-profile {
         font-size: 15px; //Preferred size here
     }
     
-img {
-    width: 85px;
-    height: 90px;
-}
+  img {
+      max-width: 85px;
+      max-height: 90px;
+  }
+
+  .btn-smaller {
+    transform: scale(0.6);
+  }
+
 }
 
     

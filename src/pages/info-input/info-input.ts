@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import { ResultsPage } from '../results/results'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NumberValidator } from '../../validators/number';
@@ -22,7 +22,8 @@ export class InfoInputPage {
               public navParams: NavParams,
               public formBuilder: FormBuilder,
               public calculations$: CalculationsProvider,
-              public userData$: UserDataProvider
+              public userData$: UserDataProvider,
+              public viewCtrl: ViewController
               )
     {
       
@@ -53,6 +54,11 @@ export class InfoInputPage {
     
     this.calculations$.getBenefitData();
     
+  }
+
+
+  ionViewDidLoad() {
+    this.viewCtrl.setBackButtonText('Back');
   }
 
 }

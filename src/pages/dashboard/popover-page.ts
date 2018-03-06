@@ -8,29 +8,17 @@ import {Storage} from '@ionic/storage';
 
 @Component({
   template: `
-    <ion-grid class="popover-page" no-padding>
-      <ion-row>
-        <ion-col class="menu-full-width" col-auto align-self-end>
-          <button ion-item on-click="goToProfile()" padding-horizontal>
-            Edit Account
-          </button>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col class="menu-full-width" col-auto align-self-end>
-          <button ion-item on-click="goToHistory()" padding-horizontal>
-            History
-          </button>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col class="menu-full-width menu-last" col-auto align-self-end>
-          <button ion-item on-click="goToLanding()" padding-horizontal>
-            Logout
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <ion-list class="popover-page" no-margin margin-right no-padding>
+        <button ion-item block full on-click="goToProfile()">
+          Edit Account
+        </button>
+        <button ion-item block full on-click="goToHistory()">
+          History
+        </button>
+        <button ion-item block full on-click="goToLanding()">
+          Logout
+        </button>
+    </ion-list>
   `
 })
 export class PopoverPage implements OnInit {
@@ -67,7 +55,7 @@ export class PopoverPage implements OnInit {
 
   goToLanding(params) {
     if (!params) params = {};
-    // this.navCtrl.setRoot(LandingPage);
+    this.navCtrl.setRoot(LandingPage);
     this.ssUsersProvider.logout(this.token)
       .subscribe( res => {
         this.appCtrl.getRootNav().setRoot(LandingPage);
