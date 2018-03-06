@@ -4,6 +4,7 @@ import { ResultsPage } from '../results/results'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NumberValidator } from '../../validators/number';
 import { CalculationsProvider } from "../../providers/calculations/calculations";
+import { UserDataProvider } from "../../providers/user-data/user-data";
 
 @IonicPage()
 
@@ -20,7 +21,8 @@ export class InfoInputPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public formBuilder: FormBuilder,
-              public calculations$: CalculationsProvider
+              public calculations$: CalculationsProvider,
+              public userData$: UserDataProvider
               )
     {
       
@@ -40,6 +42,10 @@ export class InfoInputPage {
       console.log('Unsuccessful input', this.myForm.value);
     }else{
       console.log('Successful input ', this.myForm.value);
+      this.userData$.FRAbenefit = this.myForm.value.fra;
+      this.userData$.dateOfBirth = this.myForm.value.birthDate;
+      this.userData$.gender = this.myForm.value.gender;
+      
       this.navCtrl.push(ResultsPage, {
         'myForm': this.myForm.value
       });

@@ -16,7 +16,7 @@ export class ModalDashboardComponent implements OnInit{
     leftTitle: string = "Retirement Age";
     rightTitleMonthly: string = "Monthly Payout";
     rightTitleCumulative: string = "Cumulative Payout";
-    
+    results: any;
     
   constructor(public navParams: NavParams, 
               public viewCtrl: ViewController, 

@@ -3,7 +3,7 @@
 export class Results {
     monthly: number[];
     cumulative: number[];
-    createdAt: string;
+    createdAt: any;
     isRegistered: boolean;
     gender: string;
     lifeExpectancy: number;
@@ -11,4 +11,5 @@ export class Results {
     ageFRA: number;
     totalContribution: number;
     isMarried: boolean;
+    dateOfBirth: any;
 }
