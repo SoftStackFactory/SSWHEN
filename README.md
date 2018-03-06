@@ -20,6 +20,7 @@ To begin make sure node and npm are installed. Please make sure latest Node 6 LT
 npm install -g ionic
 ```
 
+
 ### Branches
 
 SSWHEN employs a git flow methodology for branch naming. When creating new branches, work off of develop only.
@@ -31,6 +32,7 @@ SSWHEN employs a git flow methodology for branch naming. When creating new branc
 For new features, use the convention: `/feature/**feature-name**`
 
 For hotfixes, use the convention: `/bug/**bug-name**`
+
 
 ### Installing
 
@@ -52,7 +54,11 @@ Once that completes, use `ionic serve` to get a local copy running
 ionic serve
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+This should deploy the an instance of the app running locally at:
+
+```
+http://localhost:8100/
+```
 
 
 ## Deployment
