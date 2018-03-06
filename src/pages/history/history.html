@@ -1,27 +1,22 @@
-
 <ion-header>
-
   <ion-navbar>
-    <ion-title>History</ion-title>
+    <ion-title>SSWHEN</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="presentLanguagePopover($event)">
         <ion-icon name="more"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content>
-
   <ion-grid no-padding>
-    <ion-row align-items-center padding-horizontal>
-      <ion-col align-self-start>
-        <h1>SSWhen</h1>
+    <ion-row>
+      <ion-col>
+        <h1 text-center ion-text color="primary"><strong>History</strong></h1>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row pa>
       <ion-col>
         <h4 text-center>Browse Prior Entries</h4>
         <ion-list padding-vertical *ngFor="let result of this.testResults">
@@ -30,5 +25,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  
 </ion-content>
