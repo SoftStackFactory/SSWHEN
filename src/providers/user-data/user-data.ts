@@ -17,6 +17,7 @@ export class UserDataProvider {
   retYears: number[];
 
   constructor(public storage: Storage) {
+    
     this.storage.get('userId').then(val => {
       this.userId = val;
 
