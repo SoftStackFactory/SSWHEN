@@ -220,6 +220,15 @@ export class DashboardPage implements OnInit {
   //assign all properties, make all http calls OnInit
   
   ngOnInit() {
+    setTimeout(()=>{
+            console.log("ran")
+      this.monthlyPay =  [
+                             {
+            data: [20000,22000, 24000, 26000, 28000, 30000, 32000, 34000, 36000],
+            label: 'Monthly Payout per Retirement Year'
+} ];
+      
+    },4000)
     //get user info from local storage, assign to service properties, returns a promise
     this.storage.get('SSUser').then((val) => {
       this.calculations$.pia = val.FRAbenefit;
@@ -267,6 +276,12 @@ export class DashboardPage implements OnInit {
           this.saveResults();
         }, err => console.log(err));
     });
+    
+    // setTimeout(()=>{
+    //   this.monthlyPay =  [ {data: new data here, label: 'Monthly Payout per Retirement Year'} ];
+      
+    // },4000)
+    
   }
   
   saveResults() {
