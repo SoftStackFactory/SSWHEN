@@ -160,13 +160,13 @@ export class ResultsPage implements OnInit {
   
   ngOnInit(){
     
-    setTimeout(()=>{
-      console.log("ran")
-      this.monthlyPay =  [{
-        data: [20000,22000, 24000, 26000, 28000, 30000, 32000, 34000, 36000],
-        label: 'Monthly Payout per Retirement Year'
-      }];
-    },4000)
+    // setTimeout(()=>{
+    //   console.log("ran")
+    //   this.monthlyPay =  [{
+    //     data: [20000,22000, 24000, 26000, 28000, 30000, 32000, 34000, 36000],
+    //     label: 'Monthly Payout per Retirement Year'
+    //   }];
+    // },4000)
     
     this.calculations$.getBenefitData()
       .subscribe(data => {
