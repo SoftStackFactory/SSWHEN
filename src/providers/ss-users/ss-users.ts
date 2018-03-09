@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class SsUsersProvider {
 
-  apiUrl: string = "https://andrew-winter-2017-phortonssf.c9users.io/api";
+  apiUrl: string = "https://sswhen-backend.herokuapp.com/api";
 
   constructor(public http: Http) {}
 

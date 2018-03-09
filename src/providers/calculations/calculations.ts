@@ -19,7 +19,7 @@ export class CalculationsProvider {
   dob: string;
 
   getBenefitData() {
-    let apiUrl = "https://andrew-winter-2017-phortonssf.c9users.io/api/results/benefitData?pia=" + this.pia +
+    let apiUrl = "https://sswhen-backend.herokuapp.com/api/results/benefitData?pia=" + this.pia +
       "&gender=" + this.gender + "&dob=" + this.dob + "11-2011";
     return this.http.get(apiUrl);
 
