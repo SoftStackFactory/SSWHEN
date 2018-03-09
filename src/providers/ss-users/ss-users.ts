@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class SsUsersProvider {
 
-  apiUrl: string = "http://sayed-fall-2017-phortonssf.c9users.io:8080/api";
+  apiUrl: string = "https://andrew-winter-2017-phortonssf.c9users.io/api";
 
   constructor(public http: Http) {}
 

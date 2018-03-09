@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 
 export class ResultsProvider {
   
-  apiUrl: string = "http://sayed-fall-2017-phortonssf.c9users.io:8080/api";
+  apiUrl: string = "https://andrew-winter-2017-phortonssf.c9users.io/api";
 
   constructor(public http: Http) {}
   
