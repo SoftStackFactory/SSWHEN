@@ -11,6 +11,7 @@ log.txt
 *.sublime-workspace
 .vscode/
 npm-debug.log*
+package-lock.json
 
 .idea/
 .sourcemaps/
@@ -29,7 +30,9 @@ plugins/android.json
 plugins/ios.json
 www/
 $RECYCLE.BIN/
-
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+env/*.js
+env/*.json
+src/providers/app-config.ts

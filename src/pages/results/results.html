@@ -1,46 +1,63 @@
-<!--
-  Generated template for the ResultsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>resultsPage</ion-title>
+    <ion-title>SSWHEN</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content padding>
-  
-  <ion-grid>
-    
-    <ion-button>
-      Back button
-    </ion-button>
-    
-    <ion-segment>
-      
-      <chart></chart>
-      
-    </ion-segment>
-    
-    <ion-segment>
-      
-       <data-table></data-table>
-      
-    </ion-segment>
-    
-    <ion-input>
-      Text box for email address to send results to
-    </ion-input>
-    
-    <ion-button>
-      Submit request to send results to email
-    </ion-button>
-    
+<ion-content>
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col>
+        <h1 text-center ion-text color="primary"><strong>Results</strong></h1>
+      </ion-col>
+    </ion-row>
+    <ion-row padding-horizontal>
+      <ion-col>
+        <ion-segment [(ngModel)]="display">
+          <ion-segment-button value="graph">
+            Graph
+          </ion-segment-button>
+          <ion-segment-button value="chart">
+            Table
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+    <ion-row no-padding>
+      <ion-col>
+        <div [ngSwitch]="display">
+          <div *ngSwitchCase="'graph'">
+            <ion-card>
+              <ion-card-header text-center>
+                Monthly Payout by Retirement Age
+              </ion-card-header>
+              <ion-card-content>
+                <!-- make sure that data has arrived before rendering chart -->
+                <div *ngIf="monthlyPay">
+                  <charts [ChartType]="chartType" [xAxis]="retYears" [yAxis]="monthlyPay"></charts>
+                </div>
+              </ion-card-content>
+            </ion-card>
+          </div>
+          <div *ngSwitchCase="'chart'">
+            <page-data-table [leftCol]="retYears" [leftColTitle]="leftTitle" [rightCol]="tableMonthly" [rightColTitle]="rightTitleMonthly"></page-data-table>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row padding-horizontal>
+      <ion-col margin-right>
+        <button ion-button icon-start block (click)="showPrompt()">
+          <ion-icon name="send"></ion-icon>
+          Email Result
+        </button>
+      </ion-col>
+      <ion-col margin-left>
+        <button ion-button icon-start block on-click="goToRegister()">
+          <ion-icon name="clipboard"></ion-icon>
+          Register
+        </button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
-
 </ion-content>

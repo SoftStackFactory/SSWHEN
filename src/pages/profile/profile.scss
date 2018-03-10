@@ -1,3 +1,18 @@
 page-profile {
 
+ ion-icon {
+        font-size: 15px; //Preferred size here
+    }
+    
+  img {
+      max-width: 85px;
+      max-height: 90px;
+  }
+
+  .btn-smaller {
+    transform: scale(0.6);
+  }
+
 }
+
+    
