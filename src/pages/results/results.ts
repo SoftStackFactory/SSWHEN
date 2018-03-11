@@ -21,9 +21,9 @@ import {Storage} from '@ionic/storage';
 export class ResultsPage implements OnInit {
   display: any;
   chartType: string = 'bar';
-  retYears: any[] = [];
+  retYears: any[];
   monthlyPay: any[];
-  tableMonthly: any[] = [];
+  tableMonthly: any[];
   dataObject: any;
 
   leftTitle: string = "Retirement Age";
