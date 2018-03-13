@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
@@ -18,9 +18,12 @@ export class RegisterPage {
   infoData: any;
   registerForm: FormGroup;
   submitAttempt: boolean = false;
+  errorMessage: string;
+  isError: boolean = false;
 
   constructor(
     public navCtrl: NavController, 
+    public alertCtrl: AlertController,
     public navParams: NavParams, 
     public formBuilder: FormBuilder, 
     public ssusers$: SsUsersProvider,
@@ -72,7 +75,7 @@ export class RegisterPage {
 
       this.ssusers$.register(this.ssUser)
         .subscribe(res => {
-          alert("Thank you for registering!");
+          // alert("Thank you for registering!");
           console.log(res);
           console.log("Successful registration", this.ssUser);
           this.storage.set('SSUser', this.ssUser);
@@ -84,11 +87,32 @@ export class RegisterPage {
           
           this.navCtrl.setRoot(DashboardPage);
         }, err => {
+          this.isError = true;
           console.log(err);
           console.log("Unsuccessful registration", this.ssUser);
+          if(err.status === 0){
+            this.errorMessage = 'User is offline';
+          }else if(err.status === 404){
+            this.errorMessage = 'User was not found';
+          }else if(err.status === 422){
+            this.errorMessage = 'Email is taken';
+          }else if(err.status === 500){
+            this.errorMessage = 'Server is offline';
+          }else {
+            this.errorMessage = 'Unable to process request';
+          }
         });
     }
     
+  }
+  
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Registration Successful!',
+      subTitle: 'Thank you for registering!',
+      buttons: ['Continue']
+    });
+    alert.present();
   }
   
   //IONIC VIEW LOAD CONFIRMATION FUNCTION

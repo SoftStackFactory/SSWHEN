@@ -13,7 +13,7 @@
 </ion-row>
 
 
-<ion-row>
+<ion-row *ngIf="retirementAge">
     <ion-col style="text-align: center;">
         Retirement Age
     </ion-col>
@@ -21,7 +21,12 @@
         Payout
     </ion-col>
 </ion-row>
-<ion-row>
+<ion-row  *ngIf="!retirementAge">
+    <ion-col style="text-align: center;">
+        <h2>Tap bar to see details</h2>
+    </ion-col>
+</ion-row>
+<ion-row  *ngIf="retirementAge">
     <ion-col style="text-align: center;">
         {{ this.retirementAge }}
     </ion-col>
