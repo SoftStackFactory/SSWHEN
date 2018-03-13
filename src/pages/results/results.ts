@@ -157,8 +157,17 @@ export class ResultsPage implements OnInit {
 
   //getbenefitData() returns an observable
   //subsribe to observable, then parse data for graph and table
-
-  ngOnInit() {
+  
+  ngOnInit(){
+    
+    // setTimeout(()=>{
+    //   console.log("ran")
+    //   this.monthlyPay =  [{
+    //     data: [20000,22000, 24000, 26000, 28000, 30000, 32000, 34000, 36000],
+    //     label: 'Monthly Payout per Retirement Year'
+    //   }];
+    // },4000)
+    
     this.calculations$.getBenefitData()
       .subscribe(data => {
         this.dataObject = data;

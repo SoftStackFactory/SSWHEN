@@ -58,11 +58,11 @@ export class HistoryPage implements OnInit {
         
         // getResults() is passed userId & token - from local storage
         // The response will be an array containing the user data object associated with the passed userId.
-        // From this user data object, history.ts needs the createdAt date string property
+        // From this user data object, history.ts needs the creatcodidAt date string property
         // history.ts needs to send modal-history component the monthly array, and the cumulative array properties 
         this.results$.getResults({"id": this.userId}, this.token)
         .subscribe(response => {
-          this.testResults = response;
+          this.testResults = response.reverse();
           console.log(this.testResults);
         }, error => {
             alert("Error");
