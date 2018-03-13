@@ -8,16 +8,20 @@ import { Storage } from '@ionic/storage';
 import { UserDataProvider } from "../../providers/user-data/user-data";
 
 @IonicPage()
+
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
 })
+
 export class RegisterPage {
   
   ssUser = new SSUser();
   infoData: any;
   registerForm: FormGroup;
   submitAttempt: boolean = false;
+  dataObject: any;
+  token: any;
 
   constructor(
     public navCtrl: NavController, 
@@ -67,21 +71,22 @@ export class RegisterPage {
       this.ssUser.password = this.registerForm.value.password;
       this.ssUser.totalContribution = this.registerForm.value.totalTaxContribution;
       this.ssUser.isMarried = this.registerForm.value.maritalStatus;
+      console.log("ssUser model now complete: ",this.ssUser);
+        
 
-      console.log(this.ssUser);
-
-      this.ssusers$.register(this.ssUser)
-        .subscribe(res => {
+      this.ssusers$.register(this.ssUser).subscribe(res => {
+          // The response will be an ssUser object, but with id and token instead of password
           alert("Thank you for registering!");
-          console.log(res);
-          console.log("Successful registration", this.ssUser);
+          console.log("response from ssusers$.register(): ",res);
+          console.log("Successful registration! The userId is: ", res.id);
+          console.log("Successful registration! The token is: ", res.token);
           this.storage.set('SSUser', this.ssUser);
           this.storage.set('userId', res.id);
           this.storage.set('token', res.token);
           
           this.userData$.totalContribution = res.totalContribution;
           this.userData$.isMarried = res.isMarried;
-          
+    
           this.navCtrl.setRoot(DashboardPage);
         }, err => {
           console.log(err);
@@ -95,14 +100,18 @@ export class RegisterPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
     console.log(this.infoData);
-      console.log(this.ssUser);
-      this.ssUser.dateOfBirth = this.userData$.dateOfBirth;
-      this.ssUser.gender = this.userData$.gender;
-      this.ssUser.FRAbenefit = this.userData$.FRAbenefit;
-      console.log(this.ssUser);
+    console.log(this.userData$);
+    // infoData retreives {birthDate: "", gender: "", fra: ""} from results page
+    // userData$ also has dateOfBirth, gender, FRAbnefit from info-input page
+    this.ssUser.dateOfBirth = this.infoData.birthDate;
+    this.ssUser.gender = this.infoData.gender;
+    this.ssUser.FRAbenefit = this.infoData.fra;
+    
+    // this.ssUser.dateOfBirth = this.userData$.dateOfBirth;
+    // this.ssUser.gender = this.userData$.gender;
+    // this.ssUser.FRAbenefit = this.userData$.FRAbenefit;
+    console.log(this.ssUser);
   }
-  
-
   
 }
 

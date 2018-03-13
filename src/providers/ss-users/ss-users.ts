@@ -17,6 +17,7 @@ export class SsUsersProvider {
   }
 
   login(user) {
+    // user is an {} containing properties email and password
     let path = '/SSUsers/login';
     return this.http.post(this.apiUrl + path, user).map(res => res.json())
   }

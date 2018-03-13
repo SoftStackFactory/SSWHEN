@@ -13,6 +13,7 @@
     <ion-grid>
       <ion-row center>
         <ion-col>
+
           <h1 no-padding no-margin>SSWHEN</h1>
           <h1></h1>
           <h1 no-padding no-margin>Login</h1>
@@ -35,7 +36,7 @@
                 </div>
               </ion-card-content>
             </ion-card>
-            
+
             <ion-card>
               <ion-card-header>
                 Password:
@@ -43,24 +44,22 @@
               <ion-card-content>
                 <ion-icon name="lock" float-right></ion-icon>
                 <ion-input formControlName="password" type="password" placeholder="••••••••••"></ion-input>
-                  <div *ngIf="!myForm.controls.password.valid && (myForm.controls.password.dirty || submitAttempt)">
-                    <p>Password is invalid</p>
-                  </div>
+                <div *ngIf="!myForm.controls.password.valid && (myForm.controls.password.dirty || submitAttempt)">
+                  <p>Password is invalid</p>
+                </div>
               </ion-card-content>
             </ion-card>
           </form>
 
           <!--This button will link to next page:-->
-          <button ion-button (click)="popView()" type="submit"> 
-        Login</button>
-
+          <button ion-button (click)="popView()" type="submit">Login</button>
 
           <ion-row justify-content-around>
-            <button ion-button (click)="sendLink()" type="submit"> 
-                  Forgot Password?</button>
+            <button ion-button (click)="sendLink()" type="submit">Forgot Password?</button>
           </ion-row>
 
         </ion-col>
       </ion-row>
     </ion-grid>
-    <!--</ion-content>-->
+  </div>
+</ion-content>

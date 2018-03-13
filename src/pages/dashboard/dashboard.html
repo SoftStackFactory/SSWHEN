@@ -66,21 +66,21 @@
               </ion-col>
               <ion-col *ngIf="!editable">
                 <div #changeText><strong>Total Tax Contribution:</strong></div>
-                <div #changeText>$40,110</div>
+                <div #changeText>{{totalContribution}}</div>
               </ion-col>
               <ion-col *ngIf="editable">
                 <ion-label #changeText><strong>Total Tax Contribution</strong></ion-label>
                 <ion-input #changeText type="text" placeholder="{{totalContribution}}"></ion-input>
               </ion-col>
             </ion-row>
-            <ion-row *ngIf="editable">
-              <ion-col>
-                <button ion-button icon-start block full #changeText (click)="isEditable()">
-                  <ion-icon name="checkbox"></ion-icon>
-                  Save Edits
-                </button>
-              </ion-col>
-            </ion-row>
+            <!--<ion-row *ngIf="editable">-->
+            <!--  <ion-col>-->
+            <!--    <button ion-button icon-start block full #changeText (click)="isEditable()">-->
+            <!--      <ion-icon name="checkbox"></ion-icon>-->
+            <!--      Save Edits-->
+            <!--    </button>-->
+            <!--  </ion-col>-->
+            <!--</ion-row>-->
           </ion-card-content>
         </ion-card>
       </ion-col>

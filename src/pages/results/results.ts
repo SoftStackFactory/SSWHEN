@@ -5,11 +5,9 @@ import { EmailModalPage } from '../email-modal/email-modal';
 import { LandingPage } from '../landing/landing';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
 import { EmailProvider } from '../../providers/email/email';
-import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 import { ResultsProvider } from '../../providers/results/results';
 import { SSUser } from '../../models/SSUser';
 import { Results } from '../../models/Results';
-import { Storage } from '@ionic/storage';
 
 @IonicPage()
 
@@ -32,7 +30,6 @@ export class ResultsPage implements OnInit {
   pia: number;
   gender: any;
   dob: any;
-  dataa: any[] = [];
   infoData: any;
   
   results: Results = new Results();
@@ -47,27 +44,23 @@ export class ResultsPage implements OnInit {
     public modalCtrl: ModalController,
     public calculations$: CalculationsProvider,
     public email$: EmailProvider,
-    public ssUsersProvider: SsUsersProvider,
-    public resultsProvider: ResultsProvider,
-    public storage: Storage
+    public resultsProvider: ResultsProvider
     ) {
     this.display = "graph";
+    // From info-input page, myform = {birthDate: "..", gender: "..", fra: ".."}
     this.infoData = this.navParams.get('myForm');
     this.calculations$.pia = this.infoData.fra;
     this.calculations$.dob = this.infoData.birthDate;
     this.calculations$.gender = this.infoData.gender;
   }
   
-
   
-  goToRegister(params){
+  goToRegister(params) {
     if (!params) params = {};
-    this.navCtrl.push(RegisterPage, {
-      'infoData': this.infoData
-    });
+    this.navCtrl.push(RegisterPage, {'infoData': this.infoData});
   }
   
-  goToLanding(params){
+  goToLanding(params) {
     if (!params) params = {};
     this.navCtrl.push(LandingPage);
   }
@@ -161,9 +154,11 @@ export class ResultsPage implements OnInit {
   //getbenefitData() returns an observable
   //subsribe to observable, then parse data for graph and table
   
-  ngOnInit(){
+  ngOnInit() {
     this.calculations$.getBenefitData()
       .subscribe ( data => {
+        // dataObject stores the data from calculations$.getBenefitData(), which is:
+        // {retYears:[], monthly:[], cumulative:[], pv:[], FRA:number, lifeExpectancy:number}
         this.dataObject = data;
         this.dataObject = JSON.parse(this.dataObject._body);
         console.log(this.dataObject);
@@ -171,30 +166,6 @@ export class ResultsPage implements OnInit {
         this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
         this.tableMonthly = this.dataObject.monthly;
         
-        console.log(this.results);
-        this.saveResults();
-      }, err => {
-        console.log(err);
-      });
-    
-
-  }
-
-  saveResults() {
-    //save results
-    this.results.monthly = this.dataObject.monthly;
-    this.results.cumulative = this.dataObject.cumulative;
-    this.results.createdAt = new Date();
-    this.results.isRegistered = false;
-    this.results.gender = this.infoData.gender;
-    this.results.FRAbenefit = this.infoData.fra;
-    this.results.isMarried = false;
-    this.results.totalContribution = 0;
-    this.results.dateOfBirth = this.infoData.birthDate;
-    console.log(this.results);
-    this.resultsProvider.saveResults(this.results, this.token)
-      .subscribe( res => {
-        console.log(res);
       }, err => {
         console.log(err);
       });

@@ -4,6 +4,8 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 
 export class UserDataProvider {
+  
+  retYears: number[];
   monthly: number[];
   cumulative: number[];
   isRegistered: boolean;
@@ -14,10 +16,8 @@ export class UserDataProvider {
   dateOfBirth: any;
   userId: string;
   token: string;
-  retYears: number[];
   
-  constructor(
-    public storage: Storage) {
+  constructor(public storage: Storage) {
       this.storage.get('userId').then( val => {
         this.userId = val;
         
@@ -25,6 +25,8 @@ export class UserDataProvider {
           this.token = val;
         })
       })
-  }
+    }
 
 }
+
+
