@@ -21,7 +21,9 @@ export class CalculationsProvider {
   baseUrl: string = "http://sayed-fall-2017-phortonssf.c9users.io:8080/api/";
   
   getBenefitData() {
-    let apiUrl = `${this.baseUrl}results/benefitData?pia=${this.pia}&gender=${this.gender}&dob=${this.dob}11-2011`;
+    // let apiUrl = `${this.baseUrl}results/benefitData?pia=${this.pia}&gender=${this.gender}&dob=${this.dob}11-2011`;
+    let apiUrl = "https://sswhen-backend.herokuapp.com/api/results/benefitData?pia=" + this.pia +
+      "&gender=" + this.gender + "&dob=" + this.dob + "11-2011";
     return this.http.get(apiUrl);
   };
 }

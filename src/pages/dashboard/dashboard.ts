@@ -244,6 +244,7 @@ export class DashboardPage implements OnInit {
       this.results.dateOfBirth = val.dateOfBirth;
       this.results.isMarried = val.isMarried;
       this.results.totalContribution = val.totalContribution;
+      this.totalContribution = val.totalContribution;
     
       //call backend calculation route, using updated service properties, returns an observable
       this.calculations$.getBenefitData()
