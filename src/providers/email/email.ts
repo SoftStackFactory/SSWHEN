@@ -6,8 +6,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class EmailProvider {
   
-  urlResults: string = "http://sayed-fall-2017-phortonssf.c9users.io:8080/api/results/emailResults";
-  urlDashboard: string = "http://sayed-fall-2017-phortonssf.c9users.io:8080/api/results/emailResultsDashBoard";
+  urlResults: string = "https://sswhen-backend.herokuapp.com/api/results/emailResults";
+  urlDashboard: string = "https://sswhen-backend.herokuapp.com/api/results/emailResultsDashBoard";
   datapayload: any;
   date: any ;
   email: any;
