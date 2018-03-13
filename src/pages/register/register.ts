@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
@@ -21,6 +21,7 @@ export class RegisterPage {
 
   constructor(
     public navCtrl: NavController, 
+    public alertCtrl: AlertController,
     public navParams: NavParams, 
     public formBuilder: FormBuilder, 
     public ssusers$: SsUsersProvider,
@@ -72,7 +73,7 @@ export class RegisterPage {
 
       this.ssusers$.register(this.ssUser)
         .subscribe(res => {
-          alert("Thank you for registering!");
+          // alert("Thank you for registering!");
           console.log(res);
           console.log("Successful registration", this.ssUser);
           this.storage.set('SSUser', this.ssUser);
@@ -89,6 +90,15 @@ export class RegisterPage {
         });
     }
     
+  }
+  
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Registration Successful!',
+      subTitle: 'Thank you for registering!',
+      buttons: ['Continue']
+    });
+    alert.present();
   }
   
   //IONIC VIEW LOAD CONFIRMATION FUNCTION
