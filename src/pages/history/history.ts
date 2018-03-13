@@ -62,7 +62,7 @@ export class HistoryPage implements OnInit {
         // history.ts needs to send modal-history component the monthly array, and the cumulative array properties 
         this.results$.getResults({"id": this.userId}, this.token)
         .subscribe(response => {
-          this.testResults = response;
+          this.testResults = response.reverse();
           console.log(this.testResults);
         }, error => {
             alert("Error");
