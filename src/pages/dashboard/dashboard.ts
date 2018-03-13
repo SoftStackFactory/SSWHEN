@@ -28,16 +28,17 @@ export class DashboardPage implements OnInit {
   retYears: any[];
   monthlyPay: any[];
   tableMonthly: any [];
+  tableAccumulated: any [];
   totalAccumulated: any[];
   lifeExpectancy: number;
-  benefitAtFRA: number;
+  benefitAtFRA: any;
   ageFRA: number;
+  totalContribution: any;
   emailMonthly: any[] = [];
   emailCumulative: any[] = [];
   dataObject: any;
   storageObject: any;
   results: Results = new Results();
-  totalContribution: number;
   userModel: any;
   token: string;
   id: string;
@@ -244,6 +245,12 @@ export class DashboardPage implements OnInit {
           this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
           this.totalAccumulated = [ {data: this.dataObject.cumulative, label: 'Cumulative Payout per Retirement Year'} ];
           this.tableMonthly = this.dataObject.monthly;
+          this.tableAccumulated = this.dataObject.cumulative;
+          
+          this.lifeExpectancy = this.dataObject.lifeExpectancy / 12;
+          this.ageFRA = this.dataObject.FRA / 12;
+          this.benefitAtFRA = "$" + this.calculations$.pia;
+          
           console.log(this.calculations$.pia, "pia");
           console.log(this.calculations$.gender, "gender");
           console.log(this.calculations$.dob, "dob");
@@ -279,6 +286,7 @@ export class DashboardPage implements OnInit {
       });
   }
   
+
   presentModal(type) {
     let chartType = type;
     console.log(chartType);
@@ -286,7 +294,7 @@ export class DashboardPage implements OnInit {
       'modalType': chartType,
       'retYears': this.retYears,
       'tableMonthly': this.dataObject.monthly,
-      'totalAccumulated': this.dataObject.cumulative
+      'tableAccumulated': this.dataObject.cumulative
     });
     
     modal.present();

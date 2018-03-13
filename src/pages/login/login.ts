@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DashboardPage } from '../dashboard/dashboard';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, AlertController, ViewController} from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 import { Storage } from '@ionic/storage';
@@ -29,7 +29,8 @@ export class LoginPage {
     public formBuilder: FormBuilder,
     public alertCtrl: AlertController,
     public ssUsersProvider: SsUsersProvider,
-    public storage: Storage
+    public storage: Storage,
+    public viewCtrl: ViewController
   ) {
     this.myForm = formBuilder.group({
       email: ['', 
@@ -49,7 +50,7 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    this.viewCtrl.setBackButtonText('Back');
   }
 
   popView(){
@@ -65,7 +66,13 @@ export class LoginPage {
             
             this.ssUsersProvider.getUser(res.userId, res.id)
               .subscribe( res => {
-                alert('Thank you for loging in!');
+                let alert = this.alertCtrl.create({
+                title: '',
+                subTitle: 'You are logged in',
+                buttons: ['OK']
+                });
+                alert.present();
+                // alert('Thank you for loging in!');
                 console.log("Successful login", this.myForm.value);
                 this.ssUser = res;
                 console.log(this.ssUser);

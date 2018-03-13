@@ -1,66 +1,55 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>Back</ion-title>
-    <!--takes the user back to the register page? -->
+    <ion-title>SSWHEN</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content center text-center>
-  <div class="container">
-    <ion-grid>
-      <ion-row center>
-        <ion-col>
-          <h1 no-padding no-margin>SSWHEN</h1>
-          <h1></h1>
-          <h1 no-padding no-margin>Login</h1>
-
-          <h3 no-padding no-margin></h3>
-
-          <form [formGroup]="myForm">
-            <!--<form (ngSubmit)="logForm()"> -->
-            <ion-card>
-              <ion-card-header>
-                Email Address:
-              </ion-card-header>
-              <ion-card-content>
-
-                <ion-icon name="mail" float-right></ion-icon>
-
-                <ion-input formControlName="email" type="email" placeholder="email"></ion-input>
+<ion-content>
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col>
+        <h1 text-center ion-text color="primary"><strong>Login</strong></h1>
+        <ion-card>
+          <ion-card-content padding-horizontal>
+            <form [formGroup]="myForm">
+              <ion-list>
+                <ion-item no-padding>
+                  <ion-label color="secondary" stacked>Email Address:
+                    <ion-icon name="mail" float-right></ion-icon>
+                  </ion-label>
+                  <ion-input no-margin formControlName="email" type="email" placeholder="Email Address"></ion-input>
+                </ion-item>
                 <div *ngIf="!myForm.controls.email.valid && (myForm.controls.email.dirty || submitAttempt)">
-                  <p style="color:red">Email Invalid</p>
+                  <p margin-top ion-text color="danger">Email Invalid</p>
                 </div>
-              </ion-card-content>
-            </ion-card>
-            
-            <ion-card>
-              <ion-card-header>
-                Password:
-              </ion-card-header>
-              <ion-card-content>
-                <ion-icon name="lock" float-right></ion-icon>
-                <ion-input formControlName="password" type="password" placeholder="••••••••••"></ion-input>
-                  <div *ngIf="!myForm.controls.password.valid && (myForm.controls.password.dirty || submitAttempt)">
-                    <p>Password is invalid</p>
-                  </div>
-              </ion-card-content>
-            </ion-card>
-          </form>
+                <hr margin-vertical>
+                <ion-item no-padding>
+                  <ion-label color="secondary" stacked>Password:
+                    <ion-icon name="lock" float-right></ion-icon>
+                  </ion-label>
+                  <ion-input no-margin formControlName="password" type="password" placeholder="••••••••••"></ion-input>
+                </ion-item>
+                <div *ngIf="!myForm.controls.password.valid && (myForm.controls.password.dirty || submitAttempt)">
+                  <p margin-top ion-text color="danger">Password is invalid</p>
+                </div>
+              </ion-list>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row padding-horizontal>
+      <ion-col margin-right>
+        <button ion-button icon-end block full (click)="popView()" type="submit">
+          Login
+        </button>
+      </ion-col>
+      <ion-col margin-left>
+        <button ion-button icon-end block full (click)="sendLink()" type="submit">
+          Forgot Password?
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
 
-          <!--This button will link to next page:-->
-          <button ion-button (click)="popView()" type="submit"> 
-        Login</button>
-
-
-          <ion-row justify-content-around>
-            <button ion-button (click)="sendLink()" type="submit"> 
-                  Forgot Password?</button>
-          </ion-row>
-
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <!--</ion-content>-->

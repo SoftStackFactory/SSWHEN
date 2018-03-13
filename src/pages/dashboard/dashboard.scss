@@ -1,10 +1,8 @@
+.account-popover .popover-content {
+  max-width: 200px;
+}
+
 page-dashboard {
-  .account-popover {
-    background: red;
-  }
-  .account-popover .popover-wrapper .popover-content {
-    max-width: 140px;
-  }
 
   .btn-smaller {
     transform: scale(0.7);

@@ -1,9 +1,11 @@
 page-app-description {
     
-button.customBtn {
-    height:20px;
-    width:20px;
-    vertical-align:baseline;
-}
+    button.customBtn {
+        height:20px;
+        width:20px;
+        vertical-align:baseline;
+        overflow: hidden;
+    }
+    
 
 }

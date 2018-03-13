@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, AlertController, ViewController} from 'ionic-angular';
 import { InfoInputPage } from '../info-input/info-input';
 
 /**
@@ -16,7 +16,7 @@ import { InfoInputPage } from '../info-input/info-input';
 })
 export class AppDescriptionPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public viewCtrl: ViewController) {
     
   }
   
@@ -35,7 +35,7 @@ export class AppDescriptionPage {
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AppDescriptionPage');
+    this.viewCtrl.setBackButtonText('Back');
   }
   
   
