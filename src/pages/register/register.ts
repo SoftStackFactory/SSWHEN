@@ -18,6 +18,8 @@ export class RegisterPage {
   infoData: any;
   registerForm: FormGroup;
   submitAttempt: boolean = false;
+  errorMessage: string;
+  isError: boolean = false;
 
   constructor(
     public navCtrl: NavController, 
@@ -85,8 +87,20 @@ export class RegisterPage {
           
           this.navCtrl.setRoot(DashboardPage);
         }, err => {
+          this.isError = true;
           console.log(err);
           console.log("Unsuccessful registration", this.ssUser);
+          if(err.status === 0){
+            this.errorMessage = 'User is offline';
+          }else if(err.status === 404){
+            this.errorMessage = 'User was not found';
+          }else if(err.status === 422){
+            this.errorMessage = 'Email is taken';
+          }else if(err.status === 500){
+            this.errorMessage = 'Server is offline';
+          }else {
+            this.errorMessage = 'Unable to process request';
+          }
         });
     }
     

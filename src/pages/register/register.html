@@ -58,8 +58,16 @@
                 </ion-item>
                 <div padding-top *ngIf="!registerForm.controls.password.valid && (registerForm.controls.password.dirty || submitAttempt)">
                   <p ion-text color="danger">Please fill in your password</p>
+                  <p ion-text color="danger">Password must contain 1 number (0-9)</p>
+                  <p ion-text color="danger">Password must contain 1 uppercase letters</p>
+                  <p ion-text color="danger">Password must contain 1 lowercase letter</p>
+                  <p ion-text color="danger">Password must contain 1 non-alpha numeric number (!@#$)</p>
+                  <p ion-text color="danger">Password must be between 6 and 12 characters long</p>
                 </div>
               </ion-list>
+              <div *ngIf='isError'>
+                <h4 text-center>{{errorMessage}}</h4>
+              </div>
             </form>
           </ion-card-content>
         </ion-card>
