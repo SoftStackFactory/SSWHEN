@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DashboardPage } from '../dashboard/dashboard';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, AlertController, ViewController} from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 import { Storage } from '@ionic/storage';
@@ -29,7 +29,8 @@ export class LoginPage {
     public formBuilder: FormBuilder,
     public alertCtrl: AlertController,
     public ssUsersProvider: SsUsersProvider,
-    public storage: Storage
+    public storage: Storage,
+    public viewCtrl: ViewController
   ) {
     this.myForm = formBuilder.group({
       email: ['', 
@@ -46,11 +47,11 @@ export class LoginPage {
           ])
       ]
     });
-    console.log("this.myForm",this.myForm);
+    console.log("What the form captures:",this.myForm);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    this.viewCtrl.setBackButtonText('Back');
   }
 
   popView(){
@@ -59,24 +60,28 @@ export class LoginPage {
         console.log("Unsuccessful login :(", this.myForm); 
       } else {
         // this.myForm.value is an {} containing properties email and password
-        this.ssUsersProvider.login(this.myForm.value)
-          .subscribe( res => {
-            console.log("The return of the http.post request is: ",res);
-            // res is an {} with the properties created, id, ttl, userId
-            this.storage.set('userId', res.userId);
-            this.storage.set('token', res.id);
+        this.ssUsersProvider.login(this.myForm.value).subscribe( res => {
+          console.log("The return of the ssUsersProvider.login http.post request is: ",res);
+          // res is an {} with the properties created, id, ttl, userId
+          // We are interested in id (token), and userId
+          this.storage.set('userId', res.userId);
+          this.storage.set('token', res.id);
             
-            this.ssUsersProvider.getUser(res.userId, res.id)
-              .subscribe( res => {
-                alert('Thank you for logging in!');
+              this.ssUsersProvider.getUser(res.userId, res.id).subscribe( res => {
+                let alert = this.alertCtrl.create({
+                title: '',
+                subTitle: 'You are logged in',
+                buttons: ['OK']
+                });
+                alert.present();
                 console.log("Successful login", this.myForm.value);
                 this.ssUser = res;
                 console.log(this.ssUser);
                 this.storage.set('SSUser', res);
                 this.navCtrl.push(DashboardPage);
-              }, err => {
-                console.log(err)
-              });
+                }, err => {
+                  console.log(err)
+                });
           }, err => {
             // handle common error codes, 401, 422, 500, etc.
             console.log(err);

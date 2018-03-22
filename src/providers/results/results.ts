@@ -6,13 +6,13 @@ import 'rxjs/add/operator/map';
 
 export class ResultsProvider {
   
-  apiUrl: string = "http://sayed-fall-2017-phortonssf.c9users.io:8080/api";
+  apiUrl: string = "https://sswhen-backend.herokuapp.com/api";
 
   constructor(public http: Http) {}
   
   saveResults(result, token) {
     let path = '/results?access_token=' + token;
-    return this.http.post(this.apiUrl + path, result)
+    return this.http.post(this.apiUrl + path, result).map(res => res.json())
   }
 
   getResults(sSUser, token) {
@@ -25,9 +25,14 @@ export class ResultsProvider {
    return this.http.get(this.apiUrl + path).map(res => res.json());
   }
   
+  getResultsById(userId, token) {
+    let path = '/SSUsers/' + userId + '/results?access_token=' + token;
+    return this.http.get(this.apiUrl + path).map(res => res.json())
+  }
+  
   deleteResults(resultId, token) {
     let path = '/results/' + resultId + '?access_token=' + token;
-    return this.http.delete(this.apiUrl + path)
+    return this.http.delete(this.apiUrl + path).map(res => res.json())
   }
 
 }

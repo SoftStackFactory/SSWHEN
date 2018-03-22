@@ -1,7 +1,7 @@
 
 <ion-header>
   <ion-toolbar>
-    <ion-title>Modal Popup</ion-title>
+    <ion-title>Benefit Table</ion-title>
     <ion-buttons start>
       <button ion-button (click)="dismiss()"><span ion-text color="primary" showWhen="ios, browser">Cancel</span>
         <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
@@ -15,12 +15,6 @@
       <ion-col>
         <ion-card>
           <ion-card-content padding-horizontal>
-            <ion-row>
-              <ion-col>
-                <h2>Data Table</h2>
-                <h2>Chart type: {{chartType}}</h2>
-              </ion-col>
-            </ion-row>
 
             <div *ngIf="chartType == 'monthly'">
                 <page-data-table 

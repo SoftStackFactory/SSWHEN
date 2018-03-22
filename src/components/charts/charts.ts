@@ -57,4 +57,5 @@ export class ChartComponent {
     }
     console.log(e);
   };
+  
 }

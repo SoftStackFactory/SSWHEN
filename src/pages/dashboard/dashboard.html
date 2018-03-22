@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar hideBackButton="true">
-    <ion-title>Dashboard</ion-title>
+    <ion-title>SSWhen</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="presentLanguagePopover($event)">
         <ion-icon name="more"></ion-icon>
@@ -13,7 +13,7 @@
   <ion-grid no-padding>
     <ion-row align-items-center padding-horizontal>
       <ion-col align-self-start>
-        <h1>SSWhen</h1>
+        <h1 ion-text color="primary"><strong>Dashboard</strong></h1>
       </ion-col>
       <ion-col align-self-end>
         <button ion-button float-end color="light" icon-end (click)="presentAccountPopover($event)">
@@ -29,7 +29,7 @@
           <ion-card-content padding-horizontal>
             <ion-row align-items-center>
               <ion-col>
-                <h2 #changeText>User Information</h2>
+                <h2 ion-text color="primary" #changeText>User Information</h2>
               </ion-col>
               <ion-col>
                 <button style="vertical-align: top;" class="btn-smaller" ion-button icon-only float-end color="dark" (click)="isEditable()">
@@ -73,14 +73,6 @@
                 <ion-input #changeText type="text" placeholder="{{totalContribution}}"></ion-input>
               </ion-col>
             </ion-row>
-            <!--<ion-row *ngIf="editable">-->
-            <!--  <ion-col>-->
-            <!--    <button ion-button icon-start block full #changeText (click)="isEditable()">-->
-            <!--      <ion-icon name="checkbox"></ion-icon>-->
-            <!--      Save Edits-->
-            <!--    </button>-->
-            <!--  </ion-col>-->
-            <!--</ion-row>-->
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -89,6 +81,7 @@
     <ion-row align-items-center no-padding>
       <ion-col>
         <ion-card>
+          <div *ngIf="show"><button ion-button clear text-center (click)="reFresh()">Refresh Charts</button></div>
           <ion-card-content padding-horizontal>
             <div>
               <ion-segment [(ngModel)]="data">
@@ -105,7 +98,7 @@
               <ion-list *ngSwitchCase="'monthly'">
                 <ion-row padding-top>
                   <ion-col col-8>
-                    <p #changeText text-center>Monthly Benefit</p>
+                    <p #changeText text-left>Monthly Benefit</p>
                   </ion-col>
                   <ion-col col-4>
                     <a (click)="presentModal('monthly')" float-end color="primary" #changeText>View Table</a>
@@ -117,7 +110,7 @@
               <ion-list *ngSwitchCase="'cumulative'">
                 <ion-row padding-top>
                   <ion-col col-8>
-                    <p #changeText text-center>Cumulative Benefits</p>
+                    <p #changeText text-left>Cumulative Benefits</p>
                   </ion-col>
                   <ion-col col-4>
                     <a (click)="presentModal('cumulative')" float-end color="primary" #changeText>View Table</a>

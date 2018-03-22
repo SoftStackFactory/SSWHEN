@@ -7,17 +7,19 @@
 
 <ion-content>
   <ion-grid no-padding>
-
-
-    <ion-segment [(ngModel)]="display">
-      <ion-segment-button value="graph">
-        Graph
-      </ion-segment-button>
-      <ion-segment-button value="chart">
-        Table
-      </ion-segment-button>
-    </ion-segment>
-
+    
+    <ion-row padding-horizontal>
+      <ion-col>
+        <ion-segment [(ngModel)]="display">
+          <ion-segment-button value="graph">
+            Graph
+          </ion-segment-button>
+          <ion-segment-button value="chart">
+            Table
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
 
     <ion-row align-items-center no-padding>
       <ion-col>
@@ -27,9 +29,7 @@
           <div *ngSwitchCase="'graph'">
             <ion-card>
               <ion-card-header style="text-align: center">
-                Monthly Payout
-                <br> by
-                <br> Retirement Age
+                Monthly Payout by Retirement Age
               </ion-card-header>
 
               <ion-card-content>
@@ -51,12 +51,16 @@
 
     <ion-row padding-horizontal>
       <ion-col margin-right>
-        <button ion-button icon-start block (click)="showPrompt()"><ion-icon name="send"></ion-icon>
-            Email Result</button>
+        <button ion-button icon-start block (click)="showPrompt()">
+          <ion-icon name="send"></ion-icon>
+          Email Result
+        </button>
       </ion-col>
       <ion-col margin-left>
-        <button ion-button icon-start block on-click="goToRegister()"><ion-icon name="clipboard"></ion-icon>
-          Register</button>
+        <button ion-button icon-start block on-click="goToRegister()">
+          <ion-icon name="clipboard"></ion-icon>
+          Register
+        </button>
       </ion-col>
     </ion-row>
 

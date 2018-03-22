@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, ModalController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, ModalController, NavController, NavParams, ViewController} from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { EmailModalPage } from '../email-modal/email-modal';
 import { LandingPage } from '../landing/landing';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
 import { EmailProvider } from '../../providers/email/email';
-import { ResultsProvider } from '../../providers/results/results';
-import { SSUser } from '../../models/SSUser';
-import { Results } from '../../models/Results';
 
 @IonicPage()
 
@@ -23,7 +20,6 @@ export class ResultsPage implements OnInit {
   monthlyPay: any[];
   tableMonthly: any[];
   dataObject: any;
- 
   leftTitle: string = "Retirement Age";
   rightTitleMonthly: string = "Monthly Payout";
  
@@ -32,8 +28,6 @@ export class ResultsPage implements OnInit {
   dob: any;
   infoData: any;
   
-  results: Results = new Results();
-  ssUser: SSUser = new SSUser();
   userId: string;
   token: string;
   
@@ -44,11 +38,13 @@ export class ResultsPage implements OnInit {
     public modalCtrl: ModalController,
     public calculations$: CalculationsProvider,
     public email$: EmailProvider,
-    public resultsProvider: ResultsProvider
+    public viewCtrl: ViewController
     ) {
     this.display = "graph";
-    // From info-input page, myform = {birthDate: "..", gender: "..", fra: ".."}
+    // Retreive the form input data from Info-Input Page via navParams, and assign it to calculations$
     this.infoData = this.navParams.get('myForm');
+    console.log("Info Data from Info-Input Page:",this.infoData);
+    // From info-input page, myform = {birthDate: "..", gender: "..", fra: ".."}
     this.calculations$.pia = this.infoData.fra;
     this.calculations$.dob = this.infoData.birthDate;
     this.calculations$.gender = this.infoData.gender;
@@ -57,6 +53,7 @@ export class ResultsPage implements OnInit {
   
   goToRegister(params) {
     if (!params) params = {};
+    // Send the form input data to Register Page via navCtrl
     this.navCtrl.push(RegisterPage, {'infoData': this.infoData});
   }
   
@@ -155,10 +152,9 @@ export class ResultsPage implements OnInit {
   //subsribe to observable, then parse data for graph and table
   
   ngOnInit() {
-    this.calculations$.getBenefitData()
-      .subscribe ( data => {
-        // dataObject stores the data from calculations$.getBenefitData(), which is:
-        // {retYears:[], monthly:[], cumulative:[], pv:[], FRA:number, lifeExpectancy:number}
+    // Run calculations$.getBenefitData(), and poplulate the chart/table with the response
+    this.calculations$.getBenefitData().subscribe ( data => {
+        // The response is { retYears:[], monthly:[], cumulative:[], pv:[], FRA:number, lifeExpectancy:number }
         this.dataObject = data;
         this.dataObject = JSON.parse(this.dataObject._body);
         console.log(this.dataObject);
@@ -169,6 +165,10 @@ export class ResultsPage implements OnInit {
       }, err => {
         console.log(err);
       });
+  }
+
+  ionViewDidLoad() {
+    this.viewCtrl.setBackButtonText('Back');
   }
 
 }

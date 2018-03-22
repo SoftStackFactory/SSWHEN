@@ -1,52 +1,63 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title text-center>Benefit Information</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>SSWHEN</ion-title>
+  </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-grid>
-        <h3 text-center>Please Enter Your Information</h3>
+<ion-content>
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col>
+        <h1 text-center ion-text color="primary"><strong>Benefit Information</strong></h1>
         <ion-card>
-            <ion-card-content>
-                <form [formGroup]='myForm' novalidate>
-                    <ion-list>
-                        <ion-item text-center>
-                            <ion-label floating>Date of Birth</ion-label>
-                            <ion-datetime displayFormat="MM/YYYY" [(ngModel)]="this.calculations$.dob" name="Date" formControlName="birthDate"></ion-datetime>
-
-                        </ion-item>
-
-                        <div *ngIf='!myForm.controls.birthDate.valid && submitAttempt'>
-                            <h4 text-center>Please Enter Date of Birth</h4>
-                        </div>
-
-                        <ion-item text-center>
-                            <ion-label floating>Gender</ion-label>
-                            <ion-select [(ngModel)]="gender" name="this.calculations$.gender" formControlName="gender">
-                                <ion-option value="f">Female</ion-option>
-                                <ion-option value="m">Male</ion-option>
-                            </ion-select>
-                        </ion-item>
-                        <div *ngIf='!myForm.controls.gender.valid && submitAttempt'>
-                            <h4 text-center>Please Enter Gender</h4>
-                        </div>
-
-                        <ion-item>
-                            <ion-label floating text-center>Full Retirement Benefit</ion-label>
-                            <ion-input type="number" [(ngModel)]="this.calculations$.pia" formControlName="fra" name="FRA" text-center></ion-input>
-                        </ion-item>
-                        <div *ngIf='!myForm.controls.fra.valid && (myForm.controls.fra.dirty || submitAttempt)'>
-                            <h4 text-center>Invalid Full Retirement Amount</h4>
-                        </div>
-                    </ion-list>
-                </form>
-            </ion-card-content>
+          <ion-card-header>
+            <h2 ion-text color="primary">Please enter your information below:</h2>
+          </ion-card-header>
+          <ion-card-content padding-horizontal padding-bottom>
+            <form [formGroup]="myForm">
+              <ion-list>
+                <ion-item no-padding>
+                  <ion-label color="secondary" stacked>Date of Birth
+                    <ion-icon name="calendar" float-right></ion-icon>
+                  </ion-label>
+                  <ion-datetime displayFormat="MM/YYYY" min="1955-01" max="1970-12"  name="Date" formControlName="birthDate"></ion-datetime>
+                </ion-item>
+                <div *ngIf="!myForm.controls.birthDate.valid && submitAttempt">
+                  <p ion-text color="danger">Please Enter Date of Birth</p>
+                </div>
+                <hr>
+                <ion-item no-padding>
+                  <ion-label color="secondary" stacked>Gender
+                    <ion-icon name="person" float-right></ion-icon>
+                  </ion-label>
+                  <ion-select  name="gender" formControlName="gender">
+                    <ion-option value="f">Female</ion-option>
+                    <ion-option value="m">Male</ion-option>
+                  </ion-select>
+                </ion-item>
+                <div *ngIf="!myForm.controls.gender.valid && submitAttempt">
+                  <p ion-text color="danger">Please Enter Gender</p>
+                </div>
+                <hr>
+                <ion-item no-padding>
+                  <ion-label color="secondary" stacked>Full Retirement Benefit
+                    <ion-icon name="calculator" float-right></ion-icon>
+                  </ion-label>
+                  <ion-input type="number"  formControlName="fra" name="FRA"></ion-input>
+                </ion-item>
+                <div margin-top *ngIf="!myForm.controls.fra.valid && (myForm.controls.fra.dirty || submitAttempt)">
+                  <p ion-text color="danger">Invalid Full Retirement Amount</p>
+                </div>
+              </ion-list>
+            </form>
+          </ion-card-content>
         </ion-card>
-        <ion-row>
-            <ion-col width-4>
-                <button ion-button (click)='onSubmit()' block>Submit</button>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center padding-horizontal>
+      <ion-col>
+        <button ion-button icon-end block full (click)="onSubmit()">Submit</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

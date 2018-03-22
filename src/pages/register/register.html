@@ -1,66 +1,82 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>Registration</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>SSWHEN</ion-title>
+  </ion-navbar>
 </ion-header>
 
-
-<ion-content padding>
-    <ion-grid>
-        <h1 id="logo">SSWHEN</h1>
-
-        <!--IONIC CARD CONTAINER-->
+<ion-content>
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col>
+        <h1 text-center ion-text color="primary"><strong>Registration</strong></h1>
         <ion-card>
-            <ion-card-content>
-                <form [formGroup]="registerForm">
-                    <ion-list>
-                        <!--MARITAL STATUS-->
-                        <ion-item>
-                            <ion-label floating>Marital Status</ion-label>
-                            <ion-select formControlName="maritalStatus" [(ngModel)]="maritalStatus">
-                                <ion-option value="'single'">Single</ion-option>
-                                <ion-option value="'married'">Married</ion-option>
-                            </ion-select>
-                        </ion-item>
-                        <!--TOTAL TAX CONTRIBUTION-->
-                        <ion-item>
-                            <ion-label floating>Total Tax Contribution: </ion-label>
-                            <ion-input formControlName="totalTaxContribution" type="number" [(ngModel)]="totalTaxContribution"></ion-input>
-                            <div *ngIf="!registerForm.controls.totalTaxContribution.valid && (registerForm.controls.totalTaxContribution.dirty || submitAttempt)">
-                                <p>Please fill in your email</p>
-                            </div>
-                        </ion-item>
-                        <!--EMAIL-->
-                        <ion-item>
-                            <ion-label floating>Email: </ion-label>
-                            <ion-input formControlName="email" type="email" [(ngModel)]="email"></ion-input>
-                            <div *ngIf="!registerForm.controls.email.valid && (registerForm.controls.email.dirty || submitAttempt)">
-                                <p>Please fill in your email</p>
-                            </div>
-                        </ion-item>
-                        <!--PASSWORD-->
-                        <ion-item>
-                            <ion-label floating>Password: </ion-label>
-                            <ion-input formControlName="password" type="password" [(ngModel)]="password"></ion-input>
-                            <div *ngIf="!registerForm.controls.password.valid && (registerForm.controls.password.dirty || submitAttempt)">
-                                <p>Please fill in your password</p>
-                            </div>
-                        </ion-item>
-                        <!--CONFIRM PASSWORD-->
-                        <!--<ion-item>-->
-                        <!--    <ion-label floating>Confirm Password: </ion-label>-->
-                        <!--    <p>Please fill in your password</p>-->
-                        <!-- </ion-item>-->
-
-                    </ion-list>
-                </form>
-            </ion-card-content>
+          <ion-card-header>
+            <h2 ion-text color="primary">Please enter your information to register:</h2>
+          </ion-card-header>
+          <ion-card-content padding-horizontal padding-bottom>
+            <form [formGroup]="registerForm">
+              <ion-list>
+                <!--MARITAL STATUS-->
+                <ion-item no-padding>
+                  <ion-label color="secondary" stacked>Marital Status:
+                    <ion-icon name="contacts" float-right></ion-icon>
+                  </ion-label>
+                  <ion-select formControlName="maritalStatus" [(ngModel)]="maritalStatus">
+                    <ion-option value="'single'">Single</ion-option>
+                    <ion-option value="'married'">Married</ion-option>
+                  </ion-select>
+                </ion-item>
+                <hr>
+                <!--TOTAL TAX CONTRIBUTION-->
+                <ion-item no-padding>
+                  <ion-label color="secondary" stacked>Total Tax Contribution:
+                    <ion-icon name="cash" float-right></ion-icon>
+                  </ion-label>
+                  <ion-input formControlName="totalTaxContribution" type="number" [(ngModel)]="totalTaxContribution"></ion-input>
+                </ion-item>
+                <div padding-top *ngIf="!registerForm.controls.totalTaxContribution.valid && (registerForm.controls.totalTaxContribution.dirty || submitAttempt)">
+                  <p ion-text color="danger">Please enter your total tax contribution</p>
+                </div>
+                <hr>
+                <!--EMAIL-->
+                <ion-item no-padding>
+                  <ion-label color="secondary" stacked>Email:
+                    <ion-icon name="mail" float-right></ion-icon>
+                  </ion-label>
+                  <ion-input formControlName="email" type="email" [(ngModel)]="email"></ion-input>
+                </ion-item>
+                <div padding-top *ngIf="!registerForm.controls.email.valid && (registerForm.controls.email.dirty || submitAttempt)">
+                  <p ion-text color="danger">Please fill in your email</p>
+                </div>
+                <hr>
+                <!--PASSWORD-->
+                <ion-item no-padding>
+                  <ion-label color="secondary" stacked>Password:
+                    <ion-icon name="lock" float-right></ion-icon>
+                  </ion-label>
+                  <ion-input formControlName="password" type="password" [(ngModel)]="password"></ion-input>
+                </ion-item>
+                <div padding-top *ngIf="!registerForm.controls.password.valid && (registerForm.controls.password.dirty || submitAttempt)">
+                  <p ion-text color="danger">Please fill in your password</p>
+                  <p ion-text color="danger">Password must contain 1 number (0-9)</p>
+                  <p ion-text color="danger">Password must contain 1 uppercase letters</p>
+                  <p ion-text color="danger">Password must contain 1 lowercase letter</p>
+                  <p ion-text color="danger">Password must contain 1 non-alpha numeric number (!@#$)</p>
+                  <p ion-text color="danger">Password must be between 6 and 12 characters long</p>
+                </div>
+              </ion-list>
+              <div *ngIf='isError'>
+                <h4 text-center>{{errorMessage}}</h4>
+              </div>
+            </form>
+          </ion-card-content>
         </ion-card>
-
-        <!--ION BUTTON-->
-        <ion-row justify-content-center>
-            <button ion-button (click)='submit()'>Register</button>
-        </ion-row>
-
-    </ion-grid>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center padding-horizontal>
+      <ion-col>
+        <button ion-button icon-end block full (click)="submit()" (click)="showAlert()">Register</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
