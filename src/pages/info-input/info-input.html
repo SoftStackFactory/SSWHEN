@@ -20,7 +20,7 @@
                   <ion-label color="secondary" stacked>Date of Birth
                     <ion-icon name="calendar" float-right></ion-icon>
                   </ion-label>
-                  <ion-datetime displayFormat="MM/YYYY" min="1955-01" max="1970-12" [(ngModel)]="this.calculations$.dob" name="Date" formControlName="birthDate"></ion-datetime>
+                  <ion-datetime displayFormat="MM/YYYY" min="1955-01" max="1970-12"  name="Date" formControlName="birthDate"></ion-datetime>
                 </ion-item>
                 <div *ngIf="!myForm.controls.birthDate.valid && submitAttempt">
                   <p ion-text color="danger">Please Enter Date of Birth</p>
@@ -30,7 +30,7 @@
                   <ion-label color="secondary" stacked>Gender
                     <ion-icon name="person" float-right></ion-icon>
                   </ion-label>
-                  <ion-select [(ngModel)]="gender" name="this.calculations$.gender" formControlName="gender">
+                  <ion-select  name="gender" formControlName="gender">
                     <ion-option value="f">Female</ion-option>
                     <ion-option value="m">Male</ion-option>
                   </ion-select>
@@ -43,7 +43,7 @@
                   <ion-label color="secondary" stacked>Full Retirement Benefit
                     <ion-icon name="calculator" float-right></ion-icon>
                   </ion-label>
-                  <ion-input type="number" [(ngModel)]="this.calculations$.pia" formControlName="fra" name="FRA"></ion-input>
+                  <ion-input type="number"  formControlName="fra" name="FRA"></ion-input>
                 </ion-item>
                 <div margin-top *ngIf="!myForm.controls.fra.valid && (myForm.controls.fra.dirty || submitAttempt)">
                   <p ion-text color="danger">Invalid Full Retirement Amount</p>

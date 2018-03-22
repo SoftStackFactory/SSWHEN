@@ -8,10 +8,12 @@ import { Storage } from '@ionic/storage';
 import { UserDataProvider } from "../../providers/user-data/user-data";
 
 @IonicPage()
+
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
 })
+
 export class RegisterPage {
   
   ssUser = new SSUser();
@@ -22,7 +24,7 @@ export class RegisterPage {
   isError: boolean = false;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public alertCtrl: AlertController,
     public navParams: NavParams, 
     public formBuilder: FormBuilder, 
@@ -55,6 +57,7 @@ export class RegisterPage {
             ])
         ]
       });
+      // Retreive the form input data from Results Page via navParams
       this.infoData = this.navParams.get('infoData');
     }
   
@@ -64,26 +67,30 @@ export class RegisterPage {
     if(!this.registerForm.valid){
      console.log("Unsuccessful registration");
     } else {
-      console.log(this.infoData);
-      console.log(this.registerForm);
+      console.log("Register Page Form Results:",this.registerForm);
+      // Assign ssUser model its remaining properties properties from the form
       this.ssUser.email = this.registerForm.value.email;
       this.ssUser.password = this.registerForm.value.password;
       this.ssUser.totalContribution = this.registerForm.value.totalTaxContribution;
       this.ssUser.isMarried = this.registerForm.value.maritalStatus;
+      console.log("ssUser model now complete: ",this.ssUser);
+      this.storage.set('SSUser', this.ssUser);
+        
 
-      console.log(this.ssUser);
-
-      this.ssusers$.register(this.ssUser)
-        .subscribe(res => {
-          // alert("Thank you for registering!");
-          console.log(res);
-          console.log("Successful registration", this.ssUser);
-          this.storage.set('SSUser', this.ssUser);
+      this.ssusers$.register(this.ssUser).subscribe(res => {
+          // The response is like ssUser{}, but with id and token instead of password
+          console.log("response from ssusers$.register(): ",res);
+          console.log("Successful registration! The userId is: ", res.id);
+          console.log("Successful registration! The token is: ", res.token);
           this.storage.set('userId', res.id);
           this.storage.set('token', res.token);
           
+          // Fill userData$ with more data from the response
+          this.userData$.isRegistered = true;
           this.userData$.totalContribution = res.totalContribution;
           this.userData$.isMarried = res.isMarried;
+          this.userData$.userId = res.id;
+          this.userData$.token = res.token;
           
           this.navCtrl.setRoot(DashboardPage);
         }, err => {
@@ -115,18 +122,21 @@ export class RegisterPage {
     alert.present();
   }
   
-  //IONIC VIEW LOAD CONFIRMATION FUNCTION
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterPage');
-    console.log(this.infoData);
-      console.log(this.ssUser);
-      this.ssUser.dateOfBirth = this.userData$.dateOfBirth;
-      this.ssUser.gender = this.userData$.gender;
-      this.ssUser.FRAbenefit = this.userData$.FRAbenefit;
-      console.log(this.ssUser);
+    // SSUser{} has properties email: "", password: "", dateOfBirth: "", gender: "", FRAbenefit: number, totalContribution: number, isMarried: boolean
+    // Assign ssUser model some of its data from userData$ or infoData;
+    // userData$ currently has {dateOfBirth, gender, FRAbnefit} from Info-Input Page
+    console.log(this.userData$);
+    this.ssUser.dateOfBirth = this.userData$.dateOfBirth;
+    this.ssUser.gender = this.userData$.gender;
+    this.ssUser.FRAbenefit = this.userData$.FRAbenefit;
+    
+    // infoData retreives {birthDate: "", gender: "", fra: ""} from results page
+    // console.log("Info Data from Results Page:",this.infoData);
+    // this.ssUser.dateOfBirth = this.infoData.birthDate;
+    // this.ssUser.gender = this.infoData.gender;
+    // this.ssUser.FRAbenefit = this.infoData.fra;
   }
-  
-
   
 }
 

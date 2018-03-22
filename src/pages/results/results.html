@@ -40,7 +40,10 @@
             </ion-card>
           </div>
           <div *ngSwitchCase="'chart'">
-            <page-data-table [leftCol]="retYears" [leftColTitle]="leftTitle" [rightCol]="tableMonthly" [rightColTitle]="rightTitleMonthly"></page-data-table>
+            <!-- make sure that data has arrived before rendering table -->
+            <div *ngIf = "tableMonthly">
+              <page-data-table [leftCol]="retYears" [leftColTitle]="leftTitle" [rightCol]="tableMonthly" [rightColTitle]="rightTitleMonthly"></page-data-table>
+            </div>
           </div>
         </div>
       </ion-col>

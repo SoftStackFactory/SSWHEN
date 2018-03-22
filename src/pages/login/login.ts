@@ -47,6 +47,7 @@ export class LoginPage {
           ])
       ]
     });
+    console.log("What the form captures:",this.myForm);
   }
 
   ionViewDidLoad() {
@@ -58,11 +59,13 @@ export class LoginPage {
       if(!this.myForm.valid) {
         console.log("Unsuccessful login :(", this.myForm); 
       } else {
-        // login user using /SSUser/login
-        this.ssUsersProvider.login(this.myForm.value)
-          .subscribe( res => {
-            this.storage.set('userId', res.userId);
-            this.storage.set('token', res.id);
+        // this.myForm.value is an {} containing properties email and password
+        this.ssUsersProvider.login(this.myForm.value).subscribe( res => {
+          console.log("The return of the ssUsersProvider.login http.post request is: ",res);
+          // res is an {} with the properties created, id, ttl, userId
+          // We are interested in id (token), and userId
+          this.storage.set('userId', res.userId);
+          this.storage.set('token', res.id);
             
             this.ssUsersProvider.getUser(res.userId, res.id)
               .subscribe( res => {
@@ -78,9 +81,9 @@ export class LoginPage {
                 console.log(this.ssUser);
                 this.storage.set('SSUser', res);
                 this.navCtrl.push(DashboardPage);
-              }, err => {
-                console.log(err)
-              });
+                }, err => {
+                  console.log(err)
+                });
           }, err => {
             // handle common error codes, 401, 422, 500, etc.
             console.log(err);

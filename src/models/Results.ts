@@ -3,13 +3,13 @@
 export class Results {
     monthly: number[];
     cumulative: number[];
-    createdAt: any;
     isRegistered: boolean;
     gender: string;
-    lifeExpectancy: number;
     FRAbenefit: number;
-    ageFRA: number;
     totalContribution: number;
     isMarried: boolean;
     dateOfBirth: any;
+    ageFRA: number;
+    lifeExpectancy: number;
+    createdAt: any;
 }

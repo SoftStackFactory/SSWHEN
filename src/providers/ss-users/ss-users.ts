@@ -2,18 +2,14 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-/*
-  Generated class for the SsUsersProvider provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular DI.
-*/
 @Injectable()
 export class SsUsersProvider {
-
+  
   apiUrl: string = "https://sswhen-backend.herokuapp.com/api";
 
-  constructor(public http: Http) {}
+  constructor(public http: Http) {
+    console.log('Hello SsUsersProvider Provider');
+  }
 
   login(user) {
     let path = '/SSUsers/login';
@@ -21,6 +17,7 @@ export class SsUsersProvider {
   }
   
   register(user) {
+    // user is an {} containing email and password
     let path = '/SSUsers';
     return this.http.post(this.apiUrl + path, user).map(res => res.json())
   }
@@ -35,7 +32,7 @@ export class SsUsersProvider {
     return this.http.post(this.apiUrl + path, {}).map(res => res.json())
   }
   
-  getResultsByUser(user, token) {
+  saveResultsByUser(user, token) {
     let path = '/SSUsers/' + user.id + '/results?access_token=' + token;
     return this.http.post(this.apiUrl + path, user).map(res => res.json())
   }

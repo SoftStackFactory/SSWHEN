@@ -12,7 +12,7 @@ export class ResultsProvider {
   
   saveResults(result, token) {
     let path = '/results?access_token=' + token;
-    return this.http.post(this.apiUrl + path, result)
+    return this.http.post(this.apiUrl + path, result).map(res => res.json())
   }
 
   getResults(sSUser, token) {
@@ -21,12 +21,18 @@ export class ResultsProvider {
   // let path = '/results?filter='+ JSON.stringify(filter) + '&access_token='+ token;
   let path = '/results?filter='+ '[where][sSUserId]=' + userId + '&access_token='+ token;
   // let path = '/results?filter='+ '%7B%22where%22%3A%20%7B%20%22sSUserId%22%3A%20%22' + userId + '%22%7D%7D&access_token='+ token;
+   console.log(this.http.get(this.apiUrl + path).map(res => res.json()));
    return this.http.get(this.apiUrl + path).map(res => res.json());
+  }
+  
+  getResultsById(userId, token) {
+    let path = '/SSUsers/' + userId + '/results?access_token=' + token;
+    return this.http.get(this.apiUrl + path).map(res => res.json())
   }
   
   deleteResults(resultId, token) {
     let path = '/results/' + resultId + '?access_token=' + token;
-    return this.http.delete(this.apiUrl + path)
+    return this.http.delete(this.apiUrl + path).map(res => res.json())
   }
 
 }
