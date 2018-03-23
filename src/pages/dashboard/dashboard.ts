@@ -29,6 +29,7 @@ export class DashboardPage implements OnInit {
   retYears: any[];
   monthlyPay: any[];
   tableMonthly: any [];
+  tableAccumulated: any [];
   totalAccumulated: any[];
   lifeExpectancy: number;
   benefitAtFRA: number;
@@ -227,6 +228,7 @@ export class DashboardPage implements OnInit {
           this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
           this.totalAccumulated = [ {data: this.dataObject.cumulative, label: 'Cumulative Payout per Retirement Year'} ];
           this.tableMonthly = this.dataObject.monthly;
+          this.tableAccumulated = this.dataObject.cumulative;
           this.lifeExpectancy = Math.round(this.dataObject.lifeExpectancy/12);
           this.ageFRA = Math.round(this.dataObject.FRA / 12);
           this.emailMonthly = this.dataObject.monthly;
@@ -265,7 +267,7 @@ export class DashboardPage implements OnInit {
       'modalType': chartType,
       'retYears': this.retYears,
       'tableMonthly': this.dataObject.monthly,
-      'totalAccumulated': this.dataObject.cumulative
+      'tableAccumulated': this.dataObject.cumulative
     });
     
     modal.present();
