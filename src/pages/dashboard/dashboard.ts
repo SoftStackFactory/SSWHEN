@@ -1,5 +1,5 @@
 import {Component, ElementRef, QueryList, ViewChildren, OnInit} from '@angular/core';
-import {AlertController, IonicPage, ModalController, NavController, NavParams, PopoverController} from 'ionic-angular';
+import {AlertController, IonicPage, ModalController, NavController, NavParams, PopoverController, LoadingController} from 'ionic-angular';
 import {PopoverPage} from './popover-page';
 import {ModalDashboardComponent} from '../../components/modal-dashboard/modal-dashboard';
 import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover'; 
@@ -57,8 +57,16 @@ export class DashboardPage implements OnInit {
     public resultsProvider: ResultsProvider,
     public userData$: UserDataProvider,
     public storage: Storage,
-    public email$: EmailProvider
+    public email$: EmailProvider,
+    public loadingCtrl: LoadingController
   ) {}
+
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Loading Your Charts...",
+    });
+    loader.present();
+  }
 
   isEditable() {
     this.editable = !this.editable;
@@ -218,6 +226,10 @@ export class DashboardPage implements OnInit {
       }, error => {
         console.log("Could not get user",error);
       });
+      
+      if (this.dataObject == "undefined") {
+        this.presentLoading();
+      }
       
       // Run calculations$.getBenefitData(), and poplulate the chart/table with the response
       this.calculations$.getBenefitData().subscribe ( data => {
