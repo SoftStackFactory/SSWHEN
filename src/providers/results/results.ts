@@ -5,8 +5,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 
 export class ResultsProvider {
-  
-  apiUrl: string = "https://sswhen-backend.herokuapp.com/api";
+  apiUrl: string = "http://sayed-fall-2017-phortonssf.c9users.io:8080/api";
+  // apiUrl: string = "https://sswhen-backend.herokuapp.com/api";
 
   constructor(public http: Http) {}
   

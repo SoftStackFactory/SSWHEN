@@ -1,5 +1,5 @@
 import {Component, ElementRef, QueryList, ViewChildren, OnInit} from '@angular/core';
-import {AlertController, IonicPage, ModalController, NavController, NavParams, PopoverController, LoadingController} from 'ionic-angular';
+import {AlertController, IonicPage, ModalController, NavController, NavParams, PopoverController} from 'ionic-angular';
 import {PopoverPage} from './popover-page';
 import {ModalDashboardComponent} from '../../components/modal-dashboard/modal-dashboard';
 import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover'; 
@@ -44,6 +44,7 @@ export class DashboardPage implements OnInit {
   id: string;
   info: any;
   userModel: any;
+  loading: boolean;
 
   constructor(
     public navCtrl: NavController, 
@@ -57,16 +58,8 @@ export class DashboardPage implements OnInit {
     public resultsProvider: ResultsProvider,
     public userData$: UserDataProvider,
     public storage: Storage,
-    public email$: EmailProvider,
-    public loadingCtrl: LoadingController
+    public email$: EmailProvider
   ) {}
-
-  presentLoading() {
-    let loader = this.loadingCtrl.create({
-      content: "Loading Your Charts...",
-    });
-    loader.present();
-  }
 
   isEditable() {
     this.editable = !this.editable;
@@ -205,6 +198,7 @@ export class DashboardPage implements OnInit {
   //assign all properties, make all http calls OnInit
   
   ngOnInit() {
+    this.loading = true;
     
     // userId and token are defined on the UserDataProvider class in Register Page
     console.log("userId from UserDataProvider:",this.userData$.userId);
@@ -227,9 +221,6 @@ export class DashboardPage implements OnInit {
         console.log("Could not get user",error);
       });
       
-      if (this.dataObject == "undefined") {
-        this.presentLoading();
-      }
       
       // Run calculations$.getBenefitData(), and poplulate the chart/table with the response
       this.calculations$.getBenefitData().subscribe ( data => {

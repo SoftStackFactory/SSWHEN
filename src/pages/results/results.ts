@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AlertController, IonicPage, ModalController, NavController, NavParams, ViewController, LoadingController} from 'ionic-angular';
+import {AlertController, IonicPage, ModalController, NavController, NavParams, ViewController} from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { EmailModalPage } from '../email-modal/email-modal';
 import { LandingPage } from '../landing/landing';
@@ -22,6 +22,7 @@ export class ResultsPage implements OnInit {
   dataObject: any;
   leftTitle: string = "Retirement Age";
   rightTitleMonthly: string = "Monthly Payout";
+  loading: boolean;
  
   pia: number;
   gender: any;
@@ -38,8 +39,7 @@ export class ResultsPage implements OnInit {
     public modalCtrl: ModalController,
     public calculations$: CalculationsProvider,
     public email$: EmailProvider,
-    public viewCtrl: ViewController,
-    public loadingCtrl: LoadingController
+    public viewCtrl: ViewController
     ) {
     this.display = "graph";
     // Retreive the form input data from Info-Input Page via navParams, and assign it to calculations$
@@ -49,7 +49,9 @@ export class ResultsPage implements OnInit {
     this.calculations$.pia = this.infoData.fra;
     this.calculations$.dob = this.infoData.birthDate;
     this.calculations$.gender = this.infoData.gender;
+
   }
+
   
   
   goToRegister(params) {
@@ -87,13 +89,6 @@ export class ResultsPage implements OnInit {
     // console.log(payload);
     this.email$.sendEmailResults()
       .subscribe( res => console.log(res), err => console.log(err))
-  }
-  
-    presentLoading() {
-    let loader = this.loadingCtrl.create({
-      content: "Loading Your Charts...",
-    });
-    loader.present();
   }
   
   showPrompt() {
@@ -152,19 +147,15 @@ export class ResultsPage implements OnInit {
     confirm.present();
   }
   
-  sendEmail() {
-    
-  }
+  sendEmail() {}
   
   //getbenefitData() returns an observable
   //subsribe to observable, then parse data for graph and table
   
   ngOnInit() {
-    
-    if (this.dataObject == 'undefined') {
-      this.presentLoading();
-    }
-    
+
+    this.loading = true;
+
     // Run calculations$.getBenefitData(), and poplulate the chart/table with the response
     this.calculations$.getBenefitData().subscribe ( data => {
         // The response is { retYears:[], monthly:[], cumulative:[], pv:[], FRA:number, lifeExpectancy:number }
@@ -174,7 +165,6 @@ export class ResultsPage implements OnInit {
         this.retYears = this.dataObject.retYears;
         this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
         this.tableMonthly = this.dataObject.monthly;
-        
       }, err => {
         console.log(err);
       });
