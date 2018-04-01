@@ -50,7 +50,7 @@ export class HistoryPage implements OnInit {
     // From Register Page, the response of ssusers$.register(), containing userId & token was set to storage
     // From Dashboard Page, the response of resultsProvider.saveResults(), containing resultsProviderID was set to storage
     this.storage.get('resultsProviderID').then((val) => {
-        this.userId = val;
+      this.userId = val;
       this.storage.get('token').then((val) => {
         this.token = val;
         console.log(this.userId);

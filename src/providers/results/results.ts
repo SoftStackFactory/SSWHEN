@@ -5,8 +5,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 
 export class ResultsProvider {
-  apiUrl: string = "http://sayed-fall-2017-phortonssf.c9users.io:8080/api";
-  // apiUrl: string = "https://sswhen-backend.herokuapp.com/api";
+  // apiUrl: string = "http://sayed-fall-2017-phortonssf.c9users.io:8080/api";
+  apiUrl: string = "https://sswhen-backend.herokuapp.com/api";
 
   constructor(public http: Http) {}
   
@@ -22,7 +22,7 @@ export class ResultsProvider {
   let path = '/results?filter='+ '[where][sSUserId]=' + userId + '&access_token='+ token;
   // let path = '/results?filter='+ '%7B%22where%22%3A%20%7B%20%22sSUserId%22%3A%20%22' + userId + '%22%7D%7D&access_token='+ token;
    console.log(this.http.get(this.apiUrl + path).map(res => res.json()));
-   return this.http.get(this.apiUrl + path).map(res => res.json());
+   return this.http.get(this.apiUrl + path).map(res => res.json())
   }
   
   getResultsById(userId, token) {
