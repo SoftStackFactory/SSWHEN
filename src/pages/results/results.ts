@@ -29,9 +29,6 @@ export class ResultsPage implements OnInit {
   dob: any;
   infoData: any;
   
-  userId: string;
-  token: string;
-  
   constructor(
     public navCtrl: NavController, 
     public alertCtrl: AlertController, 
@@ -46,12 +43,11 @@ export class ResultsPage implements OnInit {
     this.infoData = this.navParams.get('myForm');
     console.log("Info Data from Info-Input Page:",this.infoData);
     // From info-input page, myform = {birthDate: "..", gender: "..", fra: ".."}
-    this.calculations$.pia = this.infoData.fra;
-    this.calculations$.dob = this.infoData.birthDate;
-    this.calculations$.gender = this.infoData.gender;
+    // this.calculations$.pia = this.infoData.fra;
+    // this.calculations$.gender = this.infoData.gender;
+    // this.calculations$.dob = this.infoData.birthDate;
 
   }
-
   
   
   goToRegister(params) {
@@ -157,11 +153,11 @@ export class ResultsPage implements OnInit {
     this.loading = true;
 
     // Run calculations$.getBenefitData(), and poplulate the chart/table with the response
-    this.calculations$.getBenefitData().subscribe ( data => {
+    this.calculations$.getBenefitData(this.infoData.fra, this.infoData.gender, this.infoData.birthDate).subscribe ( data => {
         // The response is { retYears:[], monthly:[], cumulative:[], pv:[], FRA:number, lifeExpectancy:number }
         this.dataObject = data;
         this.dataObject = JSON.parse(this.dataObject._body);
-        console.log(this.dataObject);
+        console.log("Result from Calculations Provider",this.dataObject);
         this.retYears = this.dataObject.retYears;
         this.monthlyPay = [ {data: this.dataObject.monthly, label: 'Monthly Payout per Retirement Year'} ];
         this.tableMonthly = this.dataObject.monthly;

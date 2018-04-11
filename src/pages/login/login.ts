@@ -78,7 +78,7 @@ export class LoginPage {
                 // alert('Thank you for loging in!');
                 console.log("Successful login", this.myForm.value);
                 this.ssUser = res;
-                console.log(this.ssUser);
+                console.log('Response from ssUsersProvider.getUser',this.ssUser);
                 this.storage.set('SSUser', res);
                 this.navCtrl.push(DashboardPage);
                 }, err => {

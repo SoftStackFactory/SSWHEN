@@ -13,16 +13,18 @@
   <ion-grid no-padding>
     <ion-row>
       <ion-col>
-        <h1 text-center ion-text color="primary"><strong>History</strong></h1>
+        <h1 text-center ion-text color="primary"><strong>History</strong></h1>  
       </ion-col>
     </ion-row>
-    <ion-row pa>
+    <ion-row>
       <ion-col>
         <h4 *ngIf='isError' text-center>{{errorMessage}}</h4>
         <h4 *ngIf='!isError' text-center>Browse Prior Entries</h4>
+        <div *ngIf='this.testResults'>
         <ion-list padding-vertical *ngFor="let result of this.testResults">
           <a #changeText ion-item (click)="presentHistoryModal(result)" text-center>{{ result.createdAt | date:'short' }}</a>
         </ion-list>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>

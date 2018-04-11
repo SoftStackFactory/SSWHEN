@@ -1,5 +1,5 @@
 import { Component, ElementRef, QueryList, ViewChildren, OnInit} from '@angular/core';
-import { IonicPage, ModalController, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { IonicPage, ModalController, PopoverController } from 'ionic-angular';
 import { LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
 import { ModalHistoryComponent} from '../../components/modal-history/modal-history';
 import { ResultsProvider } from '../../providers/results/results';
@@ -14,7 +14,7 @@ import { Storage } from '@ionic/storage';
 
 export class HistoryPage implements OnInit {
   
-  testResults: any;
+  testResults: any[] = [];
   Results: any;
   userId: number;
   token: string;
@@ -24,8 +24,6 @@ export class HistoryPage implements OnInit {
   @ViewChildren('changeText',  {read: ElementRef}) components: QueryList<ElementRef>;
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
     public popoverCtrl: PopoverController, 
     public modalCtrl: ModalController,
     public results$: ResultsProvider,
@@ -53,28 +51,19 @@ export class HistoryPage implements OnInit {
       this.userId = val;
       this.storage.get('token').then((val) => {
         this.token = val;
-        console.log(this.userId);
-        console.log(this.token);
+        console.log('userId from storage',this.userId);
+        console.log('token from storage',this.token);
         
-        // getResultsById() is passed userId & token - from local storage
-        // The response should be a Results model containing the passed userId.
-        // From this user data object, history.ts needs the createdAt date string, monthly and cumulative array properties 
+        // results$.getResultsById() is passed userId & token - from local storage
+        // The response is a Results model containing the passed userId.
+        // From this Results object, history.ts needs the createdAt date string, monthly and cumulative array properties 
         // history.ts needs to send modal-history component the monthly and cumulative array properties 
-        
+      
       this.results$.getResultsById(this.userId, this.token).subscribe(response => {
-          this.testResults = response.reverse();
-          console.log(this.testResults);
-          
-        //   // testResults contains entries not belonging to current user. 
-        //   // To retreive entries made by the current user, testResults must be filtered by the userId of the current user
-        //   var resultsById = [];
-        //   for (let i=0; i<this.testResults.length; i++) {
-        //     if ( this.testResults[i].id === this.userId ) {
-        //       resultsById.push(this.testResults[i]);
-        //     }
-        //   }
-        //   console.log(resultsById);
-        //   this.Results = resultsById;
+        console.log('Response from results$.getResultsById',response);
+        this.testResults.push(response);
+        this.testResults = this.testResults.reverse();
+        console.log('testResults:',this.testResults);
           
         }, err => {
           this.isError = true;

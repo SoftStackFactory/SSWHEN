@@ -86,6 +86,7 @@
     </ion-row>
 
     <div *ngIf="this.dataObject ">
+      
       <ion-row align-items-center no-padding>
         <ion-col>
           <ion-card>
@@ -106,7 +107,7 @@
                 <ion-list *ngSwitchCase="'monthly'">
                   <ion-row padding-top>
                     <ion-col col-8>
-                      <p #changeText text-left>Monthly Benefit</p>
+                      <p #changeText text-left>Monthly Benefits</p>
                     </ion-col>
                     <ion-col col-4>
                       <a (click)="presentModal('monthly')" float-end color="primary" #changeText>View Table</a>
@@ -131,6 +132,7 @@
           </ion-card>
         </ion-col>
       </ion-row>
+      
     </div>
     
     <ion-row padding-horizontal margin-bottom>

@@ -21,7 +21,7 @@ export class DataTablePage implements OnInit {
         for (let i=0; i<this.leftCol.length; i++) {
         let item = {
           columnOne: this.leftCol[i],
-          columnTwo: this.rightCol[i],
+          columnTwo: this.rightCol[i].toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0, minimumFractionDigits: 0,})
         };
       this.benefitData.push(item);
     }

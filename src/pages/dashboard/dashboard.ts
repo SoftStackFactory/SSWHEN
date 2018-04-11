@@ -199,31 +199,35 @@ export class DashboardPage implements OnInit {
   
   ngOnInit() {
     this.loading = true;
-    
-    // userId and token are defined on the UserDataProvider class in Register Page
-    console.log("userId from UserDataProvider:",this.userData$.userId);
-    console.log("token from UserDataProvider:",this.userData$.token);
-    this.ssUsersProvider.getUser(this.userData$.userId, this.userData$.token).subscribe(response => {
-      console.log('Response from SsUsersProvider.getUser() :',response);
-      // Assign calculations$ {pia, gender, dob} from ssUsersProvider
-      this.calculations$.pia = response.FRAbenefit;
-      this.calculations$.gender = response.gender;
-      this.calculations$.dob = response.dateOfBirth;
-      // Assign Results model some of its values from ssUsersProvider
-      this.results.gender = response.gender;
-      this.results.FRAbenefit = response.FRAbenefit;
-      this.results.totalContribution = response.totalContribution;
-      this.results.isMarried = response.isMarried;
-      this.results.dateOfBirth = response.dateOfBirth;
-      this.totalContribution = response.totalContribution;
-      this.benefitAtFRA = response.FRAbenefit;
-      }, error => {
-        console.log("Could not get user",error);
-      });
+    // userId & token are set to storage in the register page and the login page
+      this.storage.get('userId').then((val) => { 
+        this.id = val;
+        this.storage.get('token').then((val) => { 
+        this.token = val;
+        
+                  this.storage.get('SSUser').then((val) => {
+                  let userModel = val;
+                  this.ssUsersProvider.updateUser(this.id, this.token, userModel).subscribe(response => {
+                    console.log('ssUsersProvider.updateUser ran: ',response);
+                  }, error => {
+                    console.log("Could run ssUsersProvider.updateUser",error);
+                  })
+                  })
+        
+      this.ssUsersProvider.getUser(this.id, this.token).subscribe(response => {
+        console.log('Response from SsUsersProvider.getUser() :',response);
+        
+        // Assign Results model some of its values from ssUsersProvider
+        this.results.gender = response.gender;
+        this.results.FRAbenefit = response.FRAbenefit;
+        this.results.totalContribution = response.totalContribution;
+        this.results.isMarried = response.isMarried;
+        this.results.dateOfBirth = response.dateOfBirth;
+        this.totalContribution = response.totalContribution;
+        this.benefitAtFRA = response.FRAbenefit;
       
-      
-      // Run calculations$.getBenefitData(), and poplulate the chart/table with the response
-      this.calculations$.getBenefitData().subscribe ( data => {
+      // Run calculations$.getBenefitData(pia, gender, dob), and poplulate the chart/table with the response
+      this.calculations$.getBenefitData(response.FRAbenefit, response.gender, response.dateOfBirth).subscribe ( data => {
           // The response is { retYears:[], monthly:[], cumulative:[], pv:[], FRA:number, lifeExpectancy:number }
           this.dataObject = data;
           this.dataObject = JSON.parse(this.dataObject._body);
@@ -244,23 +248,36 @@ export class DashboardPage implements OnInit {
           this.results.ageFRA = this.dataObject.FRA;
           this.results.lifeExpectancy = this.dataObject.lifeExpectancy;
           this.results.createdAt = new Date();
+          console.log("results model now complete: ",this.results);
           
+          // Run resultsProvider.saveResults(results, token)
           this.saveResults();
-        }, err => console.log(err));
-    
+          
+        }, err => console.log('Could not run calculations$.getBenefitData(pia, gender, dob)',err));
+      
+      }, error => {
+        console.log("Could not get user",error);
+      });
+        
+      });
+        });
+        
   }
   
   saveResults() {
-    console.log("results model now complete: ",this.results);
-    console.log("UserDataProvider has: ",this.userData$);
-    this.resultsProvider.saveResults(this.results, this.userData$.token).subscribe( res => {
-    // Response is the same as Results model, except with an additional id: userId 
-    // thats different than the one from ssUsersProvider
-    console.log("Response from resultsProvider.saveResults(): ",res);
-    this.storage.set('resultsProviderID', res.id);
-    }, err => {
-      console.log(err);
+    
+    this.storage.get('token').then((val) => { 
+      this.token = val;
+      this.resultsProvider.saveResults(this.results, this.token).subscribe( res => {
+      // Response is the same as Results model, except with an additional id: userId 
+      // thats different than the one from ssUsersProvider
+      console.log("Response from resultsProvider.saveResults():",res);
+      this.storage.set('resultsProviderID', res.id);
+      }, err => {
+        console.log(err);
+      });
     });
+    
   }
   
   presentModal(type) {
