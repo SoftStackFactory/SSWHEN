@@ -16,6 +16,7 @@
           <ion-card-content padding-horizontal padding-bottom>
             <form [formGroup]="registerForm">
               <ion-list>
+                
                 <!--MARITAL STATUS-->
                 <ion-item no-padding>
                   <ion-label color="secondary" stacked>Marital Status:
@@ -52,10 +53,23 @@
                 <!--PASSWORD-->
                 <ion-item no-padding>
                   <ion-label color="secondary" stacked>Password:
-                    <ion-icon name="lock" float-right></ion-icon>
                   </ion-label>
-                  <ion-input formControlName="password" type="password" [(ngModel)]="password"></ion-input>
+                  <ion-input formControlName="password" type="{{type}}" [(ngModel)]="password" required validateEqual="confirmPassword" reverse="true"></ion-input>
+                   <button *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="ios-eye-off-outline"></ion-icon></button>
+                   <button *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="ios-eye-outline"></ion-icon></button>
+                   <ion-icon name="lock" float-right></ion-icon>
                 </ion-item>
+                <hr>
+                <ion-item no-padding>
+                  <ion-label color="secondary" stacked>Retype Password:
+                  </ion-label>
+                  <ion-input formControlName="confirmPassword" type="{{type}}" [ngModel]="confirmPassword" required validateEqual="password"></ion-input>
+                  <button *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="ios-eye-off-outline"></ion-icon></button>
+                  <button *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="ios-eye-outline"></ion-icon></button>
+                  <ion-icon name="lock" float-right></ion-icon>
+                </ion-item>
+                
+                
                 <div padding-top *ngIf="!registerForm.controls.password.valid && (registerForm.controls.password.dirty || submitAttempt)">
                   <p ion-text color="danger">Please fill in your password</p>
                   <p ion-text color="danger">Password must contain 1 number (0-9)</p>
@@ -64,6 +78,7 @@
                   <p ion-text color="danger">Password must contain 1 non-alpha numeric number (!@#$)</p>
                   <p ion-text color="danger">Password must be between 6 and 12 characters long</p>
                 </div>
+                
               </ion-list>
               <div *ngIf='isError'>
                 <h4 text-center>{{errorMessage}}</h4>
@@ -75,7 +90,7 @@
     </ion-row>
     <ion-row justify-content-center padding-horizontal>
       <ion-col>
-        <button ion-button icon-end block full (click)="submit()" (click)="showAlert()">Register</button>
+        <button ion-button icon-end block full (click)="submit()" >Register</button>
       </ion-col>
     </ion-row>
   </ion-grid>
