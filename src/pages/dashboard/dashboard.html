@@ -10,7 +10,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid no-padding>
+  <ion-grid no-padding fixed>
+    
     <ion-row align-items-center padding-horizontal>
       <ion-col align-self-start>
         <h1 ion-text color="primary"><strong>Dashboard</strong></h1>
@@ -73,63 +74,67 @@
                 <ion-input #changeText type="text" placeholder="{{totalContribution}}"></ion-input>
               </ion-col>
             </ion-row>
-            <ion-row *ngIf="editable">
-              <ion-col>
-                <button ion-button icon-start block full #changeText (click)="isEditable()">
-                  <ion-icon name="checkbox"></ion-icon>
-                  Save Edits
-                </button>
-              </ion-col>
-            </ion-row>
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
 
-    <ion-row align-items-center no-padding>
+    <ion-row align-items-center>
       <ion-col>
-        <ion-card>
-          <ion-card-content padding-horizontal>
-            <div>
-              <ion-segment [(ngModel)]="data">
-                <ion-segment-button value="monthly">
-                  Monthly
-                </ion-segment-button>
-                <ion-segment-button value="cumulative">
-                  Cumulative
-                </ion-segment-button>
-              </ion-segment>
-            </div>
-
-            <div [ngSwitch]="data">
-              <ion-list *ngSwitchCase="'monthly'">
-                <ion-row padding-top>
-                  <ion-col col-8>
-                    <p #changeText text-left>Monthly Benefit</p>
-                  </ion-col>
-                  <ion-col col-4>
-                    <a (click)="presentModal('monthly')" float-end color="primary" #changeText>View Table</a>
-                  </ion-col>
-                </ion-row>
-                <charts *ngIf="monthlyPay" [ChartType]="chartType" [xAxis]="retYears" [yAxis]="monthlyPay"></charts>
-              </ion-list>
-
-              <ion-list *ngSwitchCase="'cumulative'">
-                <ion-row padding-top>
-                  <ion-col col-8>
-                    <p #changeText text-left>Cumulative Benefits</p>
-                  </ion-col>
-                  <ion-col col-4>
-                    <a (click)="presentModal('cumulative')" float-end color="primary" #changeText>View Table</a>
-                  </ion-col>
-                </ion-row>
-                <charts *ngIf="totalAccumulated" [ChartType]="chartType" [xAxis]="retYears" [yAxis]="totalAccumulated"></charts>
-              </ion-list>
-            </div>
-          </ion-card-content>
-        </ion-card>
+        <div *ngIf="this.loading && !this.dataObject " class="loader">Loading...</div>
       </ion-col>
     </ion-row>
+
+    <div *ngIf="this.dataObject ">
+      
+      <ion-row align-items-center no-padding>
+        <ion-col>
+          <ion-card>
+            <div *ngIf="show"><button ion-button clear text-center (click)="reFresh()">Refresh Charts</button></div>
+            <ion-card-content padding-horizontal>
+              <div>
+                <ion-segment [(ngModel)]="data">
+                  <ion-segment-button value="monthly">
+                    Monthly
+                  </ion-segment-button>
+                  <ion-segment-button value="cumulative">
+                    Cumulative
+                  </ion-segment-button>
+                </ion-segment>
+              </div>
+  
+              <div [ngSwitch]="data">
+                <ion-list *ngSwitchCase="'monthly'">
+                  <ion-row padding-top>
+                    <ion-col col-8>
+                      <p #changeText text-left>Monthly Benefits</p>
+                    </ion-col>
+                    <ion-col col-4>
+                      <a (click)="presentModal('monthly')" float-end color="primary" #changeText>View Table</a>
+                    </ion-col>
+                  </ion-row>
+                  <charts *ngIf="monthlyPay" [ChartType]="chartType" [xAxis]="retYears" [yAxis]="monthlyPay"></charts>
+                </ion-list>
+  
+                <ion-list *ngSwitchCase="'cumulative'">
+                  <ion-row padding-top>
+                    <ion-col col-8>
+                      <p #changeText text-left>Cumulative Benefits</p>
+                    </ion-col>
+                    <ion-col col-4>
+                      <a (click)="presentModal('cumulative')" float-end color="primary" #changeText>View Table</a>
+                    </ion-col>
+                  </ion-row>
+                  <charts *ngIf="totalAccumulated" [ChartType]="chartType" [xAxis]="retYears" [yAxis]="totalAccumulated"></charts>
+                </ion-list>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      
+    </div>
+    
     <ion-row padding-horizontal margin-bottom>
       <ion-col>
         <button ion-button icon-start block full (click)="showPrompt()" #changeText>

@@ -1,23 +1,32 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>SSWHEN</ion-title>
+    <ion-title >SSWHEN</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid no-padding>
+  <ion-grid no-padding fixed>
     <ion-row>
       <ion-col>
         <h1 text-center ion-text color="primary"><strong>Results</strong></h1>
       </ion-col>
     </ion-row>
+    
+    <ion-row align-items-center>
+      <ion-col>
+        <div *ngIf="this.loading && !this.dataObject " class="loader">Loading...</div>
+      </ion-col>
+    </ion-row>
+    
+    <div *ngIf="this.dataObject ">
+      
     <ion-row padding-horizontal>
       <ion-col>
         <ion-segment [(ngModel)]="display">
           <ion-segment-button value="graph">
             Graph
           </ion-segment-button>
-          <ion-segment-button value="chart">
+          <ion-segment-button value="table">
             Table
           </ion-segment-button>
         </ion-segment>
@@ -39,8 +48,11 @@
               </ion-card-content>
             </ion-card>
           </div>
-          <div *ngSwitchCase="'chart'">
-            <page-data-table [leftCol]="retYears" [leftColTitle]="leftTitle" [rightCol]="tableMonthly" [rightColTitle]="rightTitleMonthly"></page-data-table>
+          <div *ngSwitchCase="'table'">
+            <!-- make sure that data has arrived before rendering table -->
+            <div *ngIf = "tableMonthly">
+              <page-data-table [leftCol]="retYears" [leftColTitle]="leftTitle" [rightCol]="tableMonthly" [rightColTitle]="rightTitleMonthly"></page-data-table>
+            </div>
           </div>
         </div>
       </ion-col>
@@ -59,5 +71,7 @@
         </button>
       </ion-col>
     </ion-row>
+    
+    </div>
   </ion-grid>
 </ion-content>

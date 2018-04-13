@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Storage} from '@ionic/storage';
 
 @Injectable()
 
@@ -16,14 +15,6 @@ export class UserDataProvider {
   token: string;
   retYears: number[];
 
-  constructor(public storage: Storage) {
-    this.storage.get('userId').then(val => {
-      this.userId = val;
-
-      this.storage.get('token').then(val => {
-        this.token = val;
-      })
-    })
-  }
+  constructor() {}
 
 }

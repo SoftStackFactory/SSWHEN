@@ -2,29 +2,22 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 
-/*
-  Generated class for the Calculations1Provider provider.
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular DI.
-*/
 
 @Injectable()
 export class CalculationsProvider {
 
-  constructor(public http: Http) {
-  }
+  constructor(public http: Http) {};
 
-  pia: number;
-  gender: string;
-  dob: string;
+  // pia: number;
+  // gender: string;
+  // dob: string;
 
-  getBenefitData() {
-    let apiUrl = "https://sswhen-backend.herokuapp.com/api/results/benefitData?pia=" + this.pia +
-      "&gender=" + this.gender + "&dob=" + this.dob + "11-2011";
+  getBenefitData(pia, gender, dob) {
+    // let apiUrl = "https://sswhen-backend.herokuapp.com/api/results/benefitData?pia=" + this.pia + "&gender=" + this.gender + "&dob=" + this.dob + "11-2011";
+        let apiUrl = "https://sswhen-backend.herokuapp.com/api/results/benefitData?pia=" + pia + "&gender=" + gender + "&dob=" + dob + "11-2011";
+    // let apiUrl = "https://sswhen-backend.herokuapp.com/api/results/benefitData?pia=" + this.pia + "&gender=" + this.gender + "&dob=" + this.dob + "&access_token=" + token;
     return this.http.get(apiUrl);
-
   };
 }
-
 
 

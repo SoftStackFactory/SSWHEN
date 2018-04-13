@@ -1,5 +1,5 @@
 import { Component, ElementRef, QueryList, ViewChildren, OnInit} from '@angular/core';
-import {IonicPage, ModalController, NavController, NavParams, PopoverController, ViewController} from 'ionic-angular';
+import { IonicPage, ModalController, PopoverController } from 'ionic-angular';
 import { LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover';
 import { ModalHistoryComponent} from '../../components/modal-history/modal-history';
 import { ResultsProvider } from '../../providers/results/results';
@@ -14,19 +14,19 @@ import { Storage } from '@ionic/storage';
 
 export class HistoryPage implements OnInit {
   
-  testResults: any;
+  testResults: any[] = [];
+  Results: any;
   userId: number;
   token: string;
+  errorMessage: string;
+  isError: boolean = false;
   
   @ViewChildren('changeText',  {read: ElementRef}) components: QueryList<ElementRef>;
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
     public popoverCtrl: PopoverController, 
     public modalCtrl: ModalController,
     public results$: ResultsProvider,
-    public viewCtrl: ViewController,
     private storage: Storage) {}
 
   presentLanguagePopover(myEvent) {
@@ -43,33 +43,49 @@ export class HistoryPage implements OnInit {
       modal.present();
   }
 
-  ionViewDidLoad() {
-    this.viewCtrl.setBackButtonText('Back');
-  }
 
   ngOnInit() {
-  
-    this.storage.get('userId').then((val) => {
-        this.userId = val;
+    // From Register Page, the response of ssusers$.register(), containing userId & token was set to storage
+    // From Dashboard Page, the response of resultsProvider.saveResults(), containing resultsProviderID was set to storage
+    this.storage.get('resultsProviderID').then((val) => {
+      this.userId = val;
       this.storage.get('token').then((val) => {
         this.token = val;
-        console.log(this.userId);
-        console.log(this.token);
+        console.log('userId from storage',this.userId);
+        console.log('token from storage',this.token);
         
-        // getResults() is passed userId & token - from local storage
-        // The response will be an array containing the user data object associated with the passed userId.
-        // From this user data object, history.ts needs the createdAt date string property
-        // history.ts needs to send modal-history component the monthly array, and the cumulative array properties 
-        this.results$.getResults({"id": this.userId}, this.token)
-        .subscribe(response => {
-          this.testResults = response;
-          console.log(this.testResults);
-        }, error => {
-            alert("Error");
-          // Create cases where the error message depends on the service error, ex 400
-          // See common error codes
+        // results$.getResultsById() is passed userId & token - from local storage
+        // The response is a Results model containing the passed userId.
+        // From this Results object, history.ts needs the createdAt date string, monthly and cumulative array properties 
+        // history.ts needs to send modal-history component the monthly and cumulative array properties 
+      
+      this.results$.getResultsById(this.userId, this.token).subscribe(response => {
+        console.log('Response from results$.getResultsById',response);
+        this.testResults.push(response);
+        this.testResults = this.testResults.reverse();
+        console.log('testResults:',this.testResults);
+          
+        }, err => {
+          this.isError = true;
+          console.log(err);
+          if(err.status === 0){
+            this.errorMessage = 'User is offline';
+          }
+          else if(err.status === 401){
+            this.errorMessage = 'Unauthorized access';
+          }else if(err.status === 404){
+            this.errorMessage = 'User was not found';
+          }else if(err.status === 422){
+            this.errorMessage = 'Email is taken';
+          }else if(err.status === 500){
+            this.errorMessage = 'Server is offline';
+          }else {
+            this.errorMessage = 'Unable to process request';
+          }
         })
+        
       });
     });
   }
+  
 }

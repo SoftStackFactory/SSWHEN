@@ -1,6 +1,7 @@
 // Re-usable agnostic chart. chart type, x & y axis data fed in by parent page
 
 import { Component, Input } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
 import { CalculationsProvider } from '../../providers/calculations/calculations';
 
 @Component({
@@ -16,7 +17,7 @@ export class ChartComponent {
   retirementAge: any;
   payout: any;
 
-  constructor( public calculations$: CalculationsProvider) {}
+  constructor(public calculations$: CalculationsProvider) {}
   
   public ChartOptions:any = {
     responsive: true,
@@ -31,6 +32,15 @@ export class ChartComponent {
         fontSize: 12,
         fontStyle: 'bold',
       }
+    },
+    scales: {
+        yAxes: [{
+          ticks: {
+            callback: function(label, index, labels) {
+              return label.toLocaleString("en-US",{style:"currency", currency:"USD", minimumFractionDigits:"0"});
+            }
+          }
+        }]
     }
   };
   public ChartLegend:boolean = false;
@@ -55,6 +65,6 @@ export class ChartComponent {
     else {
       console.log("You didn't click on a Bar")
     }
-    console.log(e);
   };
+  
 }
