@@ -18,7 +18,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <h4 *ngIf='isError' text-center>{{errorMessage}}</h4>
+        <h4 *ngIf='isError' ion-text color="danger" text-center>{{errorMessage}}</h4>
         <h4 *ngIf='!isError' text-center>Browse Prior Entries</h4>
         <div *ngIf='this.testResults'>
         <ion-list padding-vertical *ngFor="let result of this.testResults">
