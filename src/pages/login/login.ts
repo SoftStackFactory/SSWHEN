@@ -16,9 +16,11 @@ export class LoginPage {
   myForm: FormGroup;
   submitAttempt: boolean = false;
   ssUser: SSUser;
-  errorMessage: any;
   isError: boolean = false;
+  errorMessage: any;
   loading: boolean;
+  type: string = 'password';
+  showPass: boolean = false;  
 
   constructor(
     public navCtrl: NavController,
@@ -47,6 +49,15 @@ export class LoginPage {
     console.log("What the form captures:", this.myForm);
   }
 
+  showPassword() {
+    this.showPass = !this.showPass;
+    if(this.showPass){
+      this.type = 'text';
+    } else {
+      this.type = 'password';
+    }
+  }
+
   ionViewDidLoad() {
     this.viewCtrl.setBackButtonText('Back');
   }
@@ -57,12 +68,12 @@ export class LoginPage {
       console.log("Unsuccessful login :(", this.myForm);
     } else {
       this.loading = true;
-      
+
       // this.myForm.value is an {} containing properties email and password
       console.log("Successful login", this.myForm.value);
       this.userData$.email = this.myForm.value.email;
       this.userData$.password = this.myForm.value.password;
-      
+
       this.ssUsersProvider.login(this.myForm.value).subscribe(res => {
         console.log("The return of the ssUsersProvider.login http.post request is: ", res);
         // res contains {created, id, ttl, userId}.  We are interested in id (token), and userId

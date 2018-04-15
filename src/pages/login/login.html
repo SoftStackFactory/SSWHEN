@@ -24,10 +24,11 @@
                 </div>
                 <hr margin-vertical>
                 <ion-item no-padding>
-                  <ion-label color="secondary" stacked>Password:
-                    <ion-icon name="lock" float-right></ion-icon>
-                  </ion-label>
-                  <ion-input no-margin formControlName="password" type="password" placeholder="••••••••••"></ion-input>
+                  <ion-label color="secondary" stacked>Password:</ion-label>
+                  <ion-input no-margin formControlName="password" type="{{type}}" [(ngModel)]="password" placeholder="••••••••••"></ion-input>
+                  <button *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="ios-eye-off-outline"></ion-icon></button>
+                  <button *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="ios-eye-outline"></ion-icon></button>
+                  <ion-icon name="lock" float-right></ion-icon>
                 </ion-item>
                 <div *ngIf="!myForm.controls.password.valid && (myForm.controls.password.dirty || submitAttempt)">
                   <p margin-top ion-text color="danger">Password is invalid</p>
@@ -38,13 +39,13 @@
         </ion-card>
       </ion-col>
     </ion-row>
-    
+
     <ion-row align-items-center>
       <ion-col>
         <div *ngIf="this.loading && !this.ssUser " class="loader">Loading...</div>
       </ion-col>
     </ion-row>
-    
+
     <h4 *ngIf='isError' ion-text color="danger" text-center>{{errorMessage}}</h4>
     <ion-row padding-horizontal>
       <ion-col margin-right>
@@ -60,4 +61,3 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-

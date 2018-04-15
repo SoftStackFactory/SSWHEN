@@ -19,8 +19,8 @@ export class RegisterPage {
   infoData: any;
   registerForm: FormGroup;
   submitAttempt: boolean = false;
-  errorMessage: string;
   isError: boolean = false;
+  errorMessage: string;
   type: string = 'password';
   showPass: boolean = false;
 
