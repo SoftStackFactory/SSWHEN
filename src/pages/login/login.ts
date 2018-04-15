@@ -3,15 +3,9 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { IonicPage, NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
-import { Storage } from '@ionic/storage';
 import { SSUser } from '../../models/SSUser';
+import { UserDataProvider } from "../../providers/user-data/user-data";
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -32,8 +26,8 @@ export class LoginPage {
     public formBuilder: FormBuilder,
     public alertCtrl: AlertController,
     public ssUsersProvider: SsUsersProvider,
-    public storage: Storage,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    public userData$: UserDataProvider
   ) {
     this.myForm = formBuilder.group({
       email: ['',
@@ -66,32 +60,16 @@ export class LoginPage {
       
       // this.myForm.value is an {} containing properties email and password
       console.log("Successful login", this.myForm.value);
+      this.userData$.email = this.myForm.value.email;
+      this.userData$.password = this.myForm.value.password;
+      
       this.ssUsersProvider.login(this.myForm.value).subscribe(res => {
         console.log("The return of the ssUsersProvider.login http.post request is: ", res);
-        // res is an {} with the properties created, id, ttl, userId
-        // We are interested in id (token), and userId
-        this.storage.set('userId', res.userId);
-        this.storage.set('token', res.id);
+        // res contains {created, id, ttl, userId}.  We are interested in id (token), and userId
+        this.userData$.userId = res.userId;
+        this.userData$.token = res.id;
 
-        this.ssUsersProvider.getUser(res.userId, res.id).subscribe(res => {
-            let alert = this.alertCtrl.create({
-              title: '',
-              subTitle: 'You are logged in',
-              buttons: ['OK']
-            });
-            alert.present();
-            // ssUsersProvider.getUser res is an SSUser except with id instead of password
-            // Due to the way the back end code written in sswhen-bk/common/models/ss-user.json, password is a required field in the SSUser model
-            // Therefore the user's password has to be added to the SSUser model thats passed into ssUsersProvider's methods
-            // This is a security risk best avoided if the backend code makes the password optional instead of required
-            this.ssUser = res;
-            this.ssUser.password = this.myForm.value.password;
-            console.log('Response from ssUsersProvider.getUser', this.ssUser);
-            this.storage.set('SSUser', this.ssUser);
-            this.navCtrl.push(DashboardPage);
-          }, err => {
-            console.log("Could not get user",err)
-          });
+        this.navCtrl.push(DashboardPage);
       }, err => {
         this.isError = true;
         console.log('error message: ', err);

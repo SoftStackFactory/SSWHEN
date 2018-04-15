@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AlertController, IonicPage, ModalController, NavController, NavParams, ViewController} from 'ionic-angular';
+import { AlertController, IonicPage, ModalController, NavController, NavParams, ViewController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { EmailModalPage } from '../email-modal/email-modal';
 import { LandingPage } from '../landing/landing';
@@ -42,11 +42,6 @@ export class ResultsPage implements OnInit {
     // Retreive the form input data from Info-Input Page via navParams, and assign it to calculations$
     this.infoData = this.navParams.get('myForm');
     console.log("Info Data from Info-Input Page:",this.infoData);
-    // From info-input page, myform = {birthDate: "..", gender: "..", fra: ".."}
-    // this.calculations$.pia = this.infoData.fra;
-    // this.calculations$.gender = this.infoData.gender;
-    // this.calculations$.dob = this.infoData.birthDate;
-
   }
   
   

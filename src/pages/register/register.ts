@@ -4,7 +4,6 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 import { SSUser } from '../../models/SSUser';
-import { Storage } from '@ionic/storage';
 import { UserDataProvider } from "../../providers/user-data/user-data";
 
 @IonicPage()
@@ -31,7 +30,6 @@ export class RegisterPage {
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public ssusers$: SsUsersProvider,
-    public storage: Storage,
     public userData$: UserDataProvider) {
     this.registerForm = formBuilder.group({
       maritalStatus: ['',
@@ -101,27 +99,23 @@ export class RegisterPage {
       console.log("Unsuccessful registration");
     } else {
       console.log("Register Page Form Results:", this.registerForm);
+      
+      // Fill userData$ with more of its data from the form
+      this.userData$.isRegistered = true;
+      this.userData$.totalContribution = this.registerForm.value.totalTaxContribution;
+      this.userData$.isMarried = this.registerForm.value.maritalStatus;
+      this.userData$.email = this.registerForm.value.email;
+      this.userData$.password = this.registerForm.value.password;
+      
       // Assign ssUser model its remaining properties properties from the form
       this.ssUser.email = this.registerForm.value.email;
       this.ssUser.password = this.registerForm.value.password;
       this.ssUser.totalContribution = this.registerForm.value.totalTaxContribution;
       this.ssUser.isMarried = this.registerForm.value.maritalStatus;
-      console.log("ssUser model now complete: ", this.ssUser);
-      this.storage.set('SSUser', this.ssUser);
-
-
+      // ssUser model now complete and can be passed to SsUsersProvider.register(ssUser)
       this.ssusers$.register(this.ssUser).subscribe(res => {
         // The response is like ssUser{}, but with id and token instead of password
         console.log("response from ssusers$.register(): ", res);
-        console.log("Successful registration! The userId is: ", res.id);
-        console.log("Successful registration! The token is: ", res.token);
-        this.storage.set('userId', res.id);
-        this.storage.set('token', res.token);
-
-        // Fill userData$ with more data from the response
-        this.userData$.isRegistered = true;
-        this.userData$.totalContribution = res.totalContribution;
-        this.userData$.isMarried = res.isMarried;
         this.userData$.userId = res.id;
         this.userData$.token = res.token;
 
@@ -158,9 +152,8 @@ export class RegisterPage {
 
   ionViewDidLoad() {
     // SSUser{} has properties email: "", password: "", dateOfBirth: "", gender: "", FRAbenefit: number, totalContribution: number, isMarried: boolean
-    // Assign ssUser model some of its data from userData$ or infoData;
+    // Assign ssUser model some of its data from either userData$ or infoData;
     // userData$ currently has {dateOfBirth, gender, FRAbnefit} from Info-Input Page
-    console.log(this.userData$);
     this.ssUser.dateOfBirth = this.userData$.dateOfBirth;
     this.ssUser.gender = this.userData$.gender;
     this.ssUser.FRAbenefit = this.userData$.FRAbenefit;

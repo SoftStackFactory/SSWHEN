@@ -110,7 +110,7 @@
                       <p #changeText text-left>Monthly Benefits</p>
                     </ion-col>
                     <ion-col col-4>
-                      <a (click)="presentModal('monthly')" float-end color="primary" #changeText>View Table</a>
+                      <a (click)="presentTable('monthly')" float-end color="primary" #changeText>View Table</a>
                     </ion-col>
                   </ion-row>
                   <charts *ngIf="monthlyPay" [ChartType]="chartType" [xAxis]="retYears" [yAxis]="monthlyPay"></charts>
@@ -122,7 +122,7 @@
                       <p #changeText text-left>Cumulative Benefits</p>
                     </ion-col>
                     <ion-col col-4>
-                      <a (click)="presentModal('cumulative')" float-end color="primary" #changeText>View Table</a>
+                      <a (click)="presentTable('cumulative')" float-end color="primary" #changeText>View Table</a>
                     </ion-col>
                   </ion-row>
                   <charts *ngIf="totalAccumulated" [ChartType]="chartType" [xAxis]="retYears" [yAxis]="totalAccumulated"></charts>

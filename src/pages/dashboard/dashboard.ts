@@ -5,11 +5,9 @@ import {ModalDashboardComponent} from '../../components/modal-dashboard/modal-da
 import {LangaugePopoverComponent} from '../../components/langauge-popover/langauge-popover'; 
 import { CalculationsProvider } from '../../providers/calculations/calculations';
 import { EmailProvider } from '../../providers/email/email';
-import { MockDataProvider } from '../../providers/mock-data/mock-data';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
 import { ResultsProvider } from '../../providers/results/results';
 import { UserDataProvider } from '../../providers/user-data/user-data';
-import { Storage } from '@ionic/storage';
 import { Results } from '../../models/Results';
 
 @IonicPage()
@@ -37,13 +35,8 @@ export class DashboardPage implements OnInit {
   emailMonthly: any[] = [];
   emailCumulative: any[] = [];
   dataObject: any;
-  storageObject: any;
   results: Results = new Results();
   totalContribution: number;
-  token: string;
-  id: string;
-  info: any;
-  userModel: any;
   loading: boolean;
 
   constructor(
@@ -53,11 +46,9 @@ export class DashboardPage implements OnInit {
     public modalCtrl: ModalController, 
     public alertCtrl: AlertController,
     public calculations$: CalculationsProvider,
-    public mock$: MockDataProvider,
     public ssUsersProvider: SsUsersProvider,
     public resultsProvider: ResultsProvider,
     public userData$: UserDataProvider,
-    public storage: Storage,
     public email$: EmailProvider
   ) {}
 
@@ -85,40 +76,35 @@ export class DashboardPage implements OnInit {
           text: 'Update',
           handler: data => {
             this.show = !this.show;
+
+            let userModel = {
+            email: this.userData$.email,
+            password: this.userData$.password,
+            dateOfBirth: this.userData$.dateOfBirth,
+            gender: this.userData$.gender,
+            FRAbenefit: this.userData$.FRAbenefit,
+            totalContribution: this.userData$.totalContribution,
+            isMarried: this.userData$.isMarried
+          }
+                  
+            // Update the FRAbenefit property of the SSUser model
+            userModel.FRAbenefit = data.PIA;
             
-            this.storage.get('SSUser').then((val) => {
-              let userModel = val;
-              this.storage.get('token').then((val) => {
-                this.token = val;
-                this.storage.get('userId').then((val) => {
-                  this.id = val;
-                  
-                  // Update the FRAbenefit property of the SSUser model
-                  // Re-set the SSUser model into local storage
-                  userModel.FRAbenefit = data.PIA;
-                  this.storage.set('SSUser', userModel);
-                  
-                  // Update the ssUsersProvider with the new SSUser model
-                  console.log(this.id);
-                  console.log(this.token);
-                  console.log(userModel);
-                  this.ssUsersProvider.updateUser(this.id, this.token, userModel).subscribe(response => {
-                    console.log('FRA updated, res: ',response);
-                    // ngOnInit() fired to recalculate chart variables with new ssUsersProvider data
-                    // A timeout is used to ensure ssUsersProvider.updateUser() processes the update before ngOnInit() fires
-                    setTimeout(this.ngOnInit(), 1000);
-                  }, error => {
-                    console.log("Could not update FRA",error);
-                  })
-                        
-                });        
-              });
-            });
+            // Update the ssUsersProvider with the new SSUser model
+            console.log(userModel);
+            this.ssUsersProvider.updateUser(this.userData$.userId, this.userData$.token, userModel).subscribe(response => {
+              console.log('FRA updated, res: ',response);
+              // ngOnInit() fired to recalculate chart variables with new ssUsersProvider data
+              // A timeout is used to ensure ssUsersProvider.updateUser() processes the update before ngOnInit() fires
+              setTimeout(this.ngOnInit(), 1000);
+            }, error => {
+              console.log("Could not update FRA",error);
+            })
           }
         }
       ]
     });
-  alert.present();
+    alert.present();
   }
 
   presentLanguagePopover(myEvent) {
@@ -199,26 +185,33 @@ export class DashboardPage implements OnInit {
   
   ngOnInit() {
     this.loading = true;
-    // userId & token are set to storage in the register page and the login page
-      this.storage.get('userId').then((val) => { 
-        this.id = val;
-        this.storage.get('token').then((val) => { 
-        this.token = val;
-
-      this.ssUsersProvider.getUser(this.id, this.token).subscribe(response => {
+      
+      // UserDataProvider was assigned FRAbenefit, gender, dateOfBirth from InfoInput Page
+      // And isRegistered, totalContribution, isMarried, userId, token, email, and password in Results Page
+      // Coming from the login page, UserDataProvider has email, password, userId, and token only
+      
+      this.ssUsersProvider.getUser(this.userData$.userId, this.userData$.token).subscribe(response => {
         console.log('Response from SsUsersProvider.getUser() :',response);
         
-        // Assign Results model some of its values from ssUsersProvider
-        this.results.gender = response.gender;
-        this.results.FRAbenefit = response.FRAbenefit;
-        this.results.totalContribution = response.totalContribution;
-        this.results.isMarried = response.isMarried;
-        this.results.dateOfBirth = response.dateOfBirth;
-        this.totalContribution = response.totalContribution;
+        // Assign Results model some of its values from SsUsersProvider.getUser's response
+              this.results.gender = response.gender;
+              this.results.FRAbenefit = response.FRAbenefit;
+              this.results.totalContribution = response.totalContribution;
+              this.results.isMarried = response.isMarried;
+              this.results.dateOfBirth = response.dateOfBirth;
+              this.totalContribution = response.totalContribution;
         this.benefitAtFRA = response.FRAbenefit;
-      
-      // Run calculations$.getBenefitData(pia, gender, dob), and poplulate the chart/table with the response
-      this.calculations$.getBenefitData(response.FRAbenefit, response.gender, response.dateOfBirth).subscribe ( data => {
+        
+        // In case the user comes from login page, fill UserDataProvider with:
+        this.userData$.isRegistered = true;
+        this.userData$.FRAbenefit = response.FRAbenefit;
+        this.userData$.gender = response.gender;
+        this.userData$.dateOfBirth = response.dateOfBirth; 
+        this.userData$.totalContribution = response.totalContribution;
+        this.userData$.isMarried = response.isMarried; 
+        
+        // Run calculations$.getBenefitData(pia, gender, dob), and poplulate the chart/table with the response
+        this.calculations$.getBenefitData(response.FRAbenefit, response.gender, response.dateOfBirth).subscribe ( data => {
           // The response is { retYears:[], monthly:[], cumulative:[], pv:[], FRA:number, lifeExpectancy:number }
           this.dataObject = data;
           this.dataObject = JSON.parse(this.dataObject._body);
@@ -232,7 +225,13 @@ export class DashboardPage implements OnInit {
           this.emailMonthly = this.dataObject.monthly;
           this.emailCumulative = this.dataObject.cumulative;
           
-          // Assign Results model its remaining values from the response
+          // Assign UserDataProvider more of its values from calculations$.getBenefitData's response
+          this.userData$.retYears = this.dataObject.retYears;
+          this.userData$.monthly = this.dataObject.monthly;
+          this.userData$.cumulative = this.dataObject.cumulative;
+          this.userData$.presentValue = this.dataObject.pv;
+          
+          // Assign Results model its remaining values from calculations$.getBenefitData's response
           this.results.monthly = this.dataObject.monthly;
           this.results.cumulative = this.dataObject.cumulative;
           this.results.isRegistered = true;
@@ -243,35 +242,29 @@ export class DashboardPage implements OnInit {
           
           // Run resultsProvider.saveResults(results, token)
           this.saveResults();
-          
+            
         }, err => console.log('Could not run calculations$.getBenefitData(pia, gender, dob)',err));
       
       }, error => {
         console.log("Could not get user",error);
       });
         
-      });
-        });
-        
   }
   
   saveResults() {
-    
-    this.storage.get('token').then((val) => { 
-      this.token = val;
-      this.resultsProvider.saveResults(this.results, this.token).subscribe( res => {
-      // Response is the same as Results model, except with an additional id: userId 
-      // thats different than the one from ssUsersProvider
-      console.log("Response from resultsProvider.saveResults():",res);
-      this.storage.set('resultsProviderID', res.id);
-      }, err => {
-        console.log(err);
-      });
+    this.resultsProvider.saveResults(this.results, this.userData$.token).subscribe( res => {
+    // Response is the same as Results model, except with an additional id: userId 
+    // thats different than the one from ssUsersProvider
+    console.log("Response from resultsProvider.saveResults():",res);
+    // Assign UserDataProvider its remaining value from resultsProvider.saveResults's response
+    this.userData$.resultsProviderID = res.id;
+    console.log(this.userData$);
+    }, err => {
+      console.log(err);
     });
-    
   }
   
-  presentModal(type) {
+  presentTable(type) {
     let chartType = type;
     console.log(chartType);
     let modal = this.modalCtrl.create(ModalDashboardComponent, {
@@ -282,11 +275,6 @@ export class DashboardPage implements OnInit {
     });
     
     modal.present();
-  }
-
-  // ngCharts reqire manual updating, even if chart data changes
-  reFresh() {
-    this.ngOnInit()
   }
 
 }
