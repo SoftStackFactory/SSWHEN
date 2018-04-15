@@ -204,27 +204,7 @@ export class DashboardPage implements OnInit {
         this.id = val;
         this.storage.get('token').then((val) => { 
         this.token = val;
-        
-                  // this.storage.get('SSUser').then((val) => {
-                  // let userModel = val;
-                  // console.log("userId retreived from storage",this.id);
-                  // console.log("token retreived from storage",this.token);
-                  // console.log("SSUser retreived from storage",userModel);
-                  
-                  // console.log("userId retreived from ssUsersProvider",this.ssUsersProvider.userId);
-                  // console.log("token retreived from ssUsersProvider",this.ssUsersProvider.token);
-                  // console.log("SSUser retreived from ssUsersProvider",this.ssUsersProvider.SSUser);
-                  
-                  // this.ssUsersProvider.updateUser(this.id, this.token, userModel).subscribe(response => {
-                  // // this.ssUsersProvider.updateUser(this.ssUsersProvider.userId, this.ssUsersProvider.token, this.ssUsersProvider.SSUser).subscribe(response => {
-                  //   console.log('ssUsersProvider.updateUser ran: ',response);
-                  // }, error => {
-                  //   console.log("Could not run ssUsersProvider.updateUser",error);
-                  // })
-                  // });
-                  
-                  
-        
+
       this.ssUsersProvider.getUser(this.id, this.token).subscribe(response => {
         console.log('Response from SsUsersProvider.getUser() :',response);
         

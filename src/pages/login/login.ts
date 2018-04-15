@@ -24,6 +24,7 @@ export class LoginPage {
   ssUser: SSUser;
   errorMessage: any;
   isError: boolean = false;
+  loading: boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -56,11 +57,13 @@ export class LoginPage {
     this.viewCtrl.setBackButtonText('Back');
   }
 
-  popView() {
+  login() {
     this.submitAttempt = true;
     if (!this.myForm.valid) {
       console.log("Unsuccessful login :(", this.myForm);
     } else {
+      this.loading = true;
+      
       // this.myForm.value is an {} containing properties email and password
       console.log("Successful login", this.myForm.value);
       this.ssUsersProvider.login(this.myForm.value).subscribe(res => {
@@ -84,10 +87,10 @@ export class LoginPage {
             this.ssUser = res;
             this.ssUser.password = this.myForm.value.password;
             console.log('Response from ssUsersProvider.getUser', this.ssUser);
-            this.storage.set('SSUser', res);
+            this.storage.set('SSUser', this.ssUser);
             this.navCtrl.push(DashboardPage);
           }, err => {
-            console.log(err)
+            console.log("Could not get user",err)
           });
       }, err => {
         this.isError = true;

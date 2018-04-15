@@ -38,10 +38,17 @@
         </ion-card>
       </ion-col>
     </ion-row>
+    
+    <ion-row align-items-center>
+      <ion-col>
+        <div *ngIf="this.loading && !this.ssUser " class="loader">Loading...</div>
+      </ion-col>
+    </ion-row>
+    
     <h4 *ngIf='isError' ion-text color="danger" text-center>{{errorMessage}}</h4>
     <ion-row padding-horizontal>
       <ion-col margin-right>
-        <button ion-button icon-end block full (click)="popView()" type="submit">
+        <button ion-button icon-end block full (click)="login()" type="submit">
           Login
         </button>
       </ion-col>
