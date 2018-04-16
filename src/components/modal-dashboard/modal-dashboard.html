@@ -9,33 +9,30 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
   <ion-grid no-padding>
     <ion-row align-items-center no-padding>
       <ion-col>
-        <ion-card>
-          <ion-card-content padding-horizontal>
 
-            <div *ngIf="chartType == 'monthly'">
-                <page-data-table 
-                  [leftCol]="retYears"
-                  [leftColTitle] = "leftTitle"
-                  [rightCol]="tableMonthly"
-                  [rightColTitle]="rightTitleMonthly"
-                ></page-data-table>
-            </div>
+        <div *ngIf="chartType == 'monthly'">
+            <page-data-table 
+              [leftCol]="retYears"
+              [leftColTitle] = "leftTitle"
+              [rightCol]="tableMonthly"
+              [rightColTitle]="rightTitleMonthly"
+            ></page-data-table>
+        </div>
 
-            <div *ngIf="chartType == 'cumulative'">
-                <page-data-table 
-                  [leftCol]="retYears"
-                  [leftColTitle] = "leftTitle"
-                  [rightCol]="tableAccumulated"
-                  [rightColTitle]="rightTitleCumulative"
-                ></page-data-table>
-            </div>
+        <div *ngIf="chartType == 'cumulative'">
+            <page-data-table 
+              [leftCol]="retYears"
+              [leftColTitle] = "leftTitle"
+              [rightCol]="tableAccumulated"
+              [rightColTitle]="rightTitleCumulative"
+            ></page-data-table>
+        </div>
 
-          </ion-card-content>
-        </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>

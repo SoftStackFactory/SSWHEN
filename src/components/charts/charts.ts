@@ -2,7 +2,6 @@
 
 import { Component, Input } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
-import { CalculationsProvider } from '../../providers/calculations/calculations';
 
 @Component({
   selector: 'charts',
@@ -17,7 +16,7 @@ export class ChartComponent {
   retirementAge: any;
   payout: any;
 
-  constructor(public calculations$: CalculationsProvider) {}
+  constructor() {}
   
   public ChartOptions:any = {
     responsive: true,

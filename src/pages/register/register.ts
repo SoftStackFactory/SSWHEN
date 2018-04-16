@@ -119,6 +119,9 @@ export class RegisterPage {
         this.userData$.userId = res.id;
         this.userData$.token = res.token;
 
+        if (!this.isError) {
+          this.showAlert();
+        };
         this.navCtrl.setRoot(DashboardPage);
       }, err => {
         this.isError = true;
@@ -136,7 +139,7 @@ export class RegisterPage {
           this.errorMessage = 'Unable to process request';
         }
       });
-      this.showAlert();
+
     };
 
   }
