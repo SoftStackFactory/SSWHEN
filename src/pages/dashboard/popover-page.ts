@@ -4,7 +4,7 @@ import {ProfilePage} from '../profile/profile';
 import {LandingPage} from '../landing/landing';
 import {HistoryPage} from '../history/history';
 import {SsUsersProvider} from '../../providers/ss-users/ss-users';
-import {Storage} from '@ionic/storage';
+import { UserDataProvider } from '../../providers/user-data/user-data';
 
 @Component({
   template: `
@@ -21,25 +21,17 @@ import {Storage} from '@ionic/storage';
     </ion-list>
   `
 })
-export class PopoverPage implements OnInit {
+export class PopoverPage {
   background: string;
   showBackdrop: true;
-  private token: string;
 
   constructor(
     public navCtrl: NavController,
     public appCtrl: App,
     public viewCtrl: ViewController,
     public ssUsersProvider: SsUsersProvider,
-    public storage: Storage
+    public userData$: UserDataProvider
   ) {}
-
-  ngOnInit() {
-    this.storage.get('token').then((val) => {
-      this.token = val;
-      console.log(this.token);
-    })
-  }
 
   goToProfile(params) {
     if (!params) params = {};
@@ -56,7 +48,7 @@ export class PopoverPage implements OnInit {
   goToLanding(params) {
     if (!params) params = {};
     this.navCtrl.setRoot(LandingPage);
-    this.ssUsersProvider.logout(this.token)
+    this.ssUsersProvider.logout(this.userData$.token)
       .subscribe( res => {
         this.appCtrl.getRootNav().setRoot(LandingPage);
         this.viewCtrl.dismiss();

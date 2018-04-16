@@ -10,14 +10,13 @@
       <ion-col>
         <h1 text-center ion-text color="primary"><strong>Profile</strong></h1>
         <div text-center><img src="http://www.freeiconspng.com/uploads/am-a-19-year-old-multimedia-artist-student-from-manila--21.png" alt="Logo Image"></div>
+        <p ion-text color="primary" text-center>Re-enter or update email and password</p>
         <form [formGroup]="profileForm">
           <ion-card>
             <ion-card-content>
               <ion-row no-padding>
                 <ion-col>
-                  <ion-label color="secondary" stacked>{{onTheEdit}}
-                  <ion-icon name="mail" float-right></ion-icon>
-                </ion-label>
+                  <ion-label color="secondary" stacked>{{onTheEdit}}</ion-label>
                 </ion-col>
                 <ion-col col-2  >
                   <button ion-button color="dark" float-right icon-only class="btn-smaller" (click)="editEmail()">
@@ -35,39 +34,28 @@
               </ion-row>
             </ion-card-content>
           </ion-card>
-          <!--[(ngModel)]="drill_plus"-->
+ 
           <ion-card padding-horizontal>
             <ion-card-header>
               {{onTheEdit1}}
-              <button ion-button (click)="editPassAddRow()" type="submit" float-right icon-only>
+              <button ion-button color="dark" float-right icon-only class="btn-smaller" (click)="editPassAddRow()" type="submit">
                 <ion-icon name="create"></ion-icon>
               </button>
             </ion-card-header>
             <ion-card-content>
-              <ion-input disabled="{{inputDisabledPass}}" [(ngModel)]="password" formControlName="password" type="password" name="Password" [minlength]="6" placeholder="••••••••••" class="passClass"></ion-input>
+              <ion-item>
+              <ion-input disabled="{{inputDisabledPass}}" formControlName="password" [(ngModel)]="password" type="{{type}}" required validateEqual="cpassword" reverse="true" [minlength]="6" placeholder="••••••••••" class="passClass"></ion-input>
+              <button *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="ios-eye-off-outline"></ion-icon></button>
+              <button *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="ios-eye-outline"></ion-icon></button>
               <div *ngIf="profileForm.controls.password.hasError('required') && profileForm.controls.password.touched">
                 <p>Sorry, field password is required!</p>
               </div>
               <div *ngIf="profileForm.controls.password.hasError('minlength') && profileForm.controls.password.touched">
                 <p>Sorry, minimum password length is 8!</p>
               </div>
+              </ion-item>
             </ion-card-content>
           </ion-card>
-          <ion-card *ngIf="addRow">
-            <ion-card-header>
-              Re-Type Password:
-            </ion-card-header>
-            <ion-card-content>
-              <ion-input formControlName="cpassword" name="cpassword" placeholder="••••••••••" type="password"></ion-input>
-              <div *ngIf="profileForm.controls.cpassword.dirty &&
-                    profileForm.controls.password.value !==
-                    profileForm.controls.cpassword.value">
-                <p>Password does not match</p>
-              </div>
-            </ion-card-content>
-          </ion-card>
-          <!--^propery binding gets a reference to the form from above. Action: disable this if the form is not valid--->
-          <!--  Confirm Edit</button>-->
         </form>
       </ion-col>
     </ion-row>

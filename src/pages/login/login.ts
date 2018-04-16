@@ -3,7 +3,6 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { IonicPage, NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SsUsersProvider } from '../../providers/ss-users/ss-users';
-import { SSUser } from '../../models/SSUser';
 import { UserDataProvider } from "../../providers/user-data/user-data";
 
 
@@ -15,7 +14,6 @@ import { UserDataProvider } from "../../providers/user-data/user-data";
 export class LoginPage {
   myForm: FormGroup;
   submitAttempt: boolean = false;
-  ssUser: SSUser;
   isError: boolean = false;
   errorMessage: any;
   loading: boolean;
@@ -82,6 +80,7 @@ export class LoginPage {
 
         this.navCtrl.push(DashboardPage);
       }, err => {
+        this.loading = false;
         this.isError = true;
         console.log('error message: ', err);
         // handle common error codes, 401, 422, 500, etc.
