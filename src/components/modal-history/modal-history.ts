@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {AlertController, NavParams, ViewController} from 'ionic-angular';
-import { CalculationsProvider } from '../../providers/calculations/calculations';
 import { EmailProvider } from '../../providers/email/email';
 
 @Component({
@@ -23,12 +22,9 @@ export class ModalHistoryComponent {
   rightTitleCumulative: string = 'Cumulative Benefit';
 
   constructor(public navParams: NavParams, 
-              public viewCtrl: ViewController, 
-              public alertCtrl: AlertController,
-              public calculations$: CalculationsProvider,
-              public email$: EmailProvider) {
-
-  }
+    public viewCtrl: ViewController, 
+    public alertCtrl: AlertController,
+    public email$: EmailProvider) {}
 
   ngOnInit() {
     this.historyResult = this.navParams.get('result');

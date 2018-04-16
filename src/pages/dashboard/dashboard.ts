@@ -230,6 +230,7 @@ export class DashboardPage implements OnInit {
           this.userData$.monthly = this.dataObject.monthly;
           this.userData$.cumulative = this.dataObject.cumulative;
           this.userData$.presentValue = this.dataObject.pv;
+          this.userData$.lifeExpectancy = this.lifeExpectancy;
           
           // Assign Results model its remaining values from calculations$.getBenefitData's response
           this.results.monthly = this.dataObject.monthly;

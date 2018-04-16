@@ -19,24 +19,20 @@ export class ModalDashboardComponent implements OnInit{
     results: any;
     
   constructor(public navParams: NavParams, 
-              public viewCtrl: ViewController, 
-              public calculations$: CalculationsProvider,
-              public mock$: MockDataProvider) {
-    this.chartType = this.navParams.get('modalType');
-    this.tableMonthly = this.navParams.get('tableMonthly');
-    this.tableAccumulated = this.navParams.get('tableAccumulated');
-    this.retYears = this.navParams.get('retYears');
+    public viewCtrl: ViewController, 
+    public calculations$: CalculationsProvider,
+    public mock$: MockDataProvider) {
+      this.chartType = this.navParams.get('modalType');
+      this.retYears = this.navParams.get('retYears');
+      this.tableMonthly = this.navParams.get('tableMonthly');
+      this.tableAccumulated = this.navParams.get('tableAccumulated');
   }
   
   ngOnInit() {
-      console.log(this.chartType);
-      console.log(this.retYears);
-      console.log(this.tableMonthly);
-      console.log(this.tableAccumulated);
-      // this.retYears = this.calculations$.retirementYears;
-      // this.tableMonthly = this.calculations$.monthlyBenefit().monthly;;
-      // this.totalAccumulated = this.calculations$.monthlyBenefit().cumulative;
-      // console.log(this.chartType)
+    console.log(this.chartType);
+    console.log(this.retYears);
+    console.log(this.tableMonthly);
+    console.log(this.tableAccumulated);
   }
 
   dismiss() {

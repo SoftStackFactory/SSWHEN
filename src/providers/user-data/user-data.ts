@@ -19,6 +19,7 @@ export class UserDataProvider {
   email: string;
   password: string;
   resultsProviderID: string;
+  lifeExpectancy: number;
 
   constructor() {}
 
